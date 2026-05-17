@@ -1,0 +1,208 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "portfolio": "Portfolio",
+    "process": "Proceso",
+    "contact": "Contacto",
+    "cta": "Solicitar proyecto"
+  },
+  "hero": {
+    "eyebrow": "Pol Morera · Barcelona",
+    "h1_line1": "Vídeos que",
+    "h1_line2": "venden.",
+    "tagline": "UGC para paid media, contenido orgánico y vídeo corporativo.",
+    "cta_primary": "Ver trabajos",
+    "cta_secondary": "Hablemos",
+    "stats": [
+      { "value": "+300", "label": "marcas" },
+      { "value": "+1000", "label": "vídeos" },
+      { "value": "+80M", "label": "visualizaciones" }
+    ]
+  },
+  "logos": {
+    "title": "Marcas que han confiado en nuestro contenido"
+  },
+  "results": {
+    "title": "Resultados reales",
+    "subtitle": "Experiencia en múltiples sectores y formatos.",
+    "brands": "MARCAS",
+    "videos": "VÍDEOS",
+    "views": "VISUALIZACIONES"
+  },
+  "problem": {
+    "eyebrow": "02 / EL PROBLEMA",
+    "title": "El problema no es hacer más vídeos",
+    "body": "El problema es hacer vídeos sin un objetivo claro. Muchas marcas crean contenido que se ve bien, pero no explica, no convence y no convierte.",
+    "highlight": "Cada pieza debe tener una función: captar atención, generar confianza o hacer que el usuario actúe."
+  },
+  "services": {
+    "eyebrow": "03 / SERVICIOS",
+    "title": "Qué producimos"
+  },
+  "process": {
+    "eyebrow": "04 / PROCESO",
+    "title": "Cómo trabajamos",
+    "intro": "Trabajamos cada pieza desde el objetivo, el guion y la ejecución. No grabamos por grabar.",
+    "steps": [
+      { "n": "01", "title": "Análisis",   "description": "Analizamos el brief, la competencia y qué ha funcionado en el sector." },
+      { "n": "02", "title": "Guion",      "description": "Creamos guiones adaptados al producto y al ángulo que mejor convierte." },
+      { "n": "03", "title": "Producción", "description": "Rodaje siguiendo las directrices del brief." },
+      { "n": "04", "title": "Edición",    "description": "Montaje, motion graphics y adaptaciones por formato." },
+      { "n": "05", "title": "Ajustes",    "description": "Iteramos hasta que el contenido es exactamente como lo quieres." }
+    ]
+  },
+  "portfolio": {
+    "eyebrow": "05 / TRABAJOS",
+    "title": "Proyectos recientes",
+    "filters": {
+      "all": "Todos",
+      "ads": "Ads",
+      "organic": "Orgánico",
+      "corporate": "Corporativo",
+      "apps": "Apps",
+      "food": "Food",
+      "services": "Servicios"
+    }
+  },
+  "differentiation": {
+    "eyebrow": "06 / DIFERENCIA",
+    "title": "Por qué trabajar con nosotros",
+    "cards": [
+      { "title": "Producción escalable", "desc": "Volumen sin perder calidad" },
+      { "title": "Enfoque en resultados", "desc": "Cada pieza con un objetivo medible" },
+      { "title": "Experiencia multisectorial", "desc": "Fintech, food, consumer, SaaS, retail" },
+      { "title": "Proceso claro", "desc": "Sabes qué pasa en cada fase" }
+    ]
+  },
+  "cta": {
+    "headline": "¿Quieres contenido bonito o contenido que funcione?",
+    "button": "Solicita tu proyecto"
+  },
+  "testimonials": {
+    "eyebrow": "07 / TESTIMONIOS",
+    "title": "Lo que dicen las marcas",
+    "label": "Lo que dicen",
+    "fiverr": "+90 reseñas positivas en Fiverr",
+    "items": [
+      {
+        "quote": "Llevamos más de un año trabajando con Pol y no podríamos estar más satisfechos. Cumple los timings, edición impecable y un enfoque creativo que se adapta a nuestras necesidades.",
+        "author": "Elena",
+        "role": "AppleTree"
+      },
+      {
+        "quote": "Trabajar con Pol superó todas nuestras expectativas. Atento a los detalles y a cualquier cambio. Una experiencia 10/10.",
+        "author": "Ernesto",
+        "role": "Bitnovo"
+      },
+      {
+        "quote": "Pol combina una gran responsabilidad con una creatividad notable. Hemos colaborado en múltiples ocasiones y siempre aporta un valor añadido que marca la diferencia.",
+        "author": "Sofia",
+        "role": "Thing or Two"
+      },
+      {
+        "quote": "Pilla al momento lo que quieres, y si no, lo resuelve. Súper atento, servicial y rápido. Toque natural y auténtico, y la cámara le quiere.",
+        "author": "BIG School",
+        "role": "Cliente"
+      },
+      {
+        "quote": "Muy contento de trabajar con Pol. Ha dado el tono, narrativa y ritmo que buscábamos. 100% satisfechos.",
+        "author": "Marc Avila",
+        "role": "Efizent"
+      },
+      {
+        "quote": "Un placer trabajar con él. Un verdadero profesional que entrega calidad siempre.",
+        "author": "Ross",
+        "role": "IB School"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "08 / PREGUNTAS",
+    "title": "Preguntas frecuentes"
+  },
+  "contact": {
+    "eyebrow": "09 / CONTACTO",
+    "title": "Cuéntanos tu proyecto",
+    "subtitle": "Respondemos en menos de 24h en días laborables.",
+    "email": "hello@polmorera.es",
+    "form": {
+      "submit": "Solicitar propuesta",
+      "submitting": "Enviando...",
+      "success": "¡Mensaje enviado! Te respondemos en menos de 24h.",
+      "fields": {
+        "name": "Nombre y empresa",
+        "email": "Email",
+        "message": "Mensaje"
+      },
+      "errors": {
+        "name_required": "Necesitamos saber quién eres.",
+        "email_required": "Falta el email.",
+        "email_invalid": "Email no válido.",
+        "server_error": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+      }
+    }
+  },
+  "work": {
+    "label": "Trabajos",
+    "filter_ads": "Ads",
+    "filter_organic": "Orgánico",
+    "filter_corporate": "Corporativo",
+    "filter_street": "Street content",
+    "view_case": "Ver caso",
+    "empty": "Aún no hay vídeos en esta categoría."
+  },
+  "admin": {
+    "title": "Gestor de vídeos",
+    "upload": "Subir vídeo",
+    "uploading": "Subiendo…",
+    "uploaded": "Vídeos subidos",
+    "logout": "Cerrar sesión",
+    "field_title": "Título (opcional)",
+    "field_client": "Cliente (opcional)",
+    "field_category": "Categoría",
+    "field_ratio": "Proporción",
+    "field_ratio_fixed": "(fijo)",
+    "drop_hint": "Arrastra un vídeo aquí",
+    "drop_formats": "MP4 · MOV · WebM — máx. 100MB",
+    "err_format": "Formato no permitido. Usa MP4, MOV o WebM.",
+    "err_size": "El archivo supera el límite de 100MB.",
+    "err_generic": "Error al subir el vídeo. Inténtalo de nuevo.",
+    "success_upload": "Vídeo subido correctamente.",
+    "toggle_active": "Activar / Desactivar",
+    "delete": "Eliminar",
+    "delete_confirm": "¿Eliminar este vídeo? Esta acción no se puede deshacer.",
+    "delete_cancel": "Cancelar",
+    "empty_category": "Sin vídeos en esta categoría.",
+    "login_title": "Acceso restringido",
+    "login_subtitle": "Panel de administración",
+    "login_user": "Usuario",
+    "login_pass": "Contraseña",
+    "login_submit": "Entrar",
+    "login_loading": "Entrando…",
+    "login_error": "Usuario o contraseña incorrectos.",
+    "edit_title": "Editar vídeo",
+    "field_replace_file": "Sustituir archivo",
+    "field_replace_hint": "Dejar vacío para mantener el archivo actual.",
+    "cancel": "Cancelar",
+    "save_changes": "Guardar cambios",
+    "saving": "Guardando...",
+    "saved": "Cambios guardados",
+    "preview": "Vista previa",
+    "edit": "Editar"
+  },
+  "carousel": {
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+  "player": {
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "mute": "Silenciar",
+    "unmute": "Activar sonido"
+  },
+  "footer": {
+    "tagline": "Contenido que trabaja para tu marca.",
+    "privacy": "Política de privacidad",
+    "copyright": "© 2026 Pol Morera Productions · Barcelona"
+  }
+}
