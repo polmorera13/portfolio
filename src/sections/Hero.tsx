@@ -245,12 +245,24 @@ function HeroClusterMobile({ images }: { images: Array<{ slot: number; src: stri
   );
 }
 
+// Fallback hero images bundled with the build, mapped 1:1 to the 7 slots.
+// Used when Supabase has no active hero images uploaded yet.
+const FALLBACK_HERO_IMAGES: Array<{ slot: number; src: string; alt: string }> = [
+  { slot: 1, src: "/hero/CAPT_.png",  alt: "Hero image 1" },
+  { slot: 2, src: "/hero/CAPT_1.png", alt: "Hero image 2" },
+  { slot: 3, src: "/hero/CAPT_3.png", alt: "Hero image 3" },
+  { slot: 4, src: "/hero/CAPT_4.png", alt: "Hero image 4" },
+  { slot: 5, src: "/hero/CAPT_5.png", alt: "Hero image 5" },
+  { slot: 6, src: "/hero/CAPT_6.png", alt: "Hero image 6" },
+  { slot: 7, src: "/hero/CAPT_7.png", alt: "Hero image 7" },
+];
+
 export default function Hero() {
   const { t } = useTranslation();
   const stats = t("hero.stats", { returnObjects: true }) as Stat[];
   const { videos } = useVideos("hero");
 
-  const heroImages = videos
+  const supabaseHeroImages = videos
     .filter((v) => v.media_type === "image" && v.slot != null)
     .sort((a, b) => (a.slot ?? 0) - (b.slot ?? 0))
     .map((v) => ({
@@ -258,6 +270,11 @@ export default function Hero() {
       src: getPublicUrl(v.storage_path),
       alt: v.title ?? `Hero image slot ${v.slot}`,
     }));
+
+  // If admin has not uploaded any hero images yet, use the bundled fallback set.
+  const heroImages = supabaseHeroImages.length > 0
+    ? supabaseHeroImages
+    : FALLBACK_HERO_IMAGES;
 
   return (
     <section
