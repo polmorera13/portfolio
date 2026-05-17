@@ -25,7 +25,7 @@ export default function Problem() {
               style={{ aspectRatio: "4/5" }}
             >
               <img
-                src="/ChatGPT_Image_7_may_2026,_19_04_37 copy.png"
+                src="/IMGPOL02.png"
                 alt=""
                 className="w-full h-full object-cover object-center"
                 style={{ transform: "scaleX(-1)" }}
