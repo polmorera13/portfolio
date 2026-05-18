@@ -6,8 +6,12 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "re_iYsDTmU2_BRZestnXFxXqtXSr2GkbcQNz";
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const DESTINATION_EMAIL = Deno.env.get("CONTACT_DESTINATION_EMAIL") ?? "hello@polmorera.es";
+
+if (!RESEND_API_KEY) {
+  console.error("Missing RESEND_API_KEY env var");
+}
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -20,6 +24,13 @@ Deno.serve(async (req: Request) => {
     if (!name?.trim() || !email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(JSON.stringify({ error: "invalid" }), {
         status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (!RESEND_API_KEY) {
+      return new Response(JSON.stringify({ error: "server_misconfigured" }), {
+        status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
