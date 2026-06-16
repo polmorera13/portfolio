@@ -13,6 +13,7 @@
     "tagline": "UGC para paid media, contenido orgánico y vídeo corporativo.",
     "cta_primary": "Ver trabajos",
     "cta_secondary": "Hablemos",
+    "trusted_by": "Ya confían en nosotros",
     "stats": [
       { "value": "+300", "label": "marcas" },
       { "value": "+1000", "label": "vídeos" },
@@ -52,7 +53,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "05 / TRABAJOS",
+    "eyebrow": "01 / TRABAJOS",
     "title": "Proyectos recientes",
     "filters": {
       "all": "Todos",
@@ -79,7 +80,7 @@
     "button": "Solicita tu proyecto"
   },
   "testimonials": {
-    "eyebrow": "07 / TESTIMONIOS",
+    "eyebrow": "05 / TESTIMONIOS",
     "title": "Lo que dicen las marcas",
     "label": "Lo que dicen",
     "fiverr": "+90 reseñas positivas en Fiverr",
@@ -117,11 +118,11 @@
     ]
   },
   "faq": {
-    "eyebrow": "08 / PREGUNTAS",
+    "eyebrow": "06 / PREGUNTAS",
     "title": "Preguntas frecuentes"
   },
   "contact": {
-    "eyebrow": "09 / CONTACTO",
+    "eyebrow": "07 / CONTACTO",
     "title": "Cuéntanos tu proyecto",
     "subtitle": "Respondemos en menos de 24h en días laborables.",
     "email": "hello@polmorera.es",

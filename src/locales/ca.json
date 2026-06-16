@@ -13,6 +13,7 @@
     "tagline": "UGC per a paid media, contingut orgànic i vídeo corporatiu.",
     "cta_primary": "Veure treballs",
     "cta_secondary": "Parlem",
+    "trusted_by": "Ja hi confien",
     "stats": [
       { "value": "+300", "label": "marques" },
       { "value": "+1000", "label": "vídeos" },
@@ -52,7 +53,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "05 / TREBALLS",
+    "eyebrow": "01 / TREBALLS",
     "title": "Projectes recents",
     "filters": {
       "all": "Tots",
@@ -79,7 +80,7 @@
     "button": "Sol·licita el teu projecte"
   },
   "testimonials": {
-    "eyebrow": "07 / TESTIMONIS",
+    "eyebrow": "05 / TESTIMONIS",
     "title": "Què diuen les marques",
     "label": "Què en diuen",
     "fiverr": "+90 ressenyes positives a Fiverr",
@@ -117,11 +118,11 @@
     ]
   },
   "faq": {
-    "eyebrow": "08 / PREGUNTES",
+    "eyebrow": "06 / PREGUNTES",
     "title": "Preguntes freqüents"
   },
   "contact": {
-    "eyebrow": "09 / CONTACTE",
+    "eyebrow": "07 / CONTACTE",
     "title": "Explica'ns el teu projecte",
     "subtitle": "Responem en menys de 24h en dies feiners.",
     "email": "hello@polmorera.es",

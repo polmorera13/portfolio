@@ -28,16 +28,16 @@ type Slot = {
 };
 
 const SLOTS: Slot[] = [
-  // Big horizontal video centro-arriba — corporate
-  { x: "18%", y: "6%",  rotate: -2, width: "62%", z: 3, dur: "5.6s", delay: "0s",   aspectRatio: "16:9", pickFrom: "corporate" },
-  // Vertical top-left
-  { x: "0%",  y: "0%",  rotate: -6, width: "28%", z: 4, dur: "5.0s", delay: "0.7s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical top-right
-  { x: "76%", y: "2%",  rotate:  5, width: "26%", z: 5, dur: "4.6s", delay: "1.2s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical bottom-left
-  { x: "6%",  y: "52%", rotate:  6, width: "30%", z: 2, dur: "5.2s", delay: "0.4s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical bottom-right
-  { x: "60%", y: "50%", rotate: -4, width: "34%", z: 6, dur: "4.8s", delay: "0.9s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // CORPORATE central — el "núcleo" del collage, los otros orbitan alrededor
+  { x: "20%", y: "32%", rotate: -2, width: "60%", z: 10, dur: "5.6s", delay: "0s",   aspectRatio: "16:9", pickFrom: "corporate" },
+  // Vertical top-left orbit
+  { x: "0%",  y: "0%",  rotate: -7, width: "26%", z: 3,  dur: "5.0s", delay: "0.7s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical top-right orbit
+  { x: "76%", y: "0%",  rotate:  6, width: "26%", z: 4,  dur: "4.6s", delay: "1.2s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical bottom-left orbit
+  { x: "2%",  y: "62%", rotate:  8, width: "28%", z: 5,  dur: "5.2s", delay: "0.4s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical bottom-right orbit
+  { x: "70%", y: "60%", rotate: -6, width: "30%", z: 6,  dur: "4.8s", delay: "0.9s", aspectRatio: "9:16", pickFrom: "vertical" },
 ];
 
 type ResolvedSlot = Slot & {
@@ -187,12 +187,19 @@ export default function Hero() {
     (v) => v.category === "ads" || v.category === "organic" || v.category === "street"
   );
 
+  // Featured corporate pick: prioritise Reactiva (núcleo del collage del hero).
+  // Fallback to the first corporate available if Reactiva no está subida.
+  const matchesReactiva = (s: string | null | undefined) =>
+    !!s && /reactiva/i.test(s);
+  const featuredCorporate =
+    corporateVideos.find((v) => matchesReactiva(v.client) || matchesReactiva(v.title)) ??
+    corporateVideos[0];
+
   // Resolve each slot to an actual video (skip slot if none available)
-  let corporateIdx = 0;
   let verticalIdx = 0;
   const resolvedSlots: ResolvedSlot[] = SLOTS.flatMap((s) => {
     const pick = s.pickFrom === "corporate"
-      ? corporateVideos[corporateIdx++]
+      ? featuredCorporate
       : verticalVideos[verticalIdx++];
     if (!pick) return [];
     return [{
@@ -329,12 +336,30 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              transition={{ duration: 0.36, ease, delay: 0.5 }}
+              style={{
+                marginTop: "1.75rem",
+                marginBottom: "0.5rem",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 300,
+                fontSize: "0.75rem",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: STEEL,
+                opacity: 0.75,
+              }}
+            >
+              {t("hero.trusted_by")}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.36, ease, delay: 0.56 }}
               style={{
                 display: "flex",
                 gap: "1.5rem",
                 alignItems: "baseline",
-                marginTop: "1.5rem",
                 flexWrap: "wrap",
               }}
             >

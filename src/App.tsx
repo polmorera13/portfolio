@@ -27,8 +27,8 @@ function PublicSite() {
       <main>
         <Hero />
         <LogoMarquee />
-        <Portfolio />
         <Results />
+        <Portfolio />
         <Problem />
         <Services />
         <Process />

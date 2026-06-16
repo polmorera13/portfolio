@@ -25,14 +25,14 @@ const ASPECT_RATIO: Record<FilterCategory, "9:16" | "16:9"> = {
 };
 
 // Cards per row, per breakpoint, per category.
-// User asked for "filas de cinco" across all categories — horizontal videos
-// will just render smaller. We bump corporate down slightly on mid screens
-// so they don't get unreadably small.
+// Vertical categories use 5 columns so they read like a wall. Corporate uses
+// 3 columns because the 16:9 ratio makes each card much wider, and we want
+// them to read big rather than tiny.
 const COLS_DESKTOP: Record<FilterCategory, number> = {
   ads: 5,
   organic: 5,
   street: 5,
-  corporate: 5,
+  corporate: 3,
 };
 
 function SkeletonCard({ ar }: { ar: "9:16" | "16:9" }) {
@@ -70,6 +70,7 @@ function PortfolioGrid({ items, category }: GridProps) {
   return (
     <div
       className="portfolio-grid"
+      data-cat={category}
       style={{
         display: "grid",
         gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
@@ -90,19 +91,45 @@ function PortfolioGrid({ items, category }: GridProps) {
       ))}
 
       <style>{`
-        /* Tablet: drop to 4 columns */
+        /* Vertical categories: 5 cols desktop → 4 → 3 → 2 → 1 */
+        .portfolio-grid[data-cat="ads"],
+        .portfolio-grid[data-cat="organic"],
+        .portfolio-grid[data-cat="street"] {
+          /* default 5 cols set inline */
+        }
         @media (max-width: 1200px) {
-          .portfolio-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+          .portfolio-grid[data-cat="ads"],
+          .portfolio-grid[data-cat="organic"],
+          .portfolio-grid[data-cat="street"] {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+          }
         }
-        /* Small tablet: 3 columns */
         @media (max-width: 900px) {
-          .portfolio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+          .portfolio-grid[data-cat="ads"],
+          .portfolio-grid[data-cat="organic"],
+          .portfolio-grid[data-cat="street"] {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+          }
         }
-        /* Mobile: 2 columns */
         @media (max-width: 640px) {
-          .portfolio-grid {
+          .portfolio-grid[data-cat="ads"],
+          .portfolio-grid[data-cat="organic"],
+          .portfolio-grid[data-cat="street"] {
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             gap: 10px !important;
+          }
+        }
+
+        /* Corporate: 3 cols desktop → 2 → 1 */
+        @media (max-width: 1000px) {
+          .portfolio-grid[data-cat="corporate"] {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .portfolio-grid[data-cat="corporate"] {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
           }
         }
       `}</style>
