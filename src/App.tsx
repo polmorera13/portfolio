@@ -27,11 +27,11 @@ function PublicSite() {
       <main>
         <Hero />
         <LogoMarquee />
+        <Portfolio />
         <Results />
         <Problem />
         <Services />
         <Process />
-        <Portfolio />
         <Testimonials />
         <CTASection />
         <FAQ />
