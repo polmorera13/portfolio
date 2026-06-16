@@ -15,12 +15,27 @@ export default function Footer() {
     <footer className="border-t border-charcoal bg-navy">
       <div className="max-w-content mx-auto section-padding py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {/* Left: brand */}
-          <div className="flex flex-col gap-3">
-            <span className="text-off-white font-bold text-lg" style={{ letterSpacing: "-0.01em" }}>
-              POL MORERA
-            </span>
-            <p className="text-steel-blue text-sm leading-relaxed">{t("footer.tagline")}</p>
+          {/* Left: brand with profile photo */}
+          <div className="flex items-center gap-4">
+            <img
+              src="/perfil-pol.png"
+              alt="Pol Morera"
+              loading="lazy"
+              style={{
+                width: 88,
+                height: 88,
+                borderRadius: "16px",
+                objectFit: "cover",
+                flexShrink: 0,
+                border: "1px solid oklch(58% 0.14 240 / 0.25)",
+              }}
+            />
+            <div className="flex flex-col gap-2">
+              <span className="text-off-white font-bold text-lg" style={{ letterSpacing: "-0.01em" }}>
+                POL MORERA
+              </span>
+              <p className="text-steel-blue text-sm leading-relaxed">{t("footer.tagline")}</p>
+            </div>
           </div>
 
           {/* Center: nav */}
@@ -40,7 +55,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
               <a
-                href="https://instagram.com/polmorera"
+                href="https://instagram.com/polmorera_cc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-brand-blue hover:border-brand-blue/50 transition-all duration-200"
