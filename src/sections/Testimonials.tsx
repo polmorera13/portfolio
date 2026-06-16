@@ -15,7 +15,7 @@ const BRAND_LOGOS: Record<string, string> = {
   "Bitnovo": "/testimonials/bitnovo.png",
   "Thing or Two": "/testimonials/thingortwo.png",
   "Efizent": "/testimonials/efizent.png",
-  "IB School": "/testimonials/ibschool.png",
+  "IB School": "/testimonials/ibschool.svg",
   "BIG School": "/testimonials/bigschool.png",
 };
 
