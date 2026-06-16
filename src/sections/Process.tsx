@@ -1,4 +1,13 @@
 import { useRef, useState, useLayoutEffect } from "react";
+import type { Icon } from "@phosphor-icons/react";
+import {
+  MagnifyingGlass,
+  PencilSimple,
+  VideoCamera,
+  Scissors,
+  Sliders,
+  Sparkle,
+} from "@phosphor-icons/react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
@@ -8,6 +17,23 @@ type Step = { n?: string; title: string; desc?: string; description?: string };
 function getDesc(step: Step) {
   return step.description ?? step.desc ?? "";
 }
+
+// White vector icon per stage, mapped by step index:
+// 0 Análisis · 1 Guión · 2 Producción · 3 Edición · 4 Ajustes
+const STEP_ICONS: Icon[] = [
+  MagnifyingGlass,
+  PencilSimple,
+  VideoCamera,
+  Scissors,
+  Sliders,
+];
+
+function StepIcon({ index }: { index: number }) {
+  const IconCmp = STEP_ICONS[index] ?? Sparkle;
+  return <IconCmp size={26} weight="regular" color="oklch(96% 0.005 240)" />;
+}
+
+const ICON_KICKER = "oklch(58% 0.14 240)";
 
 // ── Shared hook: measure circle centers relative to a container ───────────────
 function useCircleCenters(count: number) {
@@ -106,13 +132,18 @@ function DesktopTimeline({ steps }: { steps: Step[] }) {
           <motion.div key={i} variants={fadeUp} className="flex flex-col gap-4">
             <div
               ref={(el) => { circleRefs.current[i] = el; }}
-              className="w-16 h-16 rounded-full bg-navy border-2 border-charcoal flex items-center justify-center"
+              className="w-16 h-16 rounded-full bg-navy flex items-center justify-center"
+              style={{ border: "2px solid oklch(58% 0.14 240 / 0.45)" }}
             >
-              <span className="text-brand-blue font-bold text-lg">
+              <StepIcon index={i} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span
+                className="font-bold"
+                style={{ color: ICON_KICKER, fontSize: "0.75rem", letterSpacing: "0.12em" }}
+              >
                 {step.n ?? String(i + 1).padStart(2, "0")}
               </span>
-            </div>
-            <div className="flex flex-col gap-1.5">
               <h3 className="text-off-white font-semibold text-base">{step.title}</h3>
               <p className="text-steel-blue text-sm leading-relaxed">{getDesc(step)}</p>
             </div>
@@ -181,15 +212,20 @@ function MobileTimeline({ steps }: { steps: Step[] }) {
         <motion.div key={i} variants={fadeUp} className="flex gap-6 relative">
           <div
             ref={(el) => { circleRefs.current[i] = el; }}
-            className="w-16 h-16 rounded-full bg-navy border-2 border-charcoal flex items-center justify-center shrink-0 z-10"
+            className="w-16 h-16 rounded-full bg-navy flex items-center justify-center shrink-0 z-10"
+            style={{ border: "2px solid oklch(58% 0.14 240 / 0.45)" }}
           >
-            <span className="text-brand-blue font-bold text-base">
-              {step.n ?? String(i + 1).padStart(2, "0")}
-            </span>
+            <StepIcon index={i} />
           </div>
 
-          <div className="flex flex-col gap-1.5 pb-10">
-            <h3 className="text-off-white font-semibold text-base mt-4">{step.title}</h3>
+          <div className="flex flex-col gap-1 pb-10">
+            <span
+              className="font-bold mt-3"
+              style={{ color: ICON_KICKER, fontSize: "0.75rem", letterSpacing: "0.12em" }}
+            >
+              {step.n ?? String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="text-off-white font-semibold text-base">{step.title}</h3>
             <p className="text-steel-blue text-sm leading-relaxed">{getDesc(step)}</p>
           </div>
         </motion.div>

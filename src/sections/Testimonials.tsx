@@ -1,9 +1,89 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Star } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 
 const STAR_COLOR = "oklch(58% 0.14 240)";
+
+// Optional real logos. Drop transparent PNGs (ideally white/light variants
+// so they read on the dark card) into /public/testimonials/ with these names
+// and they replace the monogram automatically. Missing files fall back to the
+// monogram without errors.
+const BRAND_LOGOS: Record<string, string> = {
+  "AppleTree": "/testimonials/appletree.png",
+  "Bitnovo": "/testimonials/bitnovo.png",
+  "Thing or Two": "/testimonials/thingortwo.png",
+  "Efizent": "/testimonials/efizent.png",
+  "IB School": "/testimonials/ibschool.png",
+  "BIG School": "/testimonials/bigschool.png",
+};
+
+function initials(s: string): string {
+  const stop = /^(or|y|and|de|the|o|i)$/i;
+  const words = s.trim().split(/\s+/).filter((w) => !stop.test(w));
+  if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+  return s.slice(0, 2).toUpperCase();
+}
+
+function BrandMark({ brand, author }: { brand: string; author: string }) {
+  const [logoFailed, setLogoFailed] = useState(false);
+  // Use the brand (role) for the logo lookup; some entries use a generic role
+  // like "Cliente", in which case we fall back to the author for the monogram.
+  const logoSrc = BRAND_LOGOS[brand] ?? BRAND_LOGOS[author];
+  const monogramSource = /^(cliente|client)$/i.test(brand.trim()) ? author : brand;
+
+  if (logoSrc && !logoFailed) {
+    return (
+      <div
+        style={{
+          width: 48,
+          height: 48,
+          borderRadius: 10,
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "oklch(96% 0.005 240 / 0.06)",
+          border: "1px solid oklch(58% 0.14 240 / 0.18)",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={logoSrc}
+          alt={brand}
+          onError={() => setLogoFailed(true)}
+          style={{ maxWidth: "70%", maxHeight: "70%", objectFit: "contain", display: "block" }}
+        />
+      </div>
+    );
+  }
+
+  // Monogram fallback
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        width: 48,
+        height: 48,
+        borderRadius: 10,
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "oklch(58% 0.14 240 / 0.14)",
+        border: "1px solid oklch(58% 0.14 240 / 0.28)",
+        fontFamily: "Poppins, sans-serif",
+        fontWeight: 700,
+        fontSize: "0.9375rem",
+        letterSpacing: "0.02em",
+        color: "oklch(70% 0.12 240)",
+      }}
+    >
+      {initials(monogramSource)}
+    </div>
+  );
+}
 
 function StarRow() {
   return (
@@ -43,27 +123,34 @@ function Card({ item }: { item: Item }) {
       >
         {item.quote}
       </p>
-      <div style={{ marginTop: "24px" }}>
-        <p
-          className="text-off-white"
-          style={{
-            fontFamily: "Poppins, sans-serif",
-            fontWeight: 600,
-            fontSize: "0.9375rem",
-          }}
-        >
-          {item.author}
-        </p>
-        <p
-          className="text-steel-blue"
-          style={{
-            fontFamily: "Poppins, sans-serif",
-            fontWeight: 400,
-            fontSize: "0.875rem",
-          }}
-        >
-          {item.role}
-        </p>
+
+      {/* Footer: brand mark on the left, name + brand shifted to its right */}
+      <div style={{ marginTop: "24px", display: "flex", alignItems: "center", gap: "12px" }}>
+        <BrandMark brand={item.role} author={item.author} />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <p
+            className="text-off-white"
+            style={{
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 600,
+              fontSize: "0.9375rem",
+              lineHeight: 1.2,
+            }}
+          >
+            {item.author}
+          </p>
+          <p
+            className="text-steel-blue"
+            style={{
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 400,
+              fontSize: "0.875rem",
+              lineHeight: 1.3,
+            }}
+          >
+            {item.role}
+          </p>
+        </div>
       </div>
     </article>
   );
