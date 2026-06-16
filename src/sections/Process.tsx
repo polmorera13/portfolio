@@ -240,8 +240,31 @@ export default function Process() {
   const steps = t("process.steps", { returnObjects: true }) as Step[];
 
   return (
-    <section id="proceso" className="section-gap bg-charcoal/30">
-      <div className="max-w-content mx-auto section-padding">
+    <section id="proceso" className="section-gap relative overflow-hidden">
+      {/* Background stock photo — real film production set */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url('/process-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          zIndex: 0,
+        }}
+      />
+      {/* Semi-transparent blue overlay so the text stays readable */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, oklch(11% 0.05 245 / 0.93) 0%, oklch(16% 0.09 245 / 0.82) 50%, oklch(11% 0.05 245 / 0.93) 100%)",
+          zIndex: 1,
+        }}
+      />
+      <div className="max-w-content mx-auto section-padding relative" style={{ zIndex: 2 }}>
         <motion.div
           initial="hidden"
           whileInView="visible"

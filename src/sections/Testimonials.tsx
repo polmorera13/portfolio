@@ -44,7 +44,7 @@ function BrandMark({ brand, author }: { brand: string; author: string }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "oklch(96% 0.005 240 / 0.06)",
+          background: "oklch(98% 0.003 240)",
           border: "1px solid oklch(58% 0.14 240 / 0.18)",
           overflow: "hidden",
         }}
@@ -53,7 +53,7 @@ function BrandMark({ brand, author }: { brand: string; author: string }) {
           src={logoSrc}
           alt={brand}
           onError={() => setLogoFailed(true)}
-          style={{ maxWidth: "70%", maxHeight: "70%", objectFit: "contain", display: "block" }}
+          style={{ maxWidth: "76%", maxHeight: "76%", objectFit: "contain", display: "block" }}
         />
       </div>
     );
