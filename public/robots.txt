@@ -1,0 +1,18 @@
+# robots.txt — polmorera.es
+# Allow all search engines to crawl everything except admin/login pages
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /login
+
+# Block known scraper bots that don't add SEO value
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://polmorera.es/sitemap.xml
