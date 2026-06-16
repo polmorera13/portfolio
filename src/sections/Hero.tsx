@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
+import VideoPlayer from "../components/VideoPlayer";
 
 type Stat = { value: string; label: string };
 
@@ -12,7 +12,10 @@ const OFFWHITE = "oklch(96% 0.005 240)";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
-type SlotConfig = {
+// ── Cluster slots ───────────────────────────────────────────────────────────
+// 1 horizontal (corporate, centro) + 4 verticales (ads/organic/street, esquinas).
+// Disposición tipo collage, ligeramente rotados, montados unos sobre otros.
+type Slot = {
   x: string;
   y: string;
   rotate: number;
@@ -20,261 +23,186 @@ type SlotConfig = {
   z: number;
   dur: string;
   delay: string;
-  // mobileRow: which row (0 = top strip, 1 = bottom strip) or null = desktop only
-  // mobileCol: position within row
-  mobileRow: number | null;
-  mobileCol: number;
+  aspectRatio: "16:9" | "9:16";
+  pickFrom: "corporate" | "vertical";
 };
 
-// Desktop: absolute positioned collage
-// Mobile: 2-row compact strip — top row has 3 images, bottom row has 4 images
-const SLOTS: SlotConfig[] = [
-  { x: "2%",  y: "3%",  rotate: -4, width: "200px", z: 1, dur: "5.2s", delay: "0s",   mobileRow: 0, mobileCol: 0 },
-  { x: "38%", y: "0%",  rotate:  3, width: "175px", z: 2, dur: "4.6s", delay: "0.7s", mobileRow: 0, mobileCol: 1 },
-  { x: "64%", y: "5%",  rotate: -3, width: "175px", z: 7, dur: "4.4s", delay: "1.6s", mobileRow: 0, mobileCol: 2 },
-  { x: "60%", y: "36%", rotate: -2, width: "195px", z: 3, dur: "5.6s", delay: "1.3s", mobileRow: 1, mobileCol: 0 },
-  { x: "6%",  y: "44%", rotate:  5, width: "185px", z: 4, dur: "4.8s", delay: "0.4s", mobileRow: 1, mobileCol: 1 },
-  { x: "28%", y: "32%", rotate: -2, width: "190px", z: 6, dur: "5.0s", delay: "0.5s", mobileRow: 1, mobileCol: 2 },
-  { x: "44%", y: "58%", rotate: -3, width: "215px", z: 5, dur: "5.4s", delay: "1.0s", mobileRow: 1, mobileCol: 3 },
+const SLOTS: Slot[] = [
+  // Big horizontal video centro-arriba — corporate
+  { x: "18%", y: "6%",  rotate: -2, width: "62%", z: 3, dur: "5.6s", delay: "0s",   aspectRatio: "16:9", pickFrom: "corporate" },
+  // Vertical top-left
+  { x: "0%",  y: "0%",  rotate: -6, width: "28%", z: 4, dur: "5.0s", delay: "0.7s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical top-right
+  { x: "76%", y: "2%",  rotate:  5, width: "26%", z: 5, dur: "4.6s", delay: "1.2s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical bottom-left
+  { x: "6%",  y: "52%", rotate:  6, width: "30%", z: 2, dur: "5.2s", delay: "0.4s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical bottom-right
+  { x: "60%", y: "50%", rotate: -4, width: "34%", z: 6, dur: "4.8s", delay: "0.9s", aspectRatio: "9:16", pickFrom: "vertical" },
 ];
 
-function HeroCluster({ images }: { images: Array<{ slot: number; src: string; alt: string }> }) {
-  const [active, setActive] = useState<number | null>(null);
+type ResolvedSlot = Slot & {
+  src: string;
+  poster: string | null;
+  title: string | null;
+  client: string | null;
+};
 
-  const bySlot: Record<number, { src: string; alt: string }> = {};
-  images.forEach((img) => { bySlot[img.slot] = { src: img.src, alt: img.alt }; });
-
+function HeroCluster({ slots }: { slots: ResolvedSlot[] }) {
   return (
     <div
-      className="hero-cluster"
-      onMouseLeave={() => setActive(null)}
-      style={{ position: "relative", width: "100%", minHeight: "700px" }}
+      className="hero-video-cluster"
+      style={{
+        position: "relative",
+        width: "100%",
+        minHeight: "640px",
+      }}
     >
-      {SLOTS.map((s, i) => {
-        const slotNum = i + 1;
-        const entry = bySlot[slotNum];
-        if (!entry) return null;
-        const isActive = active === i;
-        const isDimmed = active !== null && !isActive;
-        const distance = active !== null ? Math.abs(i - active) : 0;
-        const dimDelay = isDimmed ? Math.min(distance * 35, 140) : 0;
-
-        const slotCls = [
-          "hero-image-slot",
-          `hero-slot-mr${s.mobileRow ?? "x"}`,
-          `hero-slot-mc${s.mobileCol}`,
-          isActive ? "is-active" : "",
-          isDimmed ? "is-dimmed" : "",
-        ].filter(Boolean).join(" ");
-
-        return (
-          <div
-            key={i}
-            className={slotCls}
-            onMouseEnter={() => setActive(i)}
-            style={{
-              position: "absolute",
-              left: s.x,
-              top: s.y,
-              width: s.width,
-              zIndex: isActive ? 100 : s.z,
-              ["--r" as string]: `${s.rotate}deg`,
-              ["--dur" as string]: s.dur,
-              ["--delay" as string]: s.delay,
-              transitionDelay: `${dimDelay}ms`,
-            }}
-          >
-            <img
-              src={entry.src}
-              alt={entry.alt}
-              draggable={false}
-              loading="eager"
+      {slots.map((s, i) => (
+        <div
+          key={i}
+          className="hero-video-slot"
+          style={{
+            position: "absolute",
+            left: s.x,
+            top: s.y,
+            width: s.width,
+            zIndex: s.z,
+            ["--r" as string]: `${s.rotate}deg`,
+            ["--dur" as string]: s.dur,
+            ["--delay" as string]: s.delay,
+          }}
+        >
+          <div className="hero-video-inner">
+            <VideoPlayer
+              src={s.src}
+              poster={s.poster}
+              aspectRatio={s.aspectRatio}
+              title={s.title}
+              client={s.client}
+              loop
             />
           </div>
-        );
-      })}
+        </div>
+      ))}
 
       <style>{`
-        @keyframes hero-float {
+        @keyframes hero-video-float {
           0%, 100% { translate: 0 0; }
           50%      { translate: 0 -6px; }
         }
-        .hero-image-slot {
+        .hero-video-slot {
+          transform: rotate(var(--r, 0deg));
+          animation: hero-video-float var(--dur, 5s) ease-in-out infinite;
+          animation-delay: var(--delay, 0s);
+          transition: transform 380ms cubic-bezier(0.19, 1, 0.22, 1);
+          will-change: transform;
+        }
+        .hero-video-slot:hover {
+          z-index: 100 !important;
+        }
+        .hero-video-inner {
           border-radius: 14px;
           overflow: hidden;
-          cursor: pointer;
-          transform: rotate(var(--r, 0deg));
-          animation: hero-float var(--dur, 5s) ease-in-out infinite;
-          animation-delay: var(--delay, 0s);
           box-shadow:
-            0 14px 36px oklch(12% 0.025 240 / 0.5),
-            0 0 0 1px oklch(58% 0.14 240 / 0.08);
-          transition:
-            transform 520ms cubic-bezier(0.19, 1, 0.22, 1),
-            filter    520ms cubic-bezier(0.19, 1, 0.22, 1),
-            opacity   520ms cubic-bezier(0.19, 1, 0.22, 1),
-            box-shadow 480ms cubic-bezier(0.19, 1, 0.22, 1);
-          will-change: transform, filter;
+            0 18px 44px oklch(12% 0.025 240 / 0.55),
+            0 0 0 1px oklch(58% 0.14 240 / 0.12);
+          transition: box-shadow 320ms cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .hero-image-slot:not(.is-active):not(.is-dimmed) {
-          transition-duration: 320ms;
-          transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .hero-image-slot img {
-          display: block;
-          width: 100%;
-          height: auto;
-          border-radius: 14px;
-        }
-        .hero-image-slot.is-active {
-          transform: rotate(var(--r, 0deg)) scale(1.08);
+        .hero-video-slot:hover .hero-video-inner {
           box-shadow:
-            0 24px 60px oklch(12% 0.025 240 / 0.7),
-            0 0 0 1px oklch(58% 0.14 240 / 0.15);
-        }
-        .hero-image-slot.is-dimmed {
-          filter: blur(7px) saturate(0.85);
-          opacity: 0.45;
+            0 28px 64px oklch(12% 0.025 240 / 0.75),
+            0 0 0 1px oklch(58% 0.14 240 / 0.25);
         }
         @media (prefers-reduced-motion: reduce) {
-          .hero-image-slot { animation: none !important; }
-        }
-
-        /* ── Mobile collage: two compact rows ── */
-        @media (max-width: 767px) {
-          .hero-cluster {
-            min-height: 0 !important;
-            position: relative !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 6px !important;
-            padding: 0 !important;
-          }
-
-          /* All slots become static, fixed-height cards */
-          .hero-image-slot {
-            position: static !important;
-            width: auto !important;
-            animation: none !important;
-            filter: none !important;
-            opacity: 1 !important;
-            transform: rotate(var(--r, 0deg)) !important;
-            border-radius: 10px !important;
-            flex-shrink: 0;
-          }
-          .hero-image-slot img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            border-radius: 10px !important;
-          }
-          .hero-image-slot.is-active {
-            transform: rotate(var(--r, 0deg)) scale(1.03) !important;
-          }
-
-          /* Row containers via a CSS trick — group by mobileRow using pseudo-sibling layout */
-          /* Top row: slots with mobileRow=0 — 3 images, equal width */
-          .hero-cluster-row-top,
-          .hero-cluster-row-bottom {
-            display: flex;
-            gap: 6px;
-            width: 100%;
-          }
-
-          .hero-slot-mr0 {
-            height: 110px;
-            flex: 1 1 0;
-          }
-          .hero-slot-mr1 {
-            height: 100px;
-            flex: 1 1 0;
-          }
-          .hero-slot-mrx {
-            display: none !important;
-          }
+          .hero-video-slot { animation: none !important; }
         }
       `}</style>
     </div>
   );
 }
 
-// Mobile wrapper that reorganises slots into two row divs
-function HeroClusterMobile({ images }: { images: Array<{ slot: number; src: string; alt: string }> }) {
-  const bySlot: Record<number, { src: string; alt: string }> = {};
-  images.forEach((img) => { bySlot[img.slot] = { src: img.src, alt: img.alt }; });
-
-  const row0 = SLOTS.map((s, i) => ({ s, i, slotNum: i + 1 })).filter(({ s }) => s.mobileRow === 0);
-  const row1 = SLOTS.map((s, i) => ({ s, i, slotNum: i + 1 })).filter(({ s }) => s.mobileRow === 1);
-
-  const renderSlot = ({ s, i, slotNum }: { s: SlotConfig; i: number; slotNum: number }) => {
-    const entry = bySlot[slotNum];
-    if (!entry) return null;
-    return (
-      <div
-        key={i}
-        style={{
-          flex: "1 1 0",
-          borderRadius: "10px",
-          overflow: "hidden",
-          transform: `rotate(${s.rotate}deg)`,
-          boxShadow: "0 8px 24px oklch(12% 0.025 240 / 0.45), 0 0 0 1px oklch(58% 0.14 240 / 0.08)",
-        }}
-      >
-        <img
-          src={entry.src}
-          alt={entry.alt}
-          draggable={false}
-          loading="eager"
-          style={{ display: "block", width: "100%", height: "auto" }}
-        />
-      </div>
-    );
-  };
+function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
+  // En mobile: layout simplificado, vertical, todos visibles
+  const horizontal = slots.filter((s) => s.aspectRatio === "16:9").slice(0, 1);
+  const vertical = slots.filter((s) => s.aspectRatio === "9:16").slice(0, 3);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "6px", width: "100%" }}>
-      {/* Row of 4 first (visually on top) */}
-      <div style={{ display: "flex", gap: "6px", alignItems: "flex-start" }}>
-        {row1.map(renderSlot)}
-      </div>
-      {/* Row of 3 below — each image slightly narrower so they read as smaller */}
-      <div style={{ display: "flex", gap: "6px", alignItems: "flex-start", paddingLeft: "6%", paddingRight: "6%" }}>
-        {row0.map(renderSlot)}
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
+      {/* Horizontal grande arriba */}
+      {horizontal.map((s, i) => (
+        <div
+          key={`h-${i}`}
+          style={{
+            borderRadius: "12px",
+            overflow: "hidden",
+            boxShadow: "0 12px 32px oklch(12% 0.025 240 / 0.5)",
+          }}
+        >
+          <VideoPlayer
+            src={s.src}
+            poster={s.poster}
+            aspectRatio="16:9"
+            title={s.title}
+            client={s.client}
+            loop
+          />
+        </div>
+      ))}
+      {/* 3 verticales en fila */}
+      <div style={{ display: "flex", gap: "8px", width: "100%" }}>
+        {vertical.map((s, i) => (
+          <div
+            key={`v-${i}`}
+            style={{
+              flex: "1 1 0",
+              borderRadius: "10px",
+              overflow: "hidden",
+              boxShadow: "0 8px 20px oklch(12% 0.025 240 / 0.45)",
+            }}
+          >
+            <VideoPlayer
+              src={s.src}
+              poster={s.poster}
+              aspectRatio="9:16"
+              title={s.title}
+              client={s.client}
+              loop
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-// Fallback hero images bundled with the build, mapped 1:1 to the 7 slots.
-// Used when Supabase has no active hero images uploaded yet.
-const FALLBACK_HERO_IMAGES: Array<{ slot: number; src: string; alt: string }> = [
-  { slot: 1, src: "/hero/CAPT_.png",  alt: "Hero image 1" },
-  { slot: 2, src: "/hero/CAPT_1.png", alt: "Hero image 2" },
-  { slot: 3, src: "/hero/CAPT_3.png", alt: "Hero image 3" },
-  { slot: 4, src: "/hero/CAPT_4.png", alt: "Hero image 4" },
-  { slot: 5, src: "/hero/CAPT_5.png", alt: "Hero image 5" },
-  { slot: 6, src: "/hero/CAPT_6.png", alt: "Hero image 6" },
-  { slot: 7, src: "/hero/CAPT_7.png", alt: "Hero image 7" },
-];
-
 export default function Hero() {
   const { t } = useTranslation();
   const stats = t("hero.stats", { returnObjects: true }) as Stat[];
-  const { videos } = useVideos("hero");
 
-  const supabaseHeroImages = videos
-    .filter((v) => v.media_type === "image" && v.slot != null)
-    .sort((a, b) => (a.slot ?? 0) - (b.slot ?? 0))
-    .map((v) => ({
-      slot: v.slot!,
-      src: getPublicUrl(v.storage_path),
-      alt: v.title ?? `Hero image slot ${v.slot}`,
-    }));
+  // Pull all portfolio videos to pick a curated mix for the hero
+  const { videos } = useVideos(["corporate", "ads", "organic", "street"]);
 
-  // If admin has not uploaded any hero images yet, use the bundled fallback set.
-  const heroImages = supabaseHeroImages.length > 0
-    ? supabaseHeroImages
-    : FALLBACK_HERO_IMAGES;
+  const corporateVideos = videos.filter((v) => v.category === "corporate");
+  const verticalVideos = videos.filter(
+    (v) => v.category === "ads" || v.category === "organic" || v.category === "street"
+  );
+
+  // Resolve each slot to an actual video (skip slot if none available)
+  let corporateIdx = 0;
+  let verticalIdx = 0;
+  const resolvedSlots: ResolvedSlot[] = SLOTS.flatMap((s) => {
+    const pick = s.pickFrom === "corporate"
+      ? corporateVideos[corporateIdx++]
+      : verticalVideos[verticalIdx++];
+    if (!pick) return [];
+    return [{
+      ...s,
+      src: getPublicUrl(pick.storage_path),
+      poster: pick.thumbnail_path ? getPublicUrl(pick.thumbnail_path) : null,
+      title: pick.title,
+      client: pick.client,
+    }];
+  });
 
   return (
     <section
@@ -283,7 +211,7 @@ export default function Hero() {
       aria-label="Hero"
     >
       <div className="max-w-content mx-auto section-padding w-full py-8 md:py-0">
-        <div className="grid grid-cols-1 md:grid-cols-[1.15fr_1fr] gap-8 md:gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-8 md:gap-12 lg:gap-16 items-center">
 
           {/* Text block — always first on mobile */}
           <div className="flex flex-col order-1 md:order-1">
@@ -441,20 +369,20 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Collage — below text on mobile, right column on desktop */}
+          {/* Video collage — below text on mobile, right column on desktop */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease, delay: 0.2 }}
             className="order-2 md:order-2"
           >
-            {/* Desktop: floating absolute collage */}
+            {/* Desktop: scattered video collage */}
             <div className="hidden md:block">
-              <HeroCluster images={heroImages} />
+              <HeroCluster slots={resolvedSlots} />
             </div>
-            {/* Mobile: compact two-row strip */}
+            {/* Mobile: compact stacked layout */}
             <div className="block md:hidden">
-              <HeroClusterMobile images={heroImages} />
+              <HeroClusterMobile slots={resolvedSlots} />
             </div>
           </motion.div>
 
