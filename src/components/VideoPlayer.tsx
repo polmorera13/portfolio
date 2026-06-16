@@ -149,6 +149,14 @@ export default function VideoPlayer({
     [isPlaying, play, pause],
   );
 
+  // Click anywhere on the card (center play affordance + mobile tap-to-play)
+  const handleCardClick = useCallback(() => {
+    if (!isPlaying) {
+      manualControlRef.current = true;
+      play();
+    }
+  }, [isPlaying, play]);
+
   const handleMute = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     manualControlRef.current = true;
@@ -245,6 +253,7 @@ export default function VideoPlayer({
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleCardClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="group"
@@ -296,6 +305,44 @@ export default function VideoPlayer({
           transition: "opacity 300ms",
         }}
       />
+
+      {/* Center play affordance — visible while idle, signals the tile is playable */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: isPlaying ? 0 : 1,
+          transition: "opacity 240ms ease-out",
+          pointerEvents: "none",
+          zIndex: 2,
+        }}
+      >
+        <div
+          className="vp-play-badge"
+          style={{
+            width: 64,
+            height: 64,
+            borderRadius: "50%",
+            background: "oklch(12% 0.025 240 / 0.55)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            border: "1.5px solid oklch(96% 0.005 240 / 0.7)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transform: isHovered ? "scale(1.08)" : "scale(1)",
+            transition: "transform 240ms cubic-bezier(0.19, 1, 0.22, 1)",
+            boxShadow: "0 6px 20px oklch(12% 0.025 240 / 0.45)",
+          }}
+        >
+          {/* Slight optical offset so the triangle looks centered */}
+          <Play size={26} weight="fill" color={OFFWHITE} style={{ marginLeft: 3 }} />
+        </div>
+      </div>
 
       {/* Idle gradient + labels — bottom-left, fades out on hover */}
       {hasLabel && (

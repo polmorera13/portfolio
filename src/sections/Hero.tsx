@@ -29,19 +29,19 @@ type Slot = {
 
 const SLOTS: Slot[] = [
   // CORPORATE central — el "núcleo" del collage, los otros orbitan alrededor.
-  // Layout más compacto: las verticales solapan más con el corporate central
-  // para que el cluster lea como un grupo cohesivo, no como vídeos sueltos.
-  { x: "20%", y: "26%", rotate: -2, width: "60%", z: 10, dur: "5.6s", delay: "0s",   aspectRatio: "16:9", pickFrom: "corporate" },
+  // Layout MUY compacto: las verticales solapan claramente con el corporate
+  // central para que el cluster lea como un grupo apretado, sin huecos.
+  { x: "16%", y: "24%", rotate: -2, width: "66%", z: 10, dur: "5.6s", delay: "0s",   aspectRatio: "16:9", pickFrom: "corporate" },
   // Vertical top-left orbit
-  { x: "2%",  y: "2%",  rotate: -7, width: "26%", z: 3,  dur: "5.0s", delay: "0.7s", aspectRatio: "9:16", pickFrom: "vertical" },
+  { x: "5%",  y: "4%",  rotate: -7, width: "30%", z: 3,  dur: "5.0s", delay: "0.7s", aspectRatio: "9:16", pickFrom: "vertical" },
   // Vertical top-right orbit
-  { x: "72%", y: "0%",  rotate:  6, width: "26%", z: 4,  dur: "4.6s", delay: "1.2s", aspectRatio: "9:16", pickFrom: "vertical" },
+  { x: "67%", y: "2%",  rotate:  6, width: "30%", z: 4,  dur: "4.6s", delay: "1.2s", aspectRatio: "9:16", pickFrom: "vertical" },
   // Vertical bottom-left orbit
-  { x: "4%",  y: "56%", rotate:  8, width: "28%", z: 5,  dur: "5.2s", delay: "0.4s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical bottom-center (sexto vídeo) — rellena el "vacío" entre corp y bottom verticales
-  { x: "36%", y: "66%", rotate: -3, width: "28%", z: 7,  dur: "5.4s", delay: "1.5s", aspectRatio: "9:16", pickFrom: "vertical" },
+  { x: "7%",  y: "50%", rotate:  8, width: "31%", z: 5,  dur: "5.2s", delay: "0.4s", aspectRatio: "9:16", pickFrom: "vertical" },
+  // Vertical bottom-center (sexto vídeo) — rellena el centro inferior
+  { x: "37%", y: "58%", rotate: -3, width: "30%", z: 7,  dur: "5.4s", delay: "1.5s", aspectRatio: "9:16", pickFrom: "vertical" },
   // Vertical bottom-right orbit
-  { x: "68%", y: "54%", rotate: -6, width: "30%", z: 6,  dur: "4.8s", delay: "0.9s", aspectRatio: "9:16", pickFrom: "vertical" },
+  { x: "65%", y: "48%", rotate: -6, width: "32%", z: 6,  dur: "4.8s", delay: "0.9s", aspectRatio: "9:16", pickFrom: "vertical" },
 ];
 
 type ResolvedSlot = Slot & {
@@ -58,7 +58,7 @@ function HeroCluster({ slots }: { slots: ResolvedSlot[] }) {
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "700px",
+        minHeight: "620px",
       }}
     >
       {slots.map((s, i) => (
