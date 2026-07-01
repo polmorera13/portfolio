@@ -1,70 +1,34 @@
-import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabase";
+import { useMemo } from "react";
+import { videos as catalog } from "../data/videos";
 import type { Video, VideoCategory } from "../types/video";
 
+// Videos now come from a static catalog (src/data/videos.ts) served off our own
+// VPS media server. No network call, no external backend, no bandwidth limits.
 export function useVideos(category?: VideoCategory | VideoCategory[]) {
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const videos = useMemo(() => {
+    let list = catalog.filter((v) => v.is_active);
 
-  useEffect(() => {
-    let cancelled = false;
-
-    async function fetch() {
-      setLoading(true);
-      setError(null);
-
-      let query = supabase
-        .from("videos")
-        .select("*")
-        .eq("is_active", true)
-        .order("display_order", { ascending: true })
-        .order("created_at", { ascending: false });
-
-      if (category) {
-        if (Array.isArray(category)) {
-          query = query.in("category", category);
-        } else {
-          query = query.eq("category", category);
-        }
-      }
-
-      const { data, error: err } = await query;
-
-      if (!cancelled) {
-        if (err) setError(err.message);
-        else setVideos((data as Video[]) ?? []);
-        setLoading(false);
-      }
+    if (category) {
+      const cats = Array.isArray(category) ? category : [category];
+      list = list.filter((v) => cats.includes(v.category));
     }
 
-    fetch();
-    return () => { cancelled = true; };
+    // Same ordering as before: display_order asc, then stable
+    return [...list].sort((a, b) => a.display_order - b.display_order);
   }, [JSON.stringify(category)]);
 
-  return { videos, loading, error };
+  return { videos, loading: false, error: null as string | null };
 }
 
+// Admin helper kept for API compatibility; returns the full catalog.
 export function useAllVideos() {
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  async function refetch() {
-    setLoading(true);
-    const { data, error: err } = await supabase
-      .from("videos")
-      .select("*")
-      .order("category")
-      .order("display_order", { ascending: true })
-      .order("created_at", { ascending: false });
-
-    if (err) setError(err.message);
-    else setVideos((data as Video[]) ?? []);
-    setLoading(false);
-  }
-
-  useEffect(() => { refetch(); }, []);
-
-  return { videos, loading, error, refetch };
+  const videos = useMemo(() => [...catalog], []);
+  return {
+    videos,
+    loading: false,
+    error: null as string | null,
+    refetch: async () => {},
+  };
 }
+
+export type { Video };
