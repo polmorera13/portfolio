@@ -60,14 +60,15 @@ export const videos: Video[] = [
   v("bitnovo291125-2-compressed.mp4",           "ads", "9:16", "Bitnovo", 0),
   v("dogfy-diet-oct-25-1-1-1.mp4",              "ads", "9:16", "Dogfy Diet", 1),
   v("estool-ad3pol-oct25.mp4",                  "ads", "9:16", "Estool", 2),
-  v("redpandacompress-estool-ad3pol-oct25.mp4", "ads", "9:16", "Estool", 3),
-  v("minibatt-2.mp4",                           "ads", "9:16", "MiniBatt", 4),
-  v("murwal-3-03-26-compressed.mp4",            "ads", "9:16", "Murwal", 5),
-  v("petroprix2-240725-1-1-1.mp4",              "ads", "9:16", "PetroPrix", 6),
-  v("yoigo280426-vert-compressed.mp4",          "ads", "9:16", "Yoigo", 7),
-  v("gestionar-la-facturacion-de-tu-gestoria-nunca-habia-sido-tan.mp4", "ads", "9:16", "Estool", 8),
-  v("pol-morera-x-creator-studio-1.mp4",        "ads", "9:16", "Pol Morera", 9),
-  v("pol-morera-x-creator-studio-2.mp4",        "ads", "9:16", "Pol Morera", 10),
+  v("minibatt-2.mp4",                           "ads", "9:16", "MiniBatt", 3),
+  v("murwal-3-03-26-compressed.mp4",            "ads", "9:16", "Murwal", 4),
+  v("petroprix2-240725-1-1-1.mp4",              "ads", "9:16", "PetroPrix", 5),
+  v("yoigo280426-vert-compressed.mp4",          "ads", "9:16", "Yoigo", 6),
+  v("gestionar-la-facturacion-de-tu-gestoria-nunca-habia-sido-tan.mp4", "ads", "9:16", "Estool", 7),
+  v("pol-morera-x-creator-studio-1.mp4",        "ads", "9:16", "Pol Morera", 8),
+  v("pol-morera-x-creator-studio-2.mp4",        "ads", "9:16", "Pol Morera", 9),
+  // Duplicado de Estool (recompresión) — desactivado
+  v("redpandacompress-estool-ad3pol-oct25.mp4", "ads", "9:16", "Estool", 99, false),
 
   // ── ORGÁNICO (9:16) ─────────────────────────────────────────────────────────
   v("axa-1.mp4",                            "organic", "9:16", "AXA", 0),
