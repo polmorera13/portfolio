@@ -1,34 +1,22 @@
-import { useState, useEffect } from "react";
-import type { Session } from "@supabase/supabase-js";
-import { supabase } from "../lib/supabase";
-import { mapUsernameToEmail } from "../lib/auth";
+import { useState } from "react";
+import { login as apiLogin, getToken, clearToken } from "../lib/api";
 
 export function useAuth() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [authed, setAuthed] = useState<boolean>(!!getToken());
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
-    });
-
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, s) => {
-      setSession(s);
-    });
-
-    return () => listener.subscription.unsubscribe();
-  }, []);
-
-  async function signIn(username: string, password: string): Promise<string | null> {
-    const email = mapUsernameToEmail(username);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return error ? "Usuario o contraseña incorrectos." : null;
+  async function signIn(_username: string, password: string): Promise<string | null> {
+    const ok = await apiLogin(password);
+    if (ok) {
+      setAuthed(true);
+      return null;
+    }
+    return "Usuario o contraseña incorrectos.";
   }
 
-  async function signOut() {
-    await supabase.auth.signOut();
+  function signOut() {
+    clearToken();
+    setAuthed(false);
   }
 
-  return { session, loading, signIn, signOut };
+  return { authed, loading: false, signIn, signOut };
 }

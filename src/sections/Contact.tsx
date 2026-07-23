@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Mail, Instagram, Linkedin, CheckCircle } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { sendContact } from "../lib/api";
 
 interface FormState {
   name: string;
@@ -53,22 +54,11 @@ export default function Contact() {
     setSubmitting(true);
     setServerError(false);
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          },
-          body: JSON.stringify({
-            name: form.name.trim(),
-            email: form.email.trim(),
-            message: form.message.trim(),
-          }),
-        }
-      );
-      if (!res.ok) throw new Error("server");
+      await sendContact({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+      });
       setSubmitted(true);
       setForm(INITIAL);
     } catch {
