@@ -183,28 +183,26 @@ export default function Hero() {
   const { t } = useTranslation();
   const stats = t("hero.stats", { returnObjects: true }) as Stat[];
 
-  // Pull all portfolio videos to pick a curated mix for the hero
   const { videos } = useVideos(["corporate", "ads", "organic", "street"]);
 
-  const corporateVideos = videos.filter((v) => v.category === "corporate");
-  const verticalVideos = videos.filter(
-    (v) => v.category === "ads" || v.category === "organic" || v.category === "street"
-  );
+  // ── Selección explícita de los vídeos del hero ──────────────────────────────
+  // Centro (grande, horizontal) + 5 verticales orbitando. Se define por nombre
+  // de archivo para tener control total. Orden de SLOTS:
+  //   [centro, arriba-izq, arriba-dcha, abajo-izq, abajo-centro, abajo-dcha]
+  const HERO_CENTER = "reactiva-vsl-terminado-v3-compressed.mp4";
+  const HERO_VERTICALS = [
+    "axa-1.mp4",                                                     // arriba-izq
+    "pol-morera-x-creator-studio-2.mp4",                            // arriba-dcha
+    "snapinsta-to-aqoqrbocpovfexjo7z-8alzmomebarhwmrsqd6ve31uzzmy.mp4", // abajo-izq
+    "bezoya-04-26-compressed.mp4",                                  // abajo-centro
+    "dogfy-diet-oct-25-1-1-1.mp4",                                  // abajo-dcha
+  ];
 
-  // Featured corporate pick: prioritise Reactiva (núcleo del collage del hero).
-  // Fallback to the first corporate available if Reactiva no está subida.
-  const matchesReactiva = (s: string | null | undefined) =>
-    !!s && /reactiva/i.test(s);
-  const featuredCorporate =
-    corporateVideos.find((v) => matchesReactiva(v.client) || matchesReactiva(v.title)) ??
-    corporateVideos[0];
+  const bySlug = (slug: string) => videos.find((v) => v.storage_path === slug);
 
-  // Resolve each slot to an actual video (skip slot if none available)
-  let verticalIdx = 0;
-  const resolvedSlots: ResolvedSlot[] = SLOTS.flatMap((s) => {
-    const pick = s.pickFrom === "corporate"
-      ? featuredCorporate
-      : verticalVideos[verticalIdx++];
+  const heroOrder = [HERO_CENTER, ...HERO_VERTICALS];
+  const resolvedSlots: ResolvedSlot[] = SLOTS.flatMap((s, i) => {
+    const pick = bySlug(heroOrder[i]);
     if (!pick) return [];
     return [{
       ...s,
