@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -71,15 +71,6 @@ export default function Footer() {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={16} />
-              </a>
-              <a
-                href="https://youtube.com/@polmorera"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-brand-blue hover:border-brand-blue/50 transition-all duration-200"
-                aria-label="YouTube"
-              >
-                <Youtube size={16} />
               </a>
             </div>
           </div>
