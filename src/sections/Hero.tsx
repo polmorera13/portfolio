@@ -30,9 +30,15 @@ function HeroCluster({ slots }: { slots: ResolvedSlot[] }) {
     <div
       className="hero-video-cluster"
       style={{
+        // ~18% más grande que su columna, creciendo por igual a ambos lados.
+        // Las casillas van en %, así que todo escala de forma uniforme.
         position: "relative",
-        width: "100%",
-        minHeight: "620px",
+        width: "118%",
+        marginLeft: "-9%",
+        minHeight: "730px",
+        // Las casillas de abajo sobresalen un poco del contenedor: este margen
+        // hace que la sección crezca y no pisen la franja de logos en portátiles.
+        marginBottom: "48px",
       }}
     >
       {slots.map((s, i) => (
@@ -187,7 +193,7 @@ export default function Hero() {
   return (
     <section
       className="relative flex items-start md:items-center pt-[72px]"
-      style={{ minHeight: "100dvh" }}
+      style={{ minHeight: "100dvh", overflowX: "clip" }}
       aria-label="Hero"
     >
       <div className="max-w-content mx-auto section-padding w-full py-8 md:py-0">

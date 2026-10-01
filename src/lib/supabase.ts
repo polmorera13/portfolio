@@ -1,12 +1,6 @@
-import { createClient } from "@supabase/supabase-js";
-import type { Database } from "../types/database";
-
-const url = import.meta.env.VITE_SUPABASE_URL as string;
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
-
-export const supabase = createClient<Database>(url, key);
-
-// Videos are served from our own VPS at media.polmorera.es
+// Antes este archivo creaba el cliente de Supabase. Supabase ya no se usa:
+// los vídeos se sirven desde nuestro VPS (media.polmorera.es) y el resto va por
+// api.polmorera.es (ver lib/api.ts). Solo queda el helper de URLs de medios.
 const MEDIA_BASE = "https://media.polmorera.es";
 
 export function getPublicUrl(path: string): string {

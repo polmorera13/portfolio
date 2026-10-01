@@ -23,7 +23,7 @@ export type HeroSlotDef = {
 };
 
 export const HERO_SLOTS: HeroSlotDef[] = [
-  { n: 1, label: "Centro (horizontal)", x: "16%", y: "24%", rotate: -2, width: "66%", z: 10, dur: "5.6s", delay: "0s",   aspectRatio: "16:9" },
+  { n: 1, label: "Centro (horizontal)", x: "16%", y: "30%", rotate: -2, width: "66%", z: 10, dur: "5.6s", delay: "0s",   aspectRatio: "16:9" },
   { n: 2, label: "Arriba izquierda",    x: "5%",  y: "4%",  rotate: -7, width: "30%", z: 3,  dur: "5.0s", delay: "0.7s", aspectRatio: "9:16" },
   { n: 3, label: "Arriba centro",       x: "36%", y: "0%",  rotate:  3, width: "28%", z: 2,  dur: "5.3s", delay: "1.1s", aspectRatio: "9:16" },
   { n: 4, label: "Arriba derecha",      x: "67%", y: "2%",  rotate:  6, width: "30%", z: 4,  dur: "4.6s", delay: "1.2s", aspectRatio: "9:16" },
