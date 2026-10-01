@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
+import { fetchHero } from "../lib/api";
+import { HERO_SLOTS, DEFAULT_HERO, type HeroSlotDef, type HeroConfig } from "../data/heroSlots";
 import VideoPlayer from "../components/VideoPlayer";
 
 type Stat = { value: string; label: string };
@@ -13,38 +16,9 @@ const OFFWHITE = "oklch(96% 0.005 240)";
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
 // ── Cluster slots ───────────────────────────────────────────────────────────
-// 1 horizontal (corporate, centro) + 4 verticales (ads/organic/street, esquinas).
-// Disposición tipo collage, ligeramente rotados, montados unos sobre otros.
-type Slot = {
-  x: string;
-  y: string;
-  rotate: number;
-  width: string;
-  z: number;
-  dur: string;
-  delay: string;
-  aspectRatio: "16:9" | "9:16";
-  pickFrom: "corporate" | "vertical";
-};
-
-const SLOTS: Slot[] = [
-  // CORPORATE central — el "núcleo" del collage, los otros orbitan alrededor.
-  // Layout MUY compacto: las verticales solapan claramente con el corporate
-  // central para que el cluster lea como un grupo apretado, sin huecos.
-  { x: "16%", y: "24%", rotate: -2, width: "66%", z: 10, dur: "5.6s", delay: "0s",   aspectRatio: "16:9", pickFrom: "corporate" },
-  // Vertical top-left orbit
-  { x: "5%",  y: "4%",  rotate: -7, width: "30%", z: 3,  dur: "5.0s", delay: "0.7s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical top-right orbit
-  { x: "67%", y: "2%",  rotate:  6, width: "30%", z: 4,  dur: "4.6s", delay: "1.2s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical bottom-left orbit
-  { x: "7%",  y: "50%", rotate:  8, width: "31%", z: 5,  dur: "5.2s", delay: "0.4s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical bottom-center (sexto vídeo) — rellena el centro inferior
-  { x: "37%", y: "58%", rotate: -3, width: "30%", z: 7,  dur: "5.4s", delay: "1.5s", aspectRatio: "9:16", pickFrom: "vertical" },
-  // Vertical bottom-right orbit
-  { x: "65%", y: "48%", rotate: -6, width: "32%", z: 6,  dur: "4.8s", delay: "0.9s", aspectRatio: "9:16", pickFrom: "vertical" },
-];
-
-type ResolvedSlot = Slot & {
+// Las 7 casillas (posición/tamaño) viven en data/heroSlots.ts. Qué vídeo va en
+// cada una se lee en vivo de la API, editable desde el panel /login.
+type ResolvedSlot = HeroSlotDef & {
   src: string;
   poster: string | null;
   title: string | null;
@@ -185,24 +159,21 @@ export default function Hero() {
 
   const { videos } = useVideos(["corporate", "ads", "organic", "street"]);
 
-  // ── Selección explícita de los vídeos del hero ──────────────────────────────
-  // Centro (grande, horizontal) + 5 verticales orbitando. Se define por nombre
-  // de archivo para tener control total. Orden de SLOTS:
-  //   [centro, arriba-izq, arriba-dcha, abajo-izq, abajo-centro, abajo-dcha]
-  const HERO_CENTER = "reactiva-vsl-terminado-v3-compressed.mp4";
-  const HERO_VERTICALS = [
-    "axa-1.mp4",                                                     // arriba-izq
-    "pol-morera-x-creator-studio-2.mp4",                            // arriba-dcha
-    "snapinsta-to-aqoqrbocpovfexjo7z-8alzmomebarhwmrsqd6ve31uzzmy.mp4", // abajo-izq
-    "bezoya-04-26-compressed.mp4",                                  // abajo-centro
-    "dogfy-diet-oct-25-1-1-1.mp4",                                  // abajo-dcha
-  ];
+  // Asignación casilla → vídeo, en vivo desde la API (editable en /login).
+  const [hero, setHero] = useState<HeroConfig>(DEFAULT_HERO);
+  useEffect(() => {
+    let cancelled = false;
+    fetchHero()
+      .then((cfg) => { if (!cancelled && cfg && Object.keys(cfg).length) setHero(cfg); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
-  const bySlug = (slug: string) => videos.find((v) => v.storage_path === slug);
+  const bySlug = (slug: string | null | undefined) =>
+    slug ? videos.find((v) => v.storage_path === slug) : undefined;
 
-  const heroOrder = [HERO_CENTER, ...HERO_VERTICALS];
-  const resolvedSlots: ResolvedSlot[] = SLOTS.flatMap((s, i) => {
-    const pick = bySlug(heroOrder[i]);
+  const resolvedSlots: ResolvedSlot[] = HERO_SLOTS.flatMap((s) => {
+    const pick = bySlug(hero[String(s.n)]);
     if (!pick) return [];
     return [{
       ...s,

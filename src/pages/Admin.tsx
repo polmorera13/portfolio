@@ -4,8 +4,10 @@ import { LogOut, Trash2, ArrowUp, ArrowDown, UploadCloud, Check } from "lucide-r
 import { useAuth } from "../hooks/useAuth";
 import {
   adminListVideos, adminUploadVideo, adminUpdateVideo, adminReorder, adminDeleteVideo,
+  fetchHero, adminSetHero, clearToken,
 } from "../lib/api";
 import { getPublicUrl } from "../lib/supabase";
+import { HERO_SLOTS, type HeroConfig } from "../data/heroSlots";
 import type { Video } from "../types/video";
 
 const BLUE = "oklch(58% 0.14 240)";
@@ -27,20 +29,35 @@ export default function Admin() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [hero, setHero] = useState<HeroConfig>({});
 
+  // Depends only on navigate (stable) so it doesn't re-run on every render.
   const load = useCallback(async () => {
     try {
-      const list = await adminListVideos();
+      const [list, heroCfg] = await Promise.all([adminListVideos(), fetchHero().catch(() => ({}))]);
       setVideos(list);
+      setHero(heroCfg);
     } catch (e) {
       if ((e as Error).message === "unauthorized") {
-        signOut();
+        clearToken();
         navigate("/login", { replace: true });
       }
     } finally {
       setLoading(false);
     }
-  }, [navigate, signOut]);
+  }, [navigate]);
+
+  async function setHeroSlot(n: number, slug: string) {
+    setBusy(true);
+    try {
+      const cfg = await adminSetHero({ [String(n)]: slug || null });
+      setHero(cfg);
+    } catch {
+      alert("No se pudo guardar la casilla. Inténtalo de nuevo.");
+    } finally {
+      setBusy(false);
+    }
+  }
 
   useEffect(() => { load(); }, [load]);
 
@@ -114,6 +131,76 @@ export default function Admin() {
       </header>
 
       <main style={{ maxWidth: 920, margin: "0 auto", padding: "2rem 1.25rem" }}>
+        {/* Portada (hero): qué vídeo va en cada casilla */}
+        <section style={{
+          border: `1px solid ${BORDER}`, borderRadius: 12, padding: "1.25rem", marginBottom: "2rem",
+          background: "oklch(13% 0.02 240)",
+        }}>
+          <h2 style={{ fontWeight: 600, fontSize: "1rem", color: OFFWHITE, marginBottom: "0.25rem" }}>Portada</h2>
+          <p style={{ color: STEEL, fontSize: "0.8125rem", marginBottom: "1.25rem" }}>
+            Elige el vídeo de cada casilla. La 1 es la horizontal del centro; el resto son verticales. Los cambios se ven en la web al momento.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem", alignItems: "flex-start" }}>
+            {/* Mapa de casillas */}
+            <div style={{ flex: "1 1 280px", maxWidth: 380, position: "relative", aspectRatio: "9 / 10" }}>
+              {HERO_SLOTS.map((s) => {
+                const v = videos.find((x) => x.storage_path === hero[String(s.n)]);
+                return (
+                  <div key={s.n} style={{
+                    position: "absolute", left: s.x, top: s.y, width: s.width, zIndex: s.z,
+                    transform: `rotate(${s.rotate}deg)`,
+                  }}>
+                    <div style={{
+                      aspectRatio: s.aspectRatio === "16:9" ? "16 / 9" : "9 / 16",
+                      borderRadius: 8, overflow: "hidden", background: CARD,
+                      border: `1px solid ${v ? BORDER : "oklch(65% 0.18 25 / 0.5)"}`,
+                      boxShadow: "0 6px 16px oklch(8% 0.02 240 / 0.6)",
+                    }}>
+                      {v?.thumbnail_path && (
+                        <img src={getPublicUrl(v.thumbnail_path)} alt="" loading="lazy"
+                          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                      )}
+                    </div>
+                    <span style={{
+                      position: "absolute", top: 4, left: 4, minWidth: 20, height: 20, padding: "0 5px",
+                      borderRadius: 6, background: "oklch(10% 0.02 240 / 0.85)", color: OFFWHITE,
+                      fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>{s.n}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Selectores */}
+            <div style={{ flex: "1 1 340px", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              {HERO_SLOTS.map((s) => {
+                const options = videos
+                  .filter((v) => v.is_active !== false && v.aspect_ratio === s.aspectRatio)
+                  .sort((a, b) => (a.title ?? "").localeCompare(b.title ?? ""));
+                return (
+                  <label key={s.n} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span style={{
+                      width: 24, height: 24, flexShrink: 0, borderRadius: 6, background: "oklch(58% 0.14 240 / 0.18)",
+                      color: OFFWHITE, fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>{s.n}</span>
+                    <span style={{ width: 128, flexShrink: 0, fontSize: "0.8125rem", color: STEEL }}>{s.label}</span>
+                    <select value={hero[String(s.n)] ?? ""} disabled={busy}
+                      onChange={(e) => setHeroSlot(s.n, e.target.value)}
+                      style={{ ...inputStyle, flex: 1, minWidth: 0, padding: "0.4rem 0.5rem" }}>
+                      <option value="">— vacía —</option>
+                      {options.map((v) => (
+                        <option key={v.id} value={v.storage_path}>
+                          {v.title} · {CATS.find((c) => c.key === v.category)?.label} · {v.storage_path.replace(/\.mp4$/, "").slice(0, 22)}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* Upload panel */}
         <section style={{
           border: `1px solid ${BORDER}`, borderRadius: 12, padding: "1.25rem", marginBottom: "2rem",

@@ -27,6 +27,23 @@ export async function fetchVideos(): Promise<Video[]> {
   return res.json();
 }
 
+// Asignación de vídeos a las casillas de la portada: { "1": slug, ..., "7": slug }
+export async function fetchHero(): Promise<Record<string, string | null>> {
+  const res = await fetch(`${API_BASE}/api/hero`, { cache: "no-store" });
+  if (!res.ok) throw new Error("fetch_hero_failed");
+  return res.json();
+}
+
+export async function adminSetHero(slots: Record<string, string | null>): Promise<Record<string, string | null>> {
+  const res = await fetch(`${API_BASE}/api/admin/hero`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    body: JSON.stringify({ slots }),
+  });
+  if (!res.ok) throw new Error("set_hero_failed");
+  return res.json();
+}
+
 export async function sendContact(payload: { name: string; email: string; message: string }): Promise<void> {
   const res = await fetch(`${API_BASE}/api/contact`, {
     method: "POST",

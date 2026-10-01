@@ -16,6 +16,8 @@ const PORT = process.env.PORT || 8080;
 const MEDIA_DIR = process.env.MEDIA_DIR || "/data/media";
 const THUMB_DIR = path.join(MEDIA_DIR, "thumbs");
 const CATALOG_PATH = process.env.CATALOG_PATH || "/data/catalog.json";
+const HERO_PATH = process.env.HERO_PATH || "/data/hero.json";
+const HERO_SLOT_KEYS = ["1", "2", "3", "4", "5", "6", "7"];
 const MEDIA_BASE = process.env.MEDIA_BASE || "https://media.polmorera.es";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "polmorera13";
 const JWT_SECRET = process.env.JWT_SECRET || "change-me";
@@ -53,6 +55,17 @@ async function readCatalog() {
 }
 async function writeCatalog(list) {
   await fs.writeFile(CATALOG_PATH, JSON.stringify(list, null, 2), "utf8");
+}
+
+async function readHero() {
+  try {
+    return JSON.parse(await fs.readFile(HERO_PATH, "utf8"));
+  } catch {
+    return {};
+  }
+}
+async function writeHero(cfg) {
+  await fs.writeFile(HERO_PATH, JSON.stringify(cfg, null, 2), "utf8");
 }
 
 function slugify(name) {
@@ -128,6 +141,27 @@ app.get("/api/videos", async (_req, res) => {
 // Admin: full list (incl. inactive)
 app.get("/api/admin/videos", requireAuth, async (_req, res) => {
   res.json(await readCatalog());
+});
+
+// Public: which video sits in each hero slot
+app.get("/api/hero", async (_req, res) => {
+  res.json(await readHero());
+});
+
+// Admin: set hero slots. Body: { slots: { "1": slug|null, ... } } (partial ok)
+app.put("/api/admin/hero", requireAuth, async (req, res) => {
+  const { slots } = req.body || {};
+  if (!slots || typeof slots !== "object") return res.status(400).json({ error: "bad_body" });
+  const catalog = await readCatalog();
+  const known = new Set(catalog.map((v) => v.storage_path));
+  const cfg = await readHero();
+  for (const [k, slug] of Object.entries(slots)) {
+    if (!HERO_SLOT_KEYS.includes(k)) return res.status(400).json({ error: "bad_slot", slot: k });
+    if (slug !== null && !known.has(slug)) return res.status(400).json({ error: "unknown_video", slot: k });
+    cfg[k] = slug;
+  }
+  await writeHero(cfg);
+  res.json(cfg);
 });
 
 // Contact form
@@ -245,6 +279,13 @@ app.delete("/api/admin/videos/:id", requireAuth, async (req, res) => {
   if (!v) return res.status(404).json({ error: "not_found" });
   const next = list.filter((x) => x.id !== req.params.id);
   await writeCatalog(next);
+  // free any hero slot that pointed to this video
+  const hero = await readHero();
+  let heroChanged = false;
+  for (const k of Object.keys(hero)) {
+    if (hero[k] === v.storage_path) { hero[k] = null; heroChanged = true; }
+  }
+  if (heroChanged) await writeHero(hero);
   // best-effort file cleanup
   if (v.storage_path) {
     await fs.unlink(path.join(MEDIA_DIR, v.storage_path)).catch(() => {});
