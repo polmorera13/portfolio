@@ -109,16 +109,16 @@ export default function Contact() {
                 <span className="text-sm">{t("contact.email")}</span>
               </a>
               <a
-                href="https://instagram.com/polmorera_cc"
+                href="https://www.instagram.com/polmoreraugc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-steel-blue hover:text-off-white transition-colors group"
               >
                 <Instagram size={18} className="text-brand-blue" />
-                <span className="text-sm">@polmorera_cc</span>
+                <span className="text-sm">@polmoreraugc</span>
               </a>
               <a
-                href="https://linkedin.com/in/polmorera"
+                href="https://www.linkedin.com/in/pol-morera-de-frutos-9b8b35124/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-steel-blue hover:text-off-white transition-colors group"

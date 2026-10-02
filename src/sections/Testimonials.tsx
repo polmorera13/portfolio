@@ -204,12 +204,6 @@ export default function Testimonials() {
             [...items, ...items].map((item, i) => <Card key={i} item={item} />)}
         </div>
       </div>
-
-      <div className="max-w-content mx-auto section-padding mt-8">
-        <p className="text-steel-blue text-sm text-center">
-          {t("testimonials.fiverr")}
-        </p>
-      </div>
     </section>
   );
 }

@@ -55,7 +55,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
               <a
-                href="https://instagram.com/polmorera_cc"
+                href="https://www.instagram.com/polmoreraugc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-brand-blue hover:border-brand-blue/50 transition-all duration-200"
@@ -64,7 +64,7 @@ export default function Footer() {
                 <Instagram size={16} />
               </a>
               <a
-                href="https://linkedin.com/in/polmorera"
+                href="https://www.linkedin.com/in/pol-morera-de-frutos-9b8b35124/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-brand-blue hover:border-brand-blue/50 transition-all duration-200"
