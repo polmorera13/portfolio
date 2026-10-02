@@ -12,7 +12,7 @@
     "h1_line1": "Vídeos que",
     "h1_line2": "venden.",
     "tagline": "Vídeos que convierten en ventas, que dan a conocer tu marca y que dan vida a tu web.",
-    "cta_primary": "Quiero mi propuesta gratis",
+    "cta_primary": "Pide tu propuesta gratis",
     "cta_secondary": "Hablemos",
     "trusted_by": "Ya confían en mi trabajo",
     "stats": [
@@ -31,7 +31,7 @@
     ],
     "cta_whatsapp": "Escríbeme por WhatsApp",
     "see_work": "o mira antes mis trabajos ↓",
-    "small": "Gratis y sin compromiso. Te la envío en 2 días laborables."
+    "small": "Te digo qué 3 vídeos necesita tu negocio. Gratis y en 2 días."
   },
   "logos": {
     "title": "Marcas que han confiado en mi contenido",
@@ -123,10 +123,9 @@
   },
   "cta": {
     "headline": "¿No sabes por dónde empezar?",
-    "button": "Quiero mi propuesta gratis",
-    "text": "Cuéntame a qué se dedica tu negocio y te envío gratis una propuesta por escrito con las 3 ideas de vídeo que más te ayudarían a vender: qué contar en cada una y dónde usarla. Si te encaja, la grabamos.",
-    "secondary": "o pide presupuesto directamente",
-    "small": "Es un documento con ideas: no incluye la grabación. Te lo envío en 2 días laborables, sin compromiso."
+    "button": "Pide tu propuesta gratis",
+    "text": "Te digo qué 3 vídeos necesita tu negocio. Gratis y en 2 días.",
+    "secondary": "o pide presupuesto"
   },
   "testimonials": {
     "eyebrow": "04 / TESTIMONIOS",
@@ -197,12 +196,13 @@
       "consent": "He leído y acepto la <link>política de privacidad</link>.",
       "info": "Responsable: Pol Morera de Frutos. Finalidad: responder a tu solicitud y enviarte una propuesta. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal. Derechos: acceso, rectificación, supresión y otros, en hello@polmorera.es. Más información en la <link>política de privacidad</link>.",
       "type_question": "¿Qué necesitas?",
-      "type_quote": "Un presupuesto",
-      "type_videos3": "Una propuesta gratis con 3 ideas de vídeo",
+      "type_quote": "Presupuesto",
+      "type_videos3": "Propuesta gratis",
       "website_placeholder": "tunegocio.com o @tunegocio",
-      "message_placeholder_videos3": "¿A qué se dedica tu negocio y a quién le vendes?",
-      "submit_videos3": "Quiero mi propuesta gratis",
-      "success_videos3": "¡Recibido! Te envío tu propuesta con 3 ideas de vídeo en 2 días laborables."
+      "message_placeholder_videos3": "¿A qué se dedica tu negocio?",
+      "submit_videos3": "Pedir propuesta gratis",
+      "success_videos3": "¡Recibido! En 2 días laborables te digo qué 3 vídeos necesita tu negocio.",
+      "type_help": "Te digo qué 3 vídeos necesita tu negocio."
     },
     "fixed_quote": "Te envío un presupuesto cerrado y sin compromiso: sabes lo que vas a pagar antes de empezar.",
     "whatsapp": "Escríbeme por WhatsApp",
@@ -290,8 +290,8 @@
   "minicta": {
     "after_work": "¿Quieres algo así para tu negocio?",
     "after_testimonials": "¿Quieres que tu negocio sea el siguiente?",
-    "after_process": "El primer paso es gratis: te propongo 3 ideas de vídeo para tu negocio.",
-    "primary": "Quiero mi propuesta gratis",
+    "after_process": "El primer paso es gratis: te digo qué 3 vídeos necesita tu negocio.",
+    "primary": "Pide tu propuesta gratis",
     "whatsapp": "WhatsApp"
   }
 }

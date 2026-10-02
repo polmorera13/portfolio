@@ -52,7 +52,6 @@ export default function CTASection() {
             >
               {t("cta.secondary")}
             </a>
-            <p className="text-steel-blue/70 text-xs">{t("cta.small")}</p>
           </motion.div>
         </motion.div>
       </div>

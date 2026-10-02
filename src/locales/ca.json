@@ -12,7 +12,7 @@
     "h1_line1": "Vídeos que",
     "h1_line2": "venen.",
     "tagline": "Vídeos que converteixen en vendes, que donen a conèixer la teva marca i que donen vida a la teva web.",
-    "cta_primary": "Vull la meva proposta gratis",
+    "cta_primary": "Demana la teva proposta gratis",
     "cta_secondary": "Parlem",
     "trusted_by": "Ja confien en la meva feina",
     "stats": [
@@ -31,7 +31,7 @@
     ],
     "cta_whatsapp": "Escriu-me per WhatsApp",
     "see_work": "o mira abans els meus treballs ↓",
-    "small": "Gratis i sense compromís. Te l'envio en 2 dies laborables."
+    "small": "Et dic quins 3 vídeos necessita el teu negoci. Gratis i en 2 dies."
   },
   "logos": {
     "title": "Marques que han confiat en el meu contingut",
@@ -123,10 +123,9 @@
   },
   "cta": {
     "headline": "No saps per on començar?",
-    "button": "Vull la meva proposta gratis",
-    "text": "Explica'm a què es dedica el teu negoci i t'envio gratis una proposta per escrit amb les 3 idees de vídeo que més t'ajudarien a vendre: què explicar en cadascuna i on fer-la servir. Si t'encaixa, la gravem.",
-    "secondary": "o demana pressupost directament",
-    "small": "És un document amb idees: no inclou la gravació. Te l'envio en 2 dies laborables, sense compromís."
+    "button": "Demana la teva proposta gratis",
+    "text": "Et dic quins 3 vídeos necessita el teu negoci. Gratis i en 2 dies.",
+    "secondary": "o demana pressupost"
   },
   "testimonials": {
     "eyebrow": "04 / TESTIMONIS",
@@ -197,12 +196,13 @@
       "consent": "He llegit i accepto la <link>política de privacitat</link>.",
       "info": "Responsable: Pol Morera de Frutos. Finalitat: respondre la teva sol·licitud i enviar-te una proposta. Legitimació: el teu consentiment. Destinataris: no se cedeixen dades a tercers excepte per obligació legal. Drets: accés, rectificació, supressió i altres, a hello@polmorera.es. Més informació a la <link>política de privacitat</link>.",
       "type_question": "Què necessites?",
-      "type_quote": "Un pressupost",
-      "type_videos3": "Una proposta gratis amb 3 idees de vídeo",
+      "type_quote": "Pressupost",
+      "type_videos3": "Proposta gratis",
       "website_placeholder": "elteunegoci.com o @elteunegoci",
-      "message_placeholder_videos3": "A què es dedica el teu negoci i a qui li vens?",
-      "submit_videos3": "Vull la meva proposta gratis",
-      "success_videos3": "Rebut! T'envio la teva proposta amb 3 idees de vídeo en 2 dies laborables."
+      "message_placeholder_videos3": "A què es dedica el teu negoci?",
+      "submit_videos3": "Demanar proposta gratis",
+      "success_videos3": "Rebut! En 2 dies laborables et dic quins 3 vídeos necessita el teu negoci.",
+      "type_help": "Et dic quins 3 vídeos necessita el teu negoci."
     },
     "fixed_quote": "T'envio un pressupost tancat i sense compromís: saps què pagaràs abans de començar.",
     "whatsapp": "Escriu-me per WhatsApp",
@@ -290,8 +290,8 @@
   "minicta": {
     "after_work": "Vols alguna cosa així per al teu negoci?",
     "after_testimonials": "Vols que el teu negoci sigui el següent?",
-    "after_process": "El primer pas és gratis: et proposo 3 idees de vídeo per al teu negoci.",
-    "primary": "Vull la meva proposta gratis",
+    "after_process": "El primer pas és gratis: et dic quins 3 vídeos necessita el teu negoci.",
+    "primary": "Demana la teva proposta gratis",
     "whatsapp": "WhatsApp"
   }
 }

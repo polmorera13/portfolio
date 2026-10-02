@@ -20,9 +20,9 @@ export const faqItems: FAQItem[] = [
       ca: "Quant costa?",
     },
     answer: {
-      es: "Depende de cuántos vídeos necesites y de si grabo en tu negocio o con tu producto. Trabajo desde un solo vídeo y te envío un presupuesto cerrado en menos de 24 h, sin compromiso. Si no sabes por dónde empezar, pídeme gratis una propuesta por escrito con 3 ideas de vídeo para tu negocio.",
-      en: "It depends on how many videos you need and whether I film at your business or with your product. I work from a single video and send you a fixed quote within 24 h, with no obligation. If you're not sure where to start, ask me for a free written proposal with 3 video ideas for your business.",
-      ca: "Depèn de quants vídeos necessitis i de si gravo al teu negoci o amb el teu producte. Treballo des d'un sol vídeo i t'envio un pressupost tancat en menys de 24 h, sense compromís. Si no saps per on començar, demana'm gratis una proposta per escrit amb 3 idees de vídeo per al teu negoci.",
+      es: "Depende de cuántos vídeos necesites y de si grabo en tu negocio o con tu producto. Trabajo desde un solo vídeo y te envío un presupuesto cerrado en menos de 24 h, sin compromiso. Si no sabes por dónde empezar, pide tu propuesta gratis: te digo qué 3 vídeos necesita tu negocio.",
+      en: "It depends on how many videos you need and whether I film at your business or with your product. I work from a single video and send you a fixed quote within 24 h, with no obligation. If you're not sure where to start, get your free proposal: I'll tell you which 3 videos your business needs.",
+      ca: "Depèn de quants vídeos necessitis i de si gravo al teu negoci o amb el teu producte. Treballo des d'un sol vídeo i t'envio un pressupost tancat en menys de 24 h, sense compromís. Si no saps per on començar, demana la teva proposta gratis: et dic quins 3 vídeos necessita el teu negoci.",
     },
   },
   {

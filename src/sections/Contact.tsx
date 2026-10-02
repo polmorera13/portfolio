@@ -242,6 +242,9 @@ export default function Contact() {
                       </button>
                     ))}
                   </div>
+                  {isProposal && (
+                    <p className="text-xs text-steel-blue/80">{t("contact.form.type_help")}</p>
+                  )}
                 </fieldset>
 
                 {/* Nombre y empresa */}

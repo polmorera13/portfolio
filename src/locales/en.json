@@ -12,7 +12,7 @@
     "h1_line1": "Videos that",
     "h1_line2": "sell.",
     "tagline": "Videos that convert into sales, get your brand known and bring your website to life.",
-    "cta_primary": "Get my free proposal",
+    "cta_primary": "Get your free proposal",
     "cta_secondary": "Let's talk",
     "trusted_by": "They already trust my work",
     "stats": [
@@ -31,7 +31,7 @@
     ],
     "cta_whatsapp": "Message me on WhatsApp",
     "see_work": "or see my work first ↓",
-    "small": "Free, no obligation. You'll get it within 2 working days."
+    "small": "I'll tell you which 3 videos your business needs. Free, within 2 days."
   },
   "logos": {
     "title": "Brands that have trusted my content",
@@ -123,10 +123,9 @@
   },
   "cta": {
     "headline": "Not sure where to start?",
-    "button": "Get my free proposal",
-    "text": "Tell me what your business does and I'll send you a free written proposal with the 3 video ideas that would help you sell the most: what to say in each one and where to use it. If you like it, we film it.",
-    "secondary": "or request a quote directly",
-    "small": "It's a document with ideas; filming isn't included. You'll get it within 2 working days, no obligation."
+    "button": "Get your free proposal",
+    "text": "I'll tell you which 3 videos your business needs. Free, within 2 days.",
+    "secondary": "or request a quote"
   },
   "testimonials": {
     "eyebrow": "04 / TESTIMONIALS",
@@ -197,12 +196,13 @@
       "consent": "I have read and accept the <link>privacy policy</link>.",
       "info": "Controller: Pol Morera de Frutos. Purpose: to reply to your request and send you a proposal. Legal basis: your consent. Recipients: no data is shared with third parties unless required by law. Rights: access, rectification, erasure and more at hello@polmorera.es. More information in the <link>privacy policy</link>.",
       "type_question": "What do you need?",
-      "type_quote": "A quote",
-      "type_videos3": "A free proposal with 3 video ideas",
+      "type_quote": "Quote",
+      "type_videos3": "Free proposal",
       "website_placeholder": "yourbusiness.com or @yourbusiness",
-      "message_placeholder_videos3": "What does your business do and who do you sell to?",
+      "message_placeholder_videos3": "What does your business do?",
       "submit_videos3": "Get my free proposal",
-      "success_videos3": "Got it! I'll send you your proposal with 3 video ideas within 2 working days."
+      "success_videos3": "Got it! Within 2 working days I'll tell you which 3 videos your business needs.",
+      "type_help": "I'll tell you which 3 videos your business needs."
     },
     "fixed_quote": "I'll send you a fixed, no-obligation quote: you know what you'll pay before we start.",
     "whatsapp": "Message me on WhatsApp",
@@ -290,8 +290,8 @@
   "minicta": {
     "after_work": "Want something like this for your business?",
     "after_testimonials": "Want your business to be next?",
-    "after_process": "The first step is free: I'll suggest 3 video ideas for your business.",
-    "primary": "Get my free proposal",
+    "after_process": "The first step is free: I'll tell you which 3 videos your business needs.",
+    "primary": "Get your free proposal",
     "whatsapp": "WhatsApp"
   }
 }
