@@ -6,8 +6,8 @@ export default function Footer() {
   const { t } = useTranslation();
 
   const navLinks = [
-    { labelKey: "nav.services", href: "/#servicios" },
     { labelKey: "nav.portfolio", href: "/#portfolio" },
+    { labelKey: "nav.services", href: "/#servicios" },
     { labelKey: "nav.process", href: "/#proceso" },
     { labelKey: "nav.about", href: "/#sobre-mi" },
     { labelKey: "nav.contact", href: "/#contacto" },

@@ -7,9 +7,6 @@ import { fetchHero } from "../lib/api";
 import { HERO_SLOTS, DEFAULT_HERO, type HeroSlotDef, type HeroConfig } from "../data/heroSlots";
 import VideoPlayer from "../components/VideoPlayer";
 import { videoLabel } from "../data/sectors";
-import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
-
-type Stat = { value: string; label: string };
 
 const BLUE = "oklch(58% 0.14 240)";
 const STEEL = "oklch(70% 0.07 230)";
@@ -198,7 +195,6 @@ function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
-  const stats = t("hero.stats", { returnObjects: true }) as Stat[];
 
   const { videos } = useVideos(["corporate", "ads", "organic", "street"]);
 
@@ -307,130 +303,52 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", duration: 0.4, bounce: 0.15, delay: 0.4 }}
-              className="flex flex-col gap-3"
             >
-              {/* id usado por la barra fija de móvil: aparece cuando estos botones salen de pantalla */}
+              {/* Exactamente dos botones: propuesta y trabajos.
+                  id usado por la barra fija de móvil: aparece cuando salen de pantalla. */}
               <div id="hero-ctas" className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#contacto-propuesta"
-                className="text-center"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  padding: "0.875rem 2rem",
-                  borderRadius: "8px",
-                  background: BLUE,
-                  color: OFFWHITE,
-                  textDecoration: "none",
-                  transition: "transform 160ms ease-out",
-                  display: "inline-block",
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; }}
-              >
-                {t("hero.cta_primary")}
-              </a>
-              <a
-                href={whatsappUrl(t("contact.whatsapp_msg"))}
-                target="_blank"
-                rel="noopener"
-                className="text-center"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  padding: "0.875rem 2rem",
-                  borderRadius: "8px",
-                  background: "transparent",
-                  color: BLUE,
-                  textDecoration: "none",
-                  transition: "transform 160ms ease-out",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; }}
-              >
-                <WhatsAppIcon size={18} />
-                {t("hero.cta_whatsapp")}
-              </a>
-              </div>
-
-              <div className="flex flex-col gap-1 items-center sm:items-start">
+                <a
+                  href="#contacto-propuesta"
+                  className="text-center"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    padding: "0.875rem 2rem",
+                    borderRadius: "8px",
+                    background: BLUE,
+                    color: OFFWHITE,
+                    textDecoration: "none",
+                    transition: "transform 160ms ease-out",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; }}
+                >
+                  {t("hero.cta_primary")}
+                </a>
                 <a
                   href="#portfolio"
-                  className="text-sm font-semibold hover:text-off-white transition-colors"
-                  style={{ color: STEEL, fontFamily: "Poppins, sans-serif" }}
+                  className="text-center"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    padding: "0.875rem 2rem",
+                    borderRadius: "8px",
+                    background: "transparent",
+                    border: "1px solid oklch(58% 0.14 240 / 0.5)",
+                    color: OFFWHITE,
+                    textDecoration: "none",
+                    transition: "transform 160ms ease-out",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; }}
                 >
-                  {t("hero.see_work")}
+                  {t("hero.cta_work")}
                 </a>
-                <p className="text-xs" style={{ color: STEEL, opacity: 0.75, fontFamily: "Poppins, sans-serif" }}>
-                  {t("hero.small")}
-                </p>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.36, ease, delay: 0.5 }}
-              style={{
-                marginTop: "1.75rem",
-                marginBottom: "0.5rem",
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 300,
-                fontSize: "0.75rem",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: STEEL,
-                opacity: 0.75,
-              }}
-            >
-              {t("hero.trusted_by")}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.36, ease, delay: 0.56 }}
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-              }}
-            >
-              {Array.isArray(stats) && stats.map((stat, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "baseline", gap: "0.375rem" }}>
-                  {i > 0 && (
-                    <span style={{ color: STEEL, opacity: 0.4, marginRight: "0.375rem", fontSize: "0.875rem" }}>·</span>
-                  )}
-                  <span
-                    style={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "1rem",
-                      color: OFFWHITE,
-                      fontVariantNumeric: "tabular-nums",
-                    }}
-                  >
-                    {stat.value}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontWeight: 400,
-                      fontSize: "0.9375rem",
-                      color: STEEL,
-                    }}
-                  >
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
             </motion.div>
           </div>
 

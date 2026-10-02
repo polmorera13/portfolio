@@ -31,11 +31,11 @@ function PublicSite() {
       <main>
         <Hero />
         <LogoMarquee />
+        <Portfolio />
+        <MiniCTA textKey="minicta.after_work" />
         <Results />
         <Problem />
         <Services />
-        <Portfolio />
-        <MiniCTA textKey="minicta.after_work" />
         <Testimonials />
         <MiniCTA textKey="minicta.after_testimonials" />
         <Process />

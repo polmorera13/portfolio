@@ -126,3 +126,8 @@ html[data-menu-open] .mobile-cta-bar {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* Los saltos a #secciones dejan el título visible bajo la cabecera fija (72px) */
+html {
+  scroll-padding-top: 80px;
+}

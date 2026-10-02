@@ -29,8 +29,8 @@ export default function Header() {
 
   // "/#…" para que el menú funcione también desde las páginas legales.
   const navLinks = [
-    { label: t("nav.services"), href: "/#servicios" },
     { label: t("nav.portfolio"), href: "/#portfolio" },
+    { label: t("nav.services"), href: "/#servicios" },
     { label: t("nav.process"), href: "/#proceso" },
     { label: t("nav.about"), href: "/#sobre-mi" },
     { label: t("nav.contact"), href: "/#contacto" },

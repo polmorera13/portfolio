@@ -13,25 +13,7 @@
     "h1_line2": "sell.",
     "tagline": "Videos that convert into sales, get your brand known and bring your website to life.",
     "cta_primary": "Get your free proposal",
-    "cta_secondary": "Let's talk",
-    "trusted_by": "They already trust my work",
-    "stats": [
-      {
-        "value": "+300",
-        "label": "brands"
-      },
-      {
-        "value": "+1000",
-        "label": "videos"
-      },
-      {
-        "value": "+80M",
-        "label": "views"
-      }
-    ],
-    "cta_whatsapp": "Message me on WhatsApp",
-    "see_work": "or see my work first ↓",
-    "small": "I'll tell you which 3 videos your business needs. Free, within 2 days."
+    "cta_work": "View my work"
   },
   "logos": {
     "title": "Brands that have trusted my content",
@@ -45,13 +27,13 @@
     "views": "VIEWS"
   },
   "problem": {
-    "eyebrow": "01 / THE PROBLEM",
+    "eyebrow": "02 / THE PROBLEM",
     "title": "The problem isn't making more videos",
     "body": "The problem is filming without knowing what works. Ads stop performing after two weeks, social media stops growing and the company video doesn't build trust. More videos won't fix it: videos made with a clear goal will.",
     "highlight": "Every piece with a clear objective: attract, convince, or convert. Everything else is noise."
   },
   "services": {
-    "eyebrow": "02 / SERVICES",
+    "eyebrow": "03 / SERVICES",
     "title": "What I produce"
   },
   "process": {
@@ -87,7 +69,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "03 / WORK",
+    "eyebrow": "01 / WORK",
     "title": "Recent projects",
     "filters": {
       "all": "All",
@@ -262,7 +244,9 @@
   },
   "carousel": {
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "pause": "Pause movement",
+    "resume": "Resume movement"
   },
   "player": {
     "play": "Play",

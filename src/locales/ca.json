@@ -13,25 +13,7 @@
     "h1_line2": "venen.",
     "tagline": "Vídeos que converteixen en vendes, que donen a conèixer la teva marca i que donen vida a la teva web.",
     "cta_primary": "Demana la teva proposta gratis",
-    "cta_secondary": "Parlem",
-    "trusted_by": "Ja confien en la meva feina",
-    "stats": [
-      {
-        "value": "+300",
-        "label": "marques"
-      },
-      {
-        "value": "+1000",
-        "label": "vídeos"
-      },
-      {
-        "value": "+80M",
-        "label": "visualitzacions"
-      }
-    ],
-    "cta_whatsapp": "Escriu-me per WhatsApp",
-    "see_work": "o mira abans els meus treballs ↓",
-    "small": "Et dic quins 3 vídeos necessita el teu negoci. Gratis i en 2 dies."
+    "cta_work": "Veure projectes"
   },
   "logos": {
     "title": "Marques que han confiat en el meu contingut",
@@ -45,13 +27,13 @@
     "views": "VISUALITZACIONS"
   },
   "problem": {
-    "eyebrow": "01 / EL PROBLEMA",
+    "eyebrow": "02 / EL PROBLEMA",
     "title": "El problema no és fer més vídeos",
     "body": "El problema és gravar sense saber què funciona. Els anuncis deixen de donar resultat a les dues setmanes, les xarxes no creixen i el vídeo d'empresa no transmet confiança. Més vídeos no ho arreglen: vídeos pensats per a un objectiu, sí.",
     "highlight": "Cada peça amb un objectiu clar: atraure, convèncer o convertir. La resta és soroll."
   },
   "services": {
-    "eyebrow": "02 / SERVEIS",
+    "eyebrow": "03 / SERVEIS",
     "title": "Què produeixo"
   },
   "process": {
@@ -87,7 +69,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "03 / TREBALLS",
+    "eyebrow": "01 / TREBALLS",
     "title": "Projectes recents",
     "filters": {
       "all": "Tots",
@@ -262,7 +244,9 @@
   },
   "carousel": {
     "prev": "Anterior",
-    "next": "Següent"
+    "next": "Següent",
+    "pause": "Pausar el moviment",
+    "resume": "Reprendre el moviment"
   },
   "player": {
     "play": "Reprodueix",

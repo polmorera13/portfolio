@@ -13,25 +13,7 @@
     "h1_line2": "venden.",
     "tagline": "Vídeos que convierten en ventas, que dan a conocer tu marca y que dan vida a tu web.",
     "cta_primary": "Pide tu propuesta gratis",
-    "cta_secondary": "Hablemos",
-    "trusted_by": "Ya confían en mi trabajo",
-    "stats": [
-      {
-        "value": "+300",
-        "label": "marcas"
-      },
-      {
-        "value": "+1000",
-        "label": "vídeos"
-      },
-      {
-        "value": "+80M",
-        "label": "visualizaciones"
-      }
-    ],
-    "cta_whatsapp": "Escríbeme por WhatsApp",
-    "see_work": "o mira antes mis trabajos ↓",
-    "small": "Te digo qué 3 vídeos necesita tu negocio. Gratis y en 2 días."
+    "cta_work": "Ver trabajos"
   },
   "logos": {
     "title": "Marcas que han confiado en mi contenido",
@@ -45,13 +27,13 @@
     "views": "VISUALIZACIONES"
   },
   "problem": {
-    "eyebrow": "01 / EL PROBLEMA",
+    "eyebrow": "02 / EL PROBLEMA",
     "title": "El problema no es hacer más vídeos",
     "body": "El problema es grabar sin saber qué funciona. Los anuncios dejan de dar resultado a las dos semanas, las redes no crecen y el vídeo de empresa no transmite confianza. Más vídeos no lo arreglan: vídeos pensados para un objetivo, sí.",
     "highlight": "Cada pieza con un objetivo claro: atraer, convencer o convertir. Lo demás es ruido."
   },
   "services": {
-    "eyebrow": "02 / SERVICIOS",
+    "eyebrow": "03 / SERVICIOS",
     "title": "Qué produzco"
   },
   "process": {
@@ -87,7 +69,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "03 / TRABAJOS",
+    "eyebrow": "01 / TRABAJOS",
     "title": "Proyectos recientes",
     "filters": {
       "all": "Todos",
@@ -262,7 +244,9 @@
   },
   "carousel": {
     "prev": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "pause": "Pausar movimiento",
+    "resume": "Reanudar movimiento"
   },
   "player": {
     "play": "Reproducir",

@@ -5,10 +5,10 @@ import { fadeUp, staggerContainer, viewportOnce, ease } from "../lib/motion";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
 import type { VideoCategory } from "../types/video";
-import VideoPlayer from "../components/VideoPlayer";
+import PortfolioSlider from "../components/PortfolioSlider";
 import { videoLabel } from "../data/sectors";
 
-type FilterCategory = VideoCategory;
+type FilterCategory = Exclude<VideoCategory, "hero">;
 
 const FILTER_KEYS: FilterCategory[] = ["ads", "organic", "corporate", "street"];
 const FILTER_I18N: Record<FilterCategory, string> = {
@@ -25,120 +25,30 @@ const ASPECT_RATIO: Record<FilterCategory, "9:16" | "16:9"> = {
   corporate: "16:9",
 };
 
-// Cards per row, per breakpoint, per category.
-// Vertical categories use 5 columns so they read like a wall. Corporate uses
-// 3 columns because the 16:9 ratio makes each card much wider, and we want
-// them to read big rather than tiny.
-const COLS_DESKTOP: Record<FilterCategory, number> = {
-  ads: 5,
-  organic: 5,
-  street: 5,
-  corporate: 3,
-};
-
-function SkeletonCard({ ar }: { ar: "9:16" | "16:9" }) {
+function SkeletonRow({ wide }: { wide: boolean }) {
   return (
-    <div
-      style={{
-        aspectRatio: ar === "9:16" ? "9/16" : "16/9",
-        borderRadius: "12px",
-        border: "1px solid oklch(58% 0.14 240 / 0.1)",
-        background: "oklch(16% 0.02 240)",
-        width: "100%",
-        animation: "skeletonPulse 1.5s ease-in-out infinite",
-      }}
-    />
-  );
-}
-
-// ── Grid ─────────────────────────────────────────────────────────────────────
-interface GridProps {
-  items: Array<{
-    id: string;
-    src: string;
-    poster: string | null;
-    aspectRatio: "9:16" | "16:9";
-    title: string | null;
-    client: string | null;
-  }>;
-  category: FilterCategory;
-}
-
-function PortfolioGrid({ items, category }: GridProps) {
-  const cols = COLS_DESKTOP[category];
-  const gap = category === "corporate" ? "20px" : "16px";
-
-  return (
-    <div
-      className="portfolio-grid"
-      data-cat={category}
-      style={{
-        display: "grid",
-        gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-        gap,
-      }}
-    >
-      {items.map((item) => (
-        <div key={item.id} style={{ width: "100%" }}>
-          <VideoPlayer
-            src={item.src}
-            poster={item.poster}
-            aspectRatio={item.aspectRatio}
-            title={item.title}
-            client={item.client}
-            loop
-          />
-        </div>
+    <div className="flex gap-4 overflow-hidden py-4 section-padding">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={i}
+          className="shrink-0"
+          style={{
+            width: wide ? "clamp(300px, 34vw, 520px)" : "clamp(200px, 17vw, 260px)",
+            aspectRatio: wide ? "16/9" : "9/16",
+            borderRadius: "12px",
+            border: "1px solid oklch(58% 0.14 240 / 0.1)",
+            background: "oklch(16% 0.02 240)",
+            animation: "skeletonPulse 1.5s ease-in-out infinite",
+          }}
+        />
       ))}
-
-      <style>{`
-        /* Vertical categories: 5 cols desktop → 4 → 3 → 2 → 1 */
-        .portfolio-grid[data-cat="ads"],
-        .portfolio-grid[data-cat="organic"],
-        .portfolio-grid[data-cat="street"] {
-          /* default 5 cols set inline */
-        }
-        @media (max-width: 1200px) {
-          .portfolio-grid[data-cat="ads"],
-          .portfolio-grid[data-cat="organic"],
-          .portfolio-grid[data-cat="street"] {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-        }
-        @media (max-width: 900px) {
-          .portfolio-grid[data-cat="ads"],
-          .portfolio-grid[data-cat="organic"],
-          .portfolio-grid[data-cat="street"] {
-            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .portfolio-grid[data-cat="ads"],
-          .portfolio-grid[data-cat="organic"],
-          .portfolio-grid[data-cat="street"] {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 10px !important;
-          }
-        }
-
-        /* Corporate: 3 cols desktop → 2 → 1 */
-        @media (max-width: 1000px) {
-          .portfolio-grid[data-cat="corporate"] {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .portfolio-grid[data-cat="corporate"] {
-            grid-template-columns: 1fr !important;
-            gap: 12px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
 
 // ── Portfolio Section ─────────────────────────────────────────────────────────
+// Título y pestañas alineados con el resto de la web; debajo, una sola fila de
+// vídeos a todo el ancho que avanza sola (ver PortfolioSlider).
 export default function Portfolio() {
   const { t, i18n } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("ads");
@@ -146,9 +56,9 @@ export default function Portfolio() {
   const { videos, loading } = useVideos(["ads", "organic", "corporate", "street"]);
 
   const filtered = videos.filter((v) => v.category === activeFilter);
-  const ar = ASPECT_RATIO[activeFilter];
+  const wide = ASPECT_RATIO[activeFilter] === "16:9";
 
-  const gridItems = filtered.map((v) => ({
+  const items = filtered.map((v) => ({
     id: v.id,
     src: getPublicUrl(v.storage_path),
     poster: v.thumbnail_path ? getPublicUrl(v.thumbnail_path) : null,
@@ -186,10 +96,13 @@ export default function Portfolio() {
             variants={fadeUp}
             className="flex gap-2 overflow-x-auto pb-2"
             style={{ scrollbarWidth: "none" }}
+            role="tablist"
           >
             {FILTER_KEYS.map((key) => (
               <button
                 key={key}
+                role="tab"
+                aria-selected={activeFilter === key}
                 onClick={() => setActiveFilter(key)}
                 className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                   activeFilter === key
@@ -201,39 +114,29 @@ export default function Portfolio() {
               </button>
             ))}
           </motion.div>
-
-          {/* Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeFilter}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25, ease }}
-            >
-              {loading ? (
-                <div
-                  className="portfolio-grid"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: `repeat(${COLS_DESKTOP[activeFilter]}, minmax(0, 1fr))`,
-                    gap: activeFilter === "corporate" ? "20px" : "16px",
-                  }}
-                >
-                  {Array.from({ length: COLS_DESKTOP[activeFilter] }).map((_, i) => (
-                    <SkeletonCard key={i} ar={ar} />
-                  ))}
-                </div>
-              ) : filtered.length === 0 ? (
-                <p className="text-steel-blue text-sm py-8 text-center">
-                  {t("work.empty")}
-                </p>
-              ) : (
-                <PortfolioGrid items={gridItems} category={activeFilter} />
-              )}
-            </motion.div>
-          </AnimatePresence>
         </motion.div>
+      </div>
+
+      {/* Fila de vídeos a todo el ancho. Al cambiar de pestaña se desmonta la
+          anterior, así que su vídeo deja de sonar. */}
+      <div className="mt-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease }}
+          >
+            {loading ? (
+              <SkeletonRow wide={wide} />
+            ) : items.length === 0 ? (
+              <p className="text-steel-blue text-sm py-8 text-center">{t("work.empty")}</p>
+            ) : (
+              <PortfolioSlider items={items} wide={wide} />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <style>{`@keyframes skeletonPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }`}</style>
