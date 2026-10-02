@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { Mail, Instagram, Linkedin, CheckCircle } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { sendContact } from "../lib/api";
@@ -14,6 +14,7 @@ interface FormState {
 interface FormErrors {
   name?: string;
   email?: string;
+  consent?: string;
 }
 
 const INITIAL: FormState = { name: "", email: "", message: "" };
@@ -26,6 +27,7 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   const set =
     (field: keyof FormState) =>
@@ -41,6 +43,7 @@ export default function Contact() {
     if (!form.name.trim()) errs.name = t("contact.form.errors.name_required");
     if (!form.email.trim()) errs.email = t("contact.form.errors.email_required");
     else if (!EMAIL_RE.test(form.email)) errs.email = t("contact.form.errors.email_invalid");
+    if (!consent) errs.consent = t("contact.form.errors.consent_required");
     return errs;
   }
 
@@ -61,6 +64,7 @@ export default function Contact() {
       });
       setSubmitted(true);
       setForm(INITIAL);
+      setConsent(false);
     } catch {
       setServerError(true);
     } finally {
@@ -184,10 +188,41 @@ export default function Contact() {
                     rows={4}
                     value={form.message}
                     onChange={set("message")}
-                    placeholder="Cuéntanos qué buscas…"
+                    placeholder={t("contact.form.message_placeholder")}
                     className={`${inputCls} resize-none`}
                   />
                 </div>
+
+                {/* Consentimiento (obligatorio) + información básica de protección de datos */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="flex items-start gap-3 cursor-pointer text-sm text-steel-blue">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => {
+                        setConsent(e.target.checked);
+                        if (errors.consent) setErrors((prev) => ({ ...prev, consent: undefined }));
+                      }}
+                      className="mt-0.5 w-4 h-4 shrink-0 accent-brand-blue cursor-pointer"
+                    />
+                    <span>
+                      <Trans
+                        i18nKey="contact.form.consent"
+                        components={{ link: <a href="/politica-privacidad" target="_blank" rel="noopener" className="text-brand-blue underline underline-offset-2 hover:text-off-white" /> }}
+                      />
+                    </span>
+                  </label>
+                  {errors.consent && (
+                    <p className={errCls} style={{ color: "oklch(65% 0.18 25)" }}>{errors.consent}</p>
+                  )}
+                </div>
+
+                <p className="text-[11px] leading-relaxed text-steel-blue/70">
+                  <Trans
+                    i18nKey="contact.form.info"
+                    components={{ link: <a href="/politica-privacidad" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-steel-blue" /> }}
+                  />
+                </p>
 
                 {serverError && (
                   <p className="text-xs" style={{ color: "oklch(65% 0.18 25)" }}>

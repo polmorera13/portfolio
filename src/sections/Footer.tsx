@@ -5,10 +5,11 @@ export default function Footer() {
   const { t } = useTranslation();
 
   const navLinks = [
-    { labelKey: "nav.services", href: "#servicios" },
-    { labelKey: "nav.portfolio", href: "#portfolio" },
-    { labelKey: "nav.process", href: "#proceso" },
-    { labelKey: "nav.contact", href: "#contacto" },
+    { labelKey: "nav.about", href: "/#sobre-mi" },
+    { labelKey: "nav.services", href: "/#servicios" },
+    { labelKey: "nav.portfolio", href: "/#portfolio" },
+    { labelKey: "nav.process", href: "/#proceso" },
+    { labelKey: "nav.contact", href: "/#contacto" },
   ];
 
   return (
@@ -79,9 +80,14 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-charcoal pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-steel-blue/60 text-xs">{t("footer.copyright")}</p>
-          <a href="#" className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
-            {t("footer.privacy")}
-          </a>
+          <div className="flex items-center gap-4">
+            <a href="/politica-privacidad" className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+              {t("footer.privacy")}
+            </a>
+            <a href="/aviso-legal" className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+              {t("footer.legal")}
+            </a>
+          </div>
         </div>
       </div>
     </footer>

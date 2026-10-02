@@ -14,7 +14,7 @@ export const services: Service[] = [
       { es: "Hooks de alto impacto", en: "High-impact hooks", ca: "Hooks d'alt impacte" },
       { es: "Variaciones para A/B", en: "A/B test variations", ca: "Variacions per A/B" },
       { es: "Formato vertical y cuadrado", en: "Vertical and square formats", ca: "Format vertical i quadrat" },
-      { es: "Entrega en 7–10 días", en: "Delivered in 7–10 days", ca: "Lliurament en 7–10 dies" },
+      { es: "Entrega en 5–7 días laborables", en: "Delivery in 5–7 working days", ca: "Lliurament en 5–7 dies laborables" },
     ],
     cta: { es: "Ver ejemplos", en: "View examples", ca: "Veure exemples" },
   },

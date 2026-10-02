@@ -4,7 +4,8 @@
     "portfolio": "Portfolio",
     "process": "Proceso",
     "contact": "Contacto",
-    "cta": "Solicitar proyecto"
+    "cta": "Solicitar proyecto",
+    "about": "Sobre mí"
   },
   "hero": {
     "eyebrow": "Pol Morera · Barcelona",
@@ -13,15 +14,24 @@
     "tagline": "UGC para paid media, contenido orgánico y vídeo corporativo. Cada pieza con un objetivo medible: bajar CPA, crecer audiencia o vender.",
     "cta_primary": "Ver trabajos",
     "cta_secondary": "Hablemos",
-    "trusted_by": "Ya confían en nosotros",
+    "trusted_by": "Ya confían en mi trabajo",
     "stats": [
-      { "value": "+300", "label": "marcas" },
-      { "value": "+1000", "label": "vídeos" },
-      { "value": "+80M", "label": "visualizaciones" }
+      {
+        "value": "+300",
+        "label": "marcas"
+      },
+      {
+        "value": "+1000",
+        "label": "vídeos"
+      },
+      {
+        "value": "+80M",
+        "label": "visualizaciones"
+      }
     ]
   },
   "logos": {
-    "title": "Marcas que han confiado en nuestro contenido"
+    "title": "Marcas que han confiado en mi contenido"
   },
   "results": {
     "title": "Resultados reales",
@@ -37,19 +47,39 @@
     "highlight": "Cada pieza con un objetivo claro: atraer, convencer o convertir. Lo demás es ruido."
   },
   "services": {
-    "eyebrow": "03 / SERVICIOS",
-    "title": "Qué producimos"
+    "eyebrow": "04 / SERVICIOS",
+    "title": "Qué produzco"
   },
   "process": {
-    "eyebrow": "04 / PROCESO",
-    "title": "Cómo trabajamos",
-    "intro": "Trabajamos cada pieza desde el objetivo, el guion y la ejecución. No grabamos por grabar.",
+    "eyebrow": "05 / PROCESO",
+    "title": "Cómo trabajo",
+    "intro": "Trabajo cada pieza desde el objetivo, el guion y la ejecución. No grabo por grabar.",
     "steps": [
-      { "n": "01", "title": "Análisis",   "description": "Analizamos el brief, la competencia y qué ha funcionado en el sector." },
-      { "n": "02", "title": "Guion",      "description": "Creamos guiones adaptados al producto y al ángulo que mejor convierte." },
-      { "n": "03", "title": "Producción", "description": "Rodaje siguiendo las directrices del brief." },
-      { "n": "04", "title": "Edición",    "description": "Montaje, motion graphics y adaptaciones por formato." },
-      { "n": "05", "title": "Ajustes",    "description": "Iteramos hasta que el contenido es exactamente como lo quieres." }
+      {
+        "n": "01",
+        "title": "Análisis",
+        "description": "Analizo el brief, la competencia y qué ha funcionado en tu sector."
+      },
+      {
+        "n": "02",
+        "title": "Guion",
+        "description": "Escribo guiones adaptados al producto y al ángulo que mejor convierte."
+      },
+      {
+        "n": "03",
+        "title": "Producción",
+        "description": "Rodaje siguiendo las directrices del brief."
+      },
+      {
+        "n": "04",
+        "title": "Edición",
+        "description": "Mi equipo de edición se encarga del montaje, los motion graphics y las adaptaciones a cada formato."
+      },
+      {
+        "n": "05",
+        "title": "Ajustes",
+        "description": "Itero contigo hasta que el contenido es exactamente como lo quieres."
+      }
     ]
   },
   "portfolio": {
@@ -67,12 +97,24 @@
   },
   "differentiation": {
     "eyebrow": "06 / DIFERENCIA",
-    "title": "Por qué trabajar con nosotros",
+    "title": "Por qué trabajar conmigo",
     "cards": [
-      { "title": "Producción escalable", "desc": "Volumen sin perder calidad" },
-      { "title": "Enfoque en resultados", "desc": "Cada pieza con un objetivo medible" },
-      { "title": "Experiencia multisectorial", "desc": "Fintech, food, consumer, SaaS, retail" },
-      { "title": "Proceso claro", "desc": "Sabes qué pasa en cada fase" }
+      {
+        "title": "Producción escalable",
+        "desc": "Volumen sin perder calidad"
+      },
+      {
+        "title": "Enfoque en resultados",
+        "desc": "Cada pieza con un objetivo medible"
+      },
+      {
+        "title": "Experiencia multisectorial",
+        "desc": "Fintech, food, consumer, SaaS, retail"
+      },
+      {
+        "title": "Proceso claro",
+        "desc": "Sabes qué pasa en cada fase"
+      }
     ]
   },
   "cta": {
@@ -80,7 +122,7 @@
     "button": "Solicita tu proyecto"
   },
   "testimonials": {
-    "eyebrow": "05 / TESTIMONIOS",
+    "eyebrow": "06 / TESTIMONIOS",
     "title": "Lo que dicen las marcas",
     "label": "Lo que dicen",
     "items": [
@@ -117,29 +159,33 @@
     ]
   },
   "faq": {
-    "eyebrow": "06 / PREGUNTAS",
+    "eyebrow": "07 / PREGUNTAS",
     "title": "Preguntas frecuentes"
   },
   "contact": {
-    "eyebrow": "07 / CONTACTO",
-    "title": "Cuéntanos tu proyecto",
-    "subtitle": "Respondemos en menos de 24h en días laborables.",
+    "eyebrow": "08 / CONTACTO",
+    "title": "Cuéntame tu proyecto",
+    "subtitle": "Te respondo en menos de 24 h en días laborables.",
     "email": "hello@polmorera.es",
     "form": {
       "submit": "Solicitar propuesta",
       "submitting": "Enviando...",
-      "success": "¡Mensaje enviado! Te respondemos en menos de 24h.",
+      "success": "¡Mensaje enviado! Te respondo en menos de 24 h.",
       "fields": {
         "name": "Nombre y empresa",
         "email": "Email",
         "message": "Mensaje"
       },
       "errors": {
-        "name_required": "Necesitamos saber quién eres.",
+        "name_required": "Necesito saber quién eres.",
         "email_required": "Falta el email.",
         "email_invalid": "Email no válido.",
-        "server_error": "No se pudo enviar el mensaje. Inténtalo de nuevo."
-      }
+        "server_error": "No se pudo enviar el mensaje. Inténtalo de nuevo.",
+        "consent_required": "Tienes que aceptar la política de privacidad para enviar el formulario."
+      },
+      "message_placeholder": "Cuéntame qué buscas…",
+      "consent": "He leído y acepto la <link>política de privacidad</link>.",
+      "info": "Responsable: Pol Morera de Frutos. Finalidad: responder a tu solicitud y enviarte una propuesta. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal. Derechos: acceso, rectificación, supresión y otros, en hello@polmorera.es. Más información en la <link>política de privacidad</link>."
     }
   },
   "work": {
@@ -203,6 +249,18 @@
   "footer": {
     "tagline": "Contenido que trabaja para tu marca.",
     "privacy": "Política de privacidad",
-    "copyright": "© 2026 Pol Morera Productions · Barcelona"
+    "copyright": "© 2026 Pol Morera Productions · Barcelona",
+    "legal": "Aviso legal"
+  },
+  "about": {
+    "eyebrow": "03 / QUIÉN ESTÁ DETRÁS",
+    "title": "Hacía UGC cuando en España casi nadie sabía qué era.",
+    "p1": "Soy Pol Morera. Empecé cuando las marcas aún no tenían nombre para esto. Fui uno de los primeros creadores UGC del país y el primer UGC hombre.",
+    "p2": "Tantos años me han dado algo que no se aprende rápido: saber qué hace que alguien deje de hacer scroll y qué se quema en dos semanas. Eso es lo que pongo en cada vídeo que hago con mi equipo para tu marca.",
+    "cta": "Hablemos →",
+    "img_alt": "Pol Morera, creador UGC"
+  },
+  "legal": {
+    "back": "← Volver a la web"
   }
 }

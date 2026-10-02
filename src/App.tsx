@@ -5,6 +5,7 @@ import Hero from './sections/Hero';
 import LogoMarquee from './sections/LogoMarquee';
 import Results from './sections/Results';
 import Problem from './sections/Problem';
+import About from './sections/About';
 import Services from './sections/Services';
 import Process from './sections/Process';
 import Portfolio from './sections/Portfolio';
@@ -18,6 +19,7 @@ import ScrollProgressBar from './components/ScrollProgressBar';
 
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
+const Legal = lazy(() => import('./pages/Legal'));
 
 function PublicSite() {
   return (
@@ -30,6 +32,7 @@ function PublicSite() {
         <Results />
         <Portfolio />
         <Problem />
+        <About />
         <Services />
         <Process />
         <Testimonials />
@@ -48,6 +51,8 @@ export default function App() {
       <Suspense fallback={<div className="min-h-screen bg-navy" />}>
         <Routes>
           <Route path="/" element={<PublicSite />} />
+          <Route path="/politica-privacidad" element={<Legal doc="privacy" />} />
+          <Route path="/aviso-legal" element={<Legal doc="legal" />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
