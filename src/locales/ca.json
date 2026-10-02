@@ -11,7 +11,7 @@
     "eyebrow": "Pol Morera · Barcelona",
     "h1_line1": "Vídeos que",
     "h1_line2": "venen.",
-    "tagline": "UGC per a paid media, contingut orgànic i vídeo corporatiu. Cada peça amb un objectiu mesurable: baixar CPA, fer créixer l'audiència o vendre.",
+    "tagline": "Vídeos amb una persona real parlant del teu negoci, com ho faria un client content. Per als teus anuncis, les teves xarxes i la teva web, i cadascun amb un objectiu clar: que et coneguin, que confiïn en tu o que et comprin.",
     "cta_primary": "Veure treballs",
     "cta_secondary": "Parlem",
     "trusted_by": "Ja confien en la meva feina",
@@ -31,11 +31,12 @@
     ]
   },
   "logos": {
-    "title": "Marques que han confiat en el meu contingut"
+    "title": "Marques que han confiat en el meu contingut",
+    "subline": "De grans marques a negocis locals: treballo des d'un sol vídeo."
   },
   "results": {
     "title": "Resultats reals",
-    "subtitle": "Més de 300 marques confien en la meva producció. Fintech, retail, alimentació, SaaS, educació i consum.",
+    "subtitle": "Més de 300 marques confien en la meva feina: finances, botigues, alimentació, programari, formació i consum.",
     "brands": "MARQUES",
     "videos": "VÍDEOS",
     "views": "VISUALITZACIONS"
@@ -43,7 +44,7 @@
   "problem": {
     "eyebrow": "02 / EL PROBLEMA",
     "title": "El problema no és fer més vídeos",
-    "body": "El problema és produir contingut sense mesurar què funciona. Les campanyes de paid es cremen cada dues setmanes, el contingut orgànic s'estanca i els creatius corporatius no generen confiança. Més vídeos no resol res — vídeos amb propòsit sí.",
+    "body": "El problema és gravar sense saber què funciona. Els anuncis deixen de donar resultat a les dues setmanes, les xarxes no creixen i el vídeo d'empresa no transmet confiança. Més vídeos no ho arreglen: vídeos pensats per a un objectiu, sí.",
     "highlight": "Cada peça amb un objectiu clar: atraure, convèncer o convertir. La resta és soroll."
   },
   "services": {
@@ -53,32 +54,32 @@
   "process": {
     "eyebrow": "05 / PROCÉS",
     "title": "Com treballo",
-    "intro": "Treballo cada peça des de l'objectiu, el guió i l'execució. No gravo per gravar.",
+    "intro": "No cal que sàpigues de màrqueting ni que portis res preparat. Així ho fem:",
     "steps": [
       {
         "n": "01",
-        "title": "Anàlisi",
-        "description": "Analitzo el brief, la competència i què ha funcionat al teu sector."
+        "title": "Trucada",
+        "description": "M'expliques el teu negoci en una trucada curta i miro què està funcionant al teu sector."
       },
       {
         "n": "02",
         "title": "Guió",
-        "description": "Escric guions adaptats al producte i a l'angle que millor converteix."
+        "description": "Escric el guió pensant en el que fa que el teu client es decideixi, i el revises abans de gravar."
       },
       {
         "n": "03",
-        "title": "Producció",
-        "description": "Rodatge seguint les directrius del brief."
+        "title": "Gravació",
+        "description": "Gravo al teu negoci o amb el teu producte, segons el que acordem."
       },
       {
         "n": "04",
         "title": "Edició",
-        "description": "El meu equip d'edició s'encarrega del muntatge, els motion graphics i les adaptacions a cada format."
+        "description": "El meu equip d'edició munta el vídeo, hi afegeix textos i animacions i l'adapta a cada xarxa."
       },
       {
         "n": "05",
         "title": "Ajustos",
-        "description": "Itero amb tu fins que el contingut és exactament com el vols."
+        "description": "Faig els canvis que necessitis fins que el vídeo és exactament com el vols."
       }
     ]
   },
@@ -109,7 +110,7 @@
       },
       {
         "title": "Experiència multisectorial",
-        "desc": "Fintech, food, consumer, SaaS, retail"
+        "desc": "Finances, alimentació, consum, programari, botigues"
       },
       {
         "title": "Procés clar",
@@ -118,8 +119,11 @@
     ]
   },
   "cta": {
-    "headline": "Vols contingut bonic o contingut que funcioni?",
-    "button": "Sol·licita el teu projecte"
+    "headline": "No saps per on començar?",
+    "button": "Vull els meus 3 vídeos",
+    "text": "Explica'm a què es dedica el teu negoci i t'envio gratis un document amb els 3 vídeos que més t'ajudarien a vendre, amb la idea de cadascun.",
+    "secondary": "o demana pressupost directament",
+    "small": "Te l'envio en 2 dies laborables. Sense compromís."
   },
   "testimonials": {
     "eyebrow": "06 / TESTIMONIS",
@@ -160,7 +164,8 @@
   },
   "faq": {
     "eyebrow": "07 / PREGUNTES",
-    "title": "Preguntes freqüents"
+    "title": "Preguntes freqüents",
+    "more": "Més preguntes"
   },
   "contact": {
     "eyebrow": "08 / CONTACTE",
@@ -174,28 +179,44 @@
       "fields": {
         "name": "Nom i empresa",
         "email": "Email",
-        "message": "Missatge"
+        "message": "Missatge",
+        "website": "Web o Instagram del teu negoci"
       },
       "errors": {
         "name_required": "Necessito saber qui ets.",
         "email_required": "Falta l'email.",
         "email_invalid": "Email no vàlid.",
         "server_error": "No s'ha pogut enviar el missatge. Torna-ho a intentar.",
-        "consent_required": "Has d'acceptar la política de privacitat per enviar el formulari."
+        "consent_required": "Has d'acceptar la política de privacitat per enviar el formulari.",
+        "website_required": "Necessito la web o l'Instagram del teu negoci per preparar els teus 3 vídeos."
       },
-      "message_placeholder": "Explica'm què busques…",
+      "message_placeholder": "Explica'm què necessites: quants vídeos, per a què i per a quan.",
       "consent": "He llegit i accepto la <link>política de privacitat</link>.",
-      "info": "Responsable: Pol Morera de Frutos. Finalitat: respondre la teva sol·licitud i enviar-te una proposta. Legitimació: el teu consentiment. Destinataris: no se cedeixen dades a tercers excepte per obligació legal. Drets: accés, rectificació, supressió i altres, a hello@polmorera.es. Més informació a la <link>política de privacitat</link>."
-    }
+      "info": "Responsable: Pol Morera de Frutos. Finalitat: respondre la teva sol·licitud i enviar-te una proposta. Legitimació: el teu consentiment. Destinataris: no se cedeixen dades a tercers excepte per obligació legal. Drets: accés, rectificació, supressió i altres, a hello@polmorera.es. Més informació a la <link>política de privacitat</link>.",
+      "type_question": "Què necessites?",
+      "type_quote": "Un pressupost",
+      "type_videos3": "Els meus 3 vídeos gratis",
+      "website_placeholder": "elteunegoci.com o @elteunegoci",
+      "message_placeholder_videos3": "A què es dedica el teu negoci i a qui li vens?",
+      "submit_videos3": "Vull els meus 3 vídeos",
+      "success_videos3": "Rebut! T'envio el teu document amb els 3 vídeos en 2 dies laborables."
+    },
+    "fixed_quote": "T'envio un pressupost tancat i sense compromís: saps què pagaràs abans de començar.",
+    "whatsapp": "Escriu-me per WhatsApp",
+    "whatsapp_msg": "Hola Pol, vinc de la teva web i m'agradaria parlar de vídeos per al meu negoci."
   },
   "work": {
     "label": "Treballs",
-    "filter_ads": "Ads",
-    "filter_organic": "Orgànic",
-    "filter_corporate": "Corporatiu",
-    "filter_street": "Street content",
+    "filter_ads": "Anuncis",
+    "filter_organic": "Xarxes socials",
+    "filter_corporate": "Empresa",
+    "filter_street": "Al carrer",
     "view_case": "Veure cas",
-    "empty": "Encara no hi ha vídeos en aquesta categoria."
+    "empty": "Encara no hi ha vídeos en aquesta categoria.",
+    "type_ads": "Anunci",
+    "type_organic": "Xarxes",
+    "type_corporate": "Empresa",
+    "type_street": "Al carrer"
   },
   "admin": {
     "title": "Gestor de vídeos",

@@ -11,7 +11,7 @@
     "eyebrow": "Pol Morera · Barcelona",
     "h1_line1": "Vídeos que",
     "h1_line2": "venden.",
-    "tagline": "UGC para paid media, contenido orgánico y vídeo corporativo. Cada pieza con un objetivo medible: bajar CPA, crecer audiencia o vender.",
+    "tagline": "Vídeos con una persona real hablando de tu negocio, como lo haría un cliente contento. Para tus anuncios, tus redes y tu web, y cada uno con un objetivo claro: que te conozcan, que confíen en ti o que te compren.",
     "cta_primary": "Ver trabajos",
     "cta_secondary": "Hablemos",
     "trusted_by": "Ya confían en mi trabajo",
@@ -31,11 +31,12 @@
     ]
   },
   "logos": {
-    "title": "Marcas que han confiado en mi contenido"
+    "title": "Marcas que han confiado en mi contenido",
+    "subline": "De grandes marcas a negocios locales: trabajo desde un solo vídeo."
   },
   "results": {
     "title": "Resultados reales",
-    "subtitle": "Más de 300 marcas confían en mi producción. Fintech, retail, alimentación, SaaS, educación y consumo.",
+    "subtitle": "Más de 300 marcas confían en mi trabajo: finanzas, tiendas, alimentación, software, formación y consumo.",
     "brands": "MARCAS",
     "videos": "VÍDEOS",
     "views": "VISUALIZACIONES"
@@ -43,7 +44,7 @@
   "problem": {
     "eyebrow": "02 / EL PROBLEMA",
     "title": "El problema no es hacer más vídeos",
-    "body": "El problema es producir contenido sin medir qué funciona. Las campañas de paid se queman cada dos semanas, el contenido orgánico se estanca y los creativos corporativos no generan confianza. Más vídeos no resuelve nada — vídeos con propósito sí.",
+    "body": "El problema es grabar sin saber qué funciona. Los anuncios dejan de dar resultado a las dos semanas, las redes no crecen y el vídeo de empresa no transmite confianza. Más vídeos no lo arreglan: vídeos pensados para un objetivo, sí.",
     "highlight": "Cada pieza con un objetivo claro: atraer, convencer o convertir. Lo demás es ruido."
   },
   "services": {
@@ -53,32 +54,32 @@
   "process": {
     "eyebrow": "05 / PROCESO",
     "title": "Cómo trabajo",
-    "intro": "Trabajo cada pieza desde el objetivo, el guion y la ejecución. No grabo por grabar.",
+    "intro": "No hace falta que sepas de marketing ni que traigas nada preparado. Así lo hacemos:",
     "steps": [
       {
         "n": "01",
-        "title": "Análisis",
-        "description": "Analizo el brief, la competencia y qué ha funcionado en tu sector."
+        "title": "Llamada",
+        "description": "Me cuentas tu negocio en una llamada corta y miro qué está funcionando en tu sector."
       },
       {
         "n": "02",
         "title": "Guion",
-        "description": "Escribo guiones adaptados al producto y al ángulo que mejor convierte."
+        "description": "Escribo el guion pensando en lo que hace que tu cliente se decida, y lo revisas antes de grabar."
       },
       {
         "n": "03",
-        "title": "Producción",
-        "description": "Rodaje siguiendo las directrices del brief."
+        "title": "Grabación",
+        "description": "Grabo en tu negocio o con tu producto, según lo que acordemos."
       },
       {
         "n": "04",
         "title": "Edición",
-        "description": "Mi equipo de edición se encarga del montaje, los motion graphics y las adaptaciones a cada formato."
+        "description": "Mi equipo de edición monta el vídeo, añade textos y animaciones y lo adapta a cada red."
       },
       {
         "n": "05",
         "title": "Ajustes",
-        "description": "Itero contigo hasta que el contenido es exactamente como lo quieres."
+        "description": "Hago los cambios que necesites hasta que el vídeo es exactamente como lo quieres."
       }
     ]
   },
@@ -109,7 +110,7 @@
       },
       {
         "title": "Experiencia multisectorial",
-        "desc": "Fintech, food, consumer, SaaS, retail"
+        "desc": "Finanzas, alimentación, consumo, software, tiendas"
       },
       {
         "title": "Proceso claro",
@@ -118,8 +119,11 @@
     ]
   },
   "cta": {
-    "headline": "¿Quieres contenido bonito o contenido que funcione?",
-    "button": "Solicita tu proyecto"
+    "headline": "¿No sabes por dónde empezar?",
+    "button": "Quiero mis 3 vídeos",
+    "text": "Cuéntame a qué se dedica tu negocio y te envío gratis un documento con los 3 vídeos que más te ayudarían a vender, con la idea de cada uno.",
+    "secondary": "o pide presupuesto directamente",
+    "small": "Te lo envío en 2 días laborables. Sin compromiso."
   },
   "testimonials": {
     "eyebrow": "06 / TESTIMONIOS",
@@ -160,7 +164,8 @@
   },
   "faq": {
     "eyebrow": "07 / PREGUNTAS",
-    "title": "Preguntas frecuentes"
+    "title": "Preguntas frecuentes",
+    "more": "Ver más preguntas"
   },
   "contact": {
     "eyebrow": "08 / CONTACTO",
@@ -174,28 +179,44 @@
       "fields": {
         "name": "Nombre y empresa",
         "email": "Email",
-        "message": "Mensaje"
+        "message": "Mensaje",
+        "website": "Web o Instagram de tu negocio"
       },
       "errors": {
         "name_required": "Necesito saber quién eres.",
         "email_required": "Falta el email.",
         "email_invalid": "Email no válido.",
         "server_error": "No se pudo enviar el mensaje. Inténtalo de nuevo.",
-        "consent_required": "Tienes que aceptar la política de privacidad para enviar el formulario."
+        "consent_required": "Tienes que aceptar la política de privacidad para enviar el formulario.",
+        "website_required": "Necesito la web o el Instagram de tu negocio para preparar tus 3 vídeos."
       },
-      "message_placeholder": "Cuéntame qué buscas…",
+      "message_placeholder": "Cuéntame qué necesitas: cuántos vídeos, para qué y para cuándo.",
       "consent": "He leído y acepto la <link>política de privacidad</link>.",
-      "info": "Responsable: Pol Morera de Frutos. Finalidad: responder a tu solicitud y enviarte una propuesta. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal. Derechos: acceso, rectificación, supresión y otros, en hello@polmorera.es. Más información en la <link>política de privacidad</link>."
-    }
+      "info": "Responsable: Pol Morera de Frutos. Finalidad: responder a tu solicitud y enviarte una propuesta. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal. Derechos: acceso, rectificación, supresión y otros, en hello@polmorera.es. Más información en la <link>política de privacidad</link>.",
+      "type_question": "¿Qué necesitas?",
+      "type_quote": "Un presupuesto",
+      "type_videos3": "Mis 3 vídeos gratis",
+      "website_placeholder": "tunegocio.com o @tunegocio",
+      "message_placeholder_videos3": "¿A qué se dedica tu negocio y a quién le vendes?",
+      "submit_videos3": "Quiero mis 3 vídeos",
+      "success_videos3": "¡Recibido! Te envío tu documento con los 3 vídeos en 2 días laborables."
+    },
+    "fixed_quote": "Te envío un presupuesto cerrado y sin compromiso: sabes lo que vas a pagar antes de empezar.",
+    "whatsapp": "Escríbeme por WhatsApp",
+    "whatsapp_msg": "Hola Pol, vengo de tu web y me gustaría hablar sobre vídeos para mi negocio."
   },
   "work": {
     "label": "Trabajos",
-    "filter_ads": "Ads",
-    "filter_organic": "Orgánico",
-    "filter_corporate": "Corporativo",
-    "filter_street": "Street content",
+    "filter_ads": "Anuncios",
+    "filter_organic": "Redes sociales",
+    "filter_corporate": "Empresa",
+    "filter_street": "En la calle",
     "view_case": "Ver caso",
-    "empty": "Aún no hay vídeos en esta categoría."
+    "empty": "Aún no hay vídeos en esta categoría.",
+    "type_ads": "Anuncio",
+    "type_organic": "Redes",
+    "type_corporate": "Empresa",
+    "type_street": "En la calle"
   },
   "admin": {
     "title": "Gestor de vídeos",

@@ -59,6 +59,12 @@ export default function LogoMarquee() {
           ))}
         </div>
       </div>
+
+      <div className="max-w-content mx-auto section-padding mt-6">
+        <p className="text-sm text-center" style={{ color: "#5C7A93" }}>
+          {t("logos.subline")}
+        </p>
+      </div>
     </section>
   );
 }

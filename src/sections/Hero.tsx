@@ -6,6 +6,7 @@ import { getPublicUrl } from "../lib/supabase";
 import { fetchHero } from "../lib/api";
 import { HERO_SLOTS, DEFAULT_HERO, type HeroSlotDef, type HeroConfig } from "../data/heroSlots";
 import VideoPlayer from "../components/VideoPlayer";
+import { videoLabel } from "../data/sectors";
 
 type Stat = { value: string; label: string };
 
@@ -195,7 +196,7 @@ function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
 }
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const stats = t("hero.stats", { returnObjects: true }) as Stat[];
 
   const { videos } = useVideos(["corporate", "ads", "organic", "street"]);
@@ -221,7 +222,7 @@ export default function Hero() {
       src: getPublicUrl(pick.storage_path),
       poster: pick.thumbnail_path ? getPublicUrl(pick.thumbnail_path) : null,
       title: pick.title,
-      client: pick.client,
+      client: videoLabel(pick.category, pick.title, i18n.language, t),
     }];
   });
 

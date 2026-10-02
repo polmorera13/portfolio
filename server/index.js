@@ -166,19 +166,32 @@ app.put("/api/admin/hero", requireAuth, async (req, res) => {
 
 // Contact form
 app.post("/api/contact", async (req, res) => {
-  const { name, email, message } = req.body || {};
+  const { name, email, message, type, website } = req.body || {};
+  // type: "quote" (presupuesto, por defecto) o "videos3" (documento gratis de 3 vídeos)
+  const kind = type === "videos3" ? "videos3" : "quote";
+  const site = String(website || "").trim().slice(0, 300);
   if (!name?.trim() || !email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: "invalid" });
   }
+  if (kind === "videos3" && !site) return res.status(400).json({ error: "website_required" });
   if (!RESEND_API_KEY) return res.status(500).json({ error: "server_misconfigured" });
   try {
     const resend = new Resend(RESEND_API_KEY);
+    const tag = kind === "videos3" ? "[3 vídeos]" : "[Presupuesto]";
+    const kindLabel = kind === "videos3" ? "Mis 3 vídeos gratis" : "Un presupuesto";
     await resend.emails.send({
       from: CONTACT_FROM,
       to: CONTACT_TO,
       reply_to: email,
-      subject: `Nuevo contacto: ${name}`,
-      text: `De: ${name} <${email}>\n\n${message?.trim() || "(sin mensaje)"}`,
+      subject: `${tag} ${name.trim()}`,
+      text: [
+        `Qué necesita: ${kindLabel}`,
+        `Nombre y empresa: ${name.trim()}`,
+        `Email: ${email.trim()}`,
+        `Web o Instagram: ${site || "(no indicado)"}`,
+        "",
+        message?.trim() || "(sin mensaje)",
+      ].join("\n"),
     });
     res.json({ ok: true });
   } catch (e) {

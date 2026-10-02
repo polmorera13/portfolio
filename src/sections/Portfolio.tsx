@@ -6,6 +6,7 @@ import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
 import type { VideoCategory } from "../types/video";
 import VideoPlayer from "../components/VideoPlayer";
+import { videoLabel } from "../data/sectors";
 
 type FilterCategory = VideoCategory;
 
@@ -139,7 +140,7 @@ function PortfolioGrid({ items, category }: GridProps) {
 
 // ── Portfolio Section ─────────────────────────────────────────────────────────
 export default function Portfolio() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("ads");
 
   const { videos, loading } = useVideos(["ads", "organic", "corporate", "street"]);
@@ -153,7 +154,7 @@ export default function Portfolio() {
     poster: v.thumbnail_path ? getPublicUrl(v.thumbnail_path) : null,
     aspectRatio: ASPECT_RATIO[v.category as FilterCategory] ?? "9:16",
     title: v.title,
-    client: v.client,
+    client: videoLabel(v.category, v.title, i18n.language, t),
   }));
 
   return (

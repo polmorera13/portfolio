@@ -10,6 +10,9 @@ export default function FAQ() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language as Locale;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // En móvil se ven las 6 primeras y un botón despliega el resto.
+  const [showAll, setShowAll] = useState(false);
+  const MOBILE_VISIBLE = 6;
 
   return (
     <section className="section-gap bg-charcoal/20">
@@ -38,7 +41,9 @@ export default function FAQ() {
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="border border-charcoal rounded-xl overflow-hidden hover:border-brand-blue/30 transition-colors duration-200"
+                className={`border border-charcoal rounded-xl overflow-hidden hover:border-brand-blue/30 transition-colors duration-200${
+                  !showAll && i >= MOBILE_VISIBLE ? " hidden md:block" : ""
+                }`}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -71,6 +76,15 @@ export default function FAQ() {
                 </AnimatePresence>
               </div>
             ))}
+
+            {!showAll && faqItems.length > MOBILE_VISIBLE && (
+              <button
+                onClick={() => setShowAll(true)}
+                className="md:hidden self-start mt-2 px-4 py-1.5 rounded-full text-sm font-semibold border border-charcoal text-steel-blue hover:border-steel-blue/60 hover:text-off-white transition-all duration-200"
+              >
+                {t("faq.more")}
+              </button>
+            )}
           </motion.div>
         </motion.div>
       </div>

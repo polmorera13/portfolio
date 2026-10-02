@@ -33,7 +33,8 @@ export const privacyPolicy: Record<Locale, LegalDoc> = {
       {
         heading: "2. Qué datos recojo y para qué",
         paragraphs: [
-          "Cuando me escribes desde el formulario de contacto, recojo tu nombre y empresa, tu email y el mensaje que me envías. Los uso solo para responderte y, si me lo pides, prepararte una propuesta. No los uso para enviarte publicidad.",
+          "Cuando me escribes desde el formulario de contacto, recojo tu nombre y empresa, tu email, la web o el Instagram de tu negocio si me lo das, y el mensaje que me envías. Los uso solo para responderte, prepararte una propuesta o enviarte el documento que me pidas. No los uso para enviarte publicidad.",
+          "Si me escribes por WhatsApp, uso tu número y tus mensajes solo para responderte. Ten en cuenta que WhatsApp es un servicio de Meta.",
           "La base legal es tu consentimiento, que me das al enviar el formulario.",
         ],
       },
@@ -46,7 +47,7 @@ export const privacyPolicy: Record<Locale, LegalDoc> = {
       {
         heading: "4. Con quién los comparto",
         paragraphs: [
-          "No cedo tus datos a nadie, salvo que la ley me obligue. El proveedor de alojamiento de la web y el servicio que gestiona el formulario pueden acceder a ellos solo para prestarme su servicio, y están obligados a mantenerlos en confidencialidad.",
+          "No cedo tus datos a nadie, salvo que la ley me obligue. El proveedor de alojamiento de la web, el servicio que gestiona el formulario y WhatsApp (si me escribes por ahí) pueden acceder a ellos solo para prestar su servicio.",
         ],
       },
       {
@@ -78,7 +79,8 @@ export const privacyPolicy: Record<Locale, LegalDoc> = {
       {
         heading: "2. What data I collect and why",
         paragraphs: [
-          "When you write to me through the contact form, I collect your name and company, your email and the message you send me. I only use them to reply to you and, if you ask me to, to prepare a proposal for you. I don't use them to send you advertising.",
+          "When you write to me through the contact form, I collect your name and company, your email, your business website or Instagram if you give it to me, and the message you send me. I only use them to reply to you, prepare a proposal for you or send you the document you ask for. I don't use them to send you advertising.",
+          "If you message me on WhatsApp, I only use your number and your messages to reply to you. Please note that WhatsApp is a Meta service.",
           "The legal basis is your consent, which you give me when you send the form.",
         ],
       },
@@ -91,7 +93,7 @@ export const privacyPolicy: Record<Locale, LegalDoc> = {
       {
         heading: "4. Who I share it with",
         paragraphs: [
-          "I don't share your data with anyone, unless the law requires me to. The website's hosting provider and the service that handles the form may access it only to provide their service to me, and they are bound to keep it confidential.",
+          "I don't share your data with anyone, unless the law requires me to. The website's hosting provider, the service that handles the form and WhatsApp (if you message me there) may access it only to provide their service.",
         ],
       },
       {
@@ -123,7 +125,8 @@ export const privacyPolicy: Record<Locale, LegalDoc> = {
       {
         heading: "2. Quines dades recullo i per a què",
         paragraphs: [
-          "Quan m'escrius des del formulari de contacte, recullo el teu nom i empresa, el teu email i el missatge que m'envies. Només els faig servir per respondre't i, si m'ho demanes, preparar-te una proposta. No els faig servir per enviar-te publicitat.",
+          "Quan m'escrius des del formulari de contacte, recullo el teu nom i empresa, el teu email, la web o l'Instagram del teu negoci si me'l dones, i el missatge que m'envies. Només els faig servir per respondre't, preparar-te una proposta o enviar-te el document que em demanis. No els faig servir per enviar-te publicitat.",
+          "Si m'escrius per WhatsApp, faig servir el teu número i els teus missatges només per respondre't. Tingues en compte que WhatsApp és un servei de Meta.",
           "La base legal és el teu consentiment, que em dones en enviar el formulari.",
         ],
       },
@@ -136,7 +139,7 @@ export const privacyPolicy: Record<Locale, LegalDoc> = {
       {
         heading: "4. Amb qui les comparteixo",
         paragraphs: [
-          "No cedeixo les teves dades a ningú, tret que la llei m'hi obligui. El proveïdor d'allotjament de la web i el servei que gestiona el formulari hi poden accedir només per prestar-me el seu servei, i estan obligats a mantenir-les en confidencialitat.",
+          "No cedeixo les teves dades a ningú, tret que la llei m'hi obligui. El proveïdor d'allotjament de la web, el servei que gestiona el formulari i WhatsApp (si m'escrius per allà) hi poden accedir només per prestar el seu servei.",
         ],
       },
       {

@@ -44,7 +44,15 @@ export async function adminSetHero(slots: Record<string, string | null>): Promis
   return res.json();
 }
 
-export async function sendContact(payload: { name: string; email: string; message: string }): Promise<void> {
+export type ContactType = "quote" | "videos3";
+
+export async function sendContact(payload: {
+  name: string;
+  email: string;
+  message: string;
+  type: ContactType;
+  website: string;
+}): Promise<void> {
   const res = await fetch(`${API_BASE}/api/contact`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

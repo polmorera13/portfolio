@@ -24,21 +24,36 @@ export default function CTASection() {
           variants={staggerContainer}
           className="flex flex-col items-center gap-10 text-center"
         >
-          <motion.h2
-            variants={fadeUp}
-            className="text-off-white font-bold max-w-2xl"
-            style={{ fontSize: "clamp(28px, 4vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.01em" }}
-          >
-            {t("cta.headline")}
-          </motion.h2>
+          <div className="flex flex-col items-center gap-5">
+            <motion.h2
+              variants={fadeUp}
+              className="text-off-white font-bold max-w-2xl"
+              style={{ fontSize: "clamp(28px, 4vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.01em" }}
+            >
+              {t("cta.headline")}
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-steel-blue text-lg max-w-2xl">
+              {t("cta.text")}
+            </motion.p>
+          </div>
 
-          <motion.a
-            variants={fadeUp}
-            href="#contacto"
-            className="bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] pulse-glow"
-          >
-            {t("cta.button")}
-          </motion.a>
+          <motion.div variants={fadeUp} className="flex flex-col items-center gap-4">
+            {/* Baja al formulario con "Mis 3 vídeos gratis" ya marcado */}
+            <a
+              href="#contacto-3videos"
+              className="bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] pulse-glow"
+            >
+              {t("cta.button")}
+            </a>
+            {/* Baja al formulario con "Un presupuesto" marcado */}
+            <a
+              href="#contacto"
+              className="text-brand-blue font-semibold text-sm hover:text-off-white transition-colors"
+            >
+              {t("cta.secondary")}
+            </a>
+            <p className="text-steel-blue/70 text-xs">{t("cta.small")}</p>
+          </motion.div>
         </motion.div>
       </div>
     </section>

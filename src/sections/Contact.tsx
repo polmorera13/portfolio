@@ -1,33 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation, Trans } from "react-i18next";
 import { Mail, Instagram, Linkedin, CheckCircle } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
-import { sendContact } from "../lib/api";
+import { sendContact, type ContactType } from "../lib/api";
+import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
 
 interface FormState {
   name: string;
   email: string;
+  website: string;
   message: string;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
+  website?: string;
   consent?: string;
 }
 
-const INITIAL: FormState = { name: "", email: "", message: "" };
+const INITIAL: FormState = { name: "", email: "", website: "", message: "" };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Los enlaces a #contacto-3videos preseleccionan "Mis 3 vídeos gratis";
+// los de #contacto, "Un presupuesto".
+const HASH_3VIDEOS = "#contacto-3videos";
+const HASH_QUOTE = "#contacto";
+
+function typeFromHash(hash: string): ContactType | null {
+  if (hash === HASH_3VIDEOS) return "videos3";
+  if (hash === HASH_QUOTE) return "quote";
+  return null;
+}
 
 export default function Contact() {
   const { t } = useTranslation();
+  const [type, setType] = useState<ContactType>("quote");
   const [form, setForm] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submittedType, setSubmittedType] = useState<ContactType | null>(null);
   const [serverError, setServerError] = useState(false);
   const [consent, setConsent] = useState(false);
+
+  // Preselección según el enlace por el que se llega (al cargar y en cada clic,
+  // también cuando se pulsa dos veces el mismo enlace y el hash no cambia).
+  useEffect(() => {
+    const initial = typeFromHash(window.location.hash);
+    if (initial) setType(initial);
+
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.("a[href]");
+      if (!a) return;
+      const href = a.getAttribute("href") ?? "";
+      const hash = href.slice(href.indexOf("#"));
+      const next = href.includes("#") ? typeFromHash(hash) : null;
+      if (next) {
+        setType(next);
+        setSubmittedType(null);
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   const set =
     (field: keyof FormState) =>
@@ -43,6 +79,7 @@ export default function Contact() {
     if (!form.name.trim()) errs.name = t("contact.form.errors.name_required");
     if (!form.email.trim()) errs.email = t("contact.form.errors.email_required");
     else if (!EMAIL_RE.test(form.email)) errs.email = t("contact.form.errors.email_invalid");
+    if (type === "videos3" && !form.website.trim()) errs.website = t("contact.form.errors.website_required");
     if (!consent) errs.consent = t("contact.form.errors.consent_required");
     return errs;
   }
@@ -58,11 +95,13 @@ export default function Contact() {
     setServerError(false);
     try {
       await sendContact({
+        type,
         name: form.name.trim(),
         email: form.email.trim(),
+        website: form.website.trim(),
         message: form.message.trim(),
       });
-      setSubmitted(true);
+      setSubmittedType(type);
       setForm(INITIAL);
       setConsent(false);
     } catch {
@@ -72,9 +111,17 @@ export default function Contact() {
     }
   };
 
+  const chooseType = (next: ContactType) => {
+    setType(next);
+    if (next === "quote" && errors.website) setErrors((prev) => ({ ...prev, website: undefined }));
+  };
+
   const inputCls =
     "w-full bg-navy border border-charcoal rounded-lg px-4 py-3 text-off-white text-sm placeholder-steel-blue/50 focus:border-brand-blue/60 focus:outline-none transition-colors duration-200";
+  const labelCls = "text-xs font-semibold text-steel-blue uppercase tracking-wide";
   const errCls = "text-xs mt-1";
+  const errStyle = { color: "oklch(65% 0.18 25)" };
+  const isVideos3 = type === "videos3";
 
   return (
     <section id="contacto" className="section-gap">
@@ -102,9 +149,22 @@ export default function Contact() {
               <motion.p variants={fadeUp} className="text-steel-blue text-lg">
                 {t("contact.subtitle")}
               </motion.p>
+              <motion.p variants={fadeUp} className="text-steel-blue">
+                {t("contact.fixed_quote")}
+              </motion.p>
             </div>
 
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
+              {/* WhatsApp: lo primero de la columna, con el estilo del botón principal */}
+              <a
+                href={whatsappUrl(t("contact.whatsapp_msg"))}
+                target="_blank"
+                rel="noopener"
+                className="self-start inline-flex items-center gap-3 bg-brand-blue text-off-white font-semibold text-base px-6 py-3.5 rounded-lg hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.01] mb-2"
+              >
+                <WhatsAppIcon size={20} />
+                {t("contact.whatsapp")}
+              </a>
               <a
                 href={`mailto:${t("contact.email")}`}
                 className="flex items-center gap-3 text-steel-blue hover:text-off-white transition-colors group"
@@ -136,20 +196,46 @@ export default function Contact() {
           {/* Right: form */}
           <motion.div
             variants={fadeUp}
-            className="bg-charcoal rounded-xl p-8 lg:p-12 border border-brand-blue/10"
+            className="bg-charcoal rounded-xl p-8 lg:p-12 border border-brand-blue/10 relative"
           >
-            {submitted ? (
+            {/* Destino de los enlaces "Quiero mis 3 vídeos" */}
+            <span id="contacto-3videos" className="absolute -top-24" aria-hidden="true" />
+
+            {submittedType ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
                 <CheckCircle size={48} className="text-brand-blue" />
-                <p className="text-off-white font-semibold text-lg">{t("contact.form.success")}</p>
+                <p className="text-off-white font-semibold text-lg">
+                  {submittedType === "videos3" ? t("contact.form.success_videos3") : t("contact.form.success")}
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+                {/* ¿Qué necesitas? — pastillas con el estilo de los filtros del portfolio */}
+                <fieldset className="flex flex-col gap-2.5">
+                  <legend className={`${labelCls} mb-2.5`}>{t("contact.form.type_question")}</legend>
+                  <div className="flex flex-wrap gap-2" role="radiogroup">
+                    {(["quote", "videos3"] as ContactType[]).map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        role="radio"
+                        aria-checked={type === key}
+                        onClick={() => chooseType(key)}
+                        className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+                          type === key
+                            ? "bg-brand-blue text-off-white"
+                            : "border border-steel-blue/30 text-steel-blue hover:border-steel-blue/60 hover:text-off-white"
+                        }`}
+                      >
+                        {t(key === "quote" ? "contact.form.type_quote" : "contact.form.type_videos3")}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+
                 {/* Nombre y empresa */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-steel-blue uppercase tracking-wide">
-                    {t("contact.form.fields.name")} *
-                  </label>
+                  <label className={labelCls}>{t("contact.form.fields.name")} *</label>
                   <input
                     type="text"
                     value={form.name}
@@ -157,16 +243,12 @@ export default function Contact() {
                     placeholder="Ana García · Empresa S.L."
                     className={`${inputCls}${errors.name ? " border-red-500/60" : ""}`}
                   />
-                  {errors.name && (
-                    <p className={errCls} style={{ color: "oklch(65% 0.18 25)" }}>{errors.name}</p>
-                  )}
+                  {errors.name && <p className={errCls} style={errStyle}>{errors.name}</p>}
                 </div>
 
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-steel-blue uppercase tracking-wide">
-                    {t("contact.form.fields.email")} *
-                  </label>
+                  <label className={labelCls}>{t("contact.form.fields.email")} *</label>
                   <input
                     type="email"
                     value={form.email}
@@ -174,21 +256,32 @@ export default function Contact() {
                     placeholder="ana@empresa.com"
                     className={`${inputCls}${errors.email ? " border-red-500/60" : ""}`}
                   />
-                  {errors.email && (
-                    <p className={errCls} style={{ color: "oklch(65% 0.18 25)" }}>{errors.email}</p>
-                  )}
+                  {errors.email && <p className={errCls} style={errStyle}>{errors.email}</p>}
+                </div>
+
+                {/* Web o Instagram: obligatorio solo con "Mis 3 vídeos gratis" */}
+                <div className="flex flex-col gap-1.5">
+                  <label className={labelCls}>
+                    {t("contact.form.fields.website")}{isVideos3 ? " *" : ""}
+                  </label>
+                  <input
+                    type="text"
+                    value={form.website}
+                    onChange={set("website")}
+                    placeholder={t("contact.form.website_placeholder")}
+                    className={`${inputCls}${errors.website ? " border-red-500/60" : ""}`}
+                  />
+                  {errors.website && <p className={errCls} style={errStyle}>{errors.website}</p>}
                 </div>
 
                 {/* Mensaje */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-steel-blue uppercase tracking-wide">
-                    {t("contact.form.fields.message")}
-                  </label>
+                  <label className={labelCls}>{t("contact.form.fields.message")}</label>
                   <textarea
                     rows={4}
                     value={form.message}
                     onChange={set("message")}
-                    placeholder={t("contact.form.message_placeholder")}
+                    placeholder={t(isVideos3 ? "contact.form.message_placeholder_videos3" : "contact.form.message_placeholder")}
                     className={`${inputCls} resize-none`}
                   />
                 </div>
@@ -212,9 +305,7 @@ export default function Contact() {
                       />
                     </span>
                   </label>
-                  {errors.consent && (
-                    <p className={errCls} style={{ color: "oklch(65% 0.18 25)" }}>{errors.consent}</p>
-                  )}
+                  {errors.consent && <p className={errCls} style={errStyle}>{errors.consent}</p>}
                 </div>
 
                 <p className="text-[11px] leading-relaxed text-steel-blue/70">
@@ -225,7 +316,7 @@ export default function Contact() {
                 </p>
 
                 {serverError && (
-                  <p className="text-xs" style={{ color: "oklch(65% 0.18 25)" }}>
+                  <p className="text-xs" style={errStyle}>
                     {t("contact.form.errors.server_error")}
                   </p>
                 )}
@@ -243,7 +334,7 @@ export default function Contact() {
                       {t("contact.form.submitting")}
                     </span>
                   ) : (
-                    t("contact.form.submit")
+                    t(isVideos3 ? "contact.form.submit_videos3" : "contact.form.submit")
                   )}
                 </button>
               </form>

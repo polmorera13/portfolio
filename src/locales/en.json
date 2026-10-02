@@ -11,7 +11,7 @@
     "eyebrow": "Pol Morera · Barcelona",
     "h1_line1": "Videos that",
     "h1_line2": "sell.",
-    "tagline": "UGC for paid media, organic content and corporate video. Every piece with a measurable goal: lower CPA, grow audience, or sell.",
+    "tagline": "Videos of a real person talking about your business, the way a happy customer would. For your ads, your social media and your website, each with a clear goal: getting you known, earning trust or making sales.",
     "cta_primary": "See work",
     "cta_secondary": "Let's talk",
     "trusted_by": "They already trust my work",
@@ -31,11 +31,12 @@
     ]
   },
   "logos": {
-    "title": "Brands that have trusted my content"
+    "title": "Brands that have trusted my content",
+    "subline": "From big brands to local businesses: I work from a single video."
   },
   "results": {
     "title": "Real results",
-    "subtitle": "Over 300 brands trust my production. Fintech, retail, food, SaaS, education and consumer.",
+    "subtitle": "More than 300 brands trust my work: finance, shops, food, software, training and consumer goods.",
     "brands": "BRANDS",
     "videos": "VIDEOS",
     "views": "VIEWS"
@@ -43,7 +44,7 @@
   "problem": {
     "eyebrow": "02 / THE PROBLEM",
     "title": "The problem isn't making more videos",
-    "body": "The problem is producing content without measuring what works. Paid campaigns burn out every two weeks, organic content stagnates, and corporate creatives fail to build trust. Making more videos isn't the answer — making videos with purpose is.",
+    "body": "The problem is filming without knowing what works. Ads stop performing after two weeks, social media stops growing and the company video doesn't build trust. More videos won't fix it: videos made with a clear goal will.",
     "highlight": "Every piece with a clear objective: attract, convince, or convert. Everything else is noise."
   },
   "services": {
@@ -53,32 +54,32 @@
   "process": {
     "eyebrow": "05 / PROCESS",
     "title": "How I work",
-    "intro": "I build every piece from the objective, the script and the execution. I don't shoot for shooting's sake.",
+    "intro": "You don't need to know about marketing or bring anything prepared. This is how it works:",
     "steps": [
       {
         "n": "01",
-        "title": "Analysis",
-        "description": "I analyse the brief, the competition and what has worked in your sector."
+        "title": "Call",
+        "description": "You tell me about your business in a short call and I look at what's working in your sector."
       },
       {
         "n": "02",
         "title": "Script",
-        "description": "I write scripts adapted to the product and the angle that converts best."
+        "description": "I write the script around what makes your customer decide, and you review it before we film."
       },
       {
         "n": "03",
-        "title": "Production",
-        "description": "Shoot following the brief's guidelines."
+        "title": "Filming",
+        "description": "I film at your business or with your product, whichever we agree on."
       },
       {
         "n": "04",
         "title": "Editing",
-        "description": "My editing team handles the edit, motion graphics and adaptations for each format."
+        "description": "My editing team cuts the video, adds text and animations and adapts it to each platform."
       },
       {
         "n": "05",
-        "title": "Adjustments",
-        "description": "I iterate with you until the content is exactly how you want it."
+        "title": "Tweaks",
+        "description": "I make the changes you need until the video is exactly how you want it."
       }
     ]
   },
@@ -109,7 +110,7 @@
       },
       {
         "title": "Multi-sector experience",
-        "desc": "Fintech, food, consumer, SaaS, retail"
+        "desc": "Finance, food, consumer goods, software, shops"
       },
       {
         "title": "Clear process",
@@ -118,8 +119,11 @@
     ]
   },
   "cta": {
-    "headline": "Do you want beautiful content or content that works?",
-    "button": "Request your project"
+    "headline": "Not sure where to start?",
+    "button": "Get my 3 videos",
+    "text": "Tell me what your business does and I'll send you a free document with the 3 videos that would help you sell the most, with the idea for each one.",
+    "secondary": "or request a quote directly",
+    "small": "You'll get it within 2 working days. No obligation."
   },
   "testimonials": {
     "eyebrow": "06 / TESTIMONIALS",
@@ -160,7 +164,8 @@
   },
   "faq": {
     "eyebrow": "07 / QUESTIONS",
-    "title": "Frequently asked questions"
+    "title": "Frequently asked questions",
+    "more": "More questions"
   },
   "contact": {
     "eyebrow": "08 / CONTACT",
@@ -174,28 +179,44 @@
       "fields": {
         "name": "Name and company",
         "email": "Email",
-        "message": "Message"
+        "message": "Message",
+        "website": "Your business website or Instagram"
       },
       "errors": {
         "name_required": "I need to know who you are.",
         "email_required": "Email is missing.",
         "email_invalid": "Invalid email.",
         "server_error": "Could not send the message. Please try again.",
-        "consent_required": "Please accept the privacy policy to send the form."
+        "consent_required": "Please accept the privacy policy to send the form.",
+        "website_required": "I need your business website or Instagram to prepare your 3 videos."
       },
-      "message_placeholder": "Tell me what you're looking for…",
+      "message_placeholder": "Tell me what you need: how many videos, what for and by when.",
       "consent": "I have read and accept the <link>privacy policy</link>.",
-      "info": "Controller: Pol Morera de Frutos. Purpose: to reply to your request and send you a proposal. Legal basis: your consent. Recipients: no data is shared with third parties unless required by law. Rights: access, rectification, erasure and more at hello@polmorera.es. More information in the <link>privacy policy</link>."
-    }
+      "info": "Controller: Pol Morera de Frutos. Purpose: to reply to your request and send you a proposal. Legal basis: your consent. Recipients: no data is shared with third parties unless required by law. Rights: access, rectification, erasure and more at hello@polmorera.es. More information in the <link>privacy policy</link>.",
+      "type_question": "What do you need?",
+      "type_quote": "A quote",
+      "type_videos3": "My 3 free videos",
+      "website_placeholder": "yourbusiness.com or @yourbusiness",
+      "message_placeholder_videos3": "What does your business do and who do you sell to?",
+      "submit_videos3": "Get my 3 videos",
+      "success_videos3": "Got it! I'll send you your document with the 3 videos within 2 working days."
+    },
+    "fixed_quote": "I'll send you a fixed, no-obligation quote: you know what you'll pay before we start.",
+    "whatsapp": "Message me on WhatsApp",
+    "whatsapp_msg": "Hi Pol, I found you through your website and I'd like to talk about videos for my business."
   },
   "work": {
     "label": "Work",
     "filter_ads": "Ads",
-    "filter_organic": "Organic",
-    "filter_corporate": "Corporate",
-    "filter_street": "Street content",
+    "filter_organic": "Social media",
+    "filter_corporate": "Company",
+    "filter_street": "Street",
     "view_case": "View case",
-    "empty": "No videos in this category yet."
+    "empty": "No videos in this category yet.",
+    "type_ads": "Ad",
+    "type_organic": "Social",
+    "type_corporate": "Company",
+    "type_street": "Street"
   },
   "admin": {
     "title": "Video manager",
