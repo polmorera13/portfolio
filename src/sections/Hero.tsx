@@ -15,6 +15,41 @@ const OFFWHITE = "oklch(96% 0.005 240)";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
+// ── Fondo de vídeo ──────────────────────────────────────────────────────────
+// Vídeo de fondo ("00 - FONDO WEB") servido desde media.polmorera.es. Mudo y en
+// bucle infinito, ocupa todo el hero; encima va una capa negra para dar contraste.
+const BG_VIDEO = getPublicUrl("hero-bg.mp4");
+const BG_POSTER = getPublicUrl("hero-bg.jpg");
+
+function HeroBackground() {
+  return (
+    <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+      <video
+        src={BG_VIDEO}
+        poster={BG_POSTER}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+      />
+      {/* Capa negra para que el texto y las casillas resalten */}
+      <div style={{ position: "absolute", inset: 0, background: "rgba(0, 0, 0, 0.65)" }} />
+      {/* Fundido arriba (menú) y abajo (paso suave a la siguiente sección) */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, rgba(13,27,42,0.8) 0%, rgba(13,27,42,0) 16%, rgba(13,27,42,0) 80%, #0D1B2A 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
 // ── Cluster slots ───────────────────────────────────────────────────────────
 // Las 7 casillas (posición/tamaño) viven en data/heroSlots.ts. Qué vídeo va en
 // cada una se lee en vivo de la API, editable desde el panel /login.
@@ -196,7 +231,9 @@ export default function Hero() {
       style={{ minHeight: "100dvh", overflowX: "clip" }}
       aria-label="Hero"
     >
-      <div className="max-w-content mx-auto section-padding w-full py-8 md:py-0">
+      <HeroBackground />
+
+      <div className="relative max-w-content mx-auto section-padding w-full py-8 md:py-0" style={{ zIndex: 1 }}>
         <div className="grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-8 md:gap-12 lg:gap-16 items-center">
 
           {/* Text block — always first on mobile */}
@@ -393,7 +430,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-30">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-30" style={{ zIndex: 1 }}>
         <div className="w-px h-10 bg-steel-blue animate-pulse" />
       </div>
     </section>
