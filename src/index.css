@@ -120,3 +120,9 @@
     scroll-snap-type: x mandatory;
   }
 }
+
+/* Barra fija de móvil: oculta mientras el menú está abierto (lo marca el Header) */
+html[data-menu-open] .mobile-cta-bar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

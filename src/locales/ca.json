@@ -4,7 +4,7 @@
     "portfolio": "Portfolio",
     "process": "Procés",
     "contact": "Contacte",
-    "cta": "Sol·licitar projecte",
+    "cta": "Proposta gratis",
     "about": "Sobre mi"
   },
   "hero": {
@@ -12,7 +12,7 @@
     "h1_line1": "Vídeos que",
     "h1_line2": "venen.",
     "tagline": "Vídeos que converteixen en vendes, que donen a conèixer la teva marca i que donen vida a la teva web.",
-    "cta_primary": "Veure treballs",
+    "cta_primary": "Vull la meva proposta gratis",
     "cta_secondary": "Parlem",
     "trusted_by": "Ja confien en la meva feina",
     "stats": [
@@ -28,7 +28,10 @@
         "value": "+80M",
         "label": "visualitzacions"
       }
-    ]
+    ],
+    "cta_whatsapp": "Escriu-me per WhatsApp",
+    "see_work": "o mira abans els meus treballs ↓",
+    "small": "Gratis i sense compromís. Te l'envio en 2 dies laborables."
   },
   "logos": {
     "title": "Marques que han confiat en el meu contingut",
@@ -42,13 +45,13 @@
     "views": "VISUALITZACIONS"
   },
   "problem": {
-    "eyebrow": "02 / EL PROBLEMA",
+    "eyebrow": "01 / EL PROBLEMA",
     "title": "El problema no és fer més vídeos",
     "body": "El problema és gravar sense saber què funciona. Els anuncis deixen de donar resultat a les dues setmanes, les xarxes no creixen i el vídeo d'empresa no transmet confiança. Més vídeos no ho arreglen: vídeos pensats per a un objectiu, sí.",
     "highlight": "Cada peça amb un objectiu clar: atraure, convèncer o convertir. La resta és soroll."
   },
   "services": {
-    "eyebrow": "04 / SERVEIS",
+    "eyebrow": "02 / SERVEIS",
     "title": "Què produeixo"
   },
   "process": {
@@ -84,7 +87,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "01 / TREBALLS",
+    "eyebrow": "03 / TREBALLS",
     "title": "Projectes recents",
     "filters": {
       "all": "Tots",
@@ -120,13 +123,13 @@
   },
   "cta": {
     "headline": "No saps per on començar?",
-    "button": "Vull els meus 3 vídeos",
-    "text": "Explica'm a què es dedica el teu negoci i t'envio gratis un document amb els 3 vídeos que més t'ajudarien a vendre, amb la idea de cadascun.",
+    "button": "Vull la meva proposta gratis",
+    "text": "Explica'm a què es dedica el teu negoci i t'envio gratis una proposta per escrit amb les 3 idees de vídeo que més t'ajudarien a vendre: què explicar en cadascuna i on fer-la servir. Si t'encaixa, la gravem.",
     "secondary": "o demana pressupost directament",
-    "small": "Te l'envio en 2 dies laborables. Sense compromís."
+    "small": "És un document amb idees: no inclou la gravació. Te l'envio en 2 dies laborables, sense compromís."
   },
   "testimonials": {
-    "eyebrow": "06 / TESTIMONIS",
+    "eyebrow": "04 / TESTIMONIS",
     "title": "Què diuen les marques",
     "label": "Què en diuen",
     "items": [
@@ -173,7 +176,7 @@
     "subtitle": "Et responc en menys de 24 h en dies laborables.",
     "email": "hello@polmorera.es",
     "form": {
-      "submit": "Sol·licitar proposta",
+      "submit": "Demanar pressupost",
       "submitting": "Enviant...",
       "success": "Missatge enviat! Et respondré en menys de 24 h.",
       "fields": {
@@ -188,18 +191,18 @@
         "email_invalid": "Email no vàlid.",
         "server_error": "No s'ha pogut enviar el missatge. Torna-ho a intentar.",
         "consent_required": "Has d'acceptar la política de privacitat per enviar el formulari.",
-        "website_required": "Necessito la web o l'Instagram del teu negoci per preparar els teus 3 vídeos."
+        "website_required": "Necessito la web o l'Instagram del teu negoci per preparar la teva proposta."
       },
       "message_placeholder": "Explica'm què necessites: quants vídeos, per a què i per a quan.",
       "consent": "He llegit i accepto la <link>política de privacitat</link>.",
       "info": "Responsable: Pol Morera de Frutos. Finalitat: respondre la teva sol·licitud i enviar-te una proposta. Legitimació: el teu consentiment. Destinataris: no se cedeixen dades a tercers excepte per obligació legal. Drets: accés, rectificació, supressió i altres, a hello@polmorera.es. Més informació a la <link>política de privacitat</link>.",
       "type_question": "Què necessites?",
       "type_quote": "Un pressupost",
-      "type_videos3": "Els meus 3 vídeos gratis",
+      "type_videos3": "Una proposta gratis amb 3 idees de vídeo",
       "website_placeholder": "elteunegoci.com o @elteunegoci",
       "message_placeholder_videos3": "A què es dedica el teu negoci i a qui li vens?",
-      "submit_videos3": "Vull els meus 3 vídeos",
-      "success_videos3": "Rebut! T'envio el teu document amb els 3 vídeos en 2 dies laborables."
+      "submit_videos3": "Vull la meva proposta gratis",
+      "success_videos3": "Rebut! T'envio la teva proposta amb 3 idees de vídeo en 2 dies laborables."
     },
     "fixed_quote": "T'envio un pressupost tancat i sense compromís: saps què pagaràs abans de començar.",
     "whatsapp": "Escriu-me per WhatsApp",
@@ -274,7 +277,7 @@
     "legal": "Avís legal"
   },
   "about": {
-    "eyebrow": "03 / QUI HI HA AL DARRERE",
+    "eyebrow": "06 / QUI HI HA AL DARRERE",
     "title": "Feia UGC quan a Espanya gairebé ningú sabia què era.",
     "p1": "Soc en Pol Morera. Vaig començar quan les marques encara no tenien nom per a això. Vaig ser un dels primers creadors UGC del país i el primer UGC home.",
     "p2": "Tants anys m'han donat una cosa que no s'aprèn de pressa: saber què fa que algú deixi de fer scroll i què es crema en dues setmanes. Això és el que poso a cada vídeo que faig amb el meu equip per a la teva marca.",
@@ -283,5 +286,12 @@
   },
   "legal": {
     "back": "← Tornar a la web"
+  },
+  "minicta": {
+    "after_work": "Vols alguna cosa així per al teu negoci?",
+    "after_testimonials": "Vols que el teu negoci sigui el següent?",
+    "after_process": "El primer pas és gratis: et proposo 3 idees de vídeo per al teu negoci.",
+    "primary": "Vull la meva proposta gratis",
+    "whatsapp": "WhatsApp"
   }
 }

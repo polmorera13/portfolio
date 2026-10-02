@@ -167,18 +167,19 @@ app.put("/api/admin/hero", requireAuth, async (req, res) => {
 // Contact form
 app.post("/api/contact", async (req, res) => {
   const { name, email, message, type, website } = req.body || {};
-  // type: "quote" (presupuesto, por defecto) o "videos3" (documento gratis de 3 vídeos)
-  const kind = type === "videos3" ? "videos3" : "quote";
+  // type: "quote" (presupuesto, por defecto) o "proposal" (propuesta gratis con
+  // 3 ideas de vídeo; "videos3" es el nombre antiguo y se sigue aceptando).
+  const kind = type === "proposal" || type === "videos3" ? "proposal" : "quote";
   const site = String(website || "").trim().slice(0, 300);
   if (!name?.trim() || !email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: "invalid" });
   }
-  if (kind === "videos3" && !site) return res.status(400).json({ error: "website_required" });
+  if (kind === "proposal" && !site) return res.status(400).json({ error: "website_required" });
   if (!RESEND_API_KEY) return res.status(500).json({ error: "server_misconfigured" });
   try {
     const resend = new Resend(RESEND_API_KEY);
-    const tag = kind === "videos3" ? "[3 vídeos]" : "[Presupuesto]";
-    const kindLabel = kind === "videos3" ? "Mis 3 vídeos gratis" : "Un presupuesto";
+    const tag = kind === "proposal" ? "[Propuesta gratis]" : "[Presupuesto]";
+    const kindLabel = kind === "proposal" ? "Propuesta gratis con 3 ideas de vídeo" : "Un presupuesto";
     await resend.emails.send({
       from: CONTACT_FROM,
       to: CONTACT_TO,

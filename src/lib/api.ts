@@ -44,7 +44,7 @@ export async function adminSetHero(slots: Record<string, string | null>): Promis
   return res.json();
 }
 
-export type ContactType = "quote" | "videos3";
+export type ContactType = "quote" | "proposal";
 
 export async function sendContact(payload: {
   name: string;

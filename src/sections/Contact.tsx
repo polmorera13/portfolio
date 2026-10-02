@@ -23,13 +23,14 @@ interface FormErrors {
 const INITIAL: FormState = { name: "", email: "", website: "", message: "" };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Los enlaces a #contacto-3videos preseleccionan "Mis 3 vídeos gratis";
-// los de #contacto, "Un presupuesto".
-const HASH_3VIDEOS = "#contacto-3videos";
+// Los enlaces a #contacto-propuesta preseleccionan la propuesta gratis
+// (#contacto-3videos es el ancla antigua y sigue funcionando); los de
+// #contacto, "Un presupuesto".
+const PROPOSAL_HASHES = ["#contacto-propuesta", "#contacto-3videos"];
 const HASH_QUOTE = "#contacto";
 
 function typeFromHash(hash: string): ContactType | null {
-  if (hash === HASH_3VIDEOS) return "videos3";
+  if (PROPOSAL_HASHES.includes(hash)) return "proposal";
   if (hash === HASH_QUOTE) return "quote";
   return null;
 }
@@ -61,8 +62,17 @@ export default function Contact() {
         setSubmittedType(null);
       }
     };
+    // Cambios de ancla sin clic (escrita a mano, atrás/adelante del navegador)
+    const onHashChange = () => {
+      const next = typeFromHash(window.location.hash);
+      if (next) setType(next);
+    };
     document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    window.addEventListener("hashchange", onHashChange);
+    return () => {
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("hashchange", onHashChange);
+    };
   }, []);
 
   const set =
@@ -79,7 +89,7 @@ export default function Contact() {
     if (!form.name.trim()) errs.name = t("contact.form.errors.name_required");
     if (!form.email.trim()) errs.email = t("contact.form.errors.email_required");
     else if (!EMAIL_RE.test(form.email)) errs.email = t("contact.form.errors.email_invalid");
-    if (type === "videos3" && !form.website.trim()) errs.website = t("contact.form.errors.website_required");
+    if (type === "proposal" && !form.website.trim()) errs.website = t("contact.form.errors.website_required");
     if (!consent) errs.consent = t("contact.form.errors.consent_required");
     return errs;
   }
@@ -121,7 +131,7 @@ export default function Contact() {
   const labelCls = "text-xs font-semibold text-steel-blue uppercase tracking-wide";
   const errCls = "text-xs mt-1";
   const errStyle = { color: "oklch(65% 0.18 25)" };
-  const isVideos3 = type === "videos3";
+  const isProposal = type === "proposal";
 
   return (
     <section id="contacto" className="section-gap">
@@ -198,14 +208,15 @@ export default function Contact() {
             variants={fadeUp}
             className="bg-charcoal rounded-xl p-8 lg:p-12 border border-brand-blue/10 relative"
           >
-            {/* Destino de los enlaces "Quiero mis 3 vídeos" */}
+            {/* Destinos de los enlaces a la propuesta gratis (el segundo es el antiguo) */}
+            <span id="contacto-propuesta" className="absolute -top-24" aria-hidden="true" />
             <span id="contacto-3videos" className="absolute -top-24" aria-hidden="true" />
 
             {submittedType ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
                 <CheckCircle size={48} className="text-brand-blue" />
                 <p className="text-off-white font-semibold text-lg">
-                  {submittedType === "videos3" ? t("contact.form.success_videos3") : t("contact.form.success")}
+                  {submittedType === "proposal" ? t("contact.form.success_videos3") : t("contact.form.success")}
                 </p>
               </div>
             ) : (
@@ -214,7 +225,7 @@ export default function Contact() {
                 <fieldset className="flex flex-col gap-2.5">
                   <legend className={`${labelCls} mb-2.5`}>{t("contact.form.type_question")}</legend>
                   <div className="flex flex-wrap gap-2" role="radiogroup">
-                    {(["quote", "videos3"] as ContactType[]).map((key) => (
+                    {(["quote", "proposal"] as ContactType[]).map((key) => (
                       <button
                         key={key}
                         type="button"
@@ -259,10 +270,10 @@ export default function Contact() {
                   {errors.email && <p className={errCls} style={errStyle}>{errors.email}</p>}
                 </div>
 
-                {/* Web o Instagram: obligatorio solo con "Mis 3 vídeos gratis" */}
+                {/* Web o Instagram: obligatorio solo con la propuesta gratis */}
                 <div className="flex flex-col gap-1.5">
                   <label className={labelCls}>
-                    {t("contact.form.fields.website")}{isVideos3 ? " *" : ""}
+                    {t("contact.form.fields.website")}{isProposal ? " *" : ""}
                   </label>
                   <input
                     type="text"
@@ -281,7 +292,7 @@ export default function Contact() {
                     rows={4}
                     value={form.message}
                     onChange={set("message")}
-                    placeholder={t(isVideos3 ? "contact.form.message_placeholder_videos3" : "contact.form.message_placeholder")}
+                    placeholder={t(isProposal ? "contact.form.message_placeholder_videos3" : "contact.form.message_placeholder")}
                     className={`${inputCls} resize-none`}
                   />
                 </div>
@@ -334,7 +345,7 @@ export default function Contact() {
                       {t("contact.form.submitting")}
                     </span>
                   ) : (
-                    t(isVideos3 ? "contact.form.submit_videos3" : "contact.form.submit")
+                    t(isProposal ? "contact.form.submit_videos3" : "contact.form.submit")
                   )}
                 </button>
               </form>

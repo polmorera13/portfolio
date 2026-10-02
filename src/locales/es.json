@@ -4,7 +4,7 @@
     "portfolio": "Portfolio",
     "process": "Proceso",
     "contact": "Contacto",
-    "cta": "Solicitar proyecto",
+    "cta": "Propuesta gratis",
     "about": "Sobre mí"
   },
   "hero": {
@@ -12,7 +12,7 @@
     "h1_line1": "Vídeos que",
     "h1_line2": "venden.",
     "tagline": "Vídeos que convierten en ventas, que dan a conocer tu marca y que dan vida a tu web.",
-    "cta_primary": "Ver trabajos",
+    "cta_primary": "Quiero mi propuesta gratis",
     "cta_secondary": "Hablemos",
     "trusted_by": "Ya confían en mi trabajo",
     "stats": [
@@ -28,7 +28,10 @@
         "value": "+80M",
         "label": "visualizaciones"
       }
-    ]
+    ],
+    "cta_whatsapp": "Escríbeme por WhatsApp",
+    "see_work": "o mira antes mis trabajos ↓",
+    "small": "Gratis y sin compromiso. Te la envío en 2 días laborables."
   },
   "logos": {
     "title": "Marcas que han confiado en mi contenido",
@@ -42,13 +45,13 @@
     "views": "VISUALIZACIONES"
   },
   "problem": {
-    "eyebrow": "02 / EL PROBLEMA",
+    "eyebrow": "01 / EL PROBLEMA",
     "title": "El problema no es hacer más vídeos",
     "body": "El problema es grabar sin saber qué funciona. Los anuncios dejan de dar resultado a las dos semanas, las redes no crecen y el vídeo de empresa no transmite confianza. Más vídeos no lo arreglan: vídeos pensados para un objetivo, sí.",
     "highlight": "Cada pieza con un objetivo claro: atraer, convencer o convertir. Lo demás es ruido."
   },
   "services": {
-    "eyebrow": "04 / SERVICIOS",
+    "eyebrow": "02 / SERVICIOS",
     "title": "Qué produzco"
   },
   "process": {
@@ -84,7 +87,7 @@
     ]
   },
   "portfolio": {
-    "eyebrow": "01 / TRABAJOS",
+    "eyebrow": "03 / TRABAJOS",
     "title": "Proyectos recientes",
     "filters": {
       "all": "Todos",
@@ -120,13 +123,13 @@
   },
   "cta": {
     "headline": "¿No sabes por dónde empezar?",
-    "button": "Quiero mis 3 vídeos",
-    "text": "Cuéntame a qué se dedica tu negocio y te envío gratis un documento con los 3 vídeos que más te ayudarían a vender, con la idea de cada uno.",
+    "button": "Quiero mi propuesta gratis",
+    "text": "Cuéntame a qué se dedica tu negocio y te envío gratis una propuesta por escrito con las 3 ideas de vídeo que más te ayudarían a vender: qué contar en cada una y dónde usarla. Si te encaja, la grabamos.",
     "secondary": "o pide presupuesto directamente",
-    "small": "Te lo envío en 2 días laborables. Sin compromiso."
+    "small": "Es un documento con ideas: no incluye la grabación. Te lo envío en 2 días laborables, sin compromiso."
   },
   "testimonials": {
-    "eyebrow": "06 / TESTIMONIOS",
+    "eyebrow": "04 / TESTIMONIOS",
     "title": "Lo que dicen las marcas",
     "label": "Lo que dicen",
     "items": [
@@ -173,7 +176,7 @@
     "subtitle": "Te respondo en menos de 24 h en días laborables.",
     "email": "hello@polmorera.es",
     "form": {
-      "submit": "Solicitar propuesta",
+      "submit": "Pedir presupuesto",
       "submitting": "Enviando...",
       "success": "¡Mensaje enviado! Te respondo en menos de 24 h.",
       "fields": {
@@ -188,18 +191,18 @@
         "email_invalid": "Email no válido.",
         "server_error": "No se pudo enviar el mensaje. Inténtalo de nuevo.",
         "consent_required": "Tienes que aceptar la política de privacidad para enviar el formulario.",
-        "website_required": "Necesito la web o el Instagram de tu negocio para preparar tus 3 vídeos."
+        "website_required": "Necesito la web o el Instagram de tu negocio para preparar tu propuesta."
       },
       "message_placeholder": "Cuéntame qué necesitas: cuántos vídeos, para qué y para cuándo.",
       "consent": "He leído y acepto la <link>política de privacidad</link>.",
       "info": "Responsable: Pol Morera de Frutos. Finalidad: responder a tu solicitud y enviarte una propuesta. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal. Derechos: acceso, rectificación, supresión y otros, en hello@polmorera.es. Más información en la <link>política de privacidad</link>.",
       "type_question": "¿Qué necesitas?",
       "type_quote": "Un presupuesto",
-      "type_videos3": "Mis 3 vídeos gratis",
+      "type_videos3": "Una propuesta gratis con 3 ideas de vídeo",
       "website_placeholder": "tunegocio.com o @tunegocio",
       "message_placeholder_videos3": "¿A qué se dedica tu negocio y a quién le vendes?",
-      "submit_videos3": "Quiero mis 3 vídeos",
-      "success_videos3": "¡Recibido! Te envío tu documento con los 3 vídeos en 2 días laborables."
+      "submit_videos3": "Quiero mi propuesta gratis",
+      "success_videos3": "¡Recibido! Te envío tu propuesta con 3 ideas de vídeo en 2 días laborables."
     },
     "fixed_quote": "Te envío un presupuesto cerrado y sin compromiso: sabes lo que vas a pagar antes de empezar.",
     "whatsapp": "Escríbeme por WhatsApp",
@@ -274,7 +277,7 @@
     "legal": "Aviso legal"
   },
   "about": {
-    "eyebrow": "03 / QUIÉN ESTÁ DETRÁS",
+    "eyebrow": "06 / QUIÉN ESTÁ DETRÁS",
     "title": "Hacía UGC cuando en España casi nadie sabía qué era.",
     "p1": "Soy Pol Morera. Empecé cuando las marcas aún no tenían nombre para esto. Fui uno de los primeros creadores UGC del país y el primer UGC hombre.",
     "p2": "Tantos años me han dado algo que no se aprende rápido: saber qué hace que alguien deje de hacer scroll y qué se quema en dos semanas. Eso es lo que pongo en cada vídeo que hago con mi equipo para tu marca.",
@@ -283,5 +286,12 @@
   },
   "legal": {
     "back": "← Volver a la web"
+  },
+  "minicta": {
+    "after_work": "¿Quieres algo así para tu negocio?",
+    "after_testimonials": "¿Quieres que tu negocio sea el siguiente?",
+    "after_process": "El primer paso es gratis: te propongo 3 ideas de vídeo para tu negocio.",
+    "primary": "Quiero mi propuesta gratis",
+    "whatsapp": "WhatsApp"
   }
 }

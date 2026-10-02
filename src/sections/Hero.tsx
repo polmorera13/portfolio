@@ -7,6 +7,7 @@ import { fetchHero } from "../lib/api";
 import { HERO_SLOTS, DEFAULT_HERO, type HeroSlotDef, type HeroConfig } from "../data/heroSlots";
 import VideoPlayer from "../components/VideoPlayer";
 import { videoLabel } from "../data/sectors";
+import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
 
 type Stat = { value: string; label: string };
 
@@ -306,10 +307,12 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", duration: 0.4, bounce: 0.15, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3"
+              className="flex flex-col gap-3"
             >
+              {/* id usado por la barra fija de móvil: aparece cuando estos botones salen de pantalla */}
+              <div id="hero-ctas" className="flex flex-col sm:flex-row gap-3">
               <a
-                href="#portfolio"
+                href="#contacto-propuesta"
                 className="text-center"
                 style={{
                   fontFamily: "Poppins, sans-serif",
@@ -329,7 +332,9 @@ export default function Hero() {
                 {t("hero.cta_primary")}
               </a>
               <a
-                href="#contacto"
+                href={whatsappUrl(t("contact.whatsapp_msg"))}
+                target="_blank"
+                rel="noopener"
                 className="text-center"
                 style={{
                   fontFamily: "Poppins, sans-serif",
@@ -341,13 +346,31 @@ export default function Hero() {
                   color: BLUE,
                   textDecoration: "none",
                   transition: "transform 160ms ease-out",
-                  display: "inline-block",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
                 }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; }}
               >
-                {t("hero.cta_secondary")}
+                <WhatsAppIcon size={18} />
+                {t("hero.cta_whatsapp")}
               </a>
+              </div>
+
+              <div className="flex flex-col gap-1 items-center sm:items-start">
+                <a
+                  href="#portfolio"
+                  className="text-sm font-semibold hover:text-off-white transition-colors"
+                  style={{ color: STEEL, fontFamily: "Poppins, sans-serif" }}
+                >
+                  {t("hero.see_work")}
+                </a>
+                <p className="text-xs" style={{ color: STEEL, opacity: 0.75, fontFamily: "Poppins, sans-serif" }}>
+                  {t("hero.small")}
+                </p>
+              </div>
             </motion.div>
 
             <motion.div

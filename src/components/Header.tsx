@@ -22,12 +22,17 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // La barra fija de móvil se oculta mientras el menú está abierto.
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-menu-open", menuOpen);
+  }, [menuOpen]);
+
   // "/#…" para que el menú funcione también desde las páginas legales.
   const navLinks = [
-    { label: t("nav.about"), href: "/#sobre-mi" },
     { label: t("nav.services"), href: "/#servicios" },
     { label: t("nav.portfolio"), href: "/#portfolio" },
     { label: t("nav.process"), href: "/#proceso" },
+    { label: t("nav.about"), href: "/#sobre-mi" },
     { label: t("nav.contact"), href: "/#contacto" },
   ];
 
@@ -90,7 +95,7 @@ export default function Header() {
 
           {/* CTA */}
           <a
-            href="/#contacto"
+            href="/#contacto-propuesta"
             className="bg-brand-blue text-off-white font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] shrink-0"
           >
             {t("nav.cta")}
@@ -138,7 +143,7 @@ export default function Header() {
             ))}
           </div>
           <a
-            href="/#contacto"
+            href="/#contacto-propuesta"
             onClick={() => setMenuOpen(false)}
             className="mt-4 bg-brand-blue text-off-white font-semibold text-base px-6 py-3.5 rounded-md text-center hover:bg-brand-blue/90 transition-colors"
           >

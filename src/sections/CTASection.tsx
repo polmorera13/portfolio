@@ -38,9 +38,9 @@ export default function CTASection() {
           </div>
 
           <motion.div variants={fadeUp} className="flex flex-col items-center gap-4">
-            {/* Baja al formulario con "Mis 3 vídeos gratis" ya marcado */}
+            {/* Baja al formulario con la propuesta gratis ya marcada */}
             <a
-              href="#contacto-3videos"
+              href="#contacto-propuesta"
               className="bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] pulse-glow"
             >
               {t("cta.button")}

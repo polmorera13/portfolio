@@ -16,6 +16,8 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import ScrollProgressBar from './components/ScrollProgressBar';
+import MiniCTA from './components/MiniCTA';
+import MobileCTABar from './components/MobileCTABar';
 
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
@@ -30,17 +32,21 @@ function PublicSite() {
         <Hero />
         <LogoMarquee />
         <Results />
-        <Portfolio />
         <Problem />
-        <About />
         <Services />
-        <Process />
+        <Portfolio />
+        <MiniCTA textKey="minicta.after_work" />
         <Testimonials />
+        <MiniCTA textKey="minicta.after_testimonials" />
+        <Process />
+        <MiniCTA textKey="minicta.after_process" />
+        <About />
         <CTASection />
         <FAQ />
         <Contact />
       </main>
       <Footer />
+      <MobileCTABar />
     </div>
   );
 }
