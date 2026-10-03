@@ -48,6 +48,7 @@ export default function LogoMarquee() {
                 src={withBase(logo.file)}
                 alt={logo.name}
                 draggable={false}
+                decoding="async"
                 className="logo-img"
                 style={{
                   height: `calc(54px * ${logo.scale ?? 1})`,

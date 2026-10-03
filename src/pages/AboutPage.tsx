@@ -54,7 +54,7 @@ export default function AboutPage() {
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p2")}</p>
           </div>
           <div className="w-full rounded-xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
-            <img src={withBase("/IMGPOL02.png")} alt={t("aboutpage.img_alt")} width={800} height={1000} className="w-full h-full object-cover" />
+            <img src={withBase("/pol-morera.webp")} alt={t("aboutpage.img_alt")} width={800} height={1000} className="w-full h-full object-cover" />
           </div>
         </div>
       </section>

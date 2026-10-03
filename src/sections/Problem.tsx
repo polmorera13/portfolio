@@ -26,7 +26,7 @@ export default function Problem() {
               style={{ aspectRatio: "4/5" }}
             >
               <img
-                src={withBase("/IMGPOL02.png")}
+                src={withBase("/pol-morera.webp")}
                 alt=""
                 className="w-full h-full object-cover object-center"
                 style={{ transform: "scaleX(-1)" }}

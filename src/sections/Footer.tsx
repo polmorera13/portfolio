@@ -46,7 +46,7 @@ export default function Footer() {
           <div className="flex flex-col gap-5">
             <div className="flex items-center gap-4">
               <img
-                src={withBase("/perfil-pol.png")}
+                src={withBase("/perfil-pol.webp")}
                 alt="Pol Morera"
                 width={88}
                 height={88}

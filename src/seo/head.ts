@@ -11,7 +11,7 @@ import { privacyPolicy, legalNotice } from "../data/legal";
 // hreflang recíprocos, Open Graph y JSON-LD. Lo usa scripts/prerender.mjs.
 
 const L = { es, en, ca } as const;
-const IMAGE = `${SITE_URL}/IMGPOL02.png`;
+const IMAGE = `${SITE_URL}/pol-morera.jpg`; // vista previa al compartir (JPG: lo leen todas las redes)
 const PERSON_ID = `${SITE_URL}/#person`;
 
 export type HeadRoute =

@@ -24,7 +24,7 @@ export default function About() {
           <motion.div variants={fadeUp} className="w-full lg:w-[38%] shrink-0">
             <div className="w-full rounded-xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
               <img
-                src={withBase("/IMGPOL02.png")}
+                src={withBase("/pol-morera.webp")}
                 alt={t("about.img_alt")}
                 loading="lazy"
                 className="w-full h-full object-cover object-center"
