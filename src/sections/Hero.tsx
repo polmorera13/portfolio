@@ -18,14 +18,17 @@ const ease = [0.25, 0.46, 0.45, 0.94] as const;
 // ── Fondo de vídeo ──────────────────────────────────────────────────────────
 // Vídeo de fondo ("00 - FONDO WEB") servido desde media.polmorera.es. Mudo y en
 // bucle infinito, ocupa todo el hero; encima va una capa negra para dar contraste.
-const BG_VIDEO = getPublicUrl("hero-bg.mp4");
+// Fondo del hero, sacado del vídeo original en 4K (24 MB) y comprimido en local:
+// 1080p para pantallas apaisadas (5,4 MB) y un recorte vertical 720x1280 para
+// móviles en vertical (2,5 MB), que es la parte que el móvil enseña igualmente.
+const BG_VIDEO_WIDE = getPublicUrl("hero-bg-1080-v2.mp4");
+const BG_VIDEO_TALL = getPublicUrl("hero-bg-mobile-v2.mp4");
 const BG_POSTER = getPublicUrl("hero-bg.jpg");
 
 function HeroBackground() {
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
       <video
-        src={BG_VIDEO}
         poster={BG_POSTER}
         autoPlay
         muted
@@ -34,7 +37,12 @@ function HeroBackground() {
         preload="auto"
         disablePictureInPicture
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-      />
+      >
+        {/* El navegador elige la primera que encaja; los que no entienden
+            "media" se quedan con la primera (la de 1080p) */}
+        <source src={BG_VIDEO_WIDE} type="video/mp4" media="(orientation: landscape)" />
+        <source src={BG_VIDEO_TALL} type="video/mp4" />
+      </video>
       {/* Capa negra para que el texto y las casillas resalten */}
       <div style={{ position: "absolute", inset: 0, background: "rgba(0, 0, 0, 0.65)" }} />
       {/* Fundido arriba (menú) y abajo (paso suave a la siguiente sección) */}
