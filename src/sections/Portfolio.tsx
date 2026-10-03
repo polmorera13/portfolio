@@ -52,6 +52,8 @@ function SkeletonRow({ wide }: { wide: boolean }) {
 export default function Portfolio() {
   const { t, i18n } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("ads");
+  // Hueco junto a las pestañas donde la fila pinta sus controles
+  const [controlsSlot, setControlsSlot] = useState<HTMLDivElement | null>(null);
 
   const { videos, loading } = useVideos(["ads", "organic", "corporate", "street"]);
 
@@ -68,7 +70,7 @@ export default function Portfolio() {
   }));
 
   return (
-    <section id="portfolio" className="section-gap">
+    <section id="portfolio" className="pt-24 lg:pt-40 pb-2" /* poco margen abajo: la llamada va pegada a los vídeos */>
       <div className="max-w-content mx-auto section-padding">
         <motion.div
           initial="hidden"
@@ -91,10 +93,10 @@ export default function Portfolio() {
             </motion.h2>
           </div>
 
-          {/* Filter chips */}
-          <motion.div
-            variants={fadeUp}
-            className="flex gap-2 overflow-x-auto pb-2"
+          {/* Pestañas + controles de la fila (Anterior / Siguiente / Pausa) */}
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
+          <div
+            className="flex gap-2 overflow-x-auto flex-1 min-w-0"
             style={{ scrollbarWidth: "none" }}
             role="tablist"
           >
@@ -113,13 +115,15 @@ export default function Portfolio() {
                 {t(FILTER_I18N[key])}
               </button>
             ))}
+          </div>
+          <div ref={setControlsSlot} className="shrink-0" />
           </motion.div>
         </motion.div>
       </div>
 
       {/* Fila de vídeos a todo el ancho. Al cambiar de pestaña se desmonta la
           anterior, así que su vídeo deja de sonar. */}
-      <div className="mt-6">
+      <div className="mt-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
@@ -133,7 +137,7 @@ export default function Portfolio() {
             ) : items.length === 0 ? (
               <p className="text-steel-blue text-sm py-8 text-center">{t("work.empty")}</p>
             ) : (
-              <PortfolioSlider items={items} wide={wide} />
+              <PortfolioSlider items={items} wide={wide} controlsTarget={controlsSlot} />
             )}
           </motion.div>
         </AnimatePresence>

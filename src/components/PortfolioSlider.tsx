@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { CaretLeft, CaretRight, Pause, Play } from "@phosphor-icons/react";
 import VideoPlayer from "./VideoPlayer";
@@ -29,7 +30,16 @@ const prefersReducedMotion = () =>
  * El bucle se hace repitiendo la lista; las copias quedan ocultas a lectores de
  * pantalla y fuera del orden de tabulación.
  */
-export default function PortfolioSlider({ items, wide }: { items: SliderItem[]; wide: boolean }) {
+export default function PortfolioSlider({
+  items,
+  wide,
+  controlsTarget,
+}: {
+  items: SliderItem[];
+  wide: boolean;
+  /** Dónde pintar Anterior / Siguiente / Pausa (la fila de las pestañas). */
+  controlsTarget?: HTMLElement | null;
+}) {
   const { t } = useTranslation();
   const trackRef = useRef<HTMLDivElement>(null);
   const firstSetRef = useRef<HTMLDivElement>(null);
@@ -233,8 +243,28 @@ export default function PortfolioSlider({ items, wide }: { items: SliderItem[]; 
   const btnCls =
     "w-10 h-10 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-off-white hover:border-steel-blue/60 transition-colors";
 
+  const controls = (
+    <div className="flex items-center gap-2">
+      <button type="button" onClick={() => step(-1)} className={btnCls} aria-label={t("carousel.prev")}>
+        <CaretLeft size={18} weight="bold" />
+      </button>
+      <button type="button" onClick={() => step(1)} className={btnCls} aria-label={t("carousel.next")}>
+        <CaretRight size={18} weight="bold" />
+      </button>
+      <button
+        type="button"
+        onClick={() => setUserPaused((p) => !p)}
+        className={btnCls}
+        aria-label={userPaused ? t("carousel.resume") : t("carousel.pause")}
+        aria-pressed={userPaused}
+      >
+        {userPaused ? <Play size={16} weight="fill" /> : <Pause size={16} weight="fill" />}
+      </button>
+    </div>
+  );
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col">
       <div
         ref={trackRef}
         role="region"
@@ -257,24 +287,10 @@ export default function PortfolioSlider({ items, wide }: { items: SliderItem[]; 
         {Array.from({ length: copies }, (_, i) => renderSet(i))}
       </div>
 
-      {/* Controles accesibles */}
-      <div className="max-w-content w-full mx-auto section-padding flex items-center gap-2">
-        <button type="button" onClick={() => step(-1)} className={btnCls} aria-label={t("carousel.prev")}>
-          <CaretLeft size={18} weight="bold" />
-        </button>
-        <button type="button" onClick={() => step(1)} className={btnCls} aria-label={t("carousel.next")}>
-          <CaretRight size={18} weight="bold" />
-        </button>
-        <button
-          type="button"
-          onClick={() => setUserPaused((p) => !p)}
-          className={btnCls}
-          aria-label={userPaused ? t("carousel.resume") : t("carousel.pause")}
-          aria-pressed={userPaused}
-        >
-          {userPaused ? <Play size={16} weight="fill" /> : <Pause size={16} weight="fill" />}
-        </button>
-      </div>
+      {/* Controles accesibles: en la fila de las pestañas si hay hueco, si no aquí debajo */}
+      {controlsTarget ? createPortal(controls, controlsTarget) : (
+        <div className="max-w-content w-full mx-auto section-padding">{controls}</div>
+      )}
 
       <style>{`
         .portfolio-track::-webkit-scrollbar { display: none; }

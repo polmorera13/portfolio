@@ -32,14 +32,14 @@ function PublicSite() {
         <Hero />
         <LogoMarquee />
         <Portfolio />
-        <MiniCTA textKey="minicta.after_work" />
+        <MiniCTA textKey="minicta.after_work" compactTop />
         <Results />
         <Problem />
         <Services />
         <Testimonials />
         <MiniCTA textKey="minicta.after_testimonials" />
         <Process />
-        <MiniCTA textKey="minicta.after_process" />
+        <MiniCTA textKey="minicta.after_process" variant="featured" buttonKey="minicta.after_process_button" />
         <About />
         <CTASection />
         <FAQ />
