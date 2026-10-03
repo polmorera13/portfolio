@@ -19,7 +19,7 @@ ssh -o BatchMode=yes $VPS 'set -e
   docker run -d --name polmorera-staging --restart unless-stopped --network coolify --memory 128m \
     -v /data/staging/site:/srv/test:ro -v /data/staging/Caddyfile:/etc/caddy/Caddyfile:ro \
     --label "traefik.enable=true" \
-    --label "traefik.http.routers.pmstaging.rule=(Host(\`polmorera.es\`) || Host(\`www.polmorera.es\`)) && PathPrefix(\`/test\`)" \
+    --label "traefik.http.routers.pmstaging.rule=(Host(\`polmorera.es\`) || Host(\`www.polmorera.es\`)) && (Path(\`/test\`) || PathPrefix(\`/test/\`))" \
     --label "traefik.http.routers.pmstaging.priority=10000" \
     --label "traefik.http.routers.pmstaging.entrypoints=https" \
     --label "traefik.http.routers.pmstaging.tls=true" \
