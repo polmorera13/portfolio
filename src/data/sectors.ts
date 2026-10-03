@@ -26,8 +26,8 @@ export const SECTORS: Record<string, Translated> = {
   "el método rico": { es: "Inversión y educación financiera", en: "Investing & financial education", ca: "Inversió i educació financera" },
   "minibatt": { es: "Automoción", en: "Automotive", ca: "Automoció" },
   "reactiva online": { es: "Negocios", en: "Business", ca: "Negocis" },
-  "murwal": { es: "Marketing", en: "Marketing", ca: "Màrqueting" },
-  "creator studio": { es: "Tecnología", en: "Technology", ca: "Tecnologia" },
+  "murwal": { es: "Tecnología", en: "Technology", ca: "Tecnologia" },
+  "creator studio": { es: "Marketing", en: "Marketing", ca: "Màrqueting" },
 };
 
 const TYPE_KEY: Record<string, string> = {
