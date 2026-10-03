@@ -37,7 +37,12 @@ function PublicSite() {
         <Problem />
         <Services />
         <Testimonials />
-        <MiniCTA textKey="minicta.after_testimonials" />
+        <MiniCTA
+          textKey="minicta.after_testimonials"
+          variant="white"
+          buttonKey="minicta.testimonials_button"
+          noteKey="minicta.testimonials_note"
+        />
         <Process />
         <About />
         <CTASection />

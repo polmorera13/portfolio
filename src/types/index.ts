@@ -13,8 +13,11 @@ export type Service = {
   bullets: Translated[];
   /** Pastilla (plazo, packs…) */
   tag: Translated;
-  /** Archivo en media.polmorera.es; la miniatura es thumbs/<nombre>.jpg */
-  video: string;
+  /** Clave en /api/services */
+  configKey: "ads" | "organic" | "corporate";
+  /** Vídeos por defecto (media.polmorera.es; miniatura en thumbs/<nombre>.jpg).
+   *  1 vertical en anuncios y redes; 3 horizontales en empresa. */
+  videos: string[];
   /** Ancla que abre su pestaña del portfolio */
   portfolioHash: string;
 };

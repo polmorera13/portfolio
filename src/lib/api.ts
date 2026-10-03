@@ -44,6 +44,25 @@ export async function adminSetHero(slots: Record<string, string | null>): Promis
   return res.json();
 }
 
+// Vídeos de "Qué produzco": { ads: [slug], organic: [slug], corporate: [slug, slug, slug] }
+export type ServicesConfig = Partial<Record<"ads" | "organic" | "corporate", (string | null)[]>>;
+
+export async function fetchServices(): Promise<ServicesConfig> {
+  const res = await fetch(`${API_BASE}/api/services`, { cache: "no-store" });
+  if (!res.ok) throw new Error("fetch_services_failed");
+  return res.json();
+}
+
+export async function adminSetServices(services: ServicesConfig): Promise<ServicesConfig> {
+  const res = await fetch(`${API_BASE}/api/admin/services`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    body: JSON.stringify({ services }),
+  });
+  if (!res.ok) throw new Error("set_services_failed");
+  return res.json();
+}
+
 export type ContactType = "quote" | "proposal";
 
 export async function sendContact(payload: {

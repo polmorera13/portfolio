@@ -42,7 +42,12 @@ export default function Process() {
   const list = Array.isArray(steps) ? steps : [];
 
   return (
-    <section id="proceso" className="pt-20 pb-24 lg:pt-40 lg:pb-40">
+    <section
+      id="proceso"
+      // Sin margen inferior: el espacio bajo la frase final lo pone "Sobre mí" (py-24 / lg:py-40)
+      // y la frase lleva el mismo por arriba, así queda centrada entre las dos secciones.
+      className="pt-20 lg:pt-40"
+    >
       <div className="max-w-content mx-auto section-padding">
         <motion.div
           initial="hidden"
@@ -144,8 +149,8 @@ export default function Process() {
           </motion.ol>
 
           {/* Final: el primer paso gratis */}
-          <motion.div variants={fadeUp} className="flex flex-col items-center gap-5 text-center pt-2 lg:pt-6">
-            <p className="text-off-white font-bold max-w-2xl" style={{ fontSize: "clamp(20px, 2.2vw, 28px)", lineHeight: 1.3 }}>
+          <motion.div variants={fadeUp} data-process-final className="flex flex-col items-center gap-6 text-center pt-14 lg:pt-28">
+            <p className="text-off-white font-bold max-w-3xl" style={{ fontSize: "clamp(26px, 3.2vw, 44px)", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               {t("process.final")}
             </p>
             <a

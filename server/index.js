@@ -18,6 +18,10 @@ const THUMB_DIR = path.join(MEDIA_DIR, "thumbs");
 const CATALOG_PATH = process.env.CATALOG_PATH || "/data/catalog.json";
 const HERO_PATH = process.env.HERO_PATH || "/data/hero.json";
 const HERO_SLOT_KEYS = ["1", "2", "3", "4", "5", "6", "7"];
+// Vídeos de "Qué produzco": junto a hero.json en /data
+const SERVICES_PATH = process.env.SERVICES_PATH || path.join(path.dirname(HERO_PATH), "services.json");
+// Cuántos vídeos lleva cada servicio
+const SERVICE_SLOTS = { ads: 1, organic: 1, corporate: 3 };
 const MEDIA_BASE = process.env.MEDIA_BASE || "https://media.polmorera.es";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "polmorera13";
 const JWT_SECRET = process.env.JWT_SECRET || "change-me";
@@ -66,6 +70,17 @@ async function readHero() {
 }
 async function writeHero(cfg) {
   await fs.writeFile(HERO_PATH, JSON.stringify(cfg, null, 2), "utf8");
+}
+
+async function readServices() {
+  try {
+    return JSON.parse(await fs.readFile(SERVICES_PATH, "utf8"));
+  } catch {
+    return {};
+  }
+}
+async function writeServices(cfg) {
+  await fs.writeFile(SERVICES_PATH, JSON.stringify(cfg, null, 2), "utf8");
 }
 
 function slugify(name) {
@@ -161,6 +176,30 @@ app.put("/api/admin/hero", requireAuth, async (req, res) => {
     cfg[k] = slug;
   }
   await writeHero(cfg);
+  res.json(cfg);
+});
+
+// Public: vídeos de cada servicio de "Qué produzco"
+app.get("/api/services", async (_req, res) => {
+  res.json(await readServices());
+});
+
+// Admin: vídeos de los servicios. Body: { services: { ads: [slug], organic: [slug], corporate: [slug, slug, slug] } } (parcial ok)
+app.put("/api/admin/services", requireAuth, async (req, res) => {
+  const { services } = req.body || {};
+  if (!services || typeof services !== "object") return res.status(400).json({ error: "bad_body" });
+  const catalog = await readCatalog();
+  const known = new Set(catalog.map((v) => v.storage_path));
+  const cfg = await readServices();
+  for (const [key, list] of Object.entries(services)) {
+    if (!(key in SERVICE_SLOTS)) return res.status(400).json({ error: "bad_service", service: key });
+    if (!Array.isArray(list) || list.length > SERVICE_SLOTS[key]) return res.status(400).json({ error: "bad_list", service: key });
+    for (const slug of list) {
+      if (slug !== null && !known.has(slug)) return res.status(400).json({ error: "unknown_video", service: key });
+    }
+    cfg[key] = list;
+  }
+  await writeServices(cfg);
   res.json(cfg);
 });
 
@@ -300,6 +339,16 @@ app.delete("/api/admin/videos/:id", requireAuth, async (req, res) => {
     if (hero[k] === v.storage_path) { hero[k] = null; heroChanged = true; }
   }
   if (heroChanged) await writeHero(hero);
+  // quitarlo también de los vídeos de servicios
+  const svc = await readServices();
+  let svcChanged = false;
+  for (const k of Object.keys(svc)) {
+    if (Array.isArray(svc[k]) && svc[k].includes(v.storage_path)) {
+      svc[k] = svc[k].map((s) => (s === v.storage_path ? null : s));
+      svcChanged = true;
+    }
+  }
+  if (svcChanged) await writeServices(svc);
   // best-effort file cleanup
   if (v.storage_path) {
     await fs.unlink(path.join(MEDIA_DIR, v.storage_path)).catch(() => {});

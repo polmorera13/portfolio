@@ -63,7 +63,7 @@
       {
         "day": "DIES 3–5",
         "n": "03",
-        "title": "Gravació i edició",
+        "title": "Producció",
         "description": "Gravo al teu negoci o amb el teu producte, i el meu equip ho edita.",
         "you": "Tu: res"
       },
@@ -285,6 +285,8 @@
     "after_process": "El primer pas és gratis: et dic quins 3 vídeos necessita el teu negoci.",
     "primary": "Demana la teva proposta gratis",
     "whatsapp": "WhatsApp",
-    "after_process_button": "Vull els meus 3 vídeos"
+    "after_process_button": "Vull els meus 3 vídeos",
+    "testimonials_button": "Vull els meus 3 vídeos gratis",
+    "testimonials_note": "Totalment gratis: t'envio un document amb els 3 vídeos que necessita el teu negoci."
   }
 }

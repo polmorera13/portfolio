@@ -63,7 +63,7 @@
       {
         "day": "DAYS 3–5",
         "n": "03",
-        "title": "Filming and editing",
+        "title": "Production",
         "description": "I film at your business or with your product, and my team edits it.",
         "you": "You: nothing"
       },
@@ -285,6 +285,8 @@
     "after_process": "The first step is free: I'll tell you which 3 videos your business needs.",
     "primary": "Get your free proposal",
     "whatsapp": "WhatsApp",
-    "after_process_button": "Get my 3 videos"
+    "after_process_button": "Get my 3 videos",
+    "testimonials_button": "Get my 3 free videos",
+    "testimonials_note": "Completely free: I'll send you a document with the 3 videos your business needs."
   }
 }

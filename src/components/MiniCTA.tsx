@@ -5,8 +5,10 @@ import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
 
 interface MiniCTAProps {
   textKey: string;
-  /** "featured": tarjeta con fondo azul, titular grande y un solo botón. */
-  variant?: "default" | "featured";
+  /** "white": barra blanca a todo el ancho, frase grande, un solo botón y letra pequeña. */
+  variant?: "default" | "white";
+  /** Letra pequeña bajo el botón (variante "white"). */
+  noteKey?: string;
   /** Texto del botón principal (por defecto "Pide tu propuesta gratis"). */
   buttonKey?: string;
   /** Sin margen superior grande: va pegada a la sección anterior. */
@@ -15,40 +17,40 @@ interface MiniCTAProps {
 
 // Llamada corta entre secciones. La normal: una frase y dos botones (propuesta
 // gratis y WhatsApp), más baja que la franja "¿No sabes por dónde empezar?".
-export default function MiniCTA({ textKey, variant = "default", buttonKey = "minicta.primary", compactTop = false }: MiniCTAProps) {
+export default function MiniCTA({ textKey, variant = "default", buttonKey = "minicta.primary", noteKey, compactTop = false }: MiniCTAProps) {
   const { t } = useTranslation();
 
-  if (variant === "featured") {
+  if (variant === "white") {
+    // Barra blanca a todo el ancho: frase grande, un botón y letra pequeña. Sin WhatsApp.
     return (
-      <section className="py-16 lg:py-24">
-        <div className="max-w-content mx-auto section-padding">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            variants={staggerContainer}
-            className="relative overflow-hidden rounded-2xl border border-brand-blue/30 px-6 py-12 sm:px-12 lg:py-16 flex flex-col items-center gap-8 text-center"
-            style={{
-              background:
-                "radial-gradient(120% 140% at 50% 0%, oklch(58% 0.14 240 / 0.35) 0%, oklch(58% 0.14 240 / 0.12) 45%, oklch(20% 0.03 240 / 0.6) 100%)",
-            }}
+      <section data-cta="white" className="bg-white py-14 lg:py-20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={staggerContainer}
+          className="max-w-content mx-auto section-padding flex flex-col items-center gap-6 text-center"
+        >
+          <motion.h2
+            variants={fadeUp}
+            className="font-bold max-w-3xl"
+            style={{ color: "#0D1B2A", fontSize: "clamp(26px, 3.4vw, 44px)", lineHeight: 1.15, letterSpacing: "-0.01em" }}
           >
-            <motion.h2
-              variants={fadeUp}
-              className="text-off-white font-bold max-w-3xl"
-              style={{ fontSize: "clamp(26px, 3.6vw, 48px)", lineHeight: 1.12, letterSpacing: "-0.01em" }}
-            >
-              {t(textKey)}
-            </motion.h2>
-            <motion.a
-              variants={fadeUp}
-              href="#contacto-propuesta"
-              className="bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02]"
-            >
-              {t(buttonKey)}
-            </motion.a>
-          </motion.div>
-        </div>
+            {t(textKey)}
+          </motion.h2>
+          <motion.a
+            variants={fadeUp}
+            href="#contacto-propuesta"
+            className="w-full sm:w-auto bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-lg text-center hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02]"
+          >
+            {t(buttonKey)}
+          </motion.a>
+          {noteKey && (
+            <motion.p variants={fadeUp} className="max-w-xl" style={{ color: "#3D5468", fontSize: "15px", lineHeight: 1.5 }}>
+              {t(noteKey)}
+            </motion.p>
+          )}
+        </motion.div>
       </section>
     );
   }

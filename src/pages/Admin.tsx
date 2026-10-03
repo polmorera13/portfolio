@@ -4,8 +4,10 @@ import { LogOut, Trash2, ArrowUp, ArrowDown, UploadCloud, Check } from "lucide-r
 import { useAuth } from "../hooks/useAuth";
 import {
   adminListVideos, adminUploadVideo, adminUpdateVideo, adminReorder, adminDeleteVideo,
-  fetchHero, adminSetHero, clearToken,
+  fetchHero, adminSetHero, fetchServices, adminSetServices, clearToken,
+  type ServicesConfig,
 } from "../lib/api";
+import { services as SERVICES } from "../data/services";
 import { getPublicUrl } from "../lib/supabase";
 import { HERO_SLOTS, type HeroConfig } from "../data/heroSlots";
 import type { Video } from "../types/video";
@@ -30,13 +32,19 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [hero, setHero] = useState<HeroConfig>({});
+  const [svc, setSvc] = useState<ServicesConfig>({});
 
   // Depends only on navigate (stable) so it doesn't re-run on every render.
   const load = useCallback(async () => {
     try {
-      const [list, heroCfg] = await Promise.all([adminListVideos(), fetchHero().catch(() => ({}))]);
+      const [list, heroCfg, svcCfg] = await Promise.all([
+        adminListVideos(),
+        fetchHero().catch(() => ({})),
+        fetchServices().catch(() => ({})),
+      ]);
       setVideos(list);
       setHero(heroCfg);
+      setSvc(svcCfg);
     } catch (e) {
       if ((e as Error).message === "unauthorized") {
         clearToken();
@@ -54,6 +62,27 @@ export default function Admin() {
       setHero(cfg);
     } catch {
       alert("No se pudo guardar la casilla. Inténtalo de nuevo.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // Vídeos de "Qué produzco": lo que se ve ahora en la web (panel o, si no hay, los por defecto)
+  const svcVideos = (key: "ads" | "organic" | "corporate") => {
+    const def = SERVICES.find((x) => x.configKey === key)!.videos;
+    const chosen = svc[key];
+    return def.map((d, i) => (chosen && chosen.length ? chosen[i] ?? null : d));
+  };
+
+  async function setServiceSlot(key: "ads" | "organic" | "corporate", index: number, slug: string) {
+    setBusy(true);
+    try {
+      const list = svcVideos(key);
+      list[index] = slug || null;
+      const cfg = await adminSetServices({ [key]: list });
+      setSvc(cfg);
+    } catch {
+      alert("No se pudo guardar el vídeo del servicio. Inténtalo de nuevo.");
     } finally {
       setBusy(false);
     }
@@ -198,6 +227,64 @@ export default function Admin() {
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        {/* Qué produzco: vídeo de cada servicio */}
+        <section style={{
+          border: `1px solid ${BORDER}`, borderRadius: 12, padding: "1.25rem", marginBottom: "2rem",
+          background: "oklch(13% 0.02 240)",
+        }}>
+          <h2 style={{ fontWeight: 600, fontSize: "1rem", color: OFFWHITE, marginBottom: "0.25rem" }}>Qué produzco</h2>
+          <p style={{ color: STEEL, fontSize: "0.8125rem", marginBottom: "1.25rem" }}>
+            El vídeo que se ve en cada servicio. Anuncios y Redes llevan uno vertical; Empresa, tres horizontales (se ven uno encima de otro). Los cambios se ven en la web al momento.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            {SERVICES.map((service) => {
+              const key = service.configKey;
+              const ratio = key === "corporate" ? "16:9" : "9:16";
+              const options = videos
+                .filter((v) => v.is_active !== false && v.aspect_ratio === ratio)
+                .sort((a, b) => (a.title ?? "").localeCompare(b.title ?? ""));
+              return (
+                <div key={key}>
+                  <div style={{ fontSize: "0.875rem", fontWeight: 600, color: OFFWHITE, marginBottom: "0.5rem" }}>
+                    {service.title.es}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                    {svcVideos(key).map((slug, i) => {
+                      const v = videos.find((x) => x.storage_path === slug);
+                      return (
+                        <label key={i} style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                          <div style={{
+                            width: ratio === "16:9" ? 72 : 32, height: ratio === "16:9" ? 40 : 56, flexShrink: 0,
+                            borderRadius: 6, overflow: "hidden", background: CARD, border: `1px solid ${BORDER}`,
+                          }}>
+                            {v?.thumbnail_path && (
+                              <img src={getPublicUrl(v.thumbnail_path)} alt="" loading="lazy"
+                                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                            )}
+                          </div>
+                          {key === "corporate" && (
+                            <span style={{ width: 24, flexShrink: 0, fontSize: 12, fontWeight: 700, color: STEEL }}>{i + 1}</span>
+                          )}
+                          <select value={slug ?? ""} disabled={busy}
+                            onChange={(e) => setServiceSlot(key, i, e.target.value)}
+                            style={{ ...inputStyle, flex: 1, minWidth: 0, padding: "0.4rem 0.5rem" }}>
+                            <option value="">— vacío —</option>
+                            {options.map((o) => (
+                              <option key={o.id} value={o.storage_path}>
+                                {o.title} · {CATS.find((c) => c.key === o.category)?.label} · {o.storage_path.replace(/.mp4$/, "").slice(0, 22)}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 

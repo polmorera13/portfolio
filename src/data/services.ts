@@ -1,8 +1,9 @@
 import type { Service } from "../types";
 
-// Servicios de "Qué produzco". Cada uno tiene su vídeo (en media.polmorera.es,
-// con la miniatura en thumbs/) y la pestaña del portfolio a la que lleva
-// "Ver ejemplos".
+// Servicios de "Qué produzco". Cada uno tiene sus vídeos por defecto (en
+// media.polmorera.es, con la miniatura en thumbs/) y la pestaña del portfolio a
+// la que lleva "Ver ejemplos". Los vídeos se cambian desde el panel /admin
+// (API /api/services); estos solo se usan si la API no responde.
 export const services: Service[] = [
   {
     id: "ugc",
@@ -24,7 +25,8 @@ export const services: Service[] = [
       { es: "En vertical y cuadrado, listos para cada red", en: "Vertical and square, ready for every platform", ca: "En vertical i quadrat, a punt per a cada xarxa" },
     ],
     tag: { es: "Entrega en 5–7 días laborables", en: "Delivery in 5–7 working days", ca: "Lliurament en 5–7 dies laborables" },
-    video: "verisure-0726-crea9-compressed.mp4",
+    configKey: "ads",
+    videos: ["verisure-0726-crea9-compressed.mp4"],
     portfolioHash: "#portfolio-anuncios",
   },
   {
@@ -43,7 +45,8 @@ export const services: Service[] = [
       { es: "Con tu logo, tus colores y textos en pantalla", en: "With your logo, your colours and on-screen text", ca: "Amb el teu logo, els teus colors i textos en pantalla" },
     ],
     tag: { es: "Packs mensuales", en: "Monthly packs", ca: "Packs mensuals" },
-    video: "axa-1.mp4",
+    configKey: "organic",
+    videos: ["axa-1.mp4"],
     portfolioHash: "#portfolio-redes",
   },
   {
@@ -66,7 +69,9 @@ export const services: Service[] = [
       { es: "Versiones para tu web, tus comerciales y eventos", en: "Versions for your website, your sales team and events", ca: "Versions per a la teva web, els teus comercials i esdeveniments" },
     ],
     tag: { es: "Guion incluido", en: "Script included", ca: "Guió inclòs" },
-    video: "reactivaweb-v4-compressed-1.mp4",
+    configKey: "corporate",
+    // Tres horizontales completos, uno encima de otro
+    videos: ["reactivaweb-v4-compressed-1.mp4", "estoolweb-v6.mp4", "rcx-software-pol-morera-1.mp4"],
     portfolioHash: "#portfolio-empresa",
   },
 ];

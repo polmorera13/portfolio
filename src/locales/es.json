@@ -63,7 +63,7 @@
       {
         "day": "DÍAS 3–5",
         "n": "03",
-        "title": "Grabación y edición",
+        "title": "Producción",
         "description": "Grabo en tu negocio o con tu producto, y mi equipo lo edita.",
         "you": "Tú: nada"
       },
@@ -285,6 +285,8 @@
     "after_process": "El primer paso es gratis: te digo qué 3 vídeos necesita tu negocio.",
     "primary": "Pide tu propuesta gratis",
     "whatsapp": "WhatsApp",
-    "after_process_button": "Quiero mis 3 vídeos"
+    "after_process_button": "Quiero mis 3 vídeos",
+    "testimonials_button": "Quiero mis 3 vídeos gratis",
+    "testimonials_note": "Totalmente gratis: te mando un documento con los 3 vídeos que tu negocio necesita."
   }
 }

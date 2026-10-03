@@ -117,3 +117,45 @@ export default function ServiceVideo({
     </div>
   );
 }
+
+/**
+ * Varios vídeos horizontales completos (16:9), uno encima de otro, para
+ * "Vídeo para tu empresa". Solo se reproduce uno (el activo); los demás
+ * enseñan su miniatura sin descargar el vídeo. Al pulsar uno, pasa a ser el activo.
+ */
+export function ServiceVideoStack({ files, style }: { files: string[]; style?: React.CSSProperties }) {
+  const { t } = useTranslation();
+  const [active, setActive] = useState(0);
+
+  // Si cambia la lista (otro servicio u otra configuración), empezar por el primero
+  useEffect(() => setActive(0), [files.join("|")]);
+
+  return (
+    <div data-video-stack className="flex flex-col gap-3" style={style}>
+      {files.map((file, i) =>
+        i === active ? (
+          <ServiceVideo key={file} file={file} aspect="16 / 9" className="w-full" />
+        ) : (
+          <button
+            key={file}
+            type="button"
+            onClick={() => setActive(i)}
+            className="group relative w-full overflow-hidden rounded-xl bg-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-blue"
+            style={{ aspectRatio: "16 / 9" }}
+            aria-label={t("player.play")}
+          >
+            <img
+              src={getPublicUrl(`thumbs/${file.replace(/\.mp4$/, ".jpg")}`)}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+            />
+            <span className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-navy/70 border border-off-white/30 text-off-white flex items-center justify-center group-hover:bg-navy/90 transition-colors">
+              <Play size={20} weight="fill" />
+            </span>
+          </button>
+        ),
+      )}
+    </div>
+  );
+}

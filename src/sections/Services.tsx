@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Check, ArrowRight, Plus, Minus } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { services } from "../data/services";
-import ServiceVideo from "../components/ServiceVideo";
+import ServiceVideo, { ServiceVideoStack } from "../components/ServiceVideo";
+import { fetchServices, type ServicesConfig } from "../lib/api";
 import type { Locale, Service } from "../types";
 
 // "Qué produzco"
@@ -17,6 +18,18 @@ export default function Services() {
   const lang = (i18n.language as Locale) in services[0].title ? (i18n.language as Locale) : "es";
   const [active, setActive] = useState(0);
   const current = services[active];
+
+  // Vídeos de cada servicio: los del panel (/api/services) o, si no hay, los por defecto
+  const [config, setConfig] = useState<ServicesConfig>({});
+  useEffect(() => {
+    let cancelled = false;
+    fetchServices().then((c) => { if (!cancelled && c) setConfig(c); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+  const videosFor = (s: Service) => {
+    const chosen = (config[s.configKey] ?? []).filter((v): v is string => !!v);
+    return chosen.length ? chosen : s.videos;
+  };
 
   return (
     <section id="servicios" className="pb-24 lg:pb-40 pt-8 lg:pt-20">
@@ -94,11 +107,18 @@ export default function Services() {
 
             <div className="col-span-5 sticky top-24 flex justify-center">
               {/* Altura máxima: 80 % de la pantalla */}
-              <ServiceVideo
-                file={current.video}
-                aspect="9 / 16"
-                style={{ width: "min(100%, calc(80vh * 9 / 16))" }}
-              />
+              {current.configKey === "corporate" ? (
+                <ServiceVideoStack
+                  files={videosFor(current)}
+                  style={{ width: "min(100%, calc((80vh - 24px) / 3 * 16 / 9))" }}
+                />
+              ) : (
+                <ServiceVideo
+                  file={videosFor(current)[0]}
+                  aspect="9 / 16"
+                  style={{ width: "min(100%, calc(80vh * 9 / 16))" }}
+                />
+              )}
             </div>
           </motion.div>
 
@@ -126,7 +146,11 @@ export default function Services() {
             </div>
 
             <div id="servicio-tabpanel" role="tabpanel" aria-labelledby={`servicio-tab-${current.id}`} className="flex flex-col gap-4">
-              <ServiceVideo file={current.video} aspect="4 / 5" className="w-full md:max-w-md" />
+              {current.configKey === "corporate" ? (
+                <ServiceVideoStack files={videosFor(current)} style={{ width: "100%", maxWidth: 480 }} />
+              ) : (
+                <ServiceVideo file={videosFor(current)[0]} aspect="4 / 5" className="w-full md:max-w-md" />
+              )}
               <h3 className="text-off-white font-bold text-2xl leading-tight">{current.title[lang]}</h3>
               <ServiceBody service={current} lang={lang} mobile />
             </div>
