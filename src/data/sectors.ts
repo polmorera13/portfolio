@@ -6,9 +6,6 @@ import type { Locale, Translated } from "../types";
 // vídeo (portfolio y portada). La clave es el nombre de la marca tal como está
 // en el gestor de vídeos, en minúsculas. Si una marca no está aquí, la tarjeta
 // muestra solo el tipo ("Anuncio", "Redes"…).
-//
-// Pendientes de sector: El Método Rico, MiniBatt, Reactiva Online, Murwal,
-// Creator Studio.
 // ─────────────────────────────────────────────────────────────────────────────
 export const SECTORS: Record<string, Translated> = {
   "verisure": { es: "Alarmas", en: "Home security", ca: "Alarmes" },
@@ -26,6 +23,11 @@ export const SECTORS: Record<string, Translated> = {
   "wala": { es: "Tiendas de deporte", en: "Sports shops", ca: "Botigues d'esport" },
   "rioja": { es: "Vino", en: "Wine", ca: "Vi" },
   "flashled": { es: "Seguridad vial", en: "Road safety", ca: "Seguretat viària" },
+  "el método rico": { es: "Inversión y educación financiera", en: "Investing & financial education", ca: "Inversió i educació financera" },
+  "minibatt": { es: "Automoción", en: "Automotive", ca: "Automoció" },
+  "reactiva online": { es: "Negocios", en: "Business", ca: "Negocis" },
+  "murwal": { es: "Marketing", en: "Marketing", ca: "Màrqueting" },
+  "creator studio": { es: "Tecnología", en: "Technology", ca: "Tecnologia" },
 };
 
 const TYPE_KEY: Record<string, string> = {
