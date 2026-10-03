@@ -1,0 +1,5 @@
+# Coolify (Nixpacks) arranca Caddy con el Caddyfile del proyecto en lugar del
+# genérico para SPA: así cada URL sirve su HTML prerenderizado y lo que no
+# existe devuelve 404 de verdad.
+[start]
+cmd = "exec caddy run --config /app/Caddyfile --adapter caddyfile 2>&1"
