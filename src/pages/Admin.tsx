@@ -8,6 +8,7 @@ import {
   type ServicesConfig,
 } from "../lib/api";
 import { services as SERVICES } from "../data/services";
+import CasesAdmin from "./admin/CasesAdmin";
 import { getPublicUrl } from "../lib/supabase";
 import { HERO_SLOTS, type HeroConfig } from "../data/heroSlots";
 import type { Video } from "../types/video";
@@ -287,6 +288,9 @@ export default function Admin() {
             })}
           </div>
         </section>
+
+        {/* Casos de éxito / KPIs */}
+        <CasesAdmin />
 
         {/* Upload panel */}
         <section style={{

@@ -288,5 +288,14 @@
     "after_process_button": "Vull els meus 3 vídeos",
     "testimonials_button": "Vull els meus 3 vídeos gratis",
     "testimonials_note": "Totalment gratis: t'envio un document amb els 3 vídeos que necessita el teu negoci."
+  },
+  "cases": {
+    "eyebrow": "PERFORMANCE & ANALYTICS",
+    "title": "Contingut que no només es veu. Funciona.",
+    "subtitle": "No mesuro l'èxit d'un vídeo només per com queda a la pantalla. Aquestes són campanyes reals en què els meus vídeos han generat trànsit, leads i conversions.",
+    "case": "Cas",
+    "insight": "Aprenentatge creatiu",
+    "evidence": "Resultats a la plataforma",
+    "close": "Tanca"
   }
 }

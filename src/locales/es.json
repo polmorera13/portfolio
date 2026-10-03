@@ -288,5 +288,14 @@
     "after_process_button": "Quiero mis 3 vídeos",
     "testimonials_button": "Quiero mis 3 vídeos gratis",
     "testimonials_note": "Totalmente gratis: te mando un documento con los 3 vídeos que tu negocio necesita."
+  },
+  "cases": {
+    "eyebrow": "PERFORMANCE & ANALYTICS",
+    "title": "Contenido que no solo se ve. Funciona.",
+    "subtitle": "No mido el éxito de un vídeo solo por cómo queda en pantalla. Estas son campañas reales en las que mis vídeos han generado tráfico, leads y conversiones.",
+    "case": "Caso",
+    "insight": "Aprendizaje creativo",
+    "evidence": "Resultados en la plataforma",
+    "close": "Cerrar"
   }
 }

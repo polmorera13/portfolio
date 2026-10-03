@@ -149,3 +149,120 @@ export async function adminDeleteVideo(id: string): Promise<void> {
   });
   if (!res.ok) throw new Error("delete_failed");
 }
+
+// ── Casos de éxito / KPIs ───────────────────────────────────────────────────
+export type Tri = { es: string; en: string; ca: string };
+
+export interface CaseKpi {
+  value: string;
+  label: Tri;
+  context: Tri;
+  highlight: boolean;
+}
+export interface CaseVideo {
+  file: string; // ruta en media.polmorera.es (cases/...)
+  poster: string;
+  name: string; // nombre interno
+  label: Tri; // etiqueta visible (Mayo · Hook 1)
+  aspect: "9:16" | "16:9";
+}
+export interface CaseEvidence {
+  image: string;
+  alt: Tri;
+  description: Tri;
+  visible: boolean;
+}
+export interface CaseStudy {
+  id: string;
+  published: boolean;
+  brandName: string;
+  brandLogo: string;
+  platform: string;
+  campaignType: Tri;
+  industry: Tri;
+  title: Tri;
+  description: Tri;
+  quote: Tri;
+  quoteAuthor: string;
+  insight: Tri;
+  disclaimer: Tri;
+  kpis: CaseKpi[];
+  chart: { title: Tri; bars: { label: Tri; value: number; display: string }[] };
+  videos: CaseVideo[];
+  evidence: CaseEvidence[];
+}
+
+export async function fetchCases(): Promise<CaseStudy[]> {
+  const res = await fetch(`${API_BASE}/api/cases`, { cache: "no-store" });
+  if (!res.ok) throw new Error("fetch_cases_failed");
+  return res.json();
+}
+
+export async function adminListCases(): Promise<CaseStudy[]> {
+  const res = await fetch(`${API_BASE}/api/admin/cases`, { headers: authHeaders(), cache: "no-store" });
+  if (res.status === 401) throw new Error("unauthorized");
+  if (!res.ok) throw new Error("list_cases_failed");
+  return res.json();
+}
+
+export async function adminCreateCase(data: Partial<CaseStudy> = {}): Promise<CaseStudy> {
+  const res = await fetch(`${API_BASE}/api/admin/cases`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error("create_case_failed");
+  return res.json();
+}
+
+export async function adminSaveCase(c: CaseStudy): Promise<CaseStudy> {
+  const res = await fetch(`${API_BASE}/api/admin/cases/${encodeURIComponent(c.id)}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    body: JSON.stringify(c),
+  });
+  if (!res.ok) throw new Error("save_case_failed");
+  return res.json();
+}
+
+export async function adminDeleteCase(id: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/api/admin/cases/${encodeURIComponent(id)}`, {
+    method: "DELETE",
+    headers: authHeaders(),
+  });
+  if (!res.ok) throw new Error("delete_case_failed");
+}
+
+export async function adminReorderCases(ids: string[]): Promise<CaseStudy[]> {
+  const res = await fetch(`${API_BASE}/api/admin/cases/reorder`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    body: JSON.stringify({ ids }),
+  });
+  if (!res.ok) throw new Error("reorder_cases_failed");
+  return res.json();
+}
+
+/** Sube un vídeo o una imagen para un caso. Devuelve rutas relativas a media.polmorera.es. */
+export function adminUploadCaseFile(
+  file: File,
+  onProgress?: (pct: number) => void,
+): Promise<{ file: string; poster: string | null; aspect: "9:16" | "16:9" | null; kind: "video" | "image" }> {
+  return new Promise((resolve, reject) => {
+    const fd = new FormData();
+    fd.append("file", file);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", `${API_BASE}/api/admin/cases/upload`);
+    const t = getToken();
+    if (t) xhr.setRequestHeader("Authorization", `Bearer ${t}`);
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable && onProgress) onProgress(Math.round((e.loaded / e.total) * 100));
+    };
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) resolve(JSON.parse(xhr.responseText));
+      else reject(new Error("upload_failed"));
+    };
+    xhr.onerror = () => reject(new Error("upload_failed"));
+    xhr.send(fd);
+  });
+}

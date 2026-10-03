@@ -288,5 +288,14 @@
     "after_process_button": "Get my 3 videos",
     "testimonials_button": "Get my 3 free videos",
     "testimonials_note": "Completely free: I'll send you a document with the 3 videos your business needs."
+  },
+  "cases": {
+    "eyebrow": "PERFORMANCE & ANALYTICS",
+    "title": "Content that doesn't just look good. It works.",
+    "subtitle": "I don't judge a video only by how it looks on screen. These are real campaigns where my videos generated traffic, leads and conversions.",
+    "case": "Case",
+    "insight": "Creative insight",
+    "evidence": "Platform results",
+    "close": "Close"
   }
 }

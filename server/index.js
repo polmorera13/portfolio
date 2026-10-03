@@ -22,6 +22,9 @@ const HERO_SLOT_KEYS = ["1", "2", "3", "4", "5", "6", "7"];
 const SERVICES_PATH = process.env.SERVICES_PATH || path.join(path.dirname(HERO_PATH), "services.json");
 // Cuántos vídeos lleva cada servicio
 const SERVICE_SLOTS = { ads: 1, organic: 1, corporate: 3 };
+// Casos de éxito / KPIs: junto a hero.json en /data; sus archivos en /data/media/cases
+const CASES_PATH = process.env.CASES_PATH || path.join(path.dirname(HERO_PATH), "cases.json");
+const CASES_MEDIA_DIR = path.join(process.env.MEDIA_DIR || "/data/media", "cases");
 const MEDIA_BASE = process.env.MEDIA_BASE || "https://media.polmorera.es";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "polmorera13";
 const JWT_SECRET = process.env.JWT_SECRET || "change-me";
@@ -81,6 +84,72 @@ async function readServices() {
 }
 async function writeServices(cfg) {
   await fs.writeFile(SERVICES_PATH, JSON.stringify(cfg, null, 2), "utf8");
+}
+
+async function readCases() {
+  try {
+    const list = JSON.parse(await fs.readFile(CASES_PATH, "utf8"));
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
+async function writeCases(list) {
+  await fs.writeFile(CASES_PATH, JSON.stringify(list, null, 2), "utf8");
+}
+
+// ── Saneado de un caso (solo campos conocidos, textos acotados) ───────────────
+const str = (v, max = 600) => (typeof v === "string" ? v.slice(0, max) : "");
+const tri = (v, max = 600) => ({ es: str(v?.es, max), en: str(v?.en, max), ca: str(v?.ca, max) });
+const mediaPath = (v) => {
+  const p = str(v, 200);
+  // Solo rutas dentro del servidor de vídeos (sin ../ ni URLs externas)
+  return /^[a-z0-9][a-z0-9._/-]*$/i.test(p) && !p.includes("..") ? p : "";
+};
+function normalizeCase(input, existing = {}) {
+  const c = input || {};
+  return {
+    id: existing.id || crypto.randomUUID(),
+    published: c.published === undefined ? existing.published ?? false : !!c.published,
+    brandName: str(c.brandName, 80),
+    brandLogo: mediaPath(c.brandLogo) || (str(c.brandLogo, 200).startsWith("/logos/") ? str(c.brandLogo, 200) : ""),
+    platform: str(c.platform, 60),
+    campaignType: tri(c.campaignType, 80),
+    industry: tri(c.industry, 80),
+    title: tri(c.title, 160),
+    description: tri(c.description, 700),
+    quote: tri(c.quote, 300),
+    quoteAuthor: str(c.quoteAuthor, 80),
+    insight: tri(c.insight, 700),
+    disclaimer: tri(c.disclaimer, 400),
+    kpis: (Array.isArray(c.kpis) ? c.kpis : []).slice(0, 8).map((k) => ({
+      value: str(k?.value, 30),
+      label: tri(k?.label, 80),
+      context: tri(k?.context, 160),
+      highlight: !!k?.highlight,
+    })),
+    chart: {
+      title: tri(c.chart?.title, 120),
+      bars: (Array.isArray(c.chart?.bars) ? c.chart.bars : []).slice(0, 8).map((b) => ({
+        label: tri(b?.label, 80),
+        value: Number.isFinite(Number(b?.value)) ? Number(b.value) : 0,
+        display: str(b?.display, 40),
+      })),
+    },
+    videos: (Array.isArray(c.videos) ? c.videos : []).slice(0, 8).map((v) => ({
+      file: mediaPath(v?.file),
+      poster: mediaPath(v?.poster),
+      name: str(v?.name, 80),
+      label: tri(v?.label, 60),
+      aspect: v?.aspect === "16:9" ? "16:9" : "9:16",
+    })),
+    evidence: (Array.isArray(c.evidence) ? c.evidence : []).slice(0, 8).map((e) => ({
+      image: mediaPath(e?.image),
+      alt: tri(e?.alt, 160),
+      description: tri(e?.description, 300),
+      visible: e?.visible === undefined ? true : !!e.visible,
+    })),
+  };
 }
 
 function slugify(name) {
@@ -201,6 +270,92 @@ app.put("/api/admin/services", requireAuth, async (req, res) => {
   }
   await writeServices(cfg);
   res.json(cfg);
+});
+
+// ── Casos de éxito / KPIs ───────────────────────────────────────────────────
+// Public: solo los publicados, en su orden
+app.get("/api/cases", async (_req, res) => {
+  res.json((await readCases()).filter((c) => c.published));
+});
+
+// Admin: todos
+app.get("/api/admin/cases", requireAuth, async (_req, res) => {
+  res.json(await readCases());
+});
+
+// Admin: crear (al final de la lista, oculto por defecto)
+app.post("/api/admin/cases", requireAuth, async (req, res) => {
+  const list = await readCases();
+  const created = normalizeCase({ published: false, ...(req.body || {}) });
+  list.push(created);
+  await writeCases(list);
+  res.json(created);
+});
+
+// Admin: reordenar. Body: { ids: [...] }
+app.put("/api/admin/cases/reorder", requireAuth, async (req, res) => {
+  const ids = Array.isArray(req.body?.ids) ? req.body.ids : null;
+  if (!ids) return res.status(400).json({ error: "bad_body" });
+  const list = await readCases();
+  const byId = new Map(list.map((c) => [c.id, c]));
+  const ordered = ids.map((id) => byId.get(id)).filter(Boolean);
+  for (const c of list) if (!ids.includes(c.id)) ordered.push(c);
+  await writeCases(ordered);
+  res.json(ordered);
+});
+
+// Admin: guardar un caso entero
+app.put("/api/admin/cases/:id", requireAuth, async (req, res) => {
+  const list = await readCases();
+  const i = list.findIndex((c) => c.id === req.params.id);
+  if (i < 0) return res.status(404).json({ error: "not_found" });
+  list[i] = normalizeCase(req.body, list[i]);
+  await writeCases(list);
+  res.json(list[i]);
+});
+
+// Admin: borrar
+app.delete("/api/admin/cases/:id", requireAuth, async (req, res) => {
+  const list = await readCases();
+  const next = list.filter((c) => c.id !== req.params.id);
+  if (next.length === list.length) return res.status(404).json({ error: "not_found" });
+  await writeCases(next);
+  res.json({ ok: true });
+});
+
+// Admin: subir un vídeo (MP4/WebM/MOV) o una imagen (JPG/PNG/WebP) para un caso.
+// Devuelve { file, poster } con rutas relativas a media.polmorera.es.
+app.post("/api/admin/cases/upload", requireAuth, upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: "no_file" });
+    const original = req.file.originalname || "archivo";
+    const ext = (path.extname(original).toLowerCase() || "").replace(".jpeg", ".jpg");
+    const isVideo = [".mp4", ".webm", ".mov"].includes(ext);
+    const isImage = [".jpg", ".png", ".webp"].includes(ext);
+    if (!isVideo && !isImage) {
+      await fs.unlink(req.file.path).catch(() => {});
+      return res.status(400).json({ error: "bad_type" });
+    }
+    await fs.mkdir(CASES_MEDIA_DIR, { recursive: true });
+    const base = `${slugify(original)}-${Date.now().toString(36)}`;
+    const name = base + (ext === ".mov" ? ".mp4" : ext);
+    const dest = path.join(CASES_MEDIA_DIR, name);
+    await fs.copyFile(req.file.path, dest);
+    await fs.unlink(req.file.path).catch(() => {});
+    let poster = null;
+    let aspect = null;
+    if (isVideo) {
+      aspect = await probeAspect(dest);
+      // Un solo fotograma, con prioridad baja: no carga el servidor
+      await execFileP("nice", ["-n", "19", "ffmpeg", "-y", "-ss", "0.2", "-i", dest, "-vframes", "1", "-vf", "scale=-2:720", "-q:v", "4", path.join(CASES_MEDIA_DIR, base + ".jpg")])
+        .then(() => { poster = `cases/${base}.jpg`; })
+        .catch(() => {});
+    }
+    res.json({ file: `cases/${name}`, poster, aspect, kind: isVideo ? "video" : "image" });
+  } catch (e) {
+    console.error("case upload error", e);
+    res.status(500).json({ error: "upload_failed" });
+  }
 });
 
 // Contact form

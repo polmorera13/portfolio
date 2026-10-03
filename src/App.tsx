@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Hero from './sections/Hero';
 import LogoMarquee from './sections/LogoMarquee';
 import Results from './sections/Results';
+import Cases from './sections/Cases';
 import Problem from './sections/Problem';
 import About from './sections/About';
 import Services from './sections/Services';
@@ -34,6 +35,7 @@ function PublicSite() {
         <Portfolio />
         <MiniCTA textKey="minicta.after_work" compactTop />
         <Results />
+        <Cases />
         <Problem />
         <Services />
         <Testimonials />
