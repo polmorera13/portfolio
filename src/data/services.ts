@@ -26,7 +26,7 @@ export const services: Service[] = [
     ],
     tag: { es: "Entrega en 5–7 días laborables", en: "Delivery in 5–7 working days", ca: "Lliurament en 5–7 dies laborables" },
     configKey: "ads",
-    videos: ["verisure-0726-crea9-compressed.mp4"],
+    videos: ["verisure-0726-crea9-compressed-web.mp4"],
     portfolioHash: "#portfolio-anuncios",
   },
   {
@@ -46,7 +46,7 @@ export const services: Service[] = [
     ],
     tag: { es: "Packs mensuales", en: "Monthly packs", ca: "Packs mensuals" },
     configKey: "organic",
-    videos: ["axa-1.mp4"],
+    videos: ["axa-1-web.mp4"],
     portfolioHash: "#portfolio-redes",
   },
   {
@@ -71,7 +71,7 @@ export const services: Service[] = [
     tag: { es: "Guion incluido", en: "Script included", ca: "Guió inclòs" },
     configKey: "corporate",
     // Tres horizontales completos, uno encima de otro
-    videos: ["reactivaweb-v4-compressed-1.mp4", "estoolweb-v6.mp4", "rcx-software-pol-morera-1.mp4"],
+    videos: ["reactivaweb-v4-compressed-1-web.mp4", "estoolweb-v6-web.mp4", "rcx-software-pol-morera-1-web.mp4"],
     portfolioHash: "#portfolio-empresa",
   },
 ];

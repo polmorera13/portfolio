@@ -35,11 +35,11 @@ export const HERO_SLOTS: HeroSlotDef[] = [
 export type HeroConfig = Record<string, string | null>;
 
 export const DEFAULT_HERO: HeroConfig = {
-  "1": "reactiva-vsl-terminado-v3-compressed.mp4",
-  "2": "axa-1.mp4",
-  "3": "bezoya-04-26-compressed.mp4",
-  "4": "pol-morera-x-creator-studio-2.mp4",
-  "5": "snapinsta-to-aqoqrbocpovfexjo7z-8alzmomebarhwmrsqd6ve31uzzmy.mp4",
-  "6": "ad-3-hook-3-cta-1.mp4",
-  "7": "dogfy-diet-oct-25-1-1-1.mp4",
+  "1": "reactiva-vsl-terminado-v3-compressed-web.mp4",
+  "2": "axa-1-web.mp4",
+  "3": "bezoya-04-26-compressed-web.mp4",
+  "4": "pol-morera-x-creator-studio-2-web.mp4",
+  "5": "snapinsta-to-aqoqrbocpovfexjo7z-8alzmomebarhwmrsqd6ve31uzzmy-web.mp4",
+  "6": "ad-3-hook-3-cta-1-web.mp4",
+  "7": "dogfy-diet-oct-25-1-1-1-web.mp4",
 };
