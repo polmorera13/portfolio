@@ -255,8 +255,9 @@ export default function PortfolioSlider({
   const btnCls =
     "w-10 h-10 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-off-white hover:border-steel-blue/60 transition-colors";
 
+  // En móvil no hay botones: la fila se mueve deslizando con el dedo.
   const controls = (
-    <div className="flex items-center gap-2">
+    <div className="hidden md:flex items-center gap-2">
       <button type="button" onClick={() => step(-1)} className={btnCls} aria-label={t("carousel.prev")}>
         <CaretLeft size={18} weight="bold" />
       </button>

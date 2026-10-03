@@ -24,9 +24,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // La barra fija de móvil se oculta mientras el menú está abierto.
+  // Con el menú abierto: se oculta la barra fija de móvil, la página no se
+  // desplaza por detrás y Escape lo cierra.
   useEffect(() => {
     document.documentElement.toggleAttribute("data-menu-open", menuOpen);
+    if (!menuOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [menuOpen]);
 
   const services: { key: PageKey; label: string }[] = [
@@ -59,6 +69,7 @@ export default function Header() {
   };
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 h-18 transition-all duration-300 ${
         scrolled ? "bg-navy/95 backdrop-blur-md border-b border-charcoal" : "bg-navy/80 backdrop-blur-sm"
@@ -118,14 +129,23 @@ export default function Header() {
           </a>
         </div>
 
-        <button className="lg:hidden text-off-white" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"}>
+        <button
+          type="button"
+          className="lg:hidden text-off-white p-2 -mr-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+        >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+    </header>
 
-      {/* Móvil */}
+      {/* Móvil. Va fuera del <header>: el desenfoque de la cabecera haría que
+          "fixed" se midiera contra ella (72px de alto) y el panel no se vería. */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-navy z-40 flex flex-col p-8 gap-5 overflow-y-auto">
+        <nav id="mobile-menu" aria-label="Mobile navigation" className="lg:hidden fixed inset-x-0 top-[72px] bottom-0 bg-navy z-[60] flex flex-col p-8 gap-5 overflow-y-auto overscroll-contain">
           <span className="text-steel-blue text-xs font-bold tracking-[0.18em] uppercase">{t("nav.services_menu")}</span>
           {services.map((s) => (
             <a key={s.key} href={pageHref(s.key, lang)} onClick={() => setMenuOpen(false)} className="text-off-white text-xl font-semibold hover:text-brand-blue transition-colors -mt-2">
@@ -153,8 +173,8 @@ export default function Header() {
           >
             {t("nav.cta")}
           </a>
-        </div>
+        </nav>
       )}
-    </header>
+    </>
   );
 }

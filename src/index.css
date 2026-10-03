@@ -84,19 +84,17 @@
   }
 }
 
-/* ── Testimonials marquee ─────────────────────────────────────── */
-@keyframes testimonials-scroll {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }
-}
-
+/* ── Testimonials: fila deslizable (el avance automático va por JS) ── */
 .testimonials-track {
   display: flex;
-  gap: 1.5rem;
   width: max-content;
-  animation: testimonials-scroll 80s linear infinite;
-  will-change: transform;
 }
+
+.testimonials-wrapper {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.testimonials-wrapper::-webkit-scrollbar { display: none; }
 
 .testimonials-wrapper {
   mask-image: linear-gradient(to right,
@@ -111,14 +109,6 @@
     black calc(100% - 80px),
     transparent 100%
   );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .testimonials-track {
-    animation: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
 }
 
 /* Barra fija de móvil: oculta mientras el menú está abierto (lo marca el Header) */
