@@ -15,13 +15,16 @@ const stats: StatCard[] = [
   { value: 80, suffix: "M+", labelKey: "results.views" },
 ];
 
+// El número final está siempre en el HTML (300+, 1000+, 80M+). La cuenta desde
+// 0 es solo un efecto visual en el navegador al entrar en pantalla, y no se hace
+// con "reducir movimiento".
 function useCountUp(target: number, duration = 1500, active: boolean) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!active) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) { setCount(target); return; }
+    if (reduced) return;
 
     let start: number | null = null;
     const step = (timestamp: number) => {
@@ -51,7 +54,7 @@ function StatCard({ stat, active }: { stat: StatCard; active: boolean }) {
         className="font-bold leading-none mb-3"
         style={{ fontSize: "clamp(56px, 6vw, 96px)", color: "#F4F6F9" }}
       >
-        {count.toLocaleString()}
+        {count}
         <span style={{ color: "#4A90D9" }}>{stat.suffix}</span>
       </div>
       <div

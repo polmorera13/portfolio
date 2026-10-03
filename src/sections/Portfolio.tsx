@@ -87,7 +87,10 @@ export default function Portfolio() {
 
   const { videos, loading } = useVideos(["ads", "organic", "corporate", "street"]);
 
-  const filtered = videos.filter((v) => v.category === activeFilter);
+  // Vídeos repetidos: si hay una versión ligera ("redpandacompress-<archivo>"),
+  // se muestra solo esa y se oculta la original, más pesada.
+  const light = new Set(videos.map((v) => v.storage_path).filter((p) => p.startsWith("redpandacompress-")).map((p) => p.replace("redpandacompress-", "")));
+  const filtered = videos.filter((v) => v.category === activeFilter && !light.has(v.storage_path));
   const wide = ASPECT_RATIO[activeFilter] === "16:9";
 
   const items = filtered.map((v) => ({
@@ -179,7 +182,7 @@ export default function Portfolio() {
         </AnimatePresence>
       </div>
 
-      <style>{`@keyframes skeletonPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }`}</style>
+      <style dangerouslySetInnerHTML={{ __html: `@keyframes skeletonPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }` }} />
     </section>
   );
 }

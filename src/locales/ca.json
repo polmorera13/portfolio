@@ -5,10 +5,15 @@
     "process": "Procés",
     "contact": "Contacte",
     "cta": "Proposta gratis",
-    "about": "Sobre mi"
+    "about": "Sobre mi",
+    "cases": "Casos",
+    "svc_ads": "Vídeos per a anuncis",
+    "svc_social": "Vídeos per a xarxes",
+    "svc_corporate": "Vídeo corporatiu",
+    "services_menu": "Serveis"
   },
   "hero": {
-    "eyebrow": "Pol Morera · Barcelona",
+    "eyebrow": "Pol Morera · Creador UGC a Barcelona",
     "h1_line1": "Vídeos que",
     "h1_line2": "venen.",
     "tagline": "Vídeos que converteixen en vendes, que donen a conèixer la teva marca i que donen vida a la teva web.",
@@ -260,7 +265,8 @@
     "play": "Reprodueix",
     "pause": "Pausa",
     "mute": "Silencia",
-    "unmute": "Activa el so"
+    "unmute": "Activa el so",
+    "video_of": "Vídeo UGC per a"
   },
   "footer": {
     "tagline": "Contingut que treballa per a la teva marca.",
@@ -285,9 +291,9 @@
     "after_process": "El primer pas és gratis: et dic quins 3 vídeos necessita el teu negoci.",
     "primary": "Demana la teva proposta gratis",
     "whatsapp": "WhatsApp",
-    "after_process_button": "Vull els meus 3 vídeos",
-    "testimonials_button": "Vull els meus 3 vídeos gratis",
-    "testimonials_note": "Totalment gratis: t'envio un document amb els 3 vídeos que necessita el teu negoci."
+    "after_process_button": "Demana la teva proposta gratis",
+    "testimonials_button": "Demana la teva proposta gratis",
+    "testimonials_note": "Et dic quins 3 vídeos necessita el teu negoci. Gratis i en 2 dies."
   },
   "cases": {
     "eyebrow": "PERFORMANCE & ANALYTICS",
@@ -297,5 +303,84 @@
     "insight": "Aprenentatge creatiu",
     "evidence": "Resultats a la plataforma",
     "close": "Tanca"
+  },
+  "crumbs": {
+    "home": "Inici"
+  },
+  "links": {
+    "more_service": "Més sobre aquest servei →",
+    "full_case": "Veure el cas complet →",
+    "more_about": "Més sobre mi →"
+  },
+  "svcpage": {
+    "examples": "Exemples",
+    "process": "Com treballo",
+    "related": "Cas relacionat",
+    "related_many": "Casos relacionats",
+    "faq": "Preguntes freqüents",
+    "cta_title": "El primer pas és gratis",
+    "cta_text": "Et dic quins 3 vídeos necessita el teu negoci.",
+    "or_quote": "o demana pressupost",
+    "ads": {
+      "h1": "Vídeos UGC per als teus anuncis",
+      "intro": "Gravo vídeos en què una persona real parla del teu producte com ho faria un client, pensats per a anuncis d'Instagram, Facebook i TikTok. Escric el guió, gravo, i el meu equip els edita amb diversos inicis diferents perquè vegis quin funciona millor."
+    },
+    "organic": {
+      "h1": "Vídeos per a les xarxes del teu negoci",
+      "intro": "Preparo un pla de temes, gravo i edito els vídeos amb el teu logo i els teus colors perquè publiquis amb constància sense pensar cada setmana què penjar. Treballo amb packs mensuals."
+    },
+    "corporate": {
+      "h1": "Vídeo corporatiu per a la teva empresa",
+      "intro": "Un vídeo per explicar què fas en un minut i donar bona imatge. Escric el guió, gravo en 4K, i el meu equip hi afegeix rètols animats i prepara versions per a la teva web, el teu equip comercial i els teus esdeveniments."
+    }
+  },
+  "casespage": {
+    "h1": "Casos reals",
+    "intro": "Campanyes reals en què els meus vídeos han generat conversions, leads i trànsit de qualitat. Cada cas ensenya el vídeo i els resultats que va compartir el client.",
+    "see": "Veure el cas →"
+  },
+  "casepage": {
+    "client": "Client",
+    "sector": "Sector",
+    "need": "Què necessitava",
+    "did": "Què vam fer",
+    "results": "Resultats",
+    "testimonial": "El que diu el client",
+    "want": "Vols alguna cosa així per al teu negoci?"
+  },
+  "aboutpage": {
+    "h1": "Sobre mi",
+    "facts": "En resum",
+    "name": "Nom",
+    "name_v": "Pol Morera de Frutos (professionalment, Pol Morera)",
+    "what": "Què faig",
+    "what_v": "Creador UGC i productor de vídeo",
+    "where": "On",
+    "where_v": "Barcelona, per a tot Espanya",
+    "track": "Trajectòria",
+    "track_v": "Més de 1.000 vídeos per a més de 300 marques",
+    "langs": "Idiomes",
+    "langs_v": "Castellà, català i anglès",
+    "services": "Serveis",
+    "profiles": "Perfils oficials",
+    "img_alt": "Pol Morera, creador UGC a Barcelona"
+  },
+  "thanks": {
+    "h1": "Gràcies!",
+    "always": "He rebut la teva sol·licitud. Et responc en menys de 24 h en dies laborables.",
+    "proposal": "En 2 dies laborables et dic quins 3 vídeos necessita el teu negoci.",
+    "home": "Tornar a la portada"
+  },
+  "notfound": {
+    "h1": "Aquesta pàgina no existeix",
+    "text": "Potser l'enllaç està malament o la pàgina s'ha mogut.",
+    "home": "Anar a la portada",
+    "contact": "Contactar"
+  },
+  "footer_cols": {
+    "services": "Serveis",
+    "cases": "Casos",
+    "about": "Sobre mi",
+    "all_cases": "Tots els casos"
   }
 }

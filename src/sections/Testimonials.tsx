@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Star } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
@@ -159,6 +159,9 @@ function Card({ item }: { item: Item }) {
 }
 
 export default function Testimonials() {
+  // La segunda copia de la tira (para el bucle) se añade al montar, no en el HTML
+  const [loopCopy, setLoopCopy] = useState(false);
+  useEffect(() => setLoopCopy(true), []);
   const { t, i18n } = useTranslation();
   const items = t("testimonials.items", { returnObjects: true }) as Item[];
 
@@ -202,8 +205,13 @@ export default function Testimonials() {
         aria-live="off"
       >
         <div className="testimonials-track py-2">
-          {Array.isArray(items) &&
-            [...items, ...items].map((item, i) => <Card key={i} item={item} />)}
+          {Array.isArray(items) && items.map((item, i) => <Card key={i} item={item} />)}
+          {/* Copia para el bucle: solo en el navegador, oculta a lectores y al teclado */}
+          {loopCopy && Array.isArray(items) && (
+            <div className="contents" aria-hidden="true" {...{ inert: "" }}>
+              {items.map((item, i) => <Card key={`copy-${i}`} item={item} />)}
+            </div>
+          )}
         </div>
       </div>
     </section>

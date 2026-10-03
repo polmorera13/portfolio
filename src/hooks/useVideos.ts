@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { videos as staticCatalog } from "../data/videos";
 import { fetchVideos } from "../lib/api";
+import { getInitialData } from "../lib/initialData";
 import type { Video, VideoCategory } from "../types/video";
 
 // Catálogo en vivo desde la API (VPS). Cae al catálogo estático empaquetado si
@@ -23,8 +24,10 @@ function loadCatalog(): Promise<Video[]> {
 }
 
 export function useVideos(category?: VideoCategory | VideoCategory[]) {
-  const [all, setAll] = useState<Video[]>(cache ?? staticCatalog);
-  const [loading, setLoading] = useState(cache === null);
+  // Primero, los datos prerenderizados (iguales en el HTML y en la primera pintura)
+  const initial = getInitialData()?.videos;
+  const [all, setAll] = useState<Video[]>(cache ?? initial ?? staticCatalog);
+  const [loading, setLoading] = useState(cache === null && !initial);
 
   useEffect(() => {
     let cancelled = false;

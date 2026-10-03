@@ -1,82 +1,68 @@
-import { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ROUTER_BASENAME } from './lib/paths';
-import Header from './components/Header';
-import Hero from './sections/Hero';
-import LogoMarquee from './sections/LogoMarquee';
-import Results from './sections/Results';
-import Cases from './sections/Cases';
-import Problem from './sections/Problem';
-import About from './sections/About';
-import Services from './sections/Services';
-import Process from './sections/Process';
-import Portfolio from './sections/Portfolio';
-import CTASection from './sections/CTASection';
-import Testimonials from './sections/Testimonials';
-import FAQ from './sections/FAQ';
-import Contact from './sections/Contact';
-import Footer from './sections/Footer';
+import { Suspense, lazy, type ReactNode } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/admin/ProtectedRoute';
-import ScrollProgressBar from './components/ScrollProgressBar';
-import MiniCTA from './components/MiniCTA';
-import MobileCTABar from './components/MobileCTABar';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import ServicePage from './pages/ServicePage';
+import CasesIndexPage from './pages/CasesIndexPage';
+import CasePage from './pages/CasePage';
+import AboutPage from './pages/AboutPage';
+import ThanksPage from './pages/ThanksPage';
+import NotFoundPage from './pages/NotFoundPage';
+import Legal from './pages/Legal';
+import { PageContext } from './lib/page';
+import { LOCALES, PATHS, LEGAL_PATHS, type PageKey } from './routes';
+import type { Locale } from './types';
 
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
-const Legal = lazy(() => import('./pages/Legal'));
 
-function PublicSite() {
+// Contenido de cada página del mapa de URLs (routes.ts)
+function pageElement(key: PageKey): ReactNode {
+  switch (key) {
+    case 'home': return <HomePage />;
+    case 'svc-ads': return <ServicePage service="ads" />;
+    case 'svc-social': return <ServicePage service="organic" />;
+    case 'svc-corporate': return <ServicePage service="corporate" />;
+    case 'cases': return <CasesIndexPage />;
+    case 'case-masterd': return <CasePage slug="masterd" />;
+    case 'case-dogfy': return <CasePage slug="dogfy" />;
+    case 'about': return <AboutPage />;
+    case 'thanks': return <ThanksPage />;
+  }
+}
+
+function withPage(key: PageKey | null, lang: Locale, node: ReactNode) {
   return (
-    <div className="min-h-screen bg-navy">
-      <ScrollProgressBar />
-      <Header />
-      <main>
-        <Hero />
-        <LogoMarquee />
-        <Portfolio />
-        <MiniCTA textKey="minicta.after_work" compactTop />
-        <Results />
-        <Cases />
-        <Problem />
-        <Services />
-        <Testimonials />
-        <MiniCTA
-          textKey="minicta.after_testimonials"
-          variant="white"
-          buttonKey="minicta.testimonials_button"
-          noteKey="minicta.testimonials_note"
-        />
-        <Process />
-        <About />
-        <CTASection />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-      <MobileCTABar />
-    </div>
+    <PageContext.Provider value={{ key, lang }}>
+      <Layout>{node}</Layout>
+    </PageContext.Provider>
   );
 }
 
-export default function App() {
+/** Rutas de la web (las usan el navegador y el prerenderizado). */
+export default function App({ fallbackLang = 'es' }: { fallbackLang?: Locale }) {
   return (
-    <BrowserRouter basename={ROUTER_BASENAME}>
-      <Suspense fallback={<div className="min-h-screen bg-navy" />}>
-        <Routes>
-          <Route path="/" element={<PublicSite />} />
-          <Route path="/politica-privacidad" element={<Legal doc="privacy" />} />
-          <Route path="/aviso-legal" element={<Legal doc="legal" />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <Admin />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Suspense fallback={<div className="min-h-screen bg-navy" />}>
+      <Routes>
+        {(Object.keys(PATHS) as PageKey[]).flatMap((key) =>
+          LOCALES.map((lang) => (
+            <Route key={`${key}-${lang}`} path={PATHS[key][lang]} element={withPage(key, lang, pageElement(key))} />
+          )),
+        )}
+        <Route path={LEGAL_PATHS.privacy} element={<PageContext.Provider value={{ key: null, lang: fallbackLang }}><Legal doc="privacy" /></PageContext.Provider>} />
+        <Route path={LEGAL_PATHS.legal} element={<PageContext.Provider value={{ key: null, lang: fallbackLang }}><Legal doc="legal" /></PageContext.Provider>} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={withPage(null, fallbackLang, <NotFoundPage />)} />
+      </Routes>
+    </Suspense>
   );
 }

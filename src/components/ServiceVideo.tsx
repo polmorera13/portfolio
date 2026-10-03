@@ -20,7 +20,8 @@ export default function ServiceVideo({
   style,
 }: {
   file: string;
-  aspect: string;
+  /** Proporción fija ("9 / 16"); si no se pasa, la marca el className (aspect-[…]). */
+  aspect?: string;
   className?: string;
   style?: React.CSSProperties;
 }) {
@@ -30,7 +31,11 @@ export default function ServiceVideo({
   const [inView, setInView] = useState(false);
   const [muted, setMuted] = useState(true);
   const [visible, setVisible] = useState(false); // para el fundido
-  const [reduced] = useState(prefersReducedMotion);
+  // Se lee en el navegador (no al prerenderizar) para que el HTML coincida
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => setReduced(prefersReducedMotion()), []);
+  // El archivo no se pide hasta que el vídeo entra en pantalla por primera vez
+  const [armed, setArmed] = useState(false);
   const [manualPlay, setManualPlay] = useState(false);
 
   const src = getPublicUrl(file);
@@ -40,7 +45,10 @@ export default function ServiceVideo({
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.25 });
+    const io = new IntersectionObserver(([e]) => {
+      setInView(e.isIntersecting);
+      if (e.isIntersecting) setArmed(true);
+    }, { threshold: 0.25 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -80,17 +88,17 @@ export default function ServiceVideo({
     <div
       ref={wrapRef}
       className={`relative overflow-hidden rounded-xl bg-charcoal ${className}`}
-      style={{ aspectRatio: aspect, ...style }}
+      style={{ ...(aspect ? { aspectRatio: aspect } : {}), ...style }}
     >
       <video
         key={file}
         ref={videoRef}
-        src={src}
+        src={armed ? src : undefined}
         poster={poster}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload={armed ? "metadata" : "none"}
         className="absolute inset-0 w-full h-full object-cover"
         style={{ opacity: visible ? 1 : 0, transition: "opacity 250ms ease-out" }}
       />
@@ -123,7 +131,7 @@ export default function ServiceVideo({
  * "Vídeo para tu empresa". Solo se reproduce uno (el activo); los demás
  * enseñan su miniatura sin descargar el vídeo. Al pulsar uno, pasa a ser el activo.
  */
-export function ServiceVideoStack({ files, style }: { files: string[]; style?: React.CSSProperties }) {
+export function ServiceVideoStack({ files, style, className = "" }: { files: string[]; style?: React.CSSProperties; className?: string }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
 
@@ -131,7 +139,7 @@ export function ServiceVideoStack({ files, style }: { files: string[]; style?: R
   useEffect(() => setActive(0), [files.join("|")]);
 
   return (
-    <div data-video-stack className="flex flex-col gap-3" style={style}>
+    <div data-video-stack className={`flex flex-col gap-3 ${className}`} style={style}>
       {files.map((file, i) =>
         i === active ? (
           <ServiceVideo key={file} file={file} aspect="16 / 9" className="w-full" />

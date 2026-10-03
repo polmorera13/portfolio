@@ -1,18 +1,13 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ChevronDown } from "lucide-react";
-import { fadeUp, staggerContainer, viewportOnce, ease } from "../lib/motion";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { faqItems } from "../data/faq";
-import type { Locale } from "../types";
+import FaqList from "../components/FaqList";
 
+// Preguntas frecuentes de la portada: las 12, con la respuesta en el HTML.
+// En móvil se ven las 6 primeras y "Ver más preguntas" muestra el resto.
 export default function FAQ() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language as Locale;
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // En móvil se ven las 6 primeras y un botón despliega el resto.
-  const [showAll, setShowAll] = useState(false);
-  const MOBILE_VISIBLE = 6;
+  const { t } = useTranslation();
 
   return (
     <section className="section-gap bg-charcoal/20">
@@ -37,54 +32,8 @@ export default function FAQ() {
             </motion.h2>
           </div>
 
-          <motion.div variants={fadeUp} className="max-w-3xl w-full flex flex-col gap-3" style={{ marginLeft: 0 }}>
-            {faqItems.map((item, i) => (
-              <div
-                key={i}
-                className={`border border-charcoal rounded-xl overflow-hidden hover:border-brand-blue/30 transition-colors duration-200${
-                  !showAll && i >= MOBILE_VISIBLE ? " hidden md:block" : ""
-                }`}
-              >
-                <button
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-                  aria-expanded={openIndex === i}
-                >
-                  <span className="text-off-white font-semibold text-base">{item.question[lang]}</span>
-                  <ChevronDown
-                    size={18}
-                    className={`text-brand-blue shrink-0 transition-transform duration-300 ${
-                      openIndex === i ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {openIndex === i && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease }}
-                    >
-                      <div className="px-6 pb-5 text-steel-blue text-sm leading-relaxed border-t border-charcoal/50 pt-4">
-                        {item.answer[lang]}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-
-            {!showAll && faqItems.length > MOBILE_VISIBLE && (
-              <button
-                onClick={() => setShowAll(true)}
-                className="md:hidden self-start mt-2 px-4 py-1.5 rounded-full text-sm font-semibold border border-charcoal text-steel-blue hover:border-steel-blue/60 hover:text-off-white transition-all duration-200"
-              >
-                {t("faq.more")}
-              </button>
-            )}
+          <motion.div variants={fadeUp}>
+            <FaqList items={faqItems} mobileVisible={6} />
           </motion.div>
         </motion.div>
       </div>

@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { withBase } from "../lib/paths";
+import { usePage } from "../lib/page";
+import { pageHref } from "../routes";
 
 // "Quién está detrás": texto a la izquierda y foto a la derecha en escritorio
 // (al revés que "El problema", que va justo antes); en móvil, foto arriba.
 export default function About() {
   const { t } = useTranslation();
+  const { lang } = usePage();
 
   return (
     <section id="sobre-mi" className="section-gap">
@@ -78,6 +81,9 @@ export default function About() {
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; }}
               >
                 {t("about.cta")}
+              </a>
+              <a href={pageHref("about", lang)} className="ml-6 text-steel-blue font-semibold text-sm hover:text-off-white transition-colors">
+                {t("links.more_about")}
               </a>
             </motion.div>
           </div>

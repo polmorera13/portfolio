@@ -42,6 +42,10 @@ interface VideoPlayerProps {
   autoPlay?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  /** Miniatura sin lazy (tarjetas visibles al cargar, como las de la portada). */
+  eager?: boolean;
+  /** Sin título ni etiqueta encima (cuando el texto ya está en otra parte del HTML). */
+  hideLabels?: boolean;
 }
 
 const BRAND_BLUE = "oklch(58% 0.14 240)";
@@ -61,10 +65,17 @@ export default function VideoPlayer({
   autoPlay = false,
   className = "",
   style,
+  eager = false,
+  hideLabels = false,
 }: VideoPlayerProps) {
   const { t } = useTranslation();
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  // El <video> no existe hasta la primera interacción (ratón encima, clic o
+  // teclado): así, al cargar la página no se descarga ningún archivo de vídeo.
+  const [activated, setActivated] = useState(autoPlay);
+  const pendingPlayRef = useRef(false);
   const rafRef = useRef<number>(0);
   const isDraggingRef = useRef(false);
   const manualControlRef = useRef(false);
@@ -102,10 +113,35 @@ export default function VideoPlayer({
 
   useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
 
+  // Recién creado el <video>, reproducir si se pidió
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!activated || !el || !pendingPlayRef.current) return;
+    pendingPlayRef.current = false;
+    stopOthers(stopFn);
+    el.play().catch(() => {});
+    setIsPlaying(true);
+    scheduleRaf();
+  }, [activated, stopFn, scheduleRaf]);
+
+  // Si sale de la pantalla mientras suena, se pausa
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card || !isPlaying || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([e]) => { if (!e.isIntersecting) stopFn(); }, { threshold: 0 });
+    io.observe(card);
+    return () => io.disconnect();
+  }, [isPlaying, stopFn]);
+
   // ── Play / Pause helpers ────────────────────────────────────────────────────
   const play = useCallback(() => {
     const el = videoRef.current;
-    if (!el) return;
+    if (!el) {
+      // Primera vez: crear el vídeo y reproducir en cuanto exista
+      pendingPlayRef.current = true;
+      setActivated(true);
+      return;
+    }
     stopOthers(stopFn);
     el.play().catch(() => {});
     setIsPlaying(true);
@@ -209,7 +245,15 @@ export default function VideoPlayer({
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       const el = videoRef.current;
-      if (!el) return;
+      if (!el) {
+        // Aún no existe el vídeo: Intro o espacio lo crean y lo reproducen
+        if (e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          manualControlRef.current = true;
+          play();
+        }
+        return;
+      }
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
         manualControlRef.current = true;
@@ -235,10 +279,14 @@ export default function VideoPlayer({
   );
 
   const arLabel = title ?? client ?? (aspectRatio === "9:16" ? "Vertical video" : "Horizontal video");
-  const hasLabel = !!(title || client);
+  const hasLabel = !hideLabels && !!(title || client);
+  // Texto alternativo de la miniatura: "Vídeo UGC para Verisure (anuncio · alarmas)"
+  const posterAlt = title ? `${t("player.video_of")} ${title}${client ? ` (${client.toLowerCase()})` : ""}` : "";
+  const [pw, ph] = aspectRatio === "9:16" ? [405, 720] : [1280, 720];
 
   return (
     <div
+      ref={cardRef}
       className={`vp-card ${className}`}
       style={{
         aspectRatio: aspectRatio === "9:16" ? "9/16" : "16/9",
@@ -271,8 +319,11 @@ export default function VideoPlayer({
       {poster && (
         <img
           src={poster}
-          alt=""
-          loading="lazy"
+          alt={posterAlt}
+          width={pw}
+          height={ph}
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
           style={{
             position: "absolute",
             inset: 0,
@@ -285,7 +336,8 @@ export default function VideoPlayer({
         />
       )}
 
-      {/* Video */}
+      {/* Video: solo existe tras la primera interacción */}
+      {activated && (
       <video
         ref={videoRef}
         src={src}
@@ -305,6 +357,7 @@ export default function VideoPlayer({
           transition: "opacity 300ms",
         }}
       />
+      )}
 
       {/* Center play affordance — visible while idle, signals the tile is playable */}
       <div
@@ -536,7 +589,7 @@ export default function VideoPlayer({
 
       </div>{/* end inner clip frame */}
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .vp-card:focus-visible { outline: 1px solid ${BRAND_BLUE}; outline-offset: 2px; }
         button.focus-visible\\:outline:focus-visible { outline: 1px solid ${BRAND_BLUE}; outline-offset: 2px; }
         @media (max-width: 640px) {
@@ -544,7 +597,7 @@ export default function VideoPlayer({
           .vp-labels p:first-child { font-size: 0.875rem !important; }
           .vp-labels p:last-child { font-size: 0.75rem !important; }
         }
-      `}</style>
+      ` }} />
     </div>
   );
 }

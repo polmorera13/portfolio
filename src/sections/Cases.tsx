@@ -1,32 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
-import { fetchCases, type CaseStudy, type Tri } from "../lib/api";
+import type { CaseStudy, Tri } from "../lib/api";
 import { getPublicUrl } from "../lib/supabase";
-import VideoPlayer from "../components/VideoPlayer";
 import { withBase } from "../lib/paths";
+import { usePage } from "../lib/page";
+import { pageHref } from "../routes";
+import { caseDetailByBrand } from "../data/caseDetails";
+import { useCases } from "../hooks/useCases";
+import VideoPlayer from "../components/VideoPlayer";
 
 // "Casos de éxito / KPIs": carrusel de casos (uno visible cada vez), gestionado
 // desde el panel (/api/cases). Si no hay casos publicados, la sección no se muestra.
+// Cada texto aparece una sola vez en el HTML: el orden de móvil y escritorio se
+// consigue con CSS (grid-template-areas), no duplicando bloques.
 
-const tr = (v: Tri | undefined, lang: string) =>
+export const tr = (v: Tri | undefined, lang: string) =>
   (v && ((v as Record<string, string>)[lang] || v.es)) || "";
 
 const mediaUrl = (p: string) => (p.startsWith("/") ? withBase(p) : getPublicUrl(p));
 
 export default function Cases() {
   const { t } = useTranslation();
-  const [cases, setCases] = useState<CaseStudy[]>([]);
+  const cases = useCases();
   const [index, setIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetchCases().then((c) => { if (!cancelled) setCases(c); }).catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
 
   // Caso visible según el desplazamiento (deslizar, trackpad o flechas)
   const onScroll = () => {
@@ -115,13 +115,72 @@ export default function Cases() {
           </motion.div>
         </motion.div>
       </div>
-      <style>{`#casos .snap-x::-webkit-scrollbar{display:none}`}</style>
+      <style dangerouslySetInnerHTML={{ __html: `
+        #casos .snap-x::-webkit-scrollbar{display:none}
+        .case-grid{display:grid;gap:1.5rem;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "media" "body"}
+        @media (min-width:1024px){.case-grid{column-gap:2.5rem;row-gap:1.5rem;grid-template-columns:45fr 55fr;grid-template-areas:"media head" "media body";align-items:start}}
+      ` }} />
     </section>
   );
 }
 
-// ── Tarjeta de un caso ──────────────────────────────────────────────────────
+// ── Tarjeta de un caso (portada) ─────────────────────────────────────────────
 function CaseCard({ c }: { c: CaseStudy }) {
+  const { t, i18n } = useTranslation();
+  const { lang } = usePage();
+  const detail = caseDetailByBrand(c.brandName);
+
+  return (
+    <article className="rounded-[22px] border border-off-white/10 bg-charcoal/50 p-5 sm:p-7 lg:p-9">
+      <div className="case-grid">
+        <div style={{ gridArea: "head" }} className="flex flex-col gap-3">
+          <CaseHeader c={c} />
+          <h3 className="text-off-white font-bold" style={{ fontSize: "clamp(22px, 2.2vw, 30px)", lineHeight: 1.2 }}>
+            {tr(c.title, i18n.language)}
+          </h3>
+        </div>
+        <div style={{ gridArea: "media" }}>
+          <CaseMedia c={c} />
+        </div>
+        <div style={{ gridArea: "body" }} className="flex flex-col gap-6 min-w-0">
+          <CaseResults c={c} />
+          {detail && (
+            <a href={pageHref(detail.page, lang)} className="self-start text-brand-blue font-semibold hover:text-off-white transition-colors">
+              {t("links.full_case")}
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** Logo (o nombre) de la marca y categoría del caso. */
+export function CaseHeader({ c }: { c: CaseStudy }) {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex items-center gap-3 min-w-0">
+        {c.brandLogo ? (
+          <span className="shrink-0 rounded-lg bg-white px-2.5 py-1.5">
+            <img src={mediaUrl(c.brandLogo)} alt={c.brandName} width={110} height={20} className="h-5 w-auto max-w-[110px] object-contain" />
+          </span>
+        ) : (
+          <span className="text-off-white font-bold text-lg">{c.brandName}</span>
+        )}
+      </div>
+      {tr(c.campaignType, lang) && (
+        <span className="rounded-full border border-off-white/15 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-steel-blue uppercase">
+          {tr(c.campaignType, lang)}
+        </span>
+      )}
+    </div>
+  );
+}
+
+/** KPIs, contexto, cita, gráfica, aprendizaje, evidencias y aviso de un caso. */
+export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?: boolean }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -131,122 +190,79 @@ function CaseCard({ c }: { c: CaseStudy }) {
   const maxBar = Math.max(1, ...bars.map((b) => b.value));
   const evidence = c.evidence.filter((e) => e.visible && e.image);
 
-  const header = (
-    <div className="flex flex-wrap items-center justify-between gap-3">
-      <div className="flex items-center gap-3 min-w-0">
-        {c.brandLogo && (
-          <span className="shrink-0 rounded-lg bg-white px-2.5 py-1.5">
-            <img src={mediaUrl(c.brandLogo)} alt={c.brandName} className="h-5 w-auto max-w-[110px] object-contain" />
-          </span>
-        )}
-        {!c.brandLogo && <span className="text-off-white font-bold text-lg">{c.brandName}</span>}
-      </div>
-      {tr(c.campaignType, lang) && (
-        <span className="rounded-full border border-off-white/15 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-steel-blue uppercase">
-          {tr(c.campaignType, lang)}
-        </span>
-      )}
-    </div>
-  );
-  const title = (
-    <h3 className="text-off-white font-bold" style={{ fontSize: "clamp(22px, 2.2vw, 30px)", lineHeight: 1.2 }}>
-      {tr(c.title, lang)}
-    </h3>
-  );
-
   return (
-    <article className="rounded-[22px] border border-off-white/10 bg-charcoal/50 p-5 sm:p-7 lg:p-9">
-      {/* Móvil: marca y título encima del vídeo */}
-      <div className="lg:hidden flex flex-col gap-3 mb-5">
-        {header}
-        {title}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-[45fr_55fr] gap-6 lg:gap-10 items-start">
-        <CaseMedia c={c} />
-
-        <div className="flex flex-col gap-6 min-w-0">
-          <div className="hidden lg:flex flex-col gap-3">
-            {header}
-            {title}
-          </div>
-
-          {/* KPIs */}
-          {kpis.length > 0 && (
-            <div className={`grid grid-cols-2 ${kpis.length >= 3 ? "lg:grid-cols-3" : ""} gap-x-6 gap-y-5`}>
-              {kpis.map((k, i) => (
-                <div key={i} className="flex flex-col gap-1">
-                  <span className="text-brand-blue font-bold tabular-nums leading-none" style={{ fontSize: "clamp(26px, 2.6vw, 38px)" }}>
-                    {k.value}
-                  </span>
-                  <span className="text-off-white font-semibold" style={{ fontSize: "15px", lineHeight: 1.35 }}>{tr(k.label, lang)}</span>
-                  {tr(k.context, lang) && <span className="text-steel-blue text-sm leading-snug">{tr(k.context, lang)}</span>}
-                </div>
-              ))}
+    <div className="flex flex-col gap-6">
+      {kpis.length > 0 && (
+        <div className={`grid grid-cols-2 ${kpis.length >= 3 ? "lg:grid-cols-3" : ""} gap-x-6 gap-y-5`}>
+          {kpis.map((k, i) => (
+            <div key={i} className="flex flex-col gap-1">
+              <span className="text-brand-blue font-bold tabular-nums leading-none" style={{ fontSize: "clamp(26px, 2.6vw, 38px)" }}>
+                {k.value}
+              </span>
+              <span className="text-off-white font-semibold" style={{ fontSize: "15px", lineHeight: 1.35 }}>{tr(k.label, lang)}</span>
+              {tr(k.context, lang) && <span className="text-steel-blue text-sm leading-snug">{tr(k.context, lang)}</span>}
             </div>
-          )}
+          ))}
+        </div>
+      )}
 
-          {tr(c.description, lang) && (
-            <p className="text-off-white/90" style={{ fontSize: "16px", lineHeight: 1.6 }}>{tr(c.description, lang)}</p>
-          )}
+      {tr(c.description, lang) && (
+        <p className="text-off-white/90" style={{ fontSize: "16px", lineHeight: 1.6 }}>{tr(c.description, lang)}</p>
+      )}
 
-          {tr(c.quote, lang) && (
-            <blockquote className="border-l-2 border-brand-blue pl-4">
-              <p className="text-off-white italic" style={{ fontSize: "17px", lineHeight: 1.5 }}>“{tr(c.quote, lang)}”</p>
-              {c.quoteAuthor && <footer className="text-steel-blue text-sm mt-1">— {c.quoteAuthor}</footer>}
-            </blockquote>
-          )}
+      {showQuote && tr(c.quote, lang) && (
+        <blockquote className="border-l-2 border-brand-blue pl-4">
+          <p className="text-off-white italic" style={{ fontSize: "17px", lineHeight: 1.5 }}>“{tr(c.quote, lang)}”</p>
+          {c.quoteAuthor && <footer className="text-steel-blue text-sm mt-1">— {c.quoteAuthor}</footer>}
+        </blockquote>
+      )}
 
-          {/* Gráfica de barras */}
-          {bars.length > 0 && (
-            <div className="rounded-xl border border-off-white/10 bg-navy/40 p-4 sm:p-5 flex flex-col gap-3">
-              {tr(c.chart.title, lang) && (
-                <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{tr(c.chart.title, lang)}</span>
-              )}
-              {bars.map((b, i) => (
-                <div key={i} className="flex flex-col gap-1.5">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span className="text-off-white text-sm">{tr(b.label, lang)}</span>
-                    <span className="text-off-white font-bold text-sm tabular-nums shrink-0">{b.display || b.value}</span>
-                  </div>
-                  <div className="h-2.5 rounded-full bg-off-white/10 overflow-hidden">
-                    <div
-                      className={`h-full rounded-full ${i === 0 ? "bg-brand-blue" : "bg-steel-blue/60"}`}
-                      style={{ width: `${Math.max(2, (b.value / maxBar) * 100)}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+      {bars.length > 0 && (
+        <div className="rounded-xl border border-off-white/10 bg-navy/40 p-4 sm:p-5 flex flex-col gap-3">
+          {tr(c.chart.title, lang) && (
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{tr(c.chart.title, lang)}</span>
           )}
-
-          {tr(c.insight, lang) && (
-            <div className="rounded-xl bg-brand-blue/10 border border-brand-blue/25 p-4 sm:p-5">
-              <span className="block text-[11px] font-bold tracking-[0.14em] uppercase text-brand-blue mb-1.5">{t("cases.insight")}</span>
-              <p className="text-off-white" style={{ fontSize: "15px", lineHeight: 1.55 }}>{tr(c.insight, lang)}</p>
-            </div>
-          )}
-
-          {/* Evidencias: miniaturas que se abren en grande */}
-          {evidence.length > 0 && (
-            <div className="flex flex-col gap-2">
-              <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{t("cases.evidence")}</span>
-              <div className="flex gap-3 flex-wrap">
-                {evidence.map((e, i) => (
-                  <button key={i} type="button" onClick={() => setLightbox(i)}
-                    className="w-28 h-20 rounded-lg overflow-hidden border border-off-white/15 hover:border-brand-blue transition-colors">
-                    <img src={mediaUrl(e.image)} alt={tr(e.alt, lang)} loading="lazy" className="w-full h-full object-cover" />
-                  </button>
-                ))}
+          {bars.map((b, i) => (
+            <div key={i} className="flex flex-col gap-1.5">
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="text-off-white text-sm">{tr(b.label, lang)}</span>
+                <span className="text-off-white font-bold text-sm tabular-nums shrink-0">{b.display || b.value}</span>
+              </div>
+              <div className="h-2.5 rounded-full bg-off-white/10 overflow-hidden" aria-hidden="true">
+                <div
+                  className={`h-full rounded-full ${i === 0 ? "bg-brand-blue" : "bg-steel-blue/60"}`}
+                  style={{ width: `${Math.max(2, (b.value / maxBar) * 100)}%` }}
+                />
               </div>
             </div>
-          )}
-
-          {tr(c.disclaimer, lang) && (
-            <p className="text-steel-blue/80 text-xs leading-relaxed">{tr(c.disclaimer, lang)}</p>
-          )}
+          ))}
         </div>
-      </div>
+      )}
+
+      {tr(c.insight, lang) && (
+        <div className="rounded-xl bg-brand-blue/10 border border-brand-blue/25 p-4 sm:p-5">
+          <span className="block text-[11px] font-bold tracking-[0.14em] uppercase text-brand-blue mb-1.5">{t("cases.insight")}</span>
+          <p className="text-off-white" style={{ fontSize: "15px", lineHeight: 1.55 }}>{tr(c.insight, lang)}</p>
+        </div>
+      )}
+
+      {evidence.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{t("cases.evidence")}</span>
+          <div className="flex gap-3 flex-wrap">
+            {evidence.map((e, i) => (
+              <button key={i} type="button" onClick={() => setLightbox(i)}
+                className="w-28 h-20 rounded-lg overflow-hidden border border-off-white/15 hover:border-brand-blue transition-colors">
+                <img src={mediaUrl(e.image)} alt={tr(e.alt, lang)} width={112} height={80} loading="lazy" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {tr(c.disclaimer, lang) && (
+        <p className="text-steel-blue/80 text-xs leading-relaxed">{tr(c.disclaimer, lang)}</p>
+      )}
 
       {lightbox !== null && evidence[lightbox] && (
         <div className="fixed inset-0 z-[60] bg-black/85 flex items-center justify-center p-4" role="dialog" aria-modal="true"
@@ -263,28 +279,30 @@ function CaseCard({ c }: { c: CaseStudy }) {
           </figure>
         </div>
       )}
-    </article>
+    </div>
   );
 }
 
 // ── Vídeo(s) del caso ────────────────────────────────────────────────────────
-// 0 vídeos: marco con la marca y la plataforma. 1: reproductor. 2+: reproductor
+// 0 vídeos: marco con la marca y la cifra principal. 1: reproductor. 2+: reproductor
 // principal y selector debajo. Solo se monta el vídeo activo.
-function CaseMedia({ c }: { c: CaseStudy }) {
+export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean }) {
   const { i18n } = useTranslation();
   const lang = i18n.language;
   const videos = c.videos.filter((v) => v.file);
   const [active, setActive] = useState(0);
   const current = videos[Math.min(active, videos.length - 1)];
-  const frameStyle = { maxHeight: 560, aspectRatio: current?.aspect === "16:9" ? "16 / 9" : "9 / 16" } as React.CSSProperties;
-  // Cifra principal (para el marco cuando aún no hay vídeo)
+  const maxH = large ? 640 : 560;
+  const frameStyle = { maxHeight: maxH, aspectRatio: current?.aspect === "16:9" ? "16 / 9" : "9 / 16" } as React.CSSProperties;
+  // Cifra principal (para el marco cuando aún no hay vídeo). Es decorativa: se
+  // pinta con CSS (content: attr()) para no repetir el texto de los KPIs en el HTML.
   const lead = (c.kpis.find((k) => k.highlight) ?? c.kpis[0]) || null;
 
   return (
     <div className="flex flex-col items-center gap-3 w-full">
       {current ? (
         <div className="w-full flex justify-center">
-          <div style={{ ...frameStyle, width: current.aspect === "16:9" ? "100%" : "min(100%, 315px)" }}>
+          <div style={{ ...frameStyle, width: current.aspect === "16:9" ? "100%" : `min(100%, ${Math.round((maxH * 9) / 16)}px)` }}>
             <VideoPlayer
               key={current.file}
               src={getPublicUrl(current.file)}
@@ -296,34 +314,37 @@ function CaseMedia({ c }: { c: CaseStudy }) {
           </div>
         </div>
       ) : (
-        // Sin vídeo todavía: tarjeta visual con la marca, la cifra principal y la plataforma.
-        // En móvil es una franja compacta; en escritorio ocupa el marco vertical.
         <div
           className="w-full lg:max-w-[315px] rounded-xl border border-off-white/10 flex flex-row lg:flex-col items-center justify-between lg:justify-center gap-4 lg:gap-6 p-5 lg:p-6 text-left lg:text-center lg:aspect-[9/16] lg:max-h-[560px]"
           style={{
             background: "radial-gradient(120% 90% at 50% 20%, oklch(58% 0.14 240 / 0.28) 0%, oklch(20% 0.03 240 / 0.9) 70%)",
           }}
+          aria-hidden="true"
         >
           {c.brandLogo ? (
             <span className="shrink-0 rounded-xl bg-white px-3 py-2 lg:px-4 lg:py-3">
-              <img src={mediaUrl(c.brandLogo)} alt={c.brandName} className="h-6 lg:h-8 w-auto max-w-[120px] lg:max-w-[160px] object-contain" />
+              <img src={mediaUrl(c.brandLogo)} alt="" width={160} height={32} className="h-6 lg:h-8 w-auto max-w-[120px] lg:max-w-[160px] object-contain" />
             </span>
           ) : (
-            <span className="text-off-white font-bold text-xl lg:text-2xl">{c.brandName}</span>
+            <span className="case-attr text-off-white font-bold text-xl lg:text-2xl" data-text={c.brandName} />
           )}
           {lead && (
             <span className="flex flex-col items-end lg:items-center min-w-0">
-              <span className="text-brand-blue font-bold tabular-nums leading-none" style={{ fontSize: "clamp(34px, 5vw, 64px)" }}>
-                {lead.value}
-              </span>
-              <span className="text-off-white/90 text-sm font-semibold mt-1">{tr(lead.label, lang)}</span>
+              <span
+                className="case-attr text-brand-blue font-bold tabular-nums leading-none"
+                data-text={lead.value}
+                style={{ fontSize: "clamp(34px, 5vw, 64px)" }}
+              />
+              <span className="case-attr text-off-white/90 text-sm font-semibold mt-1" data-text={tr(lead.label, lang)} />
             </span>
           )}
           {c.platform && (
-            <span className="hidden lg:inline-block rounded-full border border-off-white/20 px-3 py-1 text-xs font-bold tracking-[0.14em] uppercase text-off-white/80">
-              {c.platform}
-            </span>
+            <span
+              className="case-attr hidden lg:inline-block rounded-full border border-off-white/20 px-3 py-1 text-xs font-bold tracking-[0.14em] uppercase text-off-white/80"
+              data-text={c.platform}
+            />
           )}
+          <style dangerouslySetInnerHTML={{ __html: `.case-attr::before{content:attr(data-text)}` }} />
         </div>
       )}
 

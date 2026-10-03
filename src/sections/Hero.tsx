@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
 import { fetchHero } from "../lib/api";
+import { getInitialData } from "../lib/initialData";
 import { HERO_SLOTS, DEFAULT_HERO, type HeroSlotDef, type HeroConfig } from "../data/heroSlots";
 import VideoPlayer from "../components/VideoPlayer";
 import { videoLabel } from "../data/sectors";
@@ -98,12 +99,13 @@ function HeroCluster({ slots }: { slots: ResolvedSlot[] }) {
               title={s.title}
               client={s.client}
               loop
+              eager
             />
           </div>
         </div>
       ))}
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes hero-video-float {
           0%, 100% { translate: 0 0; }
           50%      { translate: 0 -6px; }
@@ -134,7 +136,7 @@ function HeroCluster({ slots }: { slots: ResolvedSlot[] }) {
         @media (prefers-reduced-motion: reduce) {
           .hero-video-slot { animation: none !important; }
         }
-      `}</style>
+      ` }} />
     </div>
   );
 }
@@ -163,6 +165,8 @@ function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
             title={s.title}
             client={s.client}
             loop
+            eager
+            hideLabels
           />
         </div>
       ))}
@@ -185,6 +189,8 @@ function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
               title={s.title}
               client={s.client}
               loop
+              eager
+              hideLabels
             />
           </div>
         ))}
@@ -199,7 +205,7 @@ export default function Hero() {
   const { videos } = useVideos(["corporate", "ads", "organic", "street"]);
 
   // Asignación casilla → vídeo, en vivo desde la API (editable en /login).
-  const [hero, setHero] = useState<HeroConfig>(DEFAULT_HERO);
+  const [hero, setHero] = useState<HeroConfig>(getInitialData()?.hero ?? DEFAULT_HERO);
   useEffect(() => {
     let cancelled = false;
     fetchHero()
@@ -236,23 +242,7 @@ export default function Hero() {
 
           {/* Text block — always first on mobile */}
           <div className="flex flex-col order-1 md:order-1">
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.18, delay: 0 }}
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 300,
-                fontSize: "0.8125rem",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                color: STEEL,
-                marginBottom: "1rem",
-              }}
-            >
-              {t("hero.eyebrow")}
-            </motion.span>
-
+            {/* Un solo <h1> con dos partes: quién es (pequeño) y el titular (grande) */}
             <h1
               style={{
                 fontFamily: "Poppins, sans-serif",
@@ -265,13 +255,30 @@ export default function Hero() {
               }}
             >
               <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.18, delay: 0 }}
+                style={{
+                  display: "block",
+                  fontWeight: 300,
+                  fontSize: "0.8125rem",
+                  letterSpacing: "0.25em",
+                  lineHeight: 1.5,
+                  textTransform: "uppercase",
+                  color: STEEL,
+                  marginBottom: "1rem",
+                }}
+              >
+                {t("hero.eyebrow")}
+              </motion.span>{" "}
+              <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.48, ease, delay: 0.08 }}
                 style={{ display: "block" }}
               >
                 {t("hero.h1_line1")}
-              </motion.span>
+              </motion.span>{" "}
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -364,6 +371,7 @@ export default function Hero() {
               <HeroCluster slots={resolvedSlots} />
             </div>
             {/* Mobile: compact stacked layout */}
+            {/* Collage de móvil: mismas tarjetas sin etiquetas, para no repetir texto en el HTML */}
             <div className="block md:hidden">
               <HeroClusterMobile slots={resolvedSlots} />
             </div>

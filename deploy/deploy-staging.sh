@@ -5,7 +5,7 @@
 set -e
 cd "$(dirname "$0")/.."
 VPS=root@87.106.237.44
-MSYS_NO_PATHCONV=1 npx vite build --base=/test/ >/dev/null
+BASE_PATH=/test/ MSYS_NO_PATHCONV=1 npm run build >/dev/null
 tar -czf /tmp/staging-site.tgz -C dist .
 scp -q /tmp/staging-site.tgz deploy/Caddyfile.staging $VPS:/tmp/
 ssh -o BatchMode=yes $VPS 'set -e

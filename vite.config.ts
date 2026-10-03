@@ -39,7 +39,9 @@ function copyDirSafe(src: string, dest: string) {
 }
 
 // https://vitejs.dev/config/
+// BASE_PATH: "/" en producción y "/test/" en la copia de pruebas
 export default defineConfig({
+  base: process.env.BASE_PATH || '/',
   plugins: [react(), copyPublicSafe()],
   publicDir: false,
   optimizeDeps: {

@@ -6,21 +6,28 @@ import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { services } from "../data/services";
 import ServiceVideo, { ServiceVideoStack } from "../components/ServiceVideo";
 import { fetchServices, type ServicesConfig } from "../lib/api";
+import { getInitialData } from "../lib/initialData";
+import { usePage } from "../lib/page";
+import { pageHref, type PageKey } from "../routes";
 import type { Locale, Service } from "../types";
 
-// "Qué produzco"
+const PAGE_OF: Record<Service["configKey"], PageKey> = { ads: "svc-ads", organic: "svc-social", corporate: "svc-corporate" };
+
+// "Qué produzco". Una sola estructura para todos los tamaños (cada texto una vez
+// en el HTML); el orden lo cambia el CSS (grid-template-areas):
 // - Escritorio (≥1024): lista desplegable a la izquierda (uno abierto cada vez) y
 //   el vídeo del servicio abierto a la derecha, fijo mientras se baja.
-// - Móvil y tableta: pestañas, vídeo 4:5 y el texto del servicio activo.
-// El servicio abierto es el mismo estado en los dos diseños.
+// - Móvil y tableta: pestañas, vídeo y el texto del servicio activo.
+// Los servicios cerrados siguen en el HTML (ocultos), con todo su texto.
 export default function Services() {
   const { t, i18n } = useTranslation();
+  const { lang: pageLang } = usePage();
   const lang = (i18n.language as Locale) in services[0].title ? (i18n.language as Locale) : "es";
   const [active, setActive] = useState(0);
   const current = services[active];
 
   // Vídeos de cada servicio: los del panel (/api/services) o, si no hay, los por defecto
-  const [config, setConfig] = useState<ServicesConfig>({});
+  const [config, setConfig] = useState<ServicesConfig>(getInitialData()?.services ?? {});
   useEffect(() => {
     let cancelled = false;
     fetchServices().then((c) => { if (!cancelled && c) setConfig(c); }).catch(() => {});
@@ -57,74 +64,9 @@ export default function Services() {
             </motion.p>
           </div>
 
-          {/* ── Escritorio ─────────────────────────────────────────────────── */}
-          <motion.div variants={fadeUp} className="hidden lg:grid grid-cols-12 gap-10 items-start">
-            <div className="col-span-7 flex flex-col">
-              {services.map((s, i) => {
-                const open = i === active;
-                const panelId = `servicio-panel-${s.id}`;
-                return (
-                  <div key={s.id} className={open ? "" : "border-b border-charcoal"}>
-                    {open ? (
-                      <div className="bg-charcoal rounded-xl p-8 flex flex-col gap-5 my-2">
-                        <button
-                          type="button"
-                          aria-expanded
-                          aria-controls={panelId}
-                          onClick={() => setActive(i)}
-                          className="flex items-start justify-between gap-6 text-left rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-blue"
-                        >
-                          <h3 className="text-off-white font-bold" style={{ fontSize: "clamp(28px, 2.4vw, 32px)", lineHeight: 1.15 }}>
-                            {s.title[lang]}
-                          </h3>
-                          <Minus size={24} className="text-brand-blue shrink-0 mt-1" aria-hidden />
-                        </button>
-                        <div id={panelId}>
-                          <ServiceBody service={s} lang={lang} />
-                        </div>
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        aria-expanded={false}
-                        aria-controls={panelId}
-                        onClick={() => setActive(i)}
-                        className="w-full flex items-center justify-between gap-6 text-left py-6 px-2 group rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-blue"
-                      >
-                        <span className="flex flex-col gap-1">
-                          <span className="text-off-white font-bold group-hover:text-brand-blue transition-colors" style={{ fontSize: "clamp(28px, 2.4vw, 32px)", lineHeight: 1.15 }}>
-                            {s.title[lang]}
-                          </span>
-                          <span className="text-steel-blue text-base">{s.closedLine[lang]}</span>
-                        </span>
-                        <Plus size={24} className="text-brand-blue shrink-0" aria-hidden />
-                      </button>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="col-span-5 sticky top-24 flex justify-center">
-              {/* Altura máxima: 80 % de la pantalla */}
-              {current.configKey === "corporate" ? (
-                <ServiceVideoStack
-                  files={videosFor(current)}
-                  style={{ width: "min(100%, calc((80vh - 24px) / 3 * 16 / 9))" }}
-                />
-              ) : (
-                <ServiceVideo
-                  file={videosFor(current)[0]}
-                  aspect="9 / 16"
-                  style={{ width: "min(100%, calc(80vh * 9 / 16))" }}
-                />
-              )}
-            </div>
-          </motion.div>
-
-          {/* ── Móvil y tableta ────────────────────────────────────────────── */}
-          <motion.div variants={fadeUp} className="lg:hidden flex flex-col gap-4">
-            <div className="flex gap-2" role="tablist" aria-label={t("services.title")}>
+          <motion.div variants={fadeUp} className="svc-grid">
+            {/* Pestañas (solo móvil y tableta) */}
+            <div className="flex gap-2 lg:hidden" style={{ gridArea: "tabs" }} role="tablist" aria-label={t("services.title")}>
               {services.map((s, i) => (
                 <button
                   key={s.id}
@@ -132,12 +74,10 @@ export default function Services() {
                   role="tab"
                   id={`servicio-tab-${s.id}`}
                   aria-selected={i === active}
-                  aria-controls="servicio-tabpanel"
+                  aria-controls={`servicio-panel-${s.id}`}
                   onClick={() => setActive(i)}
                   className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue ${
-                    i === active
-                      ? "bg-brand-blue text-off-white"
-                      : "border border-steel-blue/40 text-steel-blue hover:text-off-white"
+                    i === active ? "bg-brand-blue text-off-white" : "border border-steel-blue/40 text-steel-blue hover:text-off-white"
                   }`}
                 >
                   {s.tab[lang]}
@@ -145,24 +85,70 @@ export default function Services() {
               ))}
             </div>
 
-            <div id="servicio-tabpanel" role="tabpanel" aria-labelledby={`servicio-tab-${current.id}`} className="flex flex-col gap-4">
+            {/* Vídeo del servicio abierto: un solo reproductor, que cambia de forma con el tamaño */}
+            <div style={{ gridArea: "video" }} className="lg:sticky lg:top-24 flex lg:justify-center">
               {current.configKey === "corporate" ? (
-                <ServiceVideoStack files={videosFor(current)} style={{ width: "100%", maxWidth: 480 }} />
+                <ServiceVideoStack files={videosFor(current)} className="w-full max-w-[480px] lg:max-w-none lg:w-[min(100%,calc((80vh_-_24px)/3*16/9))]" />
               ) : (
-                <ServiceVideo file={videosFor(current)[0]} aspect="4 / 5" className="w-full md:max-w-md" />
+                <ServiceVideo
+                  file={videosFor(current)[0]}
+                  className="w-full md:max-w-md aspect-[4/5] lg:aspect-[9/16] lg:max-w-none lg:w-[min(100%,calc(80vh*9/16))]"
+                />
               )}
-              <h3 className="text-off-white font-bold text-2xl leading-tight">{current.title[lang]}</h3>
-              <ServiceBody service={current} lang={lang} mobile />
+            </div>
+
+            {/* Lista: en escritorio, desplegable; en móvil se ve solo el servicio activo */}
+            <div style={{ gridArea: "list" }} className="flex flex-col">
+              {services.map((s, i) => {
+                const open = i === active;
+                const panelId = `servicio-panel-${s.id}`;
+                return (
+                  <div
+                    key={s.id}
+                    className={open ? "lg:bg-charcoal lg:rounded-xl lg:p-8 lg:my-2 flex flex-col gap-4 lg:gap-5" : "hidden lg:block border-b border-charcoal"}
+                  >
+                    <h3 className="m-0">
+                      <button
+                        type="button"
+                        aria-expanded={open}
+                        aria-controls={panelId}
+                        onClick={() => setActive(i)}
+                        className={`w-full flex items-start justify-between gap-6 text-left rounded-md group focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-blue ${open ? "" : "py-6 px-2"}`}
+                      >
+                        <span className="flex flex-col gap-1">
+                          <span
+                            className={`text-off-white font-bold ${open ? "" : "group-hover:text-brand-blue transition-colors"}`}
+                            style={{ fontSize: "clamp(24px, 2.4vw, 32px)", lineHeight: 1.15 }}
+                          >
+                            {s.title[lang]}
+                          </span>
+                          {!open && <span className="text-steel-blue text-base font-normal">{s.closedLine[lang]}</span>}
+                        </span>
+                        <span className="hidden lg:inline text-brand-blue shrink-0 mt-1" aria-hidden>
+                          {open ? <Minus size={24} /> : <Plus size={24} />}
+                        </span>
+                      </button>
+                    </h3>
+                    <div id={panelId} role="tabpanel" aria-labelledby={`servicio-tab-${s.id}`} hidden={!open}>
+                      <ServiceBody service={s} lang={lang} moreHref={pageHref(PAGE_OF[s.configKey], pageLang)} />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         </motion.div>
       </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .svc-grid{display:grid;gap:1rem;grid-template-columns:minmax(0,1fr);grid-template-areas:"tabs" "video" "list"}
+        @media (min-width:1024px){.svc-grid{gap:2.5rem;grid-template-columns:7fr 5fr;grid-template-areas:"list video";align-items:start}}
+      ` }} />
     </section>
   );
 }
 
 /** Contenido de un servicio abierto: "Ideal si…", puntos, etiqueta y botones. */
-function ServiceBody({ service, lang, mobile = false }: { service: Service; lang: Locale; mobile?: boolean }) {
+function ServiceBody({ service, lang, moreHref }: { service: Service; lang: Locale; moreHref: string }) {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-5">
@@ -180,7 +166,7 @@ function ServiceBody({ service, lang, mobile = false }: { service: Service; lang
       <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">
         {service.tag[lang]}
       </span>
-      <div className={`flex ${mobile ? "flex-col items-stretch gap-4" : "flex-row items-center gap-6"} mt-1`}>
+      <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-center lg:gap-6 mt-1">
         <a
           href="#contacto-propuesta"
           className="bg-brand-blue text-off-white font-semibold text-base px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.01]"
@@ -189,12 +175,15 @@ function ServiceBody({ service, lang, mobile = false }: { service: Service; lang
         </a>
         <a
           href={service.portfolioHash}
-          className={`inline-flex items-center gap-2 text-brand-blue font-semibold hover:gap-3 transition-all duration-200 ${mobile ? "justify-center" : ""}`}
+          className="inline-flex items-center justify-center lg:justify-start gap-2 text-brand-blue font-semibold hover:gap-3 transition-all duration-200"
         >
           {t("services.examples")}
           <ArrowRight size={16} aria-hidden />
         </a>
       </div>
+      <a href={moreHref} className="self-center lg:self-start text-steel-blue font-semibold text-sm hover:text-off-white transition-colors">
+        {t("links.more_service")}
+      </a>
     </div>
   );
 }

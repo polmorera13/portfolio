@@ -4,37 +4,12 @@ import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 
 type Step = { day: string; n: string; title: string; description: string; you: string };
 
-// "Cómo trabajo": 4 pasos con su plazo.
+// "Cómo trabajo": 4 pasos con su plazo. Una sola lista en el HTML (cada texto
+// una vez) que el CSS pinta de tres formas:
 // - Escritorio (≥1024): línea de tiempo horizontal con los días y 4 tarjetas.
 // - Tableta (768–1023): tarjetas en 2 × 2 con el día dentro.
 // - Móvil (<768): línea vertical; el paso 4 en un recuadro destacado.
-// Al final, la llamada "El primer paso es gratis…" (antes era una sección aparte).
-
-function StepCard({ step, last, showDay }: { step: Step; last: boolean; showDay: boolean }) {
-  return (
-    <div
-      className={`h-full rounded-xl bg-charcoal p-6 flex flex-col gap-3 ${
-        last ? "border-2 border-brand-blue" : "border border-brand-blue/15"
-      }`}
-    >
-      {showDay && (
-        <span className="text-brand-blue text-xs font-bold tracking-[0.15em]">{step.day}</span>
-      )}
-      <h3 className="text-off-white font-bold" style={{ fontSize: "clamp(20px, 1.6vw, 22px)", lineHeight: 1.25 }}>
-        <span className="text-brand-blue mr-2">{step.n}</span>
-        {step.title}
-      </h3>
-      <p className="text-off-white/90" style={{ fontSize: "16px", lineHeight: 1.55 }}>
-        {step.description}
-      </p>
-      <div className="mt-auto pt-3 border-t border-off-white/10">
-        <p className="text-brand-blue font-bold" style={{ fontSize: "16px" }}>
-          {step.you}
-        </p>
-      </div>
-    </div>
-  );
-}
+// Al final, la llamada "El primer paso es gratis…".
 
 export default function Process() {
   const { t } = useTranslation();
@@ -82,70 +57,21 @@ export default function Process() {
             </motion.span>
           </div>
 
-          {/* ── Escritorio: línea de tiempo + 4 tarjetas ───────────────────── */}
-          <motion.div variants={fadeUp} className="hidden lg:flex flex-col gap-6">
-            <div className="relative grid grid-cols-4 gap-6">
-              {/* Línea entre el primer y el último punto */}
-              <div
-                aria-hidden="true"
-                className="absolute h-px bg-off-white/25"
-                style={{ left: "12.5%", right: "12.5%", bottom: 7 }}
-              />
-              {list.map((s, i) => (
-                <div key={i} className="relative flex flex-col items-center gap-3">
-                  <span className="text-brand-blue text-sm font-bold tracking-[0.15em]">{s.day}</span>
-                  <span
-                    aria-hidden="true"
-                    className={`w-4 h-4 rounded-full ${i === list.length - 1 ? "bg-brand-blue ring-4 ring-brand-blue/30" : "bg-off-white/80"}`}
-                  />
-                </div>
-              ))}
-            </div>
-            <ol className="grid grid-cols-4 gap-6 items-stretch">
-              {list.map((s, i) => (
-                <li key={i}>
-                  <StepCard step={s} last={i === list.length - 1} showDay={false} />
-                </li>
-              ))}
-            </ol>
-          </motion.div>
-
-          {/* ── Tableta: 2 × 2 con el día dentro ──────────────────────────── */}
-          <motion.ol variants={fadeUp} className="hidden md:grid lg:hidden grid-cols-2 gap-6 items-stretch">
+          <motion.ol variants={fadeUp} className="proc-list">
             {list.map((s, i) => (
-              <li key={i}>
-                <StepCard step={s} last={i === list.length - 1} showDay />
+              <li key={i} className={`proc-step${i === list.length - 1 ? " last" : ""}`}>
+                <span className="proc-day">{s.day}</span>
+                <span className="proc-dot" aria-hidden="true" />
+                <div className="proc-card">
+                  <h3 className="proc-title">
+                    <span className="proc-n">{s.n} </span>
+                    {s.title}
+                  </h3>
+                  <p className="proc-desc">{s.description}</p>
+                  <p className="proc-you">{s.you}</p>
+                </div>
               </li>
             ))}
-          </motion.ol>
-
-          {/* ── Móvil: línea vertical ─────────────────────────────────────── */}
-          <motion.ol variants={fadeUp} className="md:hidden relative flex flex-col gap-6 pl-8">
-            <div aria-hidden="true" className="absolute left-[7px] top-2 bottom-8 w-px bg-off-white/25" />
-            {list.map((s, i) => {
-              const last = i === list.length - 1;
-              return (
-                <li key={i} className="relative">
-                  <span
-                    aria-hidden="true"
-                    className={`absolute -left-8 top-1 w-4 h-4 rounded-full ${last ? "bg-brand-blue ring-4 ring-brand-blue/30" : "bg-off-white/80"}`}
-                  />
-                  <div className={last ? "rounded-xl border-2 border-brand-blue bg-charcoal p-4 -mt-1" : ""}>
-                    <span className="block text-brand-blue text-xs font-bold tracking-[0.15em] mb-1">
-                      {s.day}
-                      {last && <span className="text-off-white"> · {s.title}</span>}
-                    </span>
-                    {!last && <h3 className="text-off-white font-bold text-xl leading-tight mb-1">{s.title}</h3>}
-                    <p className="text-off-white/90" style={{ fontSize: "16px", lineHeight: 1.5 }}>
-                      {s.description}
-                    </p>
-                    <p className="text-brand-blue font-bold mt-1" style={{ fontSize: "16px" }}>
-                      {s.you}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
           </motion.ol>
 
           {/* Final: el primer paso gratis */}
@@ -162,6 +88,46 @@ export default function Process() {
           </motion.div>
         </motion.div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        /* ── Móvil: línea vertical ─────────────────────────────── */
+        .proc-list{position:relative;display:flex;flex-direction:column;gap:1.5rem;padding-left:2rem}
+        .proc-list::before{content:"";position:absolute;left:7px;top:.5rem;bottom:2rem;width:1px;background:rgba(244,246,249,.25)}
+        .proc-step{position:relative}
+        .proc-dot{position:absolute;left:-2rem;top:.25rem;width:1rem;height:1rem;border-radius:9999px;background:rgba(244,246,249,.8)}
+        .proc-step.last .proc-dot{background:#4A90D9;box-shadow:0 0 0 4px rgba(74,144,217,.3)}
+        .proc-day{display:block;color:#4A90D9;font-size:.75rem;font-weight:700;letter-spacing:.15em;margin-bottom:.25rem}
+        .proc-title{color:#F4F6F9;font-weight:700;font-size:1.25rem;line-height:1.25;margin-bottom:.25rem}
+        .proc-n{display:none;color:#4A90D9}
+        .proc-desc{color:rgba(244,246,249,.9);font-size:16px;line-height:1.5}
+        .proc-you{color:#4A90D9;font-weight:700;font-size:16px;margin-top:.25rem}
+        .proc-step.last{border:2px solid #4A90D9;background:#2C3E50;border-radius:.75rem;padding:1rem}
+        .proc-step.last .proc-dot{left:calc(-2rem - 2px)}
+
+        /* ── Tableta: 2 × 2 con el día dentro ──────────────────── */
+        @media (min-width:768px){
+          .proc-list{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding-left:0}
+          .proc-list::before,.proc-dot{display:none}
+          .proc-step,.proc-step.last{display:flex;flex-direction:column;background:#2C3E50;border:1px solid rgba(74,144,217,.15);border-radius:.75rem;padding:1.5rem}
+          .proc-step.last{border:2px solid #4A90D9}
+          .proc-card{display:flex;flex-direction:column;gap:.75rem;flex:1}
+          .proc-title{font-size:clamp(20px,1.6vw,22px);margin:0}
+          .proc-n{display:inline}
+          .proc-you{margin-top:auto;padding-top:.75rem;border-top:1px solid rgba(244,246,249,.1)}
+          .proc-day{margin-bottom:.75rem}
+        }
+
+        /* ── Escritorio: línea de tiempo + 4 tarjetas ───────────── */
+        @media (min-width:1024px){
+          .proc-list{grid-template-columns:repeat(4,1fr)}
+          .proc-list::before{display:block;left:12.5%;right:12.5%;top:39px;bottom:auto;height:1px;width:auto}
+          .proc-step,.proc-step.last{background:none;border:0;padding:0;border-radius:0}
+          .proc-day{height:1.25rem;line-height:1.25rem;margin-bottom:.75rem;text-align:center;font-size:.875rem}
+          .proc-dot{display:block;position:static;align-self:center;margin-bottom:1.5rem}
+          .proc-card{background:#2C3E50;border:1px solid rgba(74,144,217,.15);border-radius:.75rem;padding:1.5rem}
+          .proc-step.last .proc-card{border:2px solid #4A90D9}
+        }
+      ` }} />
     </section>
   );
 }

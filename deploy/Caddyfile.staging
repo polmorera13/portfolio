@@ -1,5 +1,6 @@
 # Copia de pruebas (staging) de polmorera.es, servida en https://polmorera.es/test/
-# Nunca debe indexarse.
+# Nunca debe indexarse. Mismo comportamiento que tendrá producción:
+# cada URL sirve su HTML prerenderizado y lo que no existe devuelve 404.
 :80 {
 	root * /srv
 	encode zstd gzip
@@ -11,7 +12,23 @@
 	@assets path /test/assets/*
 	header @assets Cache-Control "public, max-age=31536000, immutable"
 
-	# De momento (antes de prerenderizar) cualquier ruta sirve la aplicación
-	try_files {path} {path}/index.html /test/index.html
+	# Páginas sin barra final -> con barra (/test/casos -> /test/casos/)
+	@noslash {
+		not path */
+		file {path}/index.html
+	}
+	redir @noslash {path}/ 308
+
+	try_files {path} {path}/index.html
 	file_server
+
+	handle_errors {
+		@notfound expression {err.status_code} == 404
+		handle @notfound {
+			rewrite * /test/404.html
+			file_server {
+				status 404
+			}
+		}
+	}
 }

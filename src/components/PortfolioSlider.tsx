@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// useLayoutEffect en el navegador; en el prerenderizado no hace nada (evita el aviso)
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { CaretLeft, CaretRight, Pause, Play } from "@phosphor-icons/react";
@@ -44,8 +47,12 @@ export default function PortfolioSlider({
   const trackRef = useRef<HTMLDivElement>(null);
   const firstSetRef = useRef<HTMLDivElement>(null);
 
-  const [copies, setCopies] = useState(3);
-  const [userPaused, setUserPaused] = useState(prefersReducedMotion);
+  // En el HTML (prerenderizado) va una sola copia de la lista: cada vídeo una vez.
+  // Las copias del bucle se añaden ya en el navegador.
+  const [copies, setCopies] = useState(1);
+  const [userPaused, setUserPaused] = useState(false);
+  const needInitRef = useRef(true);
+  useEffect(() => { if (prefersReducedMotion()) setUserPaused(true); }, []);
 
   // Estado que lee el bucle de animación sin re-renderizar
   const posRef = useRef(0);
@@ -62,20 +69,15 @@ export default function PortfolioSlider({
   userPausedRef.current = userPaused;
 
   // Ancho de una vuelta completa y número de copias necesarias para llenar la fila
-  useLayoutEffect(() => {
+  useIsoLayoutEffect(() => {
     const track = trackRef.current;
     const first = firstSetRef.current;
     if (!track || !first) return;
     const measure = () => {
       const sw = first.offsetWidth;
       if (!sw) return;
-      const firstMeasure = setWidthRef.current === 0;
       setWidthRef.current = sw;
       setCopies(3 + Math.ceil(track.clientWidth / sw));
-      if (firstMeasure) {
-        posRef.current = sw; // empezamos en la segunda copia para poder ir hacia atrás
-        track.scrollLeft = sw;
-      }
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -83,6 +85,16 @@ export default function PortfolioSlider({
     ro.observe(track);
     return () => ro.disconnect();
   }, [items]);
+
+  // Con las copias ya pintadas, empezamos en la segunda para poder ir hacia atrás
+  useIsoLayoutEffect(() => {
+    const track = trackRef.current;
+    const sw = setWidthRef.current;
+    if (!track || !sw || copies < 2 || !needInitRef.current) return;
+    needInitRef.current = false;
+    posRef.current = sw;
+    track.scrollLeft = sw;
+  }, [copies]);
 
   // Mantiene la posición dentro de la zona central (saltos invisibles: el contenido es idéntico)
   const normalize = useCallback(() => {
@@ -292,11 +304,11 @@ export default function PortfolioSlider({
         <div className="max-w-content w-full mx-auto section-padding">{controls}</div>
       )}
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .portfolio-track::-webkit-scrollbar { display: none; }
         .portfolio-slide { width: ${cardWidth}; }
         @media (max-width: 767px) { .portfolio-slide { width: ${cardWidthMobile}; } }
-      `}</style>
+      ` }} />
     </div>
   );
 }

@@ -5,10 +5,15 @@
     "process": "Process",
     "contact": "Contact",
     "cta": "Free proposal",
-    "about": "About"
+    "about": "About",
+    "cases": "Case studies",
+    "svc_ads": "Videos for ads",
+    "svc_social": "Social media videos",
+    "svc_corporate": "Corporate video",
+    "services_menu": "Services"
   },
   "hero": {
-    "eyebrow": "Pol Morera · Barcelona",
+    "eyebrow": "Pol Morera · UGC creator in Barcelona",
     "h1_line1": "Videos that",
     "h1_line2": "sell.",
     "tagline": "Videos that convert into sales, get your brand known and bring your website to life.",
@@ -260,7 +265,8 @@
     "play": "Play",
     "pause": "Pause",
     "mute": "Mute",
-    "unmute": "Unmute"
+    "unmute": "Unmute",
+    "video_of": "UGC video for"
   },
   "footer": {
     "tagline": "Content that works for your brand.",
@@ -285,9 +291,9 @@
     "after_process": "The first step is free: I'll tell you which 3 videos your business needs.",
     "primary": "Get your free proposal",
     "whatsapp": "WhatsApp",
-    "after_process_button": "Get my 3 videos",
-    "testimonials_button": "Get my 3 free videos",
-    "testimonials_note": "Completely free: I'll send you a document with the 3 videos your business needs."
+    "after_process_button": "Get your free proposal",
+    "testimonials_button": "Get your free proposal",
+    "testimonials_note": "I'll tell you which 3 videos your business needs. Free, within 2 days."
   },
   "cases": {
     "eyebrow": "PERFORMANCE & ANALYTICS",
@@ -297,5 +303,84 @@
     "insight": "Creative insight",
     "evidence": "Platform results",
     "close": "Close"
+  },
+  "crumbs": {
+    "home": "Home"
+  },
+  "links": {
+    "more_service": "More about this service →",
+    "full_case": "See the full case →",
+    "more_about": "More about me →"
+  },
+  "svcpage": {
+    "examples": "Examples",
+    "process": "How I work",
+    "related": "Related case",
+    "related_many": "Related cases",
+    "faq": "Frequently asked questions",
+    "cta_title": "The first step is free",
+    "cta_text": "I'll tell you which 3 videos your business needs.",
+    "or_quote": "or request a quote",
+    "ads": {
+      "h1": "UGC videos for your ads",
+      "intro": "I film videos where a real person talks about your product the way a customer would, made for Instagram, Facebook and TikTok ads. I write the script and film, and my team edits them with several different openings so you can see which one works best."
+    },
+    "organic": {
+      "h1": "Videos for your business's social media",
+      "intro": "I plan the topics, then film and edit the videos with your logo and colours so you can post consistently without thinking every week about what to upload. I work with monthly packs."
+    },
+    "corporate": {
+      "h1": "Corporate video for your company",
+      "intro": "A video that explains what you do in a minute and makes a great impression. I write the script and film in 4K, and my team adds animated captions and prepares versions for your website, your sales team and your events."
+    }
+  },
+  "casespage": {
+    "h1": "Case studies",
+    "intro": "Real campaigns where my videos generated conversions, leads and quality traffic. Each case shows the video and the results the client shared.",
+    "see": "See the case →"
+  },
+  "casepage": {
+    "client": "Client",
+    "sector": "Sector",
+    "need": "What they needed",
+    "did": "What we did",
+    "results": "Results",
+    "testimonial": "What the client says",
+    "want": "Want something like this for your business?"
+  },
+  "aboutpage": {
+    "h1": "About me",
+    "facts": "At a glance",
+    "name": "Name",
+    "name_v": "Pol Morera de Frutos (professionally, Pol Morera)",
+    "what": "What I do",
+    "what_v": "UGC creator and video producer",
+    "where": "Where",
+    "where_v": "Barcelona, working across Spain",
+    "track": "Track record",
+    "track_v": "Over 1,000 videos for 300+ brands",
+    "langs": "Languages",
+    "langs_v": "Spanish, Catalan and English",
+    "services": "Services",
+    "profiles": "Official profiles",
+    "img_alt": "Pol Morera, UGC creator in Barcelona"
+  },
+  "thanks": {
+    "h1": "Thank you!",
+    "always": "I've received your request. I'll reply within 24 h on working days.",
+    "proposal": "Within 2 working days I'll tell you which 3 videos your business needs.",
+    "home": "Back to the home page"
+  },
+  "notfound": {
+    "h1": "This page doesn't exist",
+    "text": "The link may be wrong or the page may have moved.",
+    "home": "Go to the home page",
+    "contact": "Get in touch"
+  },
+  "footer_cols": {
+    "services": "Services",
+    "cases": "Case studies",
+    "about": "About me",
+    "all_cases": "All case studies"
   }
 }

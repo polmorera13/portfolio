@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logos } from "../data/logos";
 import { withBase } from "../lib/paths";
@@ -9,9 +9,11 @@ export default function LogoMarquee() {
   // hoveredSlot tracks which slot is currently hovered.
   const [hoveredSlot, setHoveredSlot] = useState<number | null>(null);
 
-  // Duplicate the list once — the CSS animation translates -50%,
-  // which equals exactly one full set, so the loop is seamless.
-  const items = [...logos, ...logos];
+  // La lista se duplica para el bucle (la animación mueve -50 %). La copia se
+  // añade al montar, no en el HTML, para que cada logo aparezca una sola vez.
+  const [loopCopy, setLoopCopy] = useState(false);
+  useEffect(() => setLoopCopy(true), []);
+  const items = loopCopy ? [...logos, ...logos] : logos;
 
   return (
     <section className="bg-white py-8">
@@ -36,6 +38,7 @@ export default function LogoMarquee() {
           {items.map((logo, slotIndex) => (
             <div
               key={slotIndex}
+              {...(slotIndex >= logos.length ? { "aria-hidden": true, inert: "" } : {})}
               className="shrink-0 flex items-center justify-center"
               style={{ height: "54px" }}
               onMouseEnter={() => setHoveredSlot(slotIndex)}

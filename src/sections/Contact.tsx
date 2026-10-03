@@ -5,6 +5,8 @@ import { Mail, Instagram, Linkedin, CheckCircle } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { sendContact, type ContactType } from "../lib/api";
 import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
+import { usePage } from "../lib/page";
+import { pageHref } from "../routes";
 import { withBase } from "../lib/paths";
 
 interface FormState {
@@ -38,6 +40,7 @@ function typeFromHash(hash: string): ContactType | null {
 
 export default function Contact() {
   const { t } = useTranslation();
+  const { lang: pageLang } = usePage();
   const [type, setType] = useState<ContactType>("quote");
   const [form, setForm] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -115,6 +118,8 @@ export default function Contact() {
       setSubmittedType(type);
       setForm(INITIAL);
       setConsent(false);
+      // A la página de gracias (noindex), con la frase de la propuesta si se pidió
+      window.location.assign(pageHref("thanks", pageLang) + (type === "proposal" ? "?tipo=propuesta" : ""));
     } catch {
       setServerError(true);
     } finally {
