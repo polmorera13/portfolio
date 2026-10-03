@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import type { Locale } from "../types";
+import { withBase } from "../lib/paths";
 
 const LANGS: { code: Locale; label: string }[] = [
   { code: "es", label: "ES" },
@@ -29,11 +30,11 @@ export default function Header() {
 
   // "/#…" para que el menú funcione también desde las páginas legales.
   const navLinks = [
-    { label: t("nav.portfolio"), href: "/#portfolio" },
-    { label: t("nav.services"), href: "/#servicios" },
-    { label: t("nav.process"), href: "/#proceso" },
-    { label: t("nav.about"), href: "/#sobre-mi" },
-    { label: t("nav.contact"), href: "/#contacto" },
+    { label: t("nav.portfolio"), href: withBase("/#portfolio") },
+    { label: t("nav.services"), href: withBase("/#servicios") },
+    { label: t("nav.process"), href: withBase("/#proceso") },
+    { label: t("nav.about"), href: withBase("/#sobre-mi") },
+    { label: t("nav.contact"), href: withBase("/#contacto") },
   ];
 
   return (
@@ -48,7 +49,7 @@ export default function Header() {
       <div className="max-w-content mx-auto section-padding h-full flex items-center justify-between gap-8">
         {/* Logo */}
         <a
-          href="/#"
+          href={withBase("/#")}
           className="text-off-white font-bold text-lg tracking-tight shrink-0"
           style={{ letterSpacing: "-0.01em" }}
         >
@@ -95,7 +96,7 @@ export default function Header() {
 
           {/* CTA */}
           <a
-            href="/#contacto-propuesta"
+            href={withBase("/#contacto-propuesta")}
             className="bg-brand-blue text-off-white font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] shrink-0"
           >
             {t("nav.cta")}
@@ -143,7 +144,7 @@ export default function Header() {
             ))}
           </div>
           <a
-            href="/#contacto-propuesta"
+            href={withBase("/#contacto-propuesta")}
             onClick={() => setMenuOpen(false)}
             className="mt-4 bg-brand-blue text-off-white font-semibold text-base px-6 py-3.5 rounded-md text-center hover:bg-brand-blue/90 transition-colors"
           >

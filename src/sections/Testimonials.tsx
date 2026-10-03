@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Star } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { withBase } from "../lib/paths";
 
 const STAR_COLOR = "oklch(58% 0.14 240)";
 
@@ -30,7 +31,8 @@ function BrandMark({ brand, author }: { brand: string; author: string }) {
   const [logoFailed, setLogoFailed] = useState(false);
   // Use the brand (role) for the logo lookup; some entries use a generic role
   // like "Cliente", in which case we fall back to the author for the monogram.
-  const logoSrc = BRAND_LOGOS[brand] ?? BRAND_LOGOS[author];
+  const rawLogo = BRAND_LOGOS[brand] ?? BRAND_LOGOS[author];
+  const logoSrc = rawLogo ? withBase(rawLogo) : undefined;
   const monogramSource = /^(cliente|client)$/i.test(brand.trim()) ? author : brand;
 
   if (logoSrc && !logoFailed) {

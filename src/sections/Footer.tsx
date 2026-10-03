@@ -1,16 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Instagram, Linkedin } from "lucide-react";
 import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
+import { withBase } from "../lib/paths";
 
 export default function Footer() {
   const { t } = useTranslation();
 
   const navLinks = [
-    { labelKey: "nav.portfolio", href: "/#portfolio" },
-    { labelKey: "nav.services", href: "/#servicios" },
-    { labelKey: "nav.process", href: "/#proceso" },
-    { labelKey: "nav.about", href: "/#sobre-mi" },
-    { labelKey: "nav.contact", href: "/#contacto" },
+    { labelKey: "nav.portfolio", href: withBase("/#portfolio") },
+    { labelKey: "nav.services", href: withBase("/#servicios") },
+    { labelKey: "nav.process", href: withBase("/#proceso") },
+    { labelKey: "nav.about", href: withBase("/#sobre-mi") },
+    { labelKey: "nav.contact", href: withBase("/#contacto") },
   ];
 
   return (
@@ -20,7 +21,7 @@ export default function Footer() {
           {/* Left: brand with profile photo */}
           <div className="flex items-center gap-4">
             <img
-              src="/perfil-pol.png"
+              src={withBase("/perfil-pol.png")}
               alt="Pol Morera"
               loading="lazy"
               style={{
@@ -91,10 +92,10 @@ export default function Footer() {
         <div className="border-t border-charcoal pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-steel-blue/60 text-xs">{t("footer.copyright")}</p>
           <div className="flex items-center gap-4">
-            <a href="/politica-privacidad" className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+            <a href={withBase("/politica-privacidad")} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
               {t("footer.privacy")}
             </a>
-            <a href="/aviso-legal" className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+            <a href={withBase("/aviso-legal")} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
               {t("footer.legal")}
             </a>
           </div>

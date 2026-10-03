@@ -5,6 +5,7 @@ import { Mail, Instagram, Linkedin, CheckCircle } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { sendContact, type ContactType } from "../lib/api";
 import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
+import { withBase } from "../lib/paths";
 
 interface FormState {
   name: string;
@@ -315,7 +316,7 @@ export default function Contact() {
                     <span>
                       <Trans
                         i18nKey="contact.form.consent"
-                        components={{ link: <a href="/politica-privacidad" target="_blank" rel="noopener" className="text-brand-blue underline underline-offset-2 hover:text-off-white" /> }}
+                        components={{ link: <a href={withBase("/politica-privacidad")} target="_blank" rel="noopener" className="text-brand-blue underline underline-offset-2 hover:text-off-white" /> }}
                       />
                     </span>
                   </label>
@@ -325,7 +326,7 @@ export default function Contact() {
                 <p className="text-[11px] leading-relaxed text-steel-blue/70">
                   <Trans
                     i18nKey="contact.form.info"
-                    components={{ link: <a href="/politica-privacidad" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-steel-blue" /> }}
+                    components={{ link: <a href={withBase("/politica-privacidad")} target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-steel-blue" /> }}
                   />
                 </p>
 

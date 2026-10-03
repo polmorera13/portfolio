@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { withBase } from "../lib/paths";
 
 // "Quién está detrás": texto a la izquierda y foto a la derecha en escritorio
 // (al revés que "El problema", que va justo antes); en móvil, foto arriba.
@@ -20,7 +21,7 @@ export default function About() {
           <motion.div variants={fadeUp} className="w-full lg:w-[38%] shrink-0">
             <div className="w-full rounded-xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
               <img
-                src="/IMGPOL02.png"
+                src={withBase("/IMGPOL02.png")}
                 alt={t("about.img_alt")}
                 loading="lazy"
                 className="w-full h-full object-cover object-center"

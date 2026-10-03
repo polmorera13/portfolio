@@ -6,6 +6,7 @@ import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { fetchCases, type CaseStudy, type Tri } from "../lib/api";
 import { getPublicUrl } from "../lib/supabase";
 import VideoPlayer from "../components/VideoPlayer";
+import { withBase } from "../lib/paths";
 
 // "Casos de éxito / KPIs": carrusel de casos (uno visible cada vez), gestionado
 // desde el panel (/api/cases). Si no hay casos publicados, la sección no se muestra.
@@ -13,7 +14,7 @@ import VideoPlayer from "../components/VideoPlayer";
 const tr = (v: Tri | undefined, lang: string) =>
   (v && ((v as Record<string, string>)[lang] || v.es)) || "";
 
-const mediaUrl = (p: string) => (p.startsWith("/") ? p : getPublicUrl(p));
+const mediaUrl = (p: string) => (p.startsWith("/") ? withBase(p) : getPublicUrl(p));
 
 export default function Cases() {
   const { t } = useTranslation();

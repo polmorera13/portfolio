@@ -1,0 +1,17 @@
+# Copia de pruebas (staging) de polmorera.es, servida en https://polmorera.es/test/
+# Nunca debe indexarse.
+:80 {
+	root * /srv
+	encode zstd gzip
+	header X-Robots-Tag "noindex, nofollow"
+
+	redir /test /test/ 308
+
+	# Archivos con nombre único por versión: caché larga
+	@assets path /test/assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+
+	# De momento (antes de prerenderizar) cualquier ruta sirve la aplicación
+	try_files {path} {path}/index.html /test/index.html
+	file_server
+}

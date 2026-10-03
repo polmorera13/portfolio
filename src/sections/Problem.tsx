@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { withBase } from "../lib/paths";
 
 export default function Problem() {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ export default function Problem() {
               style={{ aspectRatio: "4/5" }}
             >
               <img
-                src="/IMGPOL02.png"
+                src={withBase("/IMGPOL02.png")}
                 alt=""
                 className="w-full h-full object-cover object-center"
                 style={{ transform: "scaleX(-1)" }}

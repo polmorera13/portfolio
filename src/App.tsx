@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ROUTER_BASENAME } from './lib/paths';
 import Header from './components/Header';
 import Hero from './sections/Hero';
 import LogoMarquee from './sections/LogoMarquee';
@@ -59,7 +60,7 @@ function PublicSite() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={ROUTER_BASENAME}>
       <Suspense fallback={<div className="min-h-screen bg-navy" />}>
         <Routes>
           <Route path="/" element={<PublicSite />} />

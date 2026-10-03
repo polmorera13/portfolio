@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logos } from "../data/logos";
+import { withBase } from "../lib/paths";
 
 export default function LogoMarquee() {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ export default function LogoMarquee() {
               onMouseLeave={() => setHoveredSlot(null)}
             >
               <img
-                src={logo.file}
+                src={withBase(logo.file)}
                 alt={logo.name}
                 draggable={false}
                 className="logo-img"
