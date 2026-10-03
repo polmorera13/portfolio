@@ -1,0 +1,46 @@
+# Servidor de polmorera.es (Coolify / Nixpacks lo usa en lugar del suyo por defecto).
+# Cada URL sirve su HTML prerenderizado; lo que no existe devuelve 404 de verdad.
+{
+	admin off
+	persist_config off
+	auto_https off
+	log {
+		format json
+	}
+	servers {
+		trusted_proxies static private_ranges 100.0.0.0/8
+	}
+}
+
+:{$PORT:3000} {
+	log {
+		format json
+	}
+
+	root * ../app/{$NIXPACKS_SPA_OUTPUT_DIR}
+	encode zstd gzip
+
+	# Archivos con nombre único por versión: caché larga
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+
+	# Páginas sin barra final -> con barra (/casos -> /casos/)
+	@noslash {
+		not path */
+		file {path}/index.html
+	}
+	redir @noslash {path}/ 308
+
+	try_files {path} {path}/index.html
+	file_server
+
+	handle_errors {
+		@notfound expression {err.status_code} == 404
+		handle @notfound {
+			rewrite * /404.html
+			file_server {
+				status 404
+			}
+		}
+	}
+}
