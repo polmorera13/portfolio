@@ -3,11 +3,20 @@ export type Translated = Record<Locale, string>;
 
 export type Service = {
   id: "ugc" | "organico" | "corporativo";
-  number: string;
+  /** Nombre corto para las pestañas de móvil */
+  tab: Translated;
   title: Translated;
-  description: Translated;
+  /** Línea bajo el título cuando el servicio está cerrado */
+  closedLine: Translated;
+  /** Frase "Ideal si…" */
+  ideal: Translated;
   bullets: Translated[];
-  cta: Translated;
+  /** Pastilla (plazo, packs…) */
+  tag: Translated;
+  /** Archivo en media.polmorera.es; la miniatura es thumbs/<nombre>.jpg */
+  video: string;
+  /** Ancla que abre su pestaña del portfolio */
+  portfolioHash: string;
 };
 
 export type Project = {

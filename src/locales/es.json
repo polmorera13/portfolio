@@ -34,37 +34,45 @@
   },
   "services": {
     "eyebrow": "03 / SERVICIOS",
-    "title": "Qué produzco"
+    "title": "Qué produzco",
+    "subtitle": "Elige lo que necesita tu negocio",
+    "examples": "Ver ejemplos",
+    "sound_on": "Activar sonido"
   },
   "process": {
     "eyebrow": "05 / PROCESO",
     "title": "Cómo trabajo",
-    "intro": "No hace falta que sepas de marketing ni que traigas nada preparado. Así lo hacemos:",
+    "subtitle": "No necesitas saber de marketing ni preparar nada.",
+    "badge": "De la llamada al vídeo: 5–7 días",
+    "final": "El primer paso es gratis: te digo qué 3 vídeos necesita tu negocio.",
     "steps": [
       {
+        "day": "DÍA 1",
         "n": "01",
         "title": "Llamada",
-        "description": "Me cuentas tu negocio en una llamada corta y miro qué está funcionando en tu sector."
+        "description": "Me cuentas tu negocio en una llamada corta.",
+        "you": "Tú: contarme qué vendes"
       },
       {
+        "day": "DÍA 2",
         "n": "02",
         "title": "Guion",
-        "description": "Escribo el guion pensando en lo que hace que tu cliente se decida, y lo revisas antes de grabar."
+        "description": "Te paso el guion y lo apruebas antes de grabar.",
+        "you": "Tú: dar el OK"
       },
       {
+        "day": "DÍAS 3–5",
         "n": "03",
-        "title": "Grabación",
-        "description": "Grabo en tu negocio o con tu producto, según lo que acordemos."
+        "title": "Grabación y edición",
+        "description": "Grabo en tu negocio o con tu producto, y mi equipo lo edita.",
+        "you": "Tú: nada"
       },
       {
+        "day": "DÍAS 5–7",
         "n": "04",
-        "title": "Edición",
-        "description": "Mi equipo de edición monta el vídeo, añade textos y animaciones y lo adapta a cada red."
-      },
-      {
-        "n": "05",
-        "title": "Ajustes",
-        "description": "Hago los cambios que necesites hasta que el vídeo es exactamente como lo quieres."
+        "title": "Entrega",
+        "description": "Recibes los vídeos listos para publicar. Cambios incluidos.",
+        "you": "Tú: publicarlos"
       }
     ]
   },

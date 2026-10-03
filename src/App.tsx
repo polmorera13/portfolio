@@ -39,7 +39,6 @@ function PublicSite() {
         <Testimonials />
         <MiniCTA textKey="minicta.after_testimonials" />
         <Process />
-        <MiniCTA textKey="minicta.after_process" variant="featured" buttonKey="minicta.after_process_button" />
         <About />
         <CTASection />
         <FAQ />

@@ -34,37 +34,45 @@
   },
   "services": {
     "eyebrow": "03 / SERVICES",
-    "title": "What I produce"
+    "title": "What I produce",
+    "subtitle": "Choose what your business needs",
+    "examples": "See examples",
+    "sound_on": "Turn on sound"
   },
   "process": {
     "eyebrow": "05 / PROCESS",
     "title": "How I work",
-    "intro": "You don't need to know about marketing or bring anything prepared. This is how it works:",
+    "subtitle": "You don't need to know about marketing or prepare anything.",
+    "badge": "From call to video: 5–7 days",
+    "final": "The first step is free: I'll tell you which 3 videos your business needs.",
     "steps": [
       {
+        "day": "DAY 1",
         "n": "01",
         "title": "Call",
-        "description": "You tell me about your business in a short call and I look at what's working in your sector."
+        "description": "You tell me about your business in a short call.",
+        "you": "You: tell me what you sell"
       },
       {
+        "day": "DAY 2",
         "n": "02",
         "title": "Script",
-        "description": "I write the script around what makes your customer decide, and you review it before we film."
+        "description": "I send you the script and you approve it before filming.",
+        "you": "You: give the OK"
       },
       {
+        "day": "DAYS 3–5",
         "n": "03",
-        "title": "Filming",
-        "description": "I film at your business or with your product, whichever we agree on."
+        "title": "Filming and editing",
+        "description": "I film at your business or with your product, and my team edits it.",
+        "you": "You: nothing"
       },
       {
+        "day": "DAYS 5–7",
         "n": "04",
-        "title": "Editing",
-        "description": "My editing team cuts the video, adds text and animations and adapts it to each platform."
-      },
-      {
-        "n": "05",
-        "title": "Tweaks",
-        "description": "I make the changes you need until the video is exactly how you want it."
+        "title": "Delivery",
+        "description": "You get your videos ready to publish. Changes included.",
+        "you": "You: publish them"
       }
     ]
   },

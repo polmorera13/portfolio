@@ -34,37 +34,45 @@
   },
   "services": {
     "eyebrow": "03 / SERVEIS",
-    "title": "Què produeixo"
+    "title": "Què produeixo",
+    "subtitle": "Tria el que necessita el teu negoci",
+    "examples": "Veure exemples",
+    "sound_on": "Activa el so"
   },
   "process": {
     "eyebrow": "05 / PROCÉS",
     "title": "Com treballo",
-    "intro": "No cal que sàpigues de màrqueting ni que portis res preparat. Així ho fem:",
+    "subtitle": "No cal que sàpigues de màrqueting ni que preparis res.",
+    "badge": "De la trucada al vídeo: 5–7 dies",
+    "final": "El primer pas és gratis: et dic quins 3 vídeos necessita el teu negoci.",
     "steps": [
       {
+        "day": "DIA 1",
         "n": "01",
         "title": "Trucada",
-        "description": "M'expliques el teu negoci en una trucada curta i miro què està funcionant al teu sector."
+        "description": "M'expliques el teu negoci en una trucada curta.",
+        "you": "Tu: explicar-me què vens"
       },
       {
+        "day": "DIA 2",
         "n": "02",
         "title": "Guió",
-        "description": "Escric el guió pensant en el que fa que el teu client es decideixi, i el revises abans de gravar."
+        "description": "Et passo el guió i l'aproves abans de gravar.",
+        "you": "Tu: donar l'OK"
       },
       {
+        "day": "DIES 3–5",
         "n": "03",
-        "title": "Gravació",
-        "description": "Gravo al teu negoci o amb el teu producte, segons el que acordem."
+        "title": "Gravació i edició",
+        "description": "Gravo al teu negoci o amb el teu producte, i el meu equip ho edita.",
+        "you": "Tu: res"
       },
       {
+        "day": "DIES 5–7",
         "n": "04",
-        "title": "Edició",
-        "description": "El meu equip d'edició munta el vídeo, hi afegeix textos i animacions i l'adapta a cada xarxa."
-      },
-      {
-        "n": "05",
-        "title": "Ajustos",
-        "description": "Faig els canvis que necessitis fins que el vídeo és exactament com el vols."
+        "title": "Lliurament",
+        "description": "Reps els vídeos a punt per publicar. Canvis inclosos.",
+        "you": "Tu: publicar-los"
       }
     ]
   },

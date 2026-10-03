@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeUp, staggerContainer, viewportOnce, ease } from "../lib/motion";
@@ -16,6 +16,14 @@ const FILTER_I18N: Record<FilterCategory, string> = {
   organic: "work.filter_organic",
   corporate: "work.filter_corporate",
   street: "work.filter_street",
+};
+
+// Enlaces directos a una pestaña (los usan los "Ver ejemplos" de Servicios)
+const HASH_TO_FILTER: Record<string, FilterCategory> = {
+  "#portfolio-anuncios": "ads",
+  "#portfolio-redes": "organic",
+  "#portfolio-empresa": "corporate",
+  "#portfolio-calle": "street",
 };
 
 const ASPECT_RATIO: Record<FilterCategory, "9:16" | "16:9"> = {
@@ -55,6 +63,28 @@ export default function Portfolio() {
   // Hueco junto a las pestañas donde la fila pinta sus controles
   const [controlsSlot, setControlsSlot] = useState<HTMLDivElement | null>(null);
 
+  // Abrir la pestaña que pide el enlace (al cargar, al pulsar y al cambiar el ancla)
+  useEffect(() => {
+    const fromHash = (hash: string) => HASH_TO_FILTER[hash];
+    const initial = fromHash(window.location.hash);
+    if (initial) setActiveFilter(initial);
+    const onClick = (e: MouseEvent) => {
+      const href = (e.target as Element | null)?.closest?.("a[href]")?.getAttribute("href") ?? "";
+      const next = href.includes("#") ? fromHash(href.slice(href.indexOf("#"))) : undefined;
+      if (next) setActiveFilter(next);
+    };
+    const onHash = () => {
+      const next = fromHash(window.location.hash);
+      if (next) setActiveFilter(next);
+    };
+    document.addEventListener("click", onClick);
+    window.addEventListener("hashchange", onHash);
+    return () => {
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("hashchange", onHash);
+    };
+  }, []);
+
   const { videos, loading } = useVideos(["ads", "organic", "corporate", "street"]);
 
   const filtered = videos.filter((v) => v.category === activeFilter);
@@ -71,6 +101,12 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="pt-24 lg:pt-40 pb-2" /* poco margen abajo: la llamada va pegada a los vídeos */>
+      {/* Destinos de los enlaces directos a cada pestaña */}
+      <div className="relative" aria-hidden="true">
+        {Object.keys(HASH_TO_FILTER).map((h) => (
+          <span key={h} id={h.slice(1)} className="absolute top-0" />
+        ))}
+      </div>
       <div className="max-w-content mx-auto section-padding">
         <motion.div
           initial="hidden"
