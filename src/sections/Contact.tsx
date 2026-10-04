@@ -140,7 +140,22 @@ export default function Contact() {
   const isProposal = type === "proposal";
 
   return (
-    <section id="contacto" className="section-gap">
+    <section id="contacto" className="section-gap relative overflow-hidden isolate">
+      {/* Fondo: foto de Pol a todo el bloque, con una capa oscura para que el texto y el formulario resalten */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 pointer-events-none">
+        <img
+          src={withBase("/pol-morera-camara.webp")}
+          alt=""
+          width={1000}
+          height={1251}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "50% 30%" }}
+        />
+        <div className="absolute inset-0" style={{ background: "rgba(13, 27, 42, 0.82)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, #0D1B2A 0%, rgba(13,27,42,0) 18%, rgba(13,27,42,0) 82%, #0D1B2A 100%)" }} />
+      </div>
       <div className="max-w-content mx-auto section-padding">
         <motion.div
           initial="hidden"
