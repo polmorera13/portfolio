@@ -33,6 +33,10 @@ export interface CaseDetail {
   caseId?: string;
   /** Nombre a mostrar en lugar del de la marca (casos anónimos), por idioma. */
   displayName?: Translated;
+  /** Texto breve para la tarjeta de la portada (en lugar de la descripción larga del caso). */
+  cardSummary?: Translated;
+  /** Gráfica solo para la tarjeta de la portada. */
+  cardChart?: { title: Translated; bars: { label: Translated; value: number; display: string }[]; note: Translated };
   sector: Translated;
   need: Translated;
   did: Translated;
@@ -46,6 +50,7 @@ export const CASE_DETAILS: CaseDetail[] = [
     slug: "masterd",
     page: "case-masterd",
     brandName: "MasterD",
+    cardSummary: { es: "Objetivo: conversión.", en: "Goal: conversion.", ca: "Objectiu: conversió." },
     sector: {
       es: "Formación (acceso a Mossos d'Esquadra)",
       en: "Training (Mossos d'Esquadra police entrance exam)",
@@ -76,6 +81,20 @@ export const CASE_DETAILS: CaseDetail[] = [
     slug: "dogfy",
     page: "case-dogfy",
     brandName: "Dogfy Diet",
+    cardSummary: { es: "Objetivo: conversión.", en: "Goal: conversion.", ca: "Objectiu: conversió." },
+    // Referencia: WordStream y LocaliQ, Facebook Ads Benchmarks 2025 (campañas de captación, todos los sectores: 7,72 %)
+    cardChart: {
+      title: { es: "Tasa de conversión", en: "Conversion rate", ca: "Taxa de conversió" },
+      bars: [
+        { label: { es: "Dogfy Diet, con mis vídeos", en: "Dogfy Diet, with my videos", ca: "Dogfy Diet, amb els meus vídeos" }, value: 15, display: "10–20 %" },
+        { label: { es: "Media de los anuncios de captación en Meta", en: "Average for Meta lead ads", ca: "Mitjana dels anuncis de captació a Meta" }, value: 7.72, display: "7,72 %" },
+      ],
+      note: {
+        es: "Media de las campañas de captación en Facebook, todos los sectores (WordStream y LocaliQ, 2025).",
+        en: "Average for Facebook lead campaigns across all industries (WordStream and LocaliQ, 2025).",
+        ca: "Mitjana de les campanyes de captació a Facebook, tots els sectors (WordStream i LocaliQ, 2025).",
+      },
+    },
     sector: { es: "Comida para perros", en: "Dog food", ca: "Menjar per a gossos" },
     need: {
       es: "Contenido rápido y dinámico para sus anuncios durante todo el año.",
@@ -436,7 +455,7 @@ export const CASE_DETAILS: CaseDetail[] = [
         { label: { es: "Vídeos producidos", en: "Videos produced", ca: "Vídeos produïts" }, value: { es: "+220", en: "220+", ca: "+220" } },
         { label: { es: "Marcas en producción mensual", en: "Brands in monthly production", ca: "Marques en producció mensual" }, value: { es: "3", en: "3", ca: "3" } },
         { label: { es: "Marcas en propuestas y campañas puntuales", en: "Brands in pitches and one-off campaigns", ca: "Marques en propostes i campanyes puntuals" }, value: { es: "+10", en: "10+", ca: "+10" } },
-        { label: { es: "Récord por pieza", en: "Record for a single piece", ca: "Rècord per peça" }, value: { es: "+1 millón de visualizaciones", en: "1M+ views", ca: "+1 milió de visualitzacions" } },
+        { label: { es: "Alcance", en: "Reach", ca: "Abast" }, value: { es: "Varias piezas con más de 1 millón de visualizaciones", en: "Several pieces with over 1 million views", ca: "Diverses peces amb més d'1 milió de visualitzacions" } },
         {
           label: { es: "Tipos de vídeo", en: "Types of video", ca: "Tipus de vídeo" },
           value: { es: "Corporativos, dinámicos, a cámara y entrevistas en la calle", en: "Corporate, dynamic, to-camera and street interviews", ca: "Corporatius, dinàmics, a càmera i entrevistes al carrer" },

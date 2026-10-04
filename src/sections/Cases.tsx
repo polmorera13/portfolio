@@ -147,7 +147,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
           <CaseEvidence c={c} />
         </div>
         <div style={{ gridArea: "body" }} className="flex flex-col gap-6 min-w-0">
-          <CaseResults c={c} />
+          <CaseResults c={c} card />
           {detail && (
             <a href={pageHref(detail.page, lang)} className="self-start text-brand-blue font-semibold hover:text-off-white transition-colors">
               {t("links.full_case")}
@@ -184,14 +184,20 @@ export function CaseHeader({ c }: { c: CaseStudy }) {
 }
 
 /** KPIs, contexto, cita, gráfica, aprendizaje y aviso de un caso (las capturas van con los vídeos: CaseEvidence). */
-export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?: boolean }) {
+export function CaseResults({ c, showQuote = true, card = false }: { c: CaseStudy; showQuote?: boolean; card?: boolean }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+  // En la tarjeta de la portada: texto breve y, si la hay, su gráfica propia
+  const detail = card ? caseDetailFor(c) : undefined;
+  const summary = detail?.cardSummary ? tr(detail.cardSummary, lang) : tr(c.description, lang);
+  const chart = detail?.cardChart
+    ? { title: detail.cardChart.title, bars: detail.cardChart.bars, note: detail.cardChart.note }
+    : { title: c.chart?.title, bars: c.chart?.bars ?? [], note: undefined };
 
   const kpis = (c.kpis.some((k) => k.highlight) ? c.kpis.filter((k) => k.highlight) : c.kpis).slice(0, 4);
   // Con 1 o 2 cifras hay sitio: se muestran más grandes para que llenen la tarjeta
   const big = kpis.length <= 2;
-  const bars = c.chart?.bars ?? [];
+  const bars = chart.bars;
   const maxBar = Math.max(1, ...bars.map((b) => b.value));
 
   return (
@@ -210,8 +216,8 @@ export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?:
         </div>
       )}
 
-      {tr(c.description, lang) && (
-        <p className="text-off-white/90" style={{ fontSize: "16px", lineHeight: 1.6 }}>{tr(c.description, lang)}</p>
+      {summary && (
+        <p className="text-off-white/90" style={{ fontSize: "16px", lineHeight: 1.6 }}>{summary}</p>
       )}
 
       {showQuote && tr(c.quote, lang) && (
@@ -223,8 +229,8 @@ export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?:
 
       {bars.length > 0 && (
         <div className="rounded-xl border border-off-white/10 bg-navy/40 p-4 sm:p-5 flex flex-col gap-3">
-          {tr(c.chart.title, lang) && (
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{tr(c.chart.title, lang)}</span>
+          {tr(chart.title, lang) && (
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{tr(chart.title, lang)}</span>
           )}
           {bars.map((b, i) => (
             <div key={i} className="flex flex-col gap-1.5">
@@ -240,6 +246,7 @@ export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?:
               </div>
             </div>
           ))}
+          {chart.note && <p className="text-steel-blue/80 text-xs leading-relaxed">{tr(chart.note, lang)}</p>}
         </div>
       )}
 
@@ -315,45 +322,60 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
   // pinta con CSS (content: attr()) para no repetir el texto de los KPIs en el HTML.
   const lead = (c.kpis.find((k) => k.highlight) ?? c.kpis[0]) || null;
 
-  // Varios vídeos: todos a la vista, sin pestañas.
-  //  - Verticales: en la tarjeta, 2 por fila; en la página del caso, todos en una fila (hasta 4).
-  //  - Horizontales: en la tarjeta, uno debajo de otro y más pequeños; en la página, hasta 3 por fila.
+  // Varios vídeos: todos a la vista, sin pestañas. Horizontales y verticales van en grupos
+  // separados (cada uno con su cuadrícula), primero el grupo más numeroso.
+  //  - Verticales: en la tarjeta, 2 por fila; en la página del caso, en una fila (hasta 4).
+  //  - Horizontales: en la tarjeta, uno debajo de otro y más pequeños (2 por fila si son muchos);
+  //    en la página, hasta 3 por fila.
   if (videos.length > 1) {
     const GAP = 12;
-    const vertical = videos.filter((v) => v.aspect !== "16:9").length >= videos.length / 2;
-    let gridCls: string;
-    let maxWidth: number | undefined;
-    if (vertical) {
-      if (large) {
-        const cols = Math.min(videos.length, 4);
-        gridCls = cols >= 4 ? "grid grid-cols-2 md:grid-cols-4" : cols === 3 ? "grid grid-cols-2 md:grid-cols-3" : "grid grid-cols-2";
-        maxWidth = cols * 300 + (cols - 1) * GAP;
-      } else {
-        const rows = Math.ceil(videos.length / 2);
-        const tileH = (maxH - GAP * (rows - 1)) / rows;
-        gridCls = "grid grid-cols-2";
-        maxWidth = Math.round(tileH * (9 / 16)) * 2 + GAP;
+    const horiz = videos.filter((v) => v.aspect === "16:9");
+    const vert = videos.filter((v) => v.aspect !== "16:9");
+    const mixed = horiz.length > 0 && vert.length > 0;
+    type Group = { items: typeof videos; cls: string; maxWidth?: number; tileWidth?: number };
+    const groups: Group[] = [];
+
+    if (horiz.length) {
+      if (large) groups.push({ items: horiz, cls: horiz.length >= 3 ? "grid grid-cols-1 md:grid-cols-3" : "grid grid-cols-1 md:grid-cols-2" });
+      else if (horiz.length >= 4 || (mixed && horiz.length >= 2)) groups.push({ items: horiz, cls: "grid grid-cols-2" });
+      else {
+        const share = mixed ? maxH * 0.5 : maxH;
+        const tileH = (share - GAP * (horiz.length - 1)) / horiz.length;
+        groups.push({ items: horiz, cls: "grid grid-cols-1", maxWidth: Math.round(tileH * (16 / 9)) });
       }
-    } else if (large) {
-      gridCls = videos.length >= 3 ? "grid grid-cols-1 md:grid-cols-3" : "grid grid-cols-1 md:grid-cols-2";
-    } else {
-      const tileH = (maxH - GAP * (videos.length - 1)) / videos.length;
-      gridCls = "grid grid-cols-1";
-      maxWidth = Math.round(tileH * (16 / 9));
     }
+    if (vert.length) {
+      if (large) {
+        const cols = Math.min(vert.length, 4);
+        const cls = cols >= 4 ? "grid grid-cols-2 md:grid-cols-4" : cols === 3 ? "grid grid-cols-2 md:grid-cols-3" : cols === 2 ? "grid grid-cols-2" : "grid grid-cols-1";
+        groups.push({ items: vert, cls, maxWidth: cols * 300 + (cols - 1) * GAP });
+      } else if (mixed) {
+        groups.push({ items: vert, cls: "flex flex-wrap justify-center", tileWidth: 150 });
+      } else {
+        const rows = Math.ceil(vert.length / 2);
+        const tileH = (maxH - GAP * (rows - 1)) / rows;
+        groups.push({ items: vert, cls: "grid grid-cols-2", maxWidth: Math.round(tileH * (9 / 16)) * 2 + GAP });
+      }
+    }
+    if (vert.length > horiz.length) groups.reverse();
+
     return (
-      <div className={`${gridCls} w-full mx-auto`} style={{ gap: GAP, maxWidth }}>
-        {videos.map((v) => (
-          <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16" }}>
-            <VideoPlayer
-              indexable={large}
-              ariaName={videoName(caseName(c, lang), tr(v.label, lang) || v.name || null, lang as Locale)}
-              src={getPublicUrl(v.file)}
-              poster={v.poster ? getPublicUrl(v.poster) : null}
-              aspectRatio={v.aspect}
-              title={tr(v.label, lang) || null}
-              client={null}
-            />
+      <div className="flex flex-col w-full" style={{ gap: GAP }}>
+        {groups.map((g, gi) => (
+          <div key={gi} className={`${g.cls} w-full mx-auto`} style={{ gap: GAP, maxWidth: g.maxWidth }}>
+            {g.items.map((v) => (
+              <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16", ...(g.tileWidth ? { width: g.tileWidth } : {}) }}>
+                <VideoPlayer
+                  indexable={large}
+                  ariaName={videoName(caseName(c, lang), tr(v.label, lang) || v.name || null, lang as Locale)}
+                  src={getPublicUrl(v.file)}
+                  poster={v.poster ? getPublicUrl(v.poster) : null}
+                  aspectRatio={v.aspect}
+                  title={tr(v.label, lang) || null}
+                  client={null}
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
