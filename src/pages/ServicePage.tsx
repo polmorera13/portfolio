@@ -12,6 +12,7 @@ import { videoLabel } from "../data/sectors";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
 import FaqList from "../components/FaqList";
+import Method3x3 from "../components/Method3x3";
 import VideoPlayer from "../components/VideoPlayer";
 import ServiceVideo, { ServiceVideoStack } from "../components/ServiceVideo";
 import type { Locale } from "../types";
@@ -76,6 +77,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
                 </li>
               ))}
             </ul>
+            {service === "ads" && <Method3x3 />}
             <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">{s.tag[l]}</span>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
               <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-colors">
@@ -152,47 +154,10 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
         <FaqList items={faqs} />
       </section>
 
-      {/* Anuncios: metodología 3×3, en tarjeta blanca justo antes del bloque final */}
-      {service === "ads" && <Method3x3 />}
-
       <CtaBlock />
     </>
   );
 }
 
-/** Tarjeta blanca: 3 anuncios (cuerpos) × 3 ganchos = 9 versiones para testear. */
-function Method3x3() {
-  const { t } = useTranslation();
-  const m = t("svcpage.method3x3", { returnObjects: true }) as { eyebrow: string; title: string; text: string; ad: string; hook: string };
-  const hooks = ["A", "B", "C"];
-  return (
-    <section className="max-w-content mx-auto section-padding pt-10 lg:pt-14">
-      <div className="rounded-[22px] bg-white p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 items-center">
-        <div className="flex flex-col gap-3">
-          <span className="text-xs font-bold tracking-[0.18em] uppercase" style={{ color: "#2F74C0" }}>{m.eyebrow}</span>
-          <h2 className="font-bold" style={{ color: "#0D1B2A", fontSize: "clamp(24px, 2.6vw, 34px)", lineHeight: 1.15 }}>{m.title}</h2>
-          <p style={{ color: "#3A4F63", fontSize: "17px", lineHeight: 1.6 }}>{m.text}</p>
-        </div>
-        <div aria-hidden="true" className="grid gap-2" style={{ gridTemplateColumns: "auto repeat(3, minmax(0, 1fr))" }}>
-          <span />
-          {hooks.map((h) => (
-            <span key={h} className="text-center text-xs font-bold uppercase tracking-[0.1em]" style={{ color: "#4A6580" }}>{m.hook} {h}</span>
-          ))}
-          {[1, 2, 3].map((n) => (
-            <div key={n} className="contents">
-              <span className="self-center pr-2 text-xs font-bold uppercase tracking-[0.1em] whitespace-nowrap" style={{ color: "#4A6580" }}>{m.ad} {n}</span>
-              {hooks.map((h) => (
-                <span key={h} className="rounded-lg flex items-center justify-center font-bold text-sm h-12"
-                  style={{ background: n === 1 && h === "A" ? "#4A90D9" : "#EAF2FB", color: n === 1 && h === "A" ? "#fff" : "#2F74C0" }}>
-                  {n}{h}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export { PAGE_OF };

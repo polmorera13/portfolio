@@ -336,9 +336,8 @@
       "intro": "A video that explains what you do in a minute and makes a great impression. I write the script and film in 4K, and my team adds animated captions and prepares versions for your website, your sales team and your events."
     },
     "method3x3": {
-      "eyebrow": "The 3×3 method",
-      "title": "3 ads with 3 hooks each: 9 versions to test",
-      "text": "You can order just one video, but for ads we work with the 3×3 method: we deliver three ads, each with its own body, and three different hooks for each one. That way you can test the whole campaign and keep the combination that performs best.",
+      "title": "The 3×3 method",
+      "subtitle": "3 ads with 3 hooks each: 9 versions to test",
       "ad": "Ad",
       "hook": "Hook"
     }

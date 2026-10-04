@@ -9,6 +9,7 @@ import { fetchServices, type ServicesConfig } from "../lib/api";
 import { getInitialData } from "../lib/initialData";
 import { usePage } from "../lib/page";
 import { pageHref, type PageKey } from "../routes";
+import Method3x3 from "../components/Method3x3";
 import type { Locale, Service } from "../types";
 
 const PAGE_OF: Record<Service["configKey"], PageKey> = { ads: "svc-ads", organic: "svc-social", corporate: "svc-corporate" };
@@ -163,6 +164,7 @@ function ServiceBody({ service, lang, moreHref }: { service: Service; lang: Loca
           </li>
         ))}
       </ul>
+      {service.configKey === "ads" && <Method3x3 />}
       <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">
         {service.tag[lang]}
       </span>

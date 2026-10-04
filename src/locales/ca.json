@@ -336,9 +336,8 @@
       "intro": "Un vídeo per explicar què fas en un minut i donar bona imatge. Escric el guió, gravo en 4K, i el meu equip hi afegeix rètols animats i prepara versions per a la teva web, el teu equip comercial i els teus esdeveniments."
     },
     "method3x3": {
-      "eyebrow": "Metodologia 3×3",
-      "title": "3 anuncis amb 3 ganxos cadascun: 9 versions per testejar",
-      "text": "Pots demanar des d'un sol vídeo, però per als anuncis treballem amb la metodologia 3×3: t'entreguem tres anuncis, cadascun amb el seu cos, i tres ganxos diferents per a cadascun. Així pots testejar la campanya completa i quedar-te amb la combinació que funciona millor.",
+      "title": "Metodologia 3×3",
+      "subtitle": "3 anuncis amb 3 ganxos cadascun: 9 versions per testejar",
       "ad": "Anunci",
       "hook": "Ganxo"
     }
