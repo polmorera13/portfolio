@@ -15,7 +15,8 @@ const BASE = process.env.BASE_PATH || "/";
 const API = "https://api.polmorera.es";
 
 const server = await import(pathToFileURL(path.join(ROOT, "dist-ssr", "entry-server.js")).href);
-const { render, buildHead, pageVideos, mediaAbs, PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } = server;
+const { render, buildHead, pageVideos, mediaAbs, ogText, ogImageSource, ogSlug, PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } = server;
+const { renderOgImage } = await import(pathToFileURL(path.join(ROOT, "scripts", "og-images.mjs")).href);
 
 // ── Datos de la API (si falla algo, la página se genera igualmente) ─────────
 async function get(endpoint, fallback) {
@@ -114,6 +115,23 @@ for (const key of Object.keys(PATHS)) {
     write(url, page({ head: head.html, lang, appHtml: render(loc(url), lang, data) }));
     count++;
   }
+}
+
+// ── Imágenes para compartir (1200×630) de cada página y cada idioma ─────────
+{
+  let n = 0, maxKb = 0;
+  for (const key of Object.keys(PATHS)) {
+    for (const lang of LOCALES) {
+      const bytes = await renderOgImage({
+        text: ogText(key, lang),
+        source: ogImageSource(key, data),
+        outFile: path.join(DIST, "og", ogSlug(key, lang) + ".jpg"),
+        distDir: DIST,
+      });
+      n++; maxKb = Math.max(maxKb, Math.round(bytes / 1024));
+    }
+  }
+  console.log(`Imágenes para compartir: ${n} (la más pesada, ${maxKb} KB)`);
 }
 
 // ── Textos legales (noindex, en español) ────────────────────────────────────

@@ -6,6 +6,7 @@ import { LOCALES, NOINDEX_PAGES, SITE_URL, CASE_PAGES, pageUrl, type PageKey } f
 import { META, OG_LOCALE, PERSON, BUSINESS_DESCRIPTION, SERVICE_TYPES } from "./meta";
 import { CASE_DETAILS } from "../data/caseDetails";
 import { privacyPolicy, legalNotice } from "../data/legal";
+import { ogImageUrl, ogText, OG_WIDTH, OG_HEIGHT } from "./og";
 
 // <head> de cada página prerenderizada: título, descripción, robots, canonical,
 // hreflang recíprocos, Open Graph y JSON-LD. Lo usa scripts/prerender.mjs.
@@ -217,13 +218,17 @@ export function buildHead(route: HeadRoute): { html: string; lang: Locale } {
     `<meta property="og:url" content="${url}" />`,
     `<meta property="og:title" content="${esc(title)}" />`,
     `<meta property="og:description" content="${esc(description)}" />`,
-    `<meta property="og:image" content="${IMAGE}" />`,
+    `<meta property="og:image" content="${ogImageUrl(key, lang)}" />`,
+    `<meta property="og:image:width" content="${OG_WIDTH}" />`,
+    `<meta property="og:image:height" content="${OG_HEIGHT}" />`,
+    `<meta property="og:image:alt" content="${esc(ogText(key, lang).alt)}" />`,
     `<meta property="og:locale" content="${OG_LOCALE[lang]}" />`,
     ...LOCALES.filter((l) => l !== lang).map((l) => `<meta property="og:locale:alternate" content="${OG_LOCALE[l]}" />`),
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${esc(title)}" />`,
     `<meta name="twitter:description" content="${esc(description)}" />`,
-    `<meta name="twitter:image" content="${IMAGE}" />`,
+    `<meta name="twitter:image" content="${ogImageUrl(key, lang)}" />`,
+    `<meta name="twitter:image:alt" content="${esc(ogText(key, lang).alt)}" />`,
   );
   if (!noindex) lines.push(structuredData(key, lang, title, description, route.videos));
   return { lang, html: lines.join("\n    ") };
