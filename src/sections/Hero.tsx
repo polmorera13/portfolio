@@ -308,6 +308,7 @@ export default function Hero() {
                 className="hero-in"
                 style={{
                   ["--hero-d" as string]: "180ms",
+                  ["--hero-o" as string]: 1,
                   ["--hero-y" as string]: "0px",
                   display: "block",
                   fontWeight: 300,
@@ -321,10 +322,10 @@ export default function Hero() {
               >
                 {t("hero.eyebrow")}
               </span>{" "}
-              <span className="hero-in" style={{ ["--hero-delay" as string]: "80ms", display: "block" }}>
+              <span className="hero-in" style={{ ["--hero-delay" as string]: "80ms", ["--hero-o" as string]: 1, display: "block" }}>
                 {t("hero.h1_line1")}
               </span>{" "}
-              <span className="hero-in" style={{ ["--hero-delay" as string]: "160ms", display: "block", color: BLUE }}>
+              <span className="hero-in" style={{ ["--hero-delay" as string]: "160ms", ["--hero-o" as string]: 1, display: "block", color: BLUE }}>
                 {t("hero.h1_line2")}
               </span>
             </h1>
@@ -333,6 +334,7 @@ export default function Hero() {
               className="hero-in"
               style={{
                 ["--hero-d" as string]: "360ms",
+                ["--hero-o" as string]: 1,
                 ["--hero-y" as string]: "12px",
                 ["--hero-delay" as string]: "280ms",
                 fontFamily: "Poppins, sans-serif",
@@ -402,7 +404,7 @@ export default function Hero() {
           {/* Video collage — below text on mobile, right column on desktop */}
           <div
             className="order-2 md:order-2 hero-in"
-            style={{ ["--hero-d" as string]: "500ms", ["--hero-y" as string]: "16px", ["--hero-delay" as string]: "200ms" } as React.CSSProperties}
+            style={{ ["--hero-d" as string]: "500ms", ["--hero-y" as string]: "16px", ["--hero-o" as string]: 1, ["--hero-delay" as string]: "200ms" } as React.CSSProperties}
           >
             {/* Desktop: scattered video collage */}
             <div className="hidden md:block">

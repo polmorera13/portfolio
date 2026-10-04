@@ -238,8 +238,9 @@ export function buildHead(route: HeadRoute): { html: string; lang: Locale } {
       `<link rel="preload" as="image" type="image/webp" href="${MEDIA}/hero-bg-mobile-v3.webp" media="(orientation: portrait)" fetchpriority="high" />`,
       `<link rel="preload" as="image" type="image/webp" href="${MEDIA}/hero-bg-v3.webp" media="(orientation: landscape)" fetchpriority="high" />`,
     );
-  } else if (CASE_PAGES.includes(key) && route.videos?.[0]?.thumbnailUrl) {
-    lines.push(`<link rel="preload" as="image" href="${route.videos[0].thumbnailUrl}" fetchpriority="high" />`);
+  } else if (CASE_PAGES.includes(key) && route.videos?.length) {
+    // Los dos primeros pósters (los vídeos van de dos en dos o más en la primera pantalla)
+    for (const v of route.videos.slice(0, 2)) if (v.thumbnailUrl) lines.push(`<link rel="preload" as="image" href="${v.thumbnailUrl}" fetchpriority="high" />`);
   }
   if (!noindex) lines.push(structuredData(key, lang, title, description, route.videos));
   return { lang, html: lines.join("\n    ") };
