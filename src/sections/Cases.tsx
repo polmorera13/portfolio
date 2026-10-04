@@ -265,6 +265,11 @@ export function CaseResults({ c, showQuote = true, card = false }: { c: CaseStud
   );
 }
 
+// Medidas de las capturas que hay subidas (si se sube otra desde el panel, sale sin medidas hasta añadirla aquí)
+const EVIDENCE_DIMS: Record<string, [number, number]> = {
+  "cases/masterd-tiktok-ads.webp": [1280, 306],
+};
+
 // ── Capturas del caso ────────────────────────────────────────────────────────
 /** Capturas de la plataforma, a lo ancho y ampliables (debajo de los vídeos). */
 export function CaseEvidence({ c }: { c: CaseStudy }) {
@@ -281,7 +286,7 @@ export function CaseEvidence({ c }: { c: CaseStudy }) {
         <figure key={i} className="flex flex-col gap-1.5">
           <button type="button" onClick={() => setOpen(i)} aria-label={tr(e.alt, lang)}
             className="block w-full rounded-lg overflow-hidden border border-off-white/15 bg-white hover:border-brand-blue transition-colors cursor-zoom-in">
-            <img src={mediaUrl(e.image)} alt={tr(e.alt, lang)} loading="lazy" className="w-full h-auto block" />
+            <img src={mediaUrl(e.image)} alt={tr(e.alt, lang)} width={EVIDENCE_DIMS[e.image]?.[0]} height={EVIDENCE_DIMS[e.image]?.[1]} loading="lazy" className="w-full h-auto block" />
           </button>
           {tr(e.description, lang) && <figcaption className="text-steel-blue/80 text-xs">{tr(e.description, lang)}</figcaption>}
         </figure>

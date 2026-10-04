@@ -23,6 +23,16 @@ const BRAND_LOGOS: Record<string, string> = {
   "BIG School": "/testimonials/bigschool.png",
 };
 
+// Medidas reales de los logos (evitan saltos al cargar)
+const LOGO_DIMS: Record<string, [number, number]> = {
+  "/testimonials/appletree.png": [256, 256],
+  "/testimonials/bigschool.png": [110, 108],
+  "/testimonials/bitnovo.png": [196, 196],
+  "/testimonials/efizent.png": [192, 192],
+  "/testimonials/ibschool.svg": [198, 198],
+  "/testimonials/thingortwo.png": [256, 256],
+};
+
 function initials(s: string): string {
   const stop = /^(or|y|and|de|the|o|i)$/i;
   const words = s.trim().split(/\s+/).filter((w) => !stop.test(w));
@@ -57,6 +67,9 @@ function BrandMark({ brand, author }: { brand: string; author: string }) {
         <img
           src={logoSrc}
           alt={brand}
+          width={LOGO_DIMS[rawLogo!]?.[0]}
+          height={LOGO_DIMS[rawLogo!]?.[1]}
+          loading="lazy"
           onError={() => setLogoFailed(true)}
           style={{ maxWidth: "76%", maxHeight: "76%", objectFit: "contain", display: "block" }}
         />

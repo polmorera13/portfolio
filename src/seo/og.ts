@@ -63,13 +63,16 @@ export function ogText(key: PageKey, lang: Locale): OgText {
 /** De dónde sale la foto: archivo de /public (foto de Pol) o miniatura en media.polmorera.es. */
 export type OgImageSource = { kind: "public"; path: string } | { kind: "media"; path: string };
 
+// La imagen para compartir usa la JPG original (los pósters de los casos van en WebP en la web)
+const jpgOf = (p: string) => p.replace(/.webp$/, ".jpg");
+
 export function ogImageSource(key: PageKey, data: InitialData | null): OgImageSource {
   const pol: OgImageSource = { kind: "public", path: "pol-morera.jpg" };
   const detail = CASE_DETAILS.find((d) => d.page === key);
   if (detail) {
     const c = (data?.cases ?? []).find((x) => caseDetailFor(x)?.slug === detail.slug);
     const v = c?.videos.find((x) => x.file && x.poster);
-    return v ? { kind: "media", path: v.poster } : pol;
+    return v ? { kind: "media", path: jpgOf(v.poster) } : pol;
   }
   const svc = SVC[key];
   if (svc) {
@@ -78,7 +81,7 @@ export function ogImageSource(key: PageKey, data: InitialData | null): OgImageSo
   }
   if (key === "cases") {
     const v = (data?.cases ?? []).flatMap((c) => c.videos).find((x) => x.file && x.poster);
-    return v ? { kind: "media", path: v.poster } : pol;
+    return v ? { kind: "media", path: jpgOf(v.poster) } : pol;
   }
   return pol;
 }

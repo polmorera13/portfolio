@@ -14,6 +14,7 @@ import { ogImageUrl, ogText, OG_WIDTH, OG_HEIGHT } from "./og";
 const L = { es, en, ca } as const;
 const IMAGE = `${SITE_URL}/pol-morera.jpg`; // vista previa al compartir (JPG: lo leen todas las redes)
 const PERSON_ID = `${SITE_URL}/#person`;
+const MEDIA = "https://media.polmorera.es";
 
 /** Vídeo de la página con lo que hace falta para su VideoObject (lo calcula el build). */
 export interface VideoMeta {
@@ -230,6 +231,16 @@ export function buildHead(route: HeadRoute): { html: string; lang: Locale } {
     `<meta name="twitter:image" content="${ogImageUrl(key, lang)}" />`,
     `<meta name="twitter:image:alt" content="${esc(ogText(key, lang).alt)}" />`,
   );
+  // Precarga de la imagen que se ve primero: el fondo del hero en la portada (vertical u horizontal
+  // según la pantalla) y el póster del primer vídeo en las páginas de caso
+  if (key === "home") {
+    lines.push(
+      `<link rel="preload" as="image" type="image/webp" href="${MEDIA}/hero-bg-mobile-v3.webp" media="(orientation: portrait)" fetchpriority="high" />`,
+      `<link rel="preload" as="image" type="image/webp" href="${MEDIA}/hero-bg-v3.webp" media="(orientation: landscape)" fetchpriority="high" />`,
+    );
+  } else if (CASE_PAGES.includes(key) && route.videos?.[0]?.thumbnailUrl) {
+    lines.push(`<link rel="preload" as="image" href="${route.videos[0].thumbnailUrl}" fetchpriority="high" />`);
+  }
   if (!noindex) lines.push(structuredData(key, lang, title, description, route.videos));
   return { lang, html: lines.join("\n    ") };
 }

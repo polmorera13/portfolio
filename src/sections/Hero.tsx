@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
@@ -13,30 +12,73 @@ const BLUE = "oklch(58% 0.14 240)";
 const STEEL = "oklch(70% 0.07 230)";
 const OFFWHITE = "oklch(96% 0.005 240)";
 
-const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
 // ── Fondo de vídeo ──────────────────────────────────────────────────────────
-// Vídeo de fondo ("00 - FONDO WEB") servido desde media.polmorera.es. Mudo y en
-// bucle infinito, ocupa todo el hero; encima va una capa negra para dar contraste.
-// Fondo del hero, sacado del vídeo original en 4K (24 MB) y comprimido en local:
-// 1080p para pantallas apaisadas (5,4 MB) y un recorte vertical 720x1280 para
-// móviles en vertical (2,5 MB), que es la parte que el móvil enseña igualmente.
-const BG_VIDEO_WIDE = getPublicUrl("hero-bg-1080-v2.mp4");
-const BG_VIDEO_TALL = getPublicUrl("hero-bg-mobile-v2.mp4");
-const BG_POSTER = getPublicUrl("hero-bg.jpg");
+// Vídeo de fondo ("00 - FONDO WEB"), mudo y en bucle, con una capa oscura encima.
+// Comprimido en local desde el original en 4K: 1080p para pantallas apaisadas
+// (2,3 MB) y un recorte vertical 720x1280 para móviles (1 MB).
+// Primero se pinta la imagen (WebP, precargada con prioridad alta en el <head>);
+// el vídeo empieza a descargarse cuando la página ya ha cargado, y aparece con un
+// fundido al arrancar. Con "reducir movimiento" o ahorro de datos, solo la imagen.
+const BG_VIDEO_WIDE = getPublicUrl("hero-bg-1080-v3.mp4");
+const BG_VIDEO_TALL = getPublicUrl("hero-bg-mobile-v3.mp4");
+export const HERO_POSTER_WIDE = getPublicUrl("hero-bg-v3.webp");
+export const HERO_POSTER_TALL = getPublicUrl("hero-bg-mobile-v3.webp");
+const BG_POSTER_JPG = getPublicUrl("hero-bg-v3.jpg");
 
 function HeroBackground() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    if (reduced || saveData) return;
+    let idleId: number | undefined;
+    const start = () => {
+      v.preload = "auto";
+      v.load();
+      v.play().catch(() => {});
+    };
+    const whenIdle = () => {
+      const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+      idleId = w.requestIdleCallback ? w.requestIdleCallback(start, { timeout: 2500 }) : window.setTimeout(start, 300);
+    };
+    if (document.readyState === "complete") whenIdle();
+    else window.addEventListener("load", whenIdle, { once: true });
+    return () => {
+      window.removeEventListener("load", whenIdle);
+      const w = window as Window & { cancelIdleCallback?: (id: number) => void };
+      if (idleId !== undefined) (w.cancelIdleCallback ?? window.clearTimeout)(idleId);
+    };
+  }, []);
+
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+      <picture>
+        <source media="(orientation: portrait)" srcSet={HERO_POSTER_TALL} type="image/webp" />
+        <source srcSet={HERO_POSTER_WIDE} type="image/webp" />
+        <img
+          src={BG_POSTER_JPG}
+          alt=""
+          width={1600}
+          height={900}
+          decoding="async"
+          {...{ fetchpriority: "high" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </picture>
       <video
-        poster={BG_POSTER}
-        autoPlay
+        ref={videoRef}
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         disablePictureInPicture
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        onPlaying={() => setPlaying(true)}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: playing ? 1 : 0, transition: "opacity 600ms ease" }}
       >
         {/* El navegador elige la primera que encaja; los que no entienden
             "media" se quedan con la primera (la de 1080p) */}
@@ -262,11 +304,11 @@ export default function Hero() {
                 marginBottom: "1rem",
               }}
             >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.18, delay: 0 }}
+              <span
+                className="hero-in"
                 style={{
+                  ["--hero-d" as string]: "180ms",
+                  ["--hero-y" as string]: "0px",
                   display: "block",
                   fontWeight: 300,
                   fontSize: "0.8125rem",
@@ -278,30 +320,21 @@ export default function Hero() {
                 }}
               >
                 {t("hero.eyebrow")}
-              </motion.span>{" "}
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.48, ease, delay: 0.08 }}
-                style={{ display: "block" }}
-              >
+              </span>{" "}
+              <span className="hero-in" style={{ ["--hero-delay" as string]: "80ms", display: "block" }}>
                 {t("hero.h1_line1")}
-              </motion.span>{" "}
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.48, ease, delay: 0.16 }}
-                style={{ display: "block", color: BLUE }}
-              >
+              </span>{" "}
+              <span className="hero-in" style={{ ["--hero-delay" as string]: "160ms", display: "block", color: BLUE }}>
                 {t("hero.h1_line2")}
-              </motion.span>
+              </span>
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.36, ease, delay: 0.28 }}
+            <p
+              className="hero-in"
               style={{
+                ["--hero-d" as string]: "360ms",
+                ["--hero-y" as string]: "12px",
+                ["--hero-delay" as string]: "280ms",
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 400,
                 fontSize: "1.0625rem",
@@ -312,12 +345,11 @@ export default function Hero() {
               }}
             >
               {t("hero.tagline")}
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring", duration: 0.4, bounce: 0.15, delay: 0.4 }}
+            <div
+              className="hero-in"
+              style={{ ["--hero-d" as string]: "400ms", ["--hero-y" as string]: "0px", ["--hero-s" as string]: "0.95", ["--hero-delay" as string]: "400ms" } as React.CSSProperties}
             >
               {/* Exactamente dos botones: propuesta y trabajos.
                   id usado por la barra fija de móvil: aparece cuando salen de pantalla. */}
@@ -364,15 +396,13 @@ export default function Hero() {
                   {t("hero.cta_work")}
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Video collage — below text on mobile, right column on desktop */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease, delay: 0.2 }}
-            className="order-2 md:order-2"
+          <div
+            className="order-2 md:order-2 hero-in"
+            style={{ ["--hero-d" as string]: "500ms", ["--hero-y" as string]: "16px", ["--hero-delay" as string]: "200ms" } as React.CSSProperties}
           >
             {/* Desktop: scattered video collage */}
             <div className="hidden md:block">
@@ -383,7 +413,7 @@ export default function Hero() {
             <div className="block md:hidden">
               <HeroClusterMobile slots={resolvedSlots} />
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

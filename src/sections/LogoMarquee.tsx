@@ -48,6 +48,10 @@ export default function LogoMarquee() {
                 src={withBase(logo.file)}
                 alt={logo.name}
                 draggable={false}
+                width={logo.width}
+                height={logo.height}
+                // La franja queda por debajo del hero: ninguno se ve al entrar
+                loading="lazy"
                 decoding="async"
                 className="logo-img"
                 style={{

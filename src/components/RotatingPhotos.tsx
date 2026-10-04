@@ -6,6 +6,8 @@ export interface Photo {
   alt: string;
   /** Encuadre dentro del marco (object-position), p. ej. "50% 30%". */
   position?: string;
+  width: number;
+  height: number;
 }
 
 /**
@@ -50,6 +52,8 @@ export default function RotatingPhotos({ photos, interval = 2000, className = ""
             key={p.src}
             src={withBase(p.src)}
             alt={i === index ? p.alt : ""}
+            width={p.width}
+            height={p.height}
             aria-hidden={i === index ? undefined : true}
             loading="lazy"
             decoding="async"
@@ -69,7 +73,7 @@ export default function RotatingPhotos({ photos, interval = 2000, className = ""
               className="w-14 sm:w-16 rounded-lg overflow-hidden border border-off-white/15 opacity-70 hover:opacity-100 hover:border-brand-blue transition"
               style={{ aspectRatio: "4 / 5" }}
             >
-              <img src={withBase(photos[i].src)} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover"
+              <img src={withBase(photos[i].src)} alt="" width={photos[i].width} height={photos[i].height} loading="lazy" decoding="async" className="w-full h-full object-cover"
                 style={{ objectPosition: photos[i].position ?? "50% 50%" }} />
             </button>
           ))}
