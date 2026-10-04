@@ -95,7 +95,8 @@ function videoNodes(videos: VideoMeta[] | undefined, lang: Locale) {
       uploadDate: v.uploadDate,
       ...(v.duration ? { duration: v.duration } : {}),
       inLanguage: lang,
-      creator: { "@id": PERSON_ID },
+      // Persona completa (tipo, nombre y URL): en las páginas de caso no está el nodo Person
+      creator: { "@type": "Person", "@id": PERSON_ID, name: PERSON.name, url: SITE_URL },
     }));
 }
 
