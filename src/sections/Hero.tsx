@@ -404,7 +404,7 @@ export default function Hero() {
           {/* Video collage — below text on mobile, right column on desktop */}
           <div
             className="order-2 md:order-2 hero-in"
-            style={{ ["--hero-d" as string]: "500ms", ["--hero-y" as string]: "16px", ["--hero-o" as string]: 1, ["--hero-delay" as string]: "200ms" } as React.CSSProperties}
+            style={{ ["--hero-d" as string]: "500ms", ["--hero-y" as string]: "16px", ["--hero-delay" as string]: "200ms" } as React.CSSProperties}
           >
             {/* Desktop: scattered video collage */}
             <div className="hidden md:block">
