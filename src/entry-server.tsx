@@ -18,5 +18,6 @@ export function render(url: string, lang: Locale, data: InitialData): string {
   );
 }
 
+export { pageVideos, mediaAbs } from './seo/videos';
 export { buildHead } from './seo/head';
 export { PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } from './routes';

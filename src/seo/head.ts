@@ -14,8 +14,20 @@ const L = { es, en, ca } as const;
 const IMAGE = `${SITE_URL}/pol-morera.jpg`; // vista previa al compartir (JPG: lo leen todas las redes)
 const PERSON_ID = `${SITE_URL}/#person`;
 
+/** Vídeo de la página con lo que hace falta para su VideoObject (lo calcula el build). */
+export interface VideoMeta {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  contentUrl: string;
+  /** Fecha de subida (Last-Modified del archivo), ISO 8601. Sin ella no se publica el VideoObject. */
+  uploadDate?: string;
+  /** ISO 8601 (PT32S). */
+  duration?: string;
+}
+
 export type HeadRoute =
-  | { kind: "page"; key: PageKey; lang: Locale }
+  | { kind: "page"; key: PageKey; lang: Locale; videos?: VideoMeta[] }
   | { kind: "legal"; doc: "privacy" | "legal"; path: string }
   | { kind: "404"; lang: Locale };
 
@@ -71,7 +83,23 @@ function personNode(lang: Locale) {
   };
 }
 
-function structuredData(key: PageKey, lang: Locale, title: string, description: string): string {
+function videoNodes(videos: VideoMeta[] | undefined, lang: Locale) {
+  return (videos ?? [])
+    .filter((v) => v.uploadDate && v.thumbnailUrl && v.contentUrl)
+    .map((v) => ({
+      "@type": "VideoObject",
+      name: v.name,
+      description: v.description,
+      thumbnailUrl: v.thumbnailUrl,
+      contentUrl: v.contentUrl,
+      uploadDate: v.uploadDate,
+      ...(v.duration ? { duration: v.duration } : {}),
+      inLanguage: lang,
+      creator: { "@id": PERSON_ID },
+    }));
+}
+
+function structuredData(key: PageKey, lang: Locale, title: string, description: string, videos?: VideoMeta[]): string {
   const url = pageUrl(key, lang);
   if (key === "home") {
     return jsonLd({
@@ -117,6 +145,7 @@ function structuredData(key: PageKey, lang: Locale, title: string, description: 
           areaServed: { "@type": "Country", name: "España" },
         },
         breadcrumbList(key, lang),
+        ...videoNodes(videos, lang),
       ],
     });
   }
@@ -130,7 +159,10 @@ function structuredData(key: PageKey, lang: Locale, title: string, description: 
       ],
     });
   }
-  // Índice y páginas de caso. Sin VideoObject hasta tener vídeo y fecha reales.
+  // Páginas de caso: migas de pan y un VideoObject por vídeo
+  const vids = videoNodes(videos, lang);
+  if (vids.length) return jsonLd({ "@context": "https://schema.org", "@graph": [breadcrumbList(key, lang), ...vids] });
+  // Índice de casos
   return jsonLd({ "@context": "https://schema.org", ...breadcrumbList(key, lang) });
 }
 
@@ -192,6 +224,6 @@ export function buildHead(route: HeadRoute): { html: string; lang: Locale } {
     `<meta name="twitter:description" content="${esc(description)}" />`,
     `<meta name="twitter:image" content="${IMAGE}" />`,
   );
-  if (!noindex) lines.push(structuredData(key, lang, title, description));
+  if (!noindex) lines.push(structuredData(key, lang, title, description, route.videos));
   return { lang, html: lines.join("\n    ") };
 }

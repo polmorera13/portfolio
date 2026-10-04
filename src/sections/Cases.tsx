@@ -10,6 +10,8 @@ import { withBase } from "../lib/paths";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
 import { caseDetailFor, caseName } from "../data/caseDetails";
+import { videoName } from "../seo/videos";
+import type { Locale } from "../types";
 import { useCases } from "../hooks/useCases";
 import VideoPlayer from "../components/VideoPlayer";
 
@@ -344,6 +346,8 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
         {videos.map((v) => (
           <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16" }}>
             <VideoPlayer
+              indexable={large}
+              ariaName={videoName(caseName(c, lang), tr(v.label, lang) || v.name || null, lang as Locale)}
               src={getPublicUrl(v.file)}
               poster={v.poster ? getPublicUrl(v.poster) : null}
               aspectRatio={v.aspect}
@@ -363,6 +367,8 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
           <div style={{ ...frameStyle, width: current.aspect === "16:9" ? "100%" : `min(100%, ${Math.round((maxH * 9) / 16)}px)` }}>
             <VideoPlayer
               key={current.file}
+              indexable={large}
+              ariaName={videoName(caseName(c, lang), tr(current.label, lang) || current.name || null, lang as Locale)}
               src={getPublicUrl(current.file)}
               poster={current.poster ? getPublicUrl(current.poster) : null}
               aspectRatio={current.aspect}

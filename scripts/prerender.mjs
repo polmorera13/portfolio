@@ -15,7 +15,7 @@ const BASE = process.env.BASE_PATH || "/";
 const API = "https://api.polmorera.es";
 
 const server = await import(pathToFileURL(path.join(ROOT, "dist-ssr", "entry-server.js")).href);
-const { render, buildHead, PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } = server;
+const { render, buildHead, pageVideos, mediaAbs, PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } = server;
 
 // ── Datos de la API (si falla algo, la página se genera igualmente) ─────────
 async function get(endpoint, fallback) {
@@ -36,11 +36,53 @@ const data = {
 };
 if (!Object.keys(data.hero).length) delete data.hero;
 
+// ── Vídeos: fecha de subida y duración (para el VideoObject) ────────────────
+// La fecha es el Last-Modified del archivo en media.polmorera.es. La duración se
+// lee de la caja "mvhd" del mp4 (los vídeos llevan el índice al principio), con
+// una petición de los primeros 512 KB: no se descarga el vídeo entero.
+const videoMetaCache = new Map();
+function mvhdDuration(buf) {
+  const i = buf.indexOf("mvhd");
+  if (i < 4) return null;
+  const v = buf[i + 4];
+  const ts = v === 1 ? buf.readUInt32BE(i + 4 + 4 + 16) : buf.readUInt32BE(i + 4 + 4 + 8);
+  const dur = v === 1 ? Number(buf.readBigUInt64BE(i + 4 + 4 + 20)) : buf.readUInt32BE(i + 4 + 4 + 12);
+  if (!ts || !dur) return null;
+  return `PT${Math.max(1, Math.round(dur / ts))}S`;
+}
+async function videoMeta(file) {
+  if (videoMetaCache.has(file)) return videoMetaCache.get(file);
+  const url = mediaAbs(file);
+  const meta = {};
+  try {
+    const head = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(15000) });
+    const lm = head.headers.get("last-modified");
+    if (head.ok && lm) meta.uploadDate = new Date(lm).toISOString();
+    const part = await fetch(url, { headers: { Range: "bytes=0-524287" }, signal: AbortSignal.timeout(20000) });
+    if (part.ok) meta.duration = mvhdDuration(Buffer.from(await part.arrayBuffer())) ?? undefined;
+  } catch (e) {
+    console.warn(`  ! vídeo ${file}: ${e.message}`);
+  }
+  videoMetaCache.set(file, meta);
+  return meta;
+}
+async function videosFor(key, lang) {
+  const list = pageVideos(key, lang, data);
+  const out = [];
+  for (const v of list) {
+    const m = await videoMeta(v.file);
+    out.push({ name: v.name, description: v.description, thumbnailUrl: v.poster ? mediaAbs(v.poster) : "", contentUrl: mediaAbs(v.file), ...m });
+  }
+  return out;
+}
+
 // ── Plantilla ────────────────────────────────────────────────────────────────
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
 const baseNoSlash = BASE.replace(/\/$/, "");
 
 function page({ head, lang, appHtml, withData = true }) {
+  // Si React no pudo pintar la página (error en el render), mejor parar el build que publicarla vacía
+  if (appHtml.includes("<template data-msg=")) throw new Error("Error al prerenderizar: " + (appHtml.match(/data-msg="([^"]*)"/)?.[1] ?? "?"));
   let html = template
     .replace(/<!--app-head-->[\s\S]*?<!--\/app-head-->/, head)
     .replace('<html lang="es">', `<html lang="${lang}">`)
@@ -68,7 +110,7 @@ let count = 0;
 for (const key of Object.keys(PATHS)) {
   for (const lang of LOCALES) {
     const url = PATHS[key][lang];
-    const head = buildHead({ kind: "page", key, lang });
+    const head = buildHead({ kind: "page", key, lang, videos: await videosFor(key, lang) });
     write(url, page({ head: head.html, lang, appHtml: render(loc(url), lang, data) }));
     count++;
   }

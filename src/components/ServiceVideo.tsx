@@ -18,19 +18,25 @@ export default function ServiceVideo({
   aspect,
   className = "",
   style,
+  indexable = false,
+  ariaName,
 }: {
   file: string;
   /** Proporción fija ("9 / 16"); si no se pasa, la marca el className (aspect-[…]). */
   aspect?: string;
   className?: string;
   style?: React.CSSProperties;
+  /** Páginas de servicio: src y poster en el HTML, visible desde el principio (para Google). */
+  indexable?: boolean;
+  /** Nombre accesible del vídeo. */
+  ariaName?: string;
 }) {
   const { t } = useTranslation();
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [inView, setInView] = useState(false);
   const [muted, setMuted] = useState(true);
-  const [visible, setVisible] = useState(false); // para el fundido
+  const [visible, setVisible] = useState(indexable); // para el fundido (visible de entrada si es indexable)
   // Se lee en el navegador (no al prerenderizar) para que el HTML coincida
   const [reduced, setReduced] = useState(false);
   useEffect(() => setReduced(prefersReducedMotion()), []);
@@ -93,12 +99,15 @@ export default function ServiceVideo({
       <video
         key={file}
         ref={videoRef}
-        src={armed ? src : undefined}
+        src={armed || indexable ? src : undefined}
         poster={poster}
         muted
         loop
         playsInline
         preload={armed ? "metadata" : "none"}
+        aria-label={ariaName}
+        width={indexable ? (aspect === "16 / 9" ? 1280 : 405) : undefined}
+        height={indexable ? 720 : undefined}
         className="absolute inset-0 w-full h-full object-cover"
         style={{ opacity: visible ? 1 : 0, transition: "opacity 250ms ease-out" }}
       />
@@ -131,7 +140,7 @@ export default function ServiceVideo({
  * "Vídeo para tu empresa". Solo se reproduce uno (el activo); los demás
  * enseñan su miniatura sin descargar el vídeo. Al pulsar uno, pasa a ser el activo.
  */
-export function ServiceVideoStack({ files, style, className = "" }: { files: string[]; style?: React.CSSProperties; className?: string }) {
+export function ServiceVideoStack({ files, style, className = "", indexable = false, ariaName }: { files: string[]; style?: React.CSSProperties; className?: string; indexable?: boolean; ariaName?: string }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
 
@@ -142,7 +151,7 @@ export function ServiceVideoStack({ files, style, className = "" }: { files: str
     <div data-video-stack className={`flex flex-col gap-3 ${className}`} style={style}>
       {files.map((file, i) =>
         i === active ? (
-          <ServiceVideo key={file} file={file} aspect="16 / 9" className="w-full" />
+          <ServiceVideo key={file} file={file} aspect="16 / 9" className="w-full" indexable={indexable && i === 0} ariaName={i === 0 ? ariaName : undefined} />
         ) : (
           <button
             key={file}

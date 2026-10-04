@@ -46,6 +46,11 @@ interface VideoPlayerProps {
   eager?: boolean;
   /** Sin título ni etiqueta encima (cuando el texto ya está en otra parte del HTML). */
   hideLabels?: boolean;
+  /** Páginas de vídeo (casos): el <video> va en el HTML con src y poster, visible y con
+   *  preload="none" (no descarga nada hasta reproducirlo), para que Google lo encuentre. */
+  indexable?: boolean;
+  /** Nombre accesible del reproductor ("Vídeo UGC para MasterD: creatividad 1"). */
+  ariaName?: string;
 }
 
 const BRAND_BLUE = "oklch(58% 0.14 240)";
@@ -67,6 +72,8 @@ export default function VideoPlayer({
   style,
   eager = false,
   hideLabels = false,
+  indexable = false,
+  ariaName,
 }: VideoPlayerProps) {
   const { t } = useTranslation();
 
@@ -74,7 +81,8 @@ export default function VideoPlayer({
   const cardRef = useRef<HTMLDivElement>(null);
   // El <video> no existe hasta la primera interacción (ratón encima, clic o
   // teclado): así, al cargar la página no se descarga ningún archivo de vídeo.
-  const [activated, setActivated] = useState(autoPlay);
+  // En las páginas de vídeo (indexable) el <video> existe desde el principio, con preload="none".
+  const [activated, setActivated] = useState(autoPlay || indexable);
   const pendingPlayRef = useRef(false);
   const rafRef = useRef<number>(0);
   const isDraggingRef = useRef(false);
@@ -278,7 +286,7 @@ export default function VideoPlayer({
     [isPlaying, play, pause],
   );
 
-  const arLabel = title ?? client ?? (aspectRatio === "9:16" ? "Vertical video" : "Horizontal video");
+  const arLabel = ariaName ?? title ?? client ?? (aspectRatio === "9:16" ? "Vertical video" : "Horizontal video");
   const hasLabel = !hideLabels && !!(title || client);
   // Texto alternativo de la miniatura: "Vídeo UGC para Verisure (anuncio · alarmas)"
   const posterAlt = title ? `${t("player.video_of")} ${title}${client ? ` (${client.toLowerCase()})` : ""}` : "";
@@ -315,8 +323,8 @@ export default function VideoPlayer({
         overflow: "hidden",
         border: "1px solid oklch(58% 0.14 240 / 0.15)",
       }}>
-      {/* Poster */}
-      {poster && (
+      {/* Poster (en las páginas de vídeo lo pinta el propio <video>) */}
+      {poster && !indexable && (
         <img
           src={poster}
           alt={posterAlt}
@@ -342,18 +350,20 @@ export default function VideoPlayer({
         ref={videoRef}
         src={src}
         poster={poster ?? undefined}
-        preload="metadata"
+        preload={indexable ? "none" : "metadata"}
         playsInline
         muted={isMuted}
         loop={loop}
         controls={false}
+        width={indexable ? pw : undefined}
+        height={indexable ? ph : undefined}
         style={{
           position: "absolute",
           inset: 0,
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          opacity: isPlaying ? 1 : 0,
+          opacity: indexable || isPlaying ? 1 : 0,
           transition: "opacity 300ms",
         }}
       />

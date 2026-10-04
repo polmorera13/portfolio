@@ -6,6 +6,7 @@ import { CASE_DETAILS } from "../data/caseDetails";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
 import { getInitialData } from "../lib/initialData";
+import { pageVideos } from "../seo/videos";
 import { usePage } from "../lib/page";
 import { pageHref, type PageKey } from "../routes";
 import { videoLabel } from "../data/sectors";
@@ -57,6 +58,8 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
   const faqs = FAQ_FOR[service].map((q) => faqItems.find((f) => f.question.es === q)).filter(Boolean) as typeof faqItems;
   const related = CASE_DETAILS.filter((c) => RELATED[service].includes(c.slug));
   const l = lang as Locale;
+  // Nombre del vídeo principal (el mismo que va en su VideoObject)
+  const mainVideo = pageVideos(PAGE_OF[service], l, getInitialData())[0];
 
   return (
     <>
@@ -90,9 +93,9 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
           </div>
           <div className="flex justify-center">
             {service === "corporate" ? (
-              <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 520px)" }} />
+              <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 520px)" }} indexable ariaName={mainVideo?.name} />
             ) : (
-              <ServiceVideo file={videosMain[0]} aspect="9 / 16" style={{ width: "min(100%, calc(80vh * 9 / 16))" }} />
+              <ServiceVideo file={videosMain[0]} aspect="9 / 16" style={{ width: "min(100%, calc(80vh * 9 / 16))" }} indexable ariaName={mainVideo?.name} />
             )}
           </div>
         </div>
