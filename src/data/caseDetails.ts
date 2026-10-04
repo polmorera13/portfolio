@@ -33,8 +33,6 @@ export interface CaseDetail {
   caseId?: string;
   /** Nombre a mostrar en lugar del de la marca (casos anónimos), por idioma. */
   displayName?: Translated;
-  /** Vídeos del caso en cuadrícula (todos a la vista) en lugar de un reproductor con selector. */
-  videoGrid?: boolean;
   sector: Translated;
   need: Translated;
   did: Translated;
@@ -318,7 +316,6 @@ export const CASE_DETAILS: CaseDetail[] = [
     page: "case-agency",
     brandName: "Apple Tree",
     caseId: "agencia-b-corp",
-    videoGrid: true,
     sector: { es: "Agencia de comunicación (B Corp)", en: "Communications agency (B Corp)", ca: "Agència de comunicació (B Corp)" },
     need: {
       es: "Un creador de confianza para el contenido mensual de grandes marcas y vídeos para ganar nuevos clientes.",

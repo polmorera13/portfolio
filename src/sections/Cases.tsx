@@ -298,13 +298,34 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
   // pinta con CSS (content: attr()) para no repetir el texto de los KPIs en el HTML.
   const lead = (c.kpis.find((k) => k.highlight) ?? c.kpis[0]) || null;
 
-  // Cuadrícula: todos los vídeos a la vista (2×2 en la tarjeta; 4 en fila en la página del caso)
-  if (caseDetailFor(c)?.videoGrid && videos.length > 1) {
+  // Varios vídeos: todos a la vista, sin pestañas.
+  //  - Verticales: en la tarjeta, 2 por fila; en la página del caso, todos en una fila (hasta 4).
+  //  - Horizontales: en la tarjeta, uno debajo de otro y más pequeños; en la página, hasta 3 por fila.
+  if (videos.length > 1) {
+    const GAP = 12;
+    const vertical = videos.filter((v) => v.aspect !== "16:9").length >= videos.length / 2;
+    let gridCls: string;
+    let maxWidth: number | undefined;
+    if (vertical) {
+      if (large) {
+        const cols = Math.min(videos.length, 4);
+        gridCls = cols >= 4 ? "grid grid-cols-2 md:grid-cols-4" : cols === 3 ? "grid grid-cols-2 md:grid-cols-3" : "grid grid-cols-2";
+        maxWidth = cols * 300 + (cols - 1) * GAP;
+      } else {
+        const rows = Math.ceil(videos.length / 2);
+        const tileH = (maxH - GAP * (rows - 1)) / rows;
+        gridCls = "grid grid-cols-2";
+        maxWidth = Math.round(tileH * (9 / 16)) * 2 + GAP;
+      }
+    } else if (large) {
+      gridCls = videos.length >= 3 ? "grid grid-cols-1 md:grid-cols-3" : "grid grid-cols-1 md:grid-cols-2";
+    } else {
+      const tileH = (maxH - GAP * (videos.length - 1)) / videos.length;
+      gridCls = "grid grid-cols-1";
+      maxWidth = Math.round(tileH * (16 / 9));
+    }
     return (
-      <div
-        className={large ? "grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 w-full" : "grid grid-cols-2 gap-3 w-full mx-auto"}
-        style={large ? undefined : { maxWidth: Math.round(((maxH - 12) / 2) * (9 / 16)) * 2 + 12 }}
-      >
+      <div className={`${gridCls} w-full mx-auto`} style={{ gap: GAP, maxWidth }}>
         {videos.map((v) => (
           <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16" }}>
             <VideoPlayer
