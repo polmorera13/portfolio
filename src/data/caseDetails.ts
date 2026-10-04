@@ -95,23 +95,17 @@ export const CASE_DETAILS: CaseDetail[] = [
           ca: "Amb Dogfy Diet fa dos anys que treballem junts i creem contingut al llarg de tot l'any.",
         },
         {
-          es: "El reto es saber adaptar un mismo producto a cada una de las fases comerciales del año, con piezas rápidas y dinámicas que muestran el producto en uso.",
-          en: "The challenge is adapting the same product to every commercial moment of the year, with fast, dynamic pieces that show the product in use.",
-          ca: "El repte és saber adaptar un mateix producte a cadascuna de les fases comercials de l'any, amb peces ràpides i dinàmiques que mostren el producte en ús.",
+          es: "Tuvimos que jugar con el producto y vincularlo a todos los momentos del año, con piezas rápidas y dinámicas que lo muestran en uso.",
+          en: "We had to play with the product and tie it to every moment of the year, with fast, dynamic pieces that show it in use.",
+          ca: "Vam haver de jugar amb el producte i vincular-lo a tots els moments de l'any, amb peces ràpides i dinàmiques que el mostren en ús.",
         },
       ],
       didIntro: {
-        es: "Contenido para cada momento comercial del año:",
-        en: "Content for every commercial moment of the year:",
-        ca: "Contingut per a cada moment comercial de l'any:",
+        es: "Contenidos para todas las etapas comerciales del año: desde Black Friday y Navidad hasta primavera, verano y contenido corporativo.",
+        en: "Content for every commercial moment of the year: from Black Friday and Christmas to spring, summer and corporate content.",
+        ca: "Continguts per a totes les etapes comercials de l'any: des del Black Friday i Nadal fins a la primavera, l'estiu i contingut corporatiu.",
       },
-      stages: [
-        { color: "#EF4444", title: { es: "Black Friday", en: "Black Friday", ca: "Black Friday" } },
-        { color: "#3B82F6", title: { es: "Navidad", en: "Christmas", ca: "Nadal" } },
-        { color: "#22C55E", title: { es: "Primavera", en: "Spring", ca: "Primavera" } },
-        { color: "#EAB308", title: { es: "Verano", en: "Summer", ca: "Estiu" } },
-        { color: "#A855F7", title: { es: "Contenido corporativo", en: "Corporate content", ca: "Contingut corporatiu" } },
-      ],
+      stages: [],
       how: [
         {
           title: { es: "Una introducción dinámica", en: "A dynamic opening", ca: "Una introducció dinàmica" },
@@ -171,9 +165,9 @@ export const CASE_DETAILS: CaseDetail[] = [
       ca: "Vídeo per a tot el seu sistema de captació, amb volum per testejar a Meta Ads i Google Ads.",
     },
     did: {
-      es: "Vídeo para las 7 etapas de su embudo: del anuncio en frío al onboarding del cliente.",
-      en: "Video for all 7 stages of their funnel: from the cold ad to client onboarding.",
-      ca: "Vídeo per a les 7 etapes del seu embut: de l'anunci en fred a l'onboarding del client.",
+      es: "Vídeo para 6 etapas de su embudo: del anuncio en frío al onboarding del cliente.",
+      en: "Video for 6 stages of their funnel: from the cold ad to client onboarding.",
+      ca: "Vídeo per a 6 etapes del seu embut: de l'anunci en fred a l'onboarding del client.",
     },
     story: {
       challenge: [
@@ -196,65 +190,56 @@ export const CASE_DETAILS: CaseDetail[] = [
       stages: [
         {
           color: "#3B82F6",
-          title: { es: "Atracción · Anuncios de captación en frío", en: "Awareness · Cold acquisition ads", ca: "Atracció · Anuncis de captació en fred" },
+          title: { es: "Anuncios de captación en frío", en: "Cold acquisition ads", ca: "Anuncis de captació en fred" },
           text: {
-            es: "Seis tandas de anuncios para Meta y Google. Grabamos de forma modular, con varios hooks por anuncio, varias duraciones y todos los formatos (9:16, 4:5, 1:1 y 16:9). De un solo rodaje de 3 anuncios salieron 54 versiones listas para testear.",
-            en: "Six rounds of ads for Meta and Google. We filmed modularly, with several hooks per ad, several lengths and every format (9:16, 4:5, 1:1 and 16:9). A single shoot of 3 ads produced 54 versions ready to test.",
-            ca: "Sis tandes d'anuncis per a Meta i Google. Vam gravar de forma modular, amb diversos hooks per anunci, diverses durades i tots els formats (9:16, 4:5, 1:1 i 16:9). D'un sol rodatge de 3 anuncis en van sortir 54 versions a punt per testejar.",
+            es: "Seis tandas de anuncios para Meta y Google, grabadas de forma modular: varios ganchos, duraciones y formatos. De un solo rodaje de 3 anuncios salieron 54 versiones para testear.",
+            en: "Six rounds of ads for Meta and Google, filmed modularly: several hooks, lengths and formats. A single shoot of 3 ads produced 54 versions to test.",
+            ca: "Sis tandes d'anuncis per a Meta i Google, gravades de forma modular: diversos ganxos, durades i formats. D'un sol rodatge de 3 anuncis en van sortir 54 versions per testejar.",
           },
         },
         {
           color: "#22C55E",
-          title: { es: "Consideración · Vídeos para la web", en: "Consideration · Website videos", ca: "Consideració · Vídeos per al web" },
+          title: { es: "Vídeo corporativo para la web", en: "Corporate video for the website", ca: "Vídeo corporatiu per al web" },
           text: {
-            es: "El vídeo principal de la home y los vídeos de cada servicio. También produjimos en marca blanca los vídeos web de uno de sus clientes.",
-            en: "The main homepage video and a video for each service. We also produced, white-label, the website videos for one of their clients.",
-            ca: "El vídeo principal de la home i els vídeos de cada servei. També vam produir en marca blanca els vídeos web d'un dels seus clients.",
+            es: "El vídeo principal de la home y uno para cada servicio. También los vídeos web de uno de sus clientes, en marca blanca.",
+            en: "The main homepage video and one for each service. Also the website videos for one of their clients, white-label.",
+            ca: "El vídeo principal de la home i un per a cada servei. També els vídeos web d'un dels seus clients, en marca blanca.",
           },
         },
         {
           color: "#EAB308",
-          title: { es: "Conversión · VSL y webinar", en: "Conversion · VSL and webinar", ca: "Conversió · VSL i webinar" },
+          title: { es: "Vídeo corporativo VSL", en: "Corporate VSL video", ca: "Vídeo corporatiu VSL" },
           text: {
-            es: "Varias Video Sales Letters: largas, mini VSL de 90 segundos y versiones específicas para Google (más consultiva) y para Meta (más directa). También un webinar corto para hacer test A/B contra el VSL.",
-            en: "Several Video Sales Letters: long ones, 90-second mini VSLs and specific versions for Google (more consultative) and for Meta (more direct). Also a short webinar to A/B test against the VSL.",
-            ca: "Diverses Video Sales Letters: llargues, mini VSL de 90 segons i versions específiques per a Google (més consultiva) i per a Meta (més directa). També un webinar curt per fer test A/B contra el VSL.",
-          },
-        },
-        {
-          color: "#F97316",
-          title: { es: "Cualificación · Vídeo previo a la llamada de venta", en: "Qualification · Pre-sales-call video", ca: "Qualificació · Vídeo previ a la trucada de venda" },
-          text: {
-            es: "Un vídeo que el lead ve antes de la reunión comercial. Llega a la llamada con contexto y mejor cualificado.",
-            en: "A video the lead watches before the sales meeting, so they arrive at the call with context and better qualified.",
-            ca: "Un vídeo que el lead veu abans de la reunió comercial. Arriba a la trucada amb context i més ben qualificat.",
+            es: "Varias Video Sales Letters: largas, mini VSL de 90 segundos y versiones para Google y para Meta.",
+            en: "Several Video Sales Letters: long ones, 90-second mini VSLs and versions for Google and for Meta.",
+            ca: "Diverses Video Sales Letters: llargues, mini VSL de 90 segons i versions per a Google i per a Meta.",
           },
         },
         {
           color: "#EF4444",
-          title: { es: "Remarketing", en: "Remarketing", ca: "Remàrqueting" },
+          title: { es: "Anuncios de remarketing", en: "Remarketing ads", ca: "Anuncis de remàrqueting" },
           text: {
-            es: "Anuncios grabados en croma para Google Display y Meta, dirigidos a quien ya conoce la marca y aún no ha dado el paso.",
-            en: "Ads filmed on green screen for Google Display and Meta, aimed at people who already know the brand but haven't taken the step yet.",
-            ca: "Anuncis gravats en croma per a Google Display i Meta, adreçats a qui ja coneix la marca i encara no ha fet el pas.",
+            es: "Grabados en croma para Google Display y Meta, para quien ya conoce la marca y aún no ha dado el paso.",
+            en: "Filmed on green screen for Google Display and Meta, for people who already know the brand but haven't taken the step yet.",
+            ca: "Gravats en croma per a Google Display i Meta, per a qui ja coneix la marca i encara no ha fet el pas.",
           },
         },
         {
           color: "#A855F7",
-          title: { es: "Onboarding · Guía paso a paso para nuevos clientes", en: "Onboarding · Step-by-step guide for new clients", ca: "Onboarding · Guia pas a pas per a clients nous" },
+          title: { es: "Onboarding", en: "Onboarding", ca: "Onboarding" },
           text: {
-            es: "El vídeo de bienvenida de Reactiva360, su producto nuevo: una guía en 8 bloques que acompaña al cliente en sus primeros pasos.",
-            en: "The welcome video for Reactiva360, their new product: an 8-part guide that walks clients through their first steps.",
-            ca: "El vídeo de benvinguda de Reactiva360, el seu producte nou: una guia en 8 blocs que acompanya el client en els primers passos.",
+            es: "El vídeo de bienvenida de Reactiva360, su producto nuevo: una guía en 8 bloques para los primeros pasos de cada cliente.",
+            en: "The welcome video for Reactiva360, their new product: an 8-part guide for each client's first steps.",
+            ca: "El vídeo de benvinguda de Reactiva360, el seu producte nou: una guia en 8 blocs per als primers passos de cada client.",
           },
         },
         {
-          color: "#CBD5E1",
-          title: { es: "Marca · Contenido orgánico", en: "Brand · Organic content", ca: "Marca · Contingut orgànic" },
+          color: "#14B8A6",
+          title: { es: "Contenido orgánico para redes sociales", en: "Organic content for social media", ca: "Contingut orgànic per a xarxes socials" },
           text: {
-            es: "Una estrategia de contenido orgánico para Instagram y Facebook con 4 pilares (educación, cómo trabajamos por dentro, opinión propia y casos reales). Incluye reels, carruseles y piezas estáticas para generar awareness, comunidad y confianza alrededor de la marca.",
-            en: "An organic content strategy for Instagram and Facebook built on 4 pillars (education, how we work behind the scenes, our own opinion and real cases). It includes reels, carousels and static posts to build awareness, community and trust around the brand.",
-            ca: "Una estratègia de contingut orgànic per a Instagram i Facebook amb 4 pilars (educació, com treballem per dins, opinió pròpia i casos reals). Inclou reels, carrusels i peces estàtiques per generar awareness, comunitat i confiança al voltant de la marca.",
+            es: "Contenido para Instagram y Facebook, desde carruseles e imágenes estáticas hasta contenido orgánico en vídeo, para generar comunidad y confianza en la marca.",
+            en: "Content for Instagram and Facebook, from carousels and static images to organic video, to build community and trust in the brand.",
+            ca: "Contingut per a Instagram i Facebook, des de carrusels i imatges estàtiques fins a contingut orgànic en vídeo, per generar comunitat i confiança en la marca.",
           },
         },
       ],
@@ -290,9 +275,9 @@ export const CASE_DETAILS: CaseDetail[] = [
         {
           label: { es: "Etapas del embudo cubiertas", en: "Funnel stages covered", ca: "Etapes de l'embut cobertes" },
           value: {
-            es: "7 (frío, web, conversión, cualificación, remarketing, onboarding, orgánico)",
-            en: "7 (cold, website, conversion, qualification, remarketing, onboarding, organic)",
-            ca: "7 (fred, web, conversió, qualificació, remàrqueting, onboarding, orgànic)",
+            es: "6 (captación en frío, web, VSL, remarketing, onboarding y orgánico)",
+            en: "6 (cold acquisition, website, VSL, remarketing, onboarding and organic)",
+            ca: "6 (captació en fred, web, VSL, remàrqueting, onboarding i orgànic)",
           },
         },
         { label: { es: "Formatos", en: "Formats", ca: "Formats" }, value: { es: "9:16 · 4:5 · 1:1 · 16:9", en: "9:16 · 4:5 · 1:1 · 16:9", ca: "9:16 · 4:5 · 1:1 · 16:9" } },
@@ -305,9 +290,9 @@ export const CASE_DETAILS: CaseDetail[] = [
       ca: "Cas Reactiva Online: vídeo per a tot l'embut de vendes · Pol Morera",
     },
     metaDescription: {
-      es: "Vídeo para cada etapa del embudo de Reactiva Online: anuncios en frío, VSL, remarketing, llamada de venta, onboarding y orgánico. Más de 190 entregables en 15 meses.",
-      en: "Video for every stage of Reactiva Online's funnel: cold ads, VSLs, remarketing, sales calls, onboarding and organic. 190+ deliverables in 15 months.",
-      ca: "Vídeo per a cada etapa de l'embut de Reactiva Online: anuncis en fred, VSL, remàrqueting, trucada de venda, onboarding i orgànic. Més de 190 lliurables en 15 mesos.",
+      es: "Vídeo para cada etapa del embudo de Reactiva Online: anuncios en frío, vídeo corporativo, VSL, remarketing, onboarding y redes sociales. Más de 190 entregables en 15 meses.",
+      en: "Video for every stage of Reactiva Online's funnel: cold ads, corporate video, VSLs, remarketing, onboarding and social media. 190+ deliverables in 15 months.",
+      ca: "Vídeo per a cada etapa de l'embut de Reactiva Online: anuncis en fred, vídeo corporatiu, VSL, remàrqueting, onboarding i xarxes socials. Més de 190 lliurables en 15 mesos.",
     },
   },
   {
@@ -361,9 +346,9 @@ export const CASE_DETAILS: CaseDetail[] = [
         {
           color: "#A855F7",
           title: {
-            es: "Vídeos corporativos para presentaciones y propuestas (new business)",
-            en: "Corporate videos for pitches and proposals (new business)",
-            ca: "Vídeos corporatius per a presentacions i propostes (new business)",
+            es: "Vídeos corporativos",
+            en: "Corporate videos",
+            ca: "Vídeos corporatius",
           },
           text: {
             es: "Cuando la agencia presenta una propuesta a una marca nueva, un vídeo real vale más que cualquier diapositiva. Producimos piezas a medida para que Apple Tree las incluyera en sus presentaciones a marcas de energía, movilidad, alimentación y otros sectores. Muchas se entregaron en menos de 48 horas.",

@@ -71,7 +71,7 @@ export const services: Service[] = [
     tag: { es: "Guion incluido", en: "Script included", ca: "Guió inclòs" },
     configKey: "corporate",
     // Tres horizontales completos, uno encima de otro
-    videos: ["reactivaweb-v4-compressed-1-web.mp4", "estoolweb-v6-web.mp4", "rcx-software-pol-morera-1-web.mp4"],
+    videos: ["reactiva-vsl-google-ads-web.mp4", "reactivaweb-v4-compressed-1-web.mp4", "estoolweb-v6-web.mp4"],
     portfolioHash: "#portfolio-empresa",
   },
 ];

@@ -123,7 +123,7 @@ function ChallengeAndStages({ story, l }: { story: CaseStory; l: Locale }) {
           <h2 className={h2Cls}>{t("casepage.did")}</h2>
           {story.didIntro && <p className="text-off-white/90 max-w-3xl" style={bodyStyle}>{story.didIntro[l]}</p>}
         </div>
-        {story.stages.every((s) => !s.text) ? (
+        {story.stages.length === 0 ? null : story.stages.every((s) => !s.text) ? (
           // Etapas sin texto: etiquetas con su color
           <ul className="flex flex-wrap gap-3">
             {story.stages.map((s, i) => (

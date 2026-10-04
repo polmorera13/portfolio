@@ -334,6 +334,13 @@
     "corporate": {
       "h1": "Vídeo corporativo para tu empresa",
       "intro": "Un vídeo para explicar lo que haces en un minuto y dar buena imagen. Escribo el guion, grabo en 4K, y mi equipo añade rótulos animados y prepara versiones para tu web, tu equipo comercial y tus eventos."
+    },
+    "method3x3": {
+      "eyebrow": "Metodología 3×3",
+      "title": "3 anuncios con 3 ganchos cada uno: 9 versiones para testear",
+      "text": "Puedes pedir desde un solo vídeo, pero para anuncios trabajamos con la metodología 3×3: te entregamos tres anuncios, cada uno con su propio cuerpo, y tres ganchos distintos para cada uno. Así puedes testear la campaña completa y quedarte con la combinación que mejor funciona.",
+      "ad": "Anuncio",
+      "hook": "Gancho"
     }
   },
   "casespage": {

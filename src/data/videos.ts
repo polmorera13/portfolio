@@ -6,6 +6,20 @@ import type { Video } from "../types/video";
 
 export const videos: Video[] = [
   {
+    "id": "reactiva-vsl-google-ads.mp4",
+    "category": "corporate",
+    "title": "Reactiva Online",
+    "client": "Corporativo",
+    "storage_path": "reactiva-vsl-google-ads-web.mp4",
+    "thumbnail_path": "thumbs/reactiva-vsl-google-ads-web.jpg",
+    "aspect_ratio": "16:9",
+    "display_order": -1,
+    "is_active": true,
+    "created_at": "2026-10-04T00:00:00Z",
+    "slot": null,
+    "media_type": "video"
+  },
+  {
     "id": "reactiva-vsl-terminado-v3-compressed.mp4",
     "category": "corporate",
     "title": "Reactiva Online",

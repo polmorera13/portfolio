@@ -3,14 +3,22 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { applyLanguage, rememberLanguage, storedLanguage } from './lib/i18n';
 import { ROUTER_BASENAME } from './lib/paths';
-import { pageFromPath } from './routes';
+import { pageFromPath, LOCALES } from './routes';
+import type { Locale } from './types';
 import App from './App.tsx';
 import './index.css';
 
-// El idioma lo marca la URL. En las páginas sin versión por idioma (legales,
-// panel, 404) se usa la preferencia guardada o el español. Nunca se redirige.
+// El idioma lo marca la URL. Nunca se redirige.
+// En las páginas sin versión por idioma (legales, 404) que llegan prerenderizadas
+// se usa el idioma con el que se generó el HTML: si se cambiara al hidratar, React
+// encontraría textos distintos y daría error. Los botones de idioma de la cabecera
+// siguen cambiándolo en el sitio. Sin HTML previo (panel), la preferencia guardada.
+const root = document.getElementById('root')!;
+const hydrating = !!root.firstElementChild;
 const page = pageFromPath(window.location.pathname);
-const lang = page?.lang ?? storedLanguage() ?? 'es';
+const htmlLang = document.documentElement.lang as Locale;
+const lang: Locale =
+  page?.lang ?? (hydrating && LOCALES.includes(htmlLang) ? htmlLang : null) ?? storedLanguage() ?? 'es';
 applyLanguage(lang);
 if (page) rememberLanguage(page.lang);
 
@@ -22,7 +30,6 @@ const tree = (
   </StrictMode>
 );
 
-const root = document.getElementById('root')!;
 // Páginas prerenderizadas: React "hidrata" el HTML que ya viene del servidor.
-if (root.firstElementChild) hydrateRoot(root, tree);
+if (hydrating) hydrateRoot(root, tree);
 else createRoot(root).render(tree);
