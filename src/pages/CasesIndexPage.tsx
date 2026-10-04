@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useCases } from "../hooks/useCases";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
-import { caseDetailByBrand } from "../data/caseDetails";
+import { caseDetailFor } from "../data/caseDetails";
 import { tr, CaseHeader } from "../sections/Cases";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
@@ -12,7 +12,7 @@ import CtaBlock from "../components/CtaBlock";
 export default function CasesIndexPage() {
   const { t, i18n } = useTranslation();
   const { lang } = usePage();
-  const cases = useCases().filter((c) => caseDetailByBrand(c.brandName));
+  const cases = useCases().filter((c) => caseDetailFor(c));
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function CasesIndexPage() {
 
       <section className="max-w-content mx-auto section-padding pb-10 grid grid-cols-1 md:grid-cols-2 gap-6">
         {cases.map((c) => {
-          const d = caseDetailByBrand(c.brandName)!;
+          const d = caseDetailFor(c)!;
           const lead = c.kpis.find((k) => k.highlight) ?? c.kpis[0];
           return (
             <a key={c.id} href={pageHref(d.page, lang)}

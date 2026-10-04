@@ -2,24 +2,32 @@ import { useTranslation } from "react-i18next";
 import { useCases } from "../hooks/useCases";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
-import { caseDetailBySlug, type CaseSlug } from "../data/caseDetails";
+import { caseDetailBySlug, caseDetailFor, type CaseSlug, type CaseStory } from "../data/caseDetails";
 import { tr, CaseHeader, CaseMedia, CaseResults } from "../sections/Cases";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
 import type { Locale } from "../types";
 
-/** Página de un caso: vídeo arriba, cliente, qué necesitaba, qué hicimos y resultados (los del panel, sin cambios). */
+const dtCls = "text-xs font-bold tracking-[0.14em] uppercase text-steel-blue";
+const h2Cls = "text-off-white font-bold text-2xl lg:text-3xl";
+const bodyStyle = { fontSize: "17px", lineHeight: 1.6 } as const;
+
+/** Página de un caso: vídeo arriba, cliente, qué necesitaba, qué hicimos y resultados (los del panel, sin cambios).
+ *  Los casos con historia larga añaden el reto, las etapas, cómo trabajamos y las cifras. */
 export default function CasePage({ slug }: { slug: CaseSlug }) {
   const { t, i18n } = useTranslation();
   const { lang } = usePage();
   const d = caseDetailBySlug(slug);
-  const c = useCases().find((x) => x.brandName.toLowerCase() === d.brandName.toLowerCase());
+  const c = useCases().find((x) => caseDetailFor(x)?.slug === slug);
   const l = lang as Locale;
+  const name = d.displayName ? d.displayName[l] : d.brandName;
+  const story = d.story;
+  const hasVideo = !!c?.videos.some((v) => v.file);
 
   return (
     <>
       <section className="max-w-content mx-auto section-padding pt-28 lg:pt-36 pb-8">
-        <Breadcrumbs items={[{ label: t("nav.cases"), href: pageHref("cases", l) }, { label: d.brandName }]} />
+        <Breadcrumbs items={[{ label: t("nav.cases"), href: pageHref("cases", l) }, { label: name }]} />
         <h1 className="text-off-white font-bold mt-8 max-w-4xl" style={{ fontSize: "clamp(30px, 4.4vw, 56px)", lineHeight: 1.08, letterSpacing: "-0.01em" }}>
           {c ? tr(c.title, i18n.language) : d.metaTitle[l].split(" · ")[0]}
         </h1>
@@ -27,42 +35,141 @@ export default function CasePage({ slug }: { slug: CaseSlug }) {
 
       {c && (
         <>
-          {/* El vídeo de la campaña, arriba y grande */}
-          <section className="max-w-content mx-auto section-padding pb-10">
-            <CaseMedia c={c} large />
-          </section>
+          {/* El vídeo de la campaña, arriba y grande (en los casos largos, solo si hay vídeo) */}
+          {(!story || hasVideo) && (
+            <section className="max-w-content mx-auto section-padding pb-10">
+              <CaseMedia c={c} large />
+            </section>
+          )}
 
           <section className="max-w-content mx-auto section-padding pb-10 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14">
             <div className="flex flex-col gap-6">
               <CaseHeader c={c} />
               <dl className="flex flex-col gap-5">
+                {/* En los casos anónimos el nombre ya va en la cabecera */}
+                {!d.displayName && (
+                  <div>
+                    <dt className={dtCls}>{t("casepage.client")}</dt>
+                    <dd className="text-off-white text-lg mt-1">{name}</dd>
+                  </div>
+                )}
                 <div>
-                  <dt className="text-xs font-bold tracking-[0.14em] uppercase text-steel-blue">{t("casepage.client")}</dt>
-                  <dd className="text-off-white text-lg mt-1">{d.brandName}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-bold tracking-[0.14em] uppercase text-steel-blue">{t("casepage.sector")}</dt>
+                  <dt className={dtCls}>{t("casepage.sector")}</dt>
                   <dd className="text-off-white text-lg mt-1">{d.sector[l]}</dd>
                 </div>
-                <div>
-                  <dt className="text-xs font-bold tracking-[0.14em] uppercase text-steel-blue">{t("casepage.need")}</dt>
-                  <dd className="text-off-white mt-1" style={{ fontSize: "17px", lineHeight: 1.55 }}>{d.need[l]}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-bold tracking-[0.14em] uppercase text-steel-blue">{t("casepage.did")}</dt>
-                  <dd className="text-off-white mt-1" style={{ fontSize: "17px", lineHeight: 1.55 }}>{d.did[l]}</dd>
-                </div>
+                {!story && (
+                  <>
+                    <div>
+                      <dt className={dtCls}>{t("casepage.need")}</dt>
+                      <dd className="text-off-white mt-1" style={bodyStyle}>{d.need[l]}</dd>
+                    </div>
+                    <div>
+                      <dt className={dtCls}>{t("casepage.did")}</dt>
+                      <dd className="text-off-white mt-1" style={bodyStyle}>{d.did[l]}</dd>
+                    </div>
+                  </>
+                )}
               </dl>
             </div>
             <div className="flex flex-col gap-4">
-              <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("casepage.results")}</h2>
+              <h2 className={h2Cls}>{t("casepage.results")}</h2>
               <CaseResults c={c} />
             </div>
           </section>
         </>
       )}
 
+      {story && <CaseStoryBody story={story} l={l} />}
+
       <CtaBlock title={t("casepage.want")} />
     </>
+  );
+}
+
+/** El reto, qué hicimos por etapas, cómo trabajamos y las cifras. */
+function CaseStoryBody({ story, l }: { story: CaseStory; l: Locale }) {
+  const { t } = useTranslation();
+  return (
+    <div className="max-w-content mx-auto section-padding pb-14 flex flex-col gap-14 lg:gap-20">
+      {/* El reto */}
+      <section className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 lg:gap-14">
+        <h2 className={h2Cls}>{t("casepage.challenge")}</h2>
+        <div className="flex flex-col gap-4 max-w-3xl">
+          {story.challenge.map((p, i) => (
+            <p key={i} className="text-off-white/90" style={bodyStyle}>{p[l]}</p>
+          ))}
+          {story.challengeBullets && (
+            <ul className="flex flex-col gap-2.5">
+              {story.challengeBullets.map((b, i) => (
+                <li key={i} className="flex gap-3 text-off-white/90" style={bodyStyle}>
+                  <span aria-hidden className="mt-[11px] w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" />
+                  <span>{b[l]}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      {/* Qué hicimos */}
+      <section className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 lg:gap-14">
+          <h2 className={h2Cls}>{t("casepage.did")}</h2>
+          {story.didIntro && <p className="text-off-white/90 max-w-3xl" style={bodyStyle}>{story.didIntro[l]}</p>}
+        </div>
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {story.stages.map((s, i) => (
+            <li
+              key={i}
+              className="rounded-2xl border border-off-white/10 bg-charcoal/50 p-5 lg:p-6 flex flex-col gap-3"
+              style={{ borderTop: `3px solid ${s.color}` }}
+            >
+              <h3 className="flex items-start gap-2.5 text-off-white font-bold text-lg leading-snug">
+                <span aria-hidden className="mt-[7px] w-2.5 h-2.5 rounded-full shrink-0" style={{ background: s.color }} />
+                <span>{s.title[l]}</span>
+              </h3>
+              <p className="text-off-white/85" style={{ fontSize: "15.5px", lineHeight: 1.6 }}>{s.text[l]}</p>
+              {s.bullets && (
+                <ul className="flex flex-col gap-2">
+                  {s.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-2.5 text-off-white/85" style={{ fontSize: "15px", lineHeight: 1.55 }}>
+                      <span aria-hidden className="mt-[9px] w-1 h-1 rounded-full bg-steel-blue shrink-0" />
+                      <span>{b[l]}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.after && <p className="text-steel-blue" style={{ fontSize: "15px", lineHeight: 1.55 }}>{s.after[l]}</p>}
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Cómo trabajamos */}
+      <section className="flex flex-col gap-6">
+        <h2 className={h2Cls}>{t("casepage.how")}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {story.how.map((h, i) => (
+            <div key={i} className="rounded-2xl bg-brand-blue/10 border border-brand-blue/25 p-5 lg:p-6 flex flex-col gap-2">
+              <h3 className="text-off-white font-bold text-lg leading-snug">{h.title[l]}</h3>
+              <p className="text-off-white/85" style={{ fontSize: "15.5px", lineHeight: 1.6 }}>{h.text[l]}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* En cifras */}
+      <section className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 lg:gap-14">
+        <h2 className={h2Cls}>{t("casepage.figures")}</h2>
+        <dl className="rounded-2xl border border-off-white/10 divide-y divide-off-white/10 overflow-hidden">
+          {story.figures.map((f, i) => (
+            <div key={i} className="grid grid-cols-1 sm:grid-cols-[1fr_1.4fr] gap-1 sm:gap-6 px-5 py-4 bg-charcoal/40">
+              <dt className="text-steel-blue font-semibold" style={{ fontSize: "15px" }}>{f.label[l]}</dt>
+              <dd className="text-off-white font-bold" style={{ fontSize: "16px", lineHeight: 1.45 }}>{f.value[l]}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import es from "../locales/es.json";
 import en from "../locales/en.json";
 import ca from "../locales/ca.json";
 import type { Locale } from "../types";
-import { LOCALES, NOINDEX_PAGES, SITE_URL, pageUrl, type PageKey } from "../routes";
+import { LOCALES, NOINDEX_PAGES, SITE_URL, CASE_PAGES, pageUrl, type PageKey } from "../routes";
 import { META, OG_LOCALE, PERSON, BUSINESS_DESCRIPTION, SERVICE_TYPES } from "./meta";
 import { CASE_DETAILS } from "../data/caseDetails";
 import { privacyPolicy, legalNotice } from "../data/legal";
@@ -30,16 +30,18 @@ function crumbLabel(key: PageKey, lang: Locale): string {
     case "svc-social": return t.nav.svc_social;
     case "svc-corporate": return t.nav.svc_corporate;
     case "cases": return t.nav.cases;
-    case "case-masterd": return "MasterD";
-    case "case-dogfy": return "Dogfy Diet";
     case "about": return t.aboutpage.h1;
-    default: return t.crumbs.home;
+    default: {
+      const d = CASE_DETAILS.find((c) => c.page === key);
+      if (d) return d.displayName ? d.displayName[lang] : d.brandName;
+      return t.crumbs.home;
+    }
   }
 }
 
 function breadcrumbList(key: PageKey, lang: Locale) {
   const chain: PageKey[] = ["home"];
-  if (key === "case-masterd" || key === "case-dogfy") chain.push("cases");
+  if (CASE_PAGES.includes(key)) chain.push("cases");
   if (key !== "home") chain.push(key);
   return {
     "@type": "BreadcrumbList",
@@ -133,7 +135,7 @@ function structuredData(key: PageKey, lang: Locale, title: string, description: 
 }
 
 function titleAndDescription(key: PageKey, lang: Locale) {
-  if (key === "case-masterd" || key === "case-dogfy") {
+  if (CASE_PAGES.includes(key)) {
     const d = CASE_DETAILS.find((c) => c.page === key)!;
     return { title: d.metaTitle[lang], description: d.metaDescription[lang] };
   }

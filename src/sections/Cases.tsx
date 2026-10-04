@@ -8,7 +8,7 @@ import { getPublicUrl } from "../lib/supabase";
 import { withBase } from "../lib/paths";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
-import { caseDetailByBrand } from "../data/caseDetails";
+import { caseDetailFor, caseName } from "../data/caseDetails";
 import { useCases } from "../hooks/useCases";
 import VideoPlayer from "../components/VideoPlayer";
 
@@ -128,7 +128,7 @@ export default function Cases() {
 function CaseCard({ c }: { c: CaseStudy }) {
   const { t, i18n } = useTranslation();
   const { lang } = usePage();
-  const detail = caseDetailByBrand(c.brandName);
+  const detail = caseDetailFor(c);
 
   return (
     <article className="rounded-[22px] border border-off-white/10 bg-charcoal/50 p-5 sm:p-7 lg:p-9">
@@ -164,10 +164,10 @@ export function CaseHeader({ c }: { c: CaseStudy }) {
       <div className="flex items-center gap-3 min-w-0">
         {c.brandLogo ? (
           <span className="shrink-0 rounded-lg bg-white px-2.5 py-1.5">
-            <img src={mediaUrl(c.brandLogo)} alt={c.brandName} width={110} height={20} className="h-5 w-auto max-w-[110px] object-contain" />
+            <img src={mediaUrl(c.brandLogo)} alt={caseName(c, lang)} width={110} height={20} className="h-5 w-auto max-w-[110px] object-contain" />
           </span>
         ) : (
-          <span className="text-off-white font-bold text-lg">{c.brandName}</span>
+          <span className="text-off-white font-bold text-lg">{caseName(c, lang)}</span>
         )}
       </div>
       {tr(c.campaignType, lang) && (
@@ -326,7 +326,7 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
               <img src={mediaUrl(c.brandLogo)} alt="" width={160} height={32} className="h-6 lg:h-8 w-auto max-w-[120px] lg:max-w-[160px] object-contain" />
             </span>
           ) : (
-            <span className="case-attr text-off-white font-bold text-xl lg:text-2xl" data-text={c.brandName} />
+            <span className="case-attr text-off-white font-bold text-xl lg:text-2xl" data-text={caseName(c, lang)} />
           )}
           {lead && (
             <span className="flex flex-col items-end lg:items-center min-w-0">

@@ -38,14 +38,14 @@
     "highlight": "Every piece with a clear objective: attract, convince, or convert. Everything else is noise."
   },
   "services": {
-    "eyebrow": "03 / SERVICES",
-    "title": "What I produce",
+    "eyebrow": "02 / SERVICES",
+    "title": "What I do for you",
     "subtitle": "Choose what your business needs",
     "examples": "See examples",
     "sound_on": "Turn on sound"
   },
   "process": {
-    "eyebrow": "05 / PROCESS",
+    "eyebrow": "04 / PROCESS",
     "title": "How I work",
     "subtitle": "You don't need to know about marketing or prepare anything.",
     "badge": "From call to video: 5–7 days",
@@ -123,7 +123,7 @@
     "secondary": "or request a quote"
   },
   "testimonials": {
-    "eyebrow": "04 / TESTIMONIALS",
+    "eyebrow": "03 / TESTIMONIALS",
     "title": "What brands say",
     "label": "What they say",
     "items": [
@@ -160,12 +160,12 @@
     ]
   },
   "faq": {
-    "eyebrow": "07 / QUESTIONS",
+    "eyebrow": "06 / QUESTIONS",
     "title": "Frequently asked questions",
     "more": "More questions"
   },
   "contact": {
-    "eyebrow": "08 / CONTACT",
+    "eyebrow": "07 / CONTACT",
     "title": "Tell me about your project",
     "subtitle": "I reply within 24 h on working days.",
     "email": "hello@polmorera.es",
@@ -275,7 +275,7 @@
     "legal": "Legal notice"
   },
   "about": {
-    "eyebrow": "06 / WHO'S BEHIND IT",
+    "eyebrow": "05 / WHO'S BEHIND IT",
     "title": "I was making UGC before most people in Spain knew what it was.",
     "p1": "I'm Pol Morera. I started when brands didn't even have a name for this yet. I was one of the first UGC creators in Spain, and the first male UGC creator.",
     "p2": "All these years taught me something you can't learn fast: what makes people stop scrolling, and what burns out in two weeks. That's what I bring to every video my team and I make for your brand.",
@@ -346,7 +346,10 @@
     "did": "What we did",
     "results": "Results",
     "testimonial": "What the client says",
-    "want": "Want something like this for your business?"
+    "want": "Want something like this for your business?",
+    "challenge": "The challenge",
+    "how": "How we work",
+    "figures": "In numbers"
   },
   "aboutpage": {
     "h1": "About me",
@@ -381,6 +384,7 @@
     "services": "Services",
     "cases": "Case studies",
     "about": "About me",
-    "all_cases": "All case studies"
+    "all_cases": "All case studies",
+    "agency_case": "Communications agency"
   }
 }

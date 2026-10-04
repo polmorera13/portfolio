@@ -38,14 +38,14 @@
     "highlight": "Cada peça amb un objectiu clar: atraure, convèncer o convertir. La resta és soroll."
   },
   "services": {
-    "eyebrow": "03 / SERVEIS",
-    "title": "Què produeixo",
+    "eyebrow": "02 / SERVEIS",
+    "title": "Què faig per a tu",
     "subtitle": "Tria el que necessita el teu negoci",
     "examples": "Veure exemples",
     "sound_on": "Activa el so"
   },
   "process": {
-    "eyebrow": "05 / PROCÉS",
+    "eyebrow": "04 / PROCÉS",
     "title": "Com treballo",
     "subtitle": "No cal que sàpigues de màrqueting ni que preparis res.",
     "badge": "De la trucada al vídeo: 5–7 dies",
@@ -123,7 +123,7 @@
     "secondary": "o demana pressupost"
   },
   "testimonials": {
-    "eyebrow": "04 / TESTIMONIS",
+    "eyebrow": "03 / TESTIMONIS",
     "title": "Què diuen les marques",
     "label": "Què en diuen",
     "items": [
@@ -160,12 +160,12 @@
     ]
   },
   "faq": {
-    "eyebrow": "07 / PREGUNTES",
+    "eyebrow": "06 / PREGUNTES",
     "title": "Preguntes freqüents",
     "more": "Més preguntes"
   },
   "contact": {
-    "eyebrow": "08 / CONTACTE",
+    "eyebrow": "07 / CONTACTE",
     "title": "Explica'm el teu projecte",
     "subtitle": "Et responc en menys de 24 h en dies laborables.",
     "email": "hello@polmorera.es",
@@ -275,7 +275,7 @@
     "legal": "Avís legal"
   },
   "about": {
-    "eyebrow": "06 / QUI HI HA AL DARRERE",
+    "eyebrow": "05 / QUI HI HA AL DARRERE",
     "title": "Feia UGC quan a Espanya gairebé ningú sabia què era.",
     "p1": "Soc en Pol Morera. Vaig començar quan les marques encara no tenien nom per a això. Vaig ser un dels primers creadors UGC del país i el primer UGC home.",
     "p2": "Tants anys m'han donat una cosa que no s'aprèn de pressa: saber què fa que algú deixi de fer scroll i què es crema en dues setmanes. Això és el que poso a cada vídeo que faig amb el meu equip per a la teva marca.",
@@ -346,7 +346,10 @@
     "did": "Què vam fer",
     "results": "Resultats",
     "testimonial": "El que diu el client",
-    "want": "Vols alguna cosa així per al teu negoci?"
+    "want": "Vols alguna cosa així per al teu negoci?",
+    "challenge": "El repte",
+    "how": "Com treballem",
+    "figures": "En xifres"
   },
   "aboutpage": {
     "h1": "Sobre mi",
@@ -381,6 +384,7 @@
     "services": "Serveis",
     "cases": "Casos",
     "about": "Sobre mi",
-    "all_cases": "Tots els casos"
+    "all_cases": "Tots els casos",
+    "agency_case": "Agència de comunicació"
   }
 }

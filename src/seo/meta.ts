@@ -3,7 +3,7 @@ import type { PageKey } from "../routes";
 
 // Título y descripción de cada página, por idioma (los metadatos pueden llevar
 // las palabras de búsqueda: "UGC", "Meta Ads"…; el texto visible, no).
-export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy">, { title: Translated; description: Translated }> = {
+export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case-reactiva" | "case-agency">, { title: Translated; description: Translated }> = {
   home: {
     title: {
       es: "Pol Morera · UGC creator y productor de vídeo en Barcelona",

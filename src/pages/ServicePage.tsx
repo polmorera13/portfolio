@@ -35,7 +35,11 @@ const EXAMPLE_CATS: Record<ServiceKey, ("ads" | "organic" | "corporate" | "stree
 };
 
 // Casos relacionados
-const RELATED: Record<ServiceKey, string[]> = { ads: ["masterd", "dogfy"], organic: [], corporate: [] };
+const RELATED: Record<ServiceKey, string[]> = {
+  ads: ["masterd", "dogfy", "reactiva"],
+  organic: ["agencia", "reactiva"],
+  corporate: ["reactiva", "agencia"],
+};
 
 /** Página de un servicio: /videos-ugc-para-anuncios/, /videos-para-redes-sociales/, /video-corporativo/ (y EN/CAT). */
 export default function ServicePage({ service }: { service: ServiceKey }) {
@@ -131,7 +135,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {related.map((c) => (
               <a key={c.slug} href={pageHref(c.page, l)} className="group rounded-xl border border-off-white/10 bg-charcoal/50 p-6 flex flex-col gap-2 hover:border-brand-blue/50 transition-colors">
-                <span className="text-steel-blue text-sm font-semibold">{c.brandName} · {c.sector[l]}</span>
+                <span className="text-steel-blue text-sm font-semibold">{c.displayName ? c.displayName[l] : `${c.brandName} · ${c.sector[l]}`}</span>
                 <span className="text-off-white font-bold text-lg leading-snug">{c.metaTitle[l].split(" · ")[0]}</span>
                 <span className="inline-flex items-center gap-2 text-brand-blue font-semibold text-sm mt-1">
                   {t("casespage.see")} <ArrowRight size={14} aria-hidden className="group-hover:translate-x-0.5 transition-transform" />

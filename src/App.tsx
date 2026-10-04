@@ -27,6 +27,8 @@ function pageElement(key: PageKey): ReactNode {
     case 'cases': return <CasesIndexPage />;
     case 'case-masterd': return <CasePage slug="masterd" />;
     case 'case-dogfy': return <CasePage slug="dogfy" />;
+    case 'case-reactiva': return <CasePage slug="reactiva" />;
+    case 'case-agency': return <CasePage slug="agencia" />;
     case 'about': return <AboutPage />;
     case 'thanks': return <ThanksPage />;
   }
