@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
@@ -139,8 +140,9 @@ function CaseCard({ c }: { c: CaseStudy }) {
             {tr(c.title, i18n.language)}
           </h3>
         </div>
-        <div style={{ gridArea: "media" }}>
+        <div style={{ gridArea: "media" }} className="flex flex-col gap-4">
           <CaseMedia c={c} />
+          <CaseEvidence c={c} />
         </div>
         <div style={{ gridArea: "body" }} className="flex flex-col gap-6 min-w-0">
           <CaseResults c={c} />
@@ -179,16 +181,16 @@ export function CaseHeader({ c }: { c: CaseStudy }) {
   );
 }
 
-/** KPIs, contexto, cita, gráfica, aprendizaje, evidencias y aviso de un caso. */
+/** KPIs, contexto, cita, gráfica, aprendizaje y aviso de un caso (las capturas van con los vídeos: CaseEvidence). */
 export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?: boolean }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
-  const [lightbox, setLightbox] = useState<number | null>(null);
 
   const kpis = (c.kpis.some((k) => k.highlight) ? c.kpis.filter((k) => k.highlight) : c.kpis).slice(0, 4);
+  // Con 1 o 2 cifras hay sitio: se muestran más grandes para que llenen la tarjeta
+  const big = kpis.length <= 2;
   const bars = c.chart?.bars ?? [];
   const maxBar = Math.max(1, ...bars.map((b) => b.value));
-  const evidence = c.evidence.filter((e) => e.visible && e.image);
 
   return (
     <div className="flex flex-col gap-6">
@@ -196,10 +198,10 @@ export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?:
         <div className={`grid grid-cols-2 ${kpis.length >= 3 ? "lg:grid-cols-3" : ""} gap-x-6 gap-y-5`}>
           {kpis.map((k, i) => (
             <div key={i} className="flex flex-col gap-1">
-              <span className="text-brand-blue font-bold tabular-nums leading-none" style={{ fontSize: "clamp(26px, 2.6vw, 38px)" }}>
+              <span className="text-brand-blue font-bold tabular-nums leading-none" style={{ fontSize: big ? "clamp(40px, 4.4vw, 64px)" : "clamp(26px, 2.6vw, 38px)" }}>
                 {k.value}
               </span>
-              <span className="text-off-white font-semibold" style={{ fontSize: "15px", lineHeight: 1.35 }}>{tr(k.label, lang)}</span>
+              <span className="text-off-white font-semibold" style={{ fontSize: big ? "17px" : "15px", lineHeight: 1.35 }}>{tr(k.label, lang)}</span>
               {tr(k.context, lang) && <span className="text-steel-blue text-sm leading-snug">{tr(k.context, lang)}</span>}
             </div>
           ))}
@@ -246,38 +248,51 @@ export function CaseResults({ c, showQuote = true }: { c: CaseStudy; showQuote?:
         </div>
       )}
 
-      {evidence.length > 0 && (
-        <div className="flex flex-col gap-2">
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{t("cases.evidence")}</span>
-          <div className="flex gap-3 flex-wrap">
-            {evidence.map((e, i) => (
-              <button key={i} type="button" onClick={() => setLightbox(i)}
-                className="w-28 h-20 rounded-lg overflow-hidden border border-off-white/15 hover:border-brand-blue transition-colors">
-                <img src={mediaUrl(e.image)} alt={tr(e.alt, lang)} width={112} height={80} loading="lazy" className="w-full h-full object-cover" />
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
       {tr(c.disclaimer, lang) && (
         <p className="text-steel-blue/80 text-xs leading-relaxed">{tr(c.disclaimer, lang)}</p>
       )}
 
-      {lightbox !== null && evidence[lightbox] && (
-        <div className="fixed inset-0 z-[60] bg-black/85 flex items-center justify-center p-4" role="dialog" aria-modal="true"
-          onClick={() => setLightbox(null)}>
+    </div>
+  );
+}
+
+// ── Capturas del caso ────────────────────────────────────────────────────────
+/** Capturas de la plataforma, a lo ancho y ampliables (debajo de los vídeos). */
+export function CaseEvidence({ c }: { c: CaseStudy }) {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const [open, setOpen] = useState<number | null>(null);
+  const evidence = c.evidence.filter((e) => e.visible && e.image);
+  if (evidence.length === 0) return null;
+
+  return (
+    <div className="flex flex-col gap-2 w-full">
+      <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{t("cases.evidence")}</span>
+      {evidence.map((e, i) => (
+        <figure key={i} className="flex flex-col gap-1.5">
+          <button type="button" onClick={() => setOpen(i)} aria-label={tr(e.alt, lang)}
+            className="block w-full rounded-lg overflow-hidden border border-off-white/15 bg-white hover:border-brand-blue transition-colors cursor-zoom-in">
+            <img src={mediaUrl(e.image)} alt={tr(e.alt, lang)} loading="lazy" className="w-full h-auto block" />
+          </button>
+          {tr(e.description, lang) && <figcaption className="text-steel-blue/80 text-xs">{tr(e.description, lang)}</figcaption>}
+        </figure>
+      ))}
+
+      {open !== null && evidence[open] && typeof document !== "undefined" && createPortal(
+        <div className="fixed inset-0 z-[70] bg-black/85 flex items-center justify-center p-4" role="dialog" aria-modal="true"
+          onClick={() => setOpen(null)}>
           <button type="button" className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 text-white flex items-center justify-center"
-            aria-label={t("cases.close")} onClick={() => setLightbox(null)}>
+            aria-label={t("cases.close")} onClick={() => setOpen(null)}>
             <X size={22} weight="bold" />
           </button>
-          <figure className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <img src={mediaUrl(evidence[lightbox].image)} alt={tr(evidence[lightbox].alt, lang)} className="w-full h-auto max-h-[80vh] object-contain rounded-lg" />
-            {tr(evidence[lightbox].description, lang) && (
-              <figcaption className="text-white/80 text-sm mt-3 text-center">{tr(evidence[lightbox].description, lang)}</figcaption>
+          <figure className="max-w-6xl w-full" onClick={(ev) => ev.stopPropagation()}>
+            <img src={mediaUrl(evidence[open].image)} alt={tr(evidence[open].alt, lang)} className="w-full h-auto max-h-[80vh] object-contain rounded-lg bg-white" />
+            {tr(evidence[open].description, lang) && (
+              <figcaption className="text-white/80 text-sm mt-3 text-center">{tr(evidence[open].description, lang)}</figcaption>
             )}
           </figure>
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   );

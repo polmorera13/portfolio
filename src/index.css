@@ -121,3 +121,21 @@ html[data-menu-open] .mobile-cta-bar {
 html {
   scroll-padding-top: 80px;
 }
+
+/* ── Bloque claro (páginas de caso): mismos componentes, texto oscuro sobre blanco ── */
+.on-light { background: #ffffff; color: #0D1B2A; }
+.on-light .text-off-white,
+.on-light .text-off-white\/90,
+.on-light .text-off-white\/85 { color: #0D1B2A; }
+.on-light .text-steel-blue,
+.on-light .text-steel-blue\/80 { color: #4A6580; }
+.on-light .text-brand-blue { color: #2F74C0; }
+.on-light .bg-charcoal\/50,
+.on-light .bg-charcoal\/40,
+.on-light .bg-navy\/40 { background-color: #F2F5F9; }
+.on-light .bg-off-white\/10 { background-color: #E3E9F0; }
+.on-light .bg-brand-blue\/10 { background-color: #EAF2FB; }
+.on-light .border-off-white\/10,
+.on-light .border-off-white\/15,
+.on-light .border-off-white\/20 { border-color: #DCE3EC; }
+.on-light .divide-off-white\/10 > * + * { border-color: #DCE3EC; }

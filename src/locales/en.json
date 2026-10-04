@@ -280,7 +280,9 @@
     "p1": "I'm Pol Morera. I started when brands didn't even have a name for this yet. I was one of the first UGC creators in Spain, and the first male UGC creator.",
     "p2": "All these years taught me something you can't learn fast: what makes people stop scrolling, and what burns out in two weeks. That's what I bring to every video my team and I make for your brand.",
     "cta": "Let's talk →",
-    "img_alt": "Pol Morera, UGC creator"
+    "img_alt": "Pol Morera, UGC creator",
+    "img_alt_camera": "Pol Morera filming a video to camera",
+    "img_alt_event": "Pol Morera speaking at an event"
   },
   "legal": {
     "back": "← Back to the site"
@@ -366,7 +368,46 @@
     "langs_v": "Spanish, Catalan and English",
     "services": "Services",
     "profiles": "Official profiles",
-    "img_alt": "Pol Morera, UGC creator in Barcelona"
+    "img_alt": "Pol Morera, UGC creator in Barcelona",
+    "story_title": "My story",
+    "story": [
+      "At first I filmed on my own. Today I work with my team: we write the script, film and edit, and deliver every video in the formats each channel needs.",
+      "Since then I've made over 1,000 videos for more than 300 brands, from big companies to local businesses. What I enjoy most is still the same: finding what makes someone stop scrolling."
+    ],
+    "how_title": "How I work",
+    "how": [
+      {
+        "t": "Long relationships",
+        "d": "Many brands come back. We've been working with Apple Tree for 31 months, with Dogfy Diet for two years and with Reactiva Online for 15 months."
+      },
+      {
+        "t": "Fast when it counts",
+        "d": "You get the proposal within 2 working days and most projects are ready in 5–7. If it's urgent, we adapt."
+      },
+      {
+        "t": "Videos built to perform",
+        "d": "I don't just show how a video looks, but what it achieves: like MasterD's 390 conversions on TikTok Ads or Dogfy Diet's leads, converting at 10–20%."
+      }
+    ],
+    "numbers_title": "In numbers",
+    "numbers": [
+      {
+        "v": "1,000+",
+        "l": "videos produced"
+      },
+      {
+        "v": "300+",
+        "l": "brands"
+      },
+      {
+        "v": "3",
+        "l": "languages: Spanish, Catalan and English"
+      },
+      {
+        "v": "31",
+        "l": "months with one of my longest-standing clients"
+      }
+    ]
   },
   "thanks": {
     "h1": "Thank you!",

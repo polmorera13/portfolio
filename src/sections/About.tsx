@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
-import { withBase } from "../lib/paths";
+import RotatingPhotos from "../components/RotatingPhotos";
+import { aboutPhotos } from "../data/aboutPhotos";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
 
@@ -22,14 +23,7 @@ export default function About() {
           className="flex flex-col lg:flex-row-reverse gap-10 lg:gap-14 lg:items-center"
         >
           <motion.div variants={fadeUp} className="w-full lg:w-[38%] shrink-0">
-            <div className="w-full rounded-xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
-              <img
-                src={withBase("/pol-morera.webp")}
-                alt={t("about.img_alt")}
-                loading="lazy"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
+            <RotatingPhotos photos={aboutPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} />
           </motion.div>
 
           <div className="flex flex-col gap-8 lg:flex-1 min-w-0">

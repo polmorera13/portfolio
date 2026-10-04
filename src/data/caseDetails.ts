@@ -57,9 +57,9 @@ export const CASE_DETAILS: CaseDetail[] = [
       ca: "Captar leads per a una acadèmia que acompanya les persones que es presenten a les oposicions de Mossos d'Esquadra.",
     },
     did: {
-      es: "Una serie de creatividades UGC para TikTok Ads que tenían que cumplir unas condiciones: muy cortas, muy rápidas y muy directas.",
-      en: "A series of UGC creatives for TikTok Ads that had to meet a few conditions: very short, very fast and very direct.",
-      ca: "Una sèrie de creativitats UGC per a TikTok Ads que havien de complir unes condicions: molt curtes, molt ràpides i molt directes.",
+      es: "Una serie de creatividades UGC para TikTok Ads que tenían que cumplir unas condiciones: muy cortas, muy rápidas y muy directas. En tres meses, la principal sumó 390 conversiones y la versión adaptada a las políticas de TikTok, 29.",
+      en: "A series of UGC creatives for TikTok Ads that had to meet a few conditions: very short, very fast and very direct. Over three months, the main one reached 390 conversions and the version adapted to TikTok's policies, 29.",
+      ca: "Una sèrie de creativitats UGC per a TikTok Ads que havien de complir unes condicions: molt curtes, molt ràpides i molt directes. En tres mesos, la principal va sumar 390 conversions i la versió adaptada a les polítiques de TikTok, 29.",
     },
     metaTitle: {
       es: "Caso MasterD: 390 conversiones en TikTok Ads · Pol Morera",

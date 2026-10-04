@@ -4,6 +4,9 @@ import { pageHref } from "../routes";
 import { withBase } from "../lib/paths";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
+import RotatingPhotos from "../components/RotatingPhotos";
+import { aboutPhotos } from "../data/aboutPhotos";
+import LogoMarquee from "../sections/LogoMarquee";
 import type { Locale } from "../types";
 
 export const PROFILES = [
@@ -53,13 +56,52 @@ export default function AboutPage() {
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p1")}</p>
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p2")}</p>
           </div>
-          <div className="w-full rounded-xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
-            <img src={withBase("/pol-morera.webp")} alt={t("aboutpage.img_alt")} width={800} height={1000} className="w-full h-full object-cover" />
-          </div>
+          <RotatingPhotos photos={aboutPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} />
         </div>
       </section>
 
-      <section className="max-w-content mx-auto section-padding py-10">
+      {/* Mi historia */}
+      <section className="max-w-content mx-auto section-padding py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 lg:gap-14">
+        <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("aboutpage.story_title")}</h2>
+        <div className="flex flex-col gap-4 max-w-3xl">
+          {(t("aboutpage.story", { returnObjects: true }) as string[]).map((p, i) => (
+            <p key={i} className="text-off-white/90" style={{ fontSize: "18px", lineHeight: 1.65 }}>{p}</p>
+          ))}
+        </div>
+      </section>
+
+      {/* En cifras */}
+      <section className="bg-brand-blue">
+        <div className="max-w-content mx-auto section-padding py-12 lg:py-16">
+          <h2 className="sr-only">{t("aboutpage.numbers_title")}</h2>
+          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+            {(t("aboutpage.numbers", { returnObjects: true }) as { v: string; l: string }[]).map((n, i) => (
+              <div key={i} className="flex flex-col-reverse justify-end gap-1">
+                <dt className="text-white/90 font-semibold" style={{ fontSize: "16px", lineHeight: 1.35 }}>{n.l}</dt>
+                <dd className="text-white font-bold tabular-nums leading-none" style={{ fontSize: "clamp(40px, 5vw, 64px)" }}>{n.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Cómo trabajo */}
+      <section className="max-w-content mx-auto section-padding py-12 lg:py-16 flex flex-col gap-6">
+        <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("aboutpage.how_title")}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {(t("aboutpage.how", { returnObjects: true }) as { t: string; d: string }[]).map((h, i) => (
+            <div key={i} className="rounded-2xl border border-off-white/10 bg-charcoal/50 p-6 flex flex-col gap-2">
+              <h3 className="text-off-white font-bold text-lg leading-snug">{h.t}</h3>
+              <p className="text-off-white/85" style={{ fontSize: "15.5px", lineHeight: 1.6 }}>{h.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Marcas */}
+      <LogoMarquee />
+
+      <section className="max-w-content mx-auto section-padding py-12 lg:py-16">
         <h2 className="text-off-white font-bold text-2xl lg:text-3xl mb-6">{t("aboutpage.facts")}</h2>
         <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-4xl">
           {facts.map(([k, v], i) => (

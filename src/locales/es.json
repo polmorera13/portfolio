@@ -280,7 +280,9 @@
     "p1": "Soy Pol Morera. Empecé cuando las marcas aún no tenían nombre para esto. Fui uno de los primeros creadores UGC del país y el primer UGC hombre.",
     "p2": "Tantos años me han dado algo que no se aprende rápido: saber qué hace que alguien deje de hacer scroll y qué se quema en dos semanas. Eso es lo que pongo en cada vídeo que hago con mi equipo para tu marca.",
     "cta": "Hablemos →",
-    "img_alt": "Pol Morera, creador UGC"
+    "img_alt": "Pol Morera, creador UGC",
+    "img_alt_camera": "Pol Morera grabando un vídeo a cámara",
+    "img_alt_event": "Pol Morera hablando en un evento"
   },
   "legal": {
     "back": "← Volver a la web"
@@ -366,7 +368,46 @@
     "langs_v": "Castellano, catalán e inglés",
     "services": "Servicios",
     "profiles": "Perfiles oficiales",
-    "img_alt": "Pol Morera, creador UGC en Barcelona"
+    "img_alt": "Pol Morera, creador UGC en Barcelona",
+    "story_title": "Mi historia",
+    "story": [
+      "Al principio grababa yo solo. Hoy lo hago con mi equipo: escribimos el guion, grabamos y editamos, y entregamos cada vídeo en los formatos que necesita cada canal.",
+      "Desde entonces he hecho más de 1.000 vídeos para más de 300 marcas, de grandes empresas a negocios locales. Lo que más me gusta sigue siendo lo mismo: encontrar qué hace que alguien deje de hacer scroll."
+    ],
+    "how_title": "Cómo trabajo",
+    "how": [
+      {
+        "t": "Relaciones largas",
+        "d": "Muchas marcas repiten. Con Apple Tree llevamos 31 meses trabajando juntos, con Dogfy Diet dos años y con Reactiva Online, 15 meses."
+      },
+      {
+        "t": "Rápido cuando hace falta",
+        "d": "Te mando la propuesta en 2 días laborables y la mayoría de proyectos están listos en 5–7. Si hay urgencia, nos adaptamos."
+      },
+      {
+        "t": "Vídeos pensados para funcionar",
+        "d": "No solo cuento cómo queda un vídeo, sino qué consigue: como las 390 conversiones de MasterD en TikTok Ads o los leads de Dogfy Diet, con un 10–20 % de conversión."
+      }
+    ],
+    "numbers_title": "En cifras",
+    "numbers": [
+      {
+        "v": "+1.000",
+        "l": "vídeos producidos"
+      },
+      {
+        "v": "+300",
+        "l": "marcas"
+      },
+      {
+        "v": "3",
+        "l": "idiomas: castellano, catalán e inglés"
+      },
+      {
+        "v": "31",
+        "l": "meses con uno de mis clientes más antiguos"
+      }
+    ]
   },
   "thanks": {
     "h1": "¡Gracias!",

@@ -280,7 +280,9 @@
     "p1": "Soc en Pol Morera. Vaig començar quan les marques encara no tenien nom per a això. Vaig ser un dels primers creadors UGC del país i el primer UGC home.",
     "p2": "Tants anys m'han donat una cosa que no s'aprèn de pressa: saber què fa que algú deixi de fer scroll i què es crema en dues setmanes. Això és el que poso a cada vídeo que faig amb el meu equip per a la teva marca.",
     "cta": "Parlem →",
-    "img_alt": "Pol Morera, creador UGC"
+    "img_alt": "Pol Morera, creador UGC",
+    "img_alt_camera": "Pol Morera gravant un vídeo a càmera",
+    "img_alt_event": "Pol Morera parlant en un esdeveniment"
   },
   "legal": {
     "back": "← Tornar a la web"
@@ -366,7 +368,46 @@
     "langs_v": "Castellà, català i anglès",
     "services": "Serveis",
     "profiles": "Perfils oficials",
-    "img_alt": "Pol Morera, creador UGC a Barcelona"
+    "img_alt": "Pol Morera, creador UGC a Barcelona",
+    "story_title": "La meva història",
+    "story": [
+      "Al principi gravava tot sol. Avui ho faig amb el meu equip: escrivim el guió, gravem i editem, i lliurem cada vídeo en els formats que necessita cada canal.",
+      "Des d'aleshores he fet més de 1.000 vídeos per a més de 300 marques, de grans empreses a negocis locals. El que més m'agrada continua sent el mateix: trobar què fa que algú deixi de fer scroll."
+    ],
+    "how_title": "Com treballo",
+    "how": [
+      {
+        "t": "Relacions llargues",
+        "d": "Moltes marques repeteixen. Amb Apple Tree fa 31 mesos que treballem junts, amb Dogfy Diet dos anys i amb Reactiva Online, 15 mesos."
+      },
+      {
+        "t": "Ràpid quan cal",
+        "d": "T'envio la proposta en 2 dies laborables i la majoria de projectes estan llestos en 5–7. Si hi ha urgència, ens adaptem."
+      },
+      {
+        "t": "Vídeos pensats per funcionar",
+        "d": "No només explico com queda un vídeo, sinó què aconsegueix: com les 390 conversions de MasterD a TikTok Ads o els leads de Dogfy Diet, amb un 10–20 % de conversió."
+      }
+    ],
+    "numbers_title": "En xifres",
+    "numbers": [
+      {
+        "v": "+1.000",
+        "l": "vídeos produïts"
+      },
+      {
+        "v": "+300",
+        "l": "marques"
+      },
+      {
+        "v": "3",
+        "l": "idiomes: castellà, català i anglès"
+      },
+      {
+        "v": "31",
+        "l": "mesos amb un dels meus clients més antics"
+      }
+    ]
   },
   "thanks": {
     "h1": "Gràcies!",
