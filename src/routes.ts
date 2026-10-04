@@ -31,7 +31,7 @@ export const PATHS: Record<PageKey, Record<Locale, string>> = {
   "case-masterd": { es: "/casos/masterd-tiktok-ads/", en: "/en/case-studies/masterd-tiktok-ads/", ca: "/ca/casos/masterd-tiktok-ads/" },
   "case-dogfy": { es: "/casos/dogfy-diet/", en: "/en/case-studies/dogfy-diet/", ca: "/ca/casos/dogfy-diet/" },
   "case-reactiva": { es: "/casos/reactiva-online/", en: "/en/case-studies/reactiva-online/", ca: "/ca/casos/reactiva-online/" },
-  "case-agency": { es: "/casos/agencia-de-comunicacion/", en: "/en/case-studies/communications-agency/", ca: "/ca/casos/agencia-de-comunicacio/" },
+  "case-agency": { es: "/casos/apple-tree/", en: "/en/case-studies/apple-tree/", ca: "/ca/casos/apple-tree/" },
   about: { es: "/sobre-mi/", en: "/en/about/", ca: "/ca/sobre-mi/" },
   thanks: { es: "/gracias/", en: "/en/thank-you/", ca: "/ca/gracies/" },
 };

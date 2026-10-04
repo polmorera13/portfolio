@@ -117,6 +117,17 @@ function CaseStoryBody({ story, l }: { story: CaseStory; l: Locale }) {
           <h2 className={h2Cls}>{t("casepage.did")}</h2>
           {story.didIntro && <p className="text-off-white/90 max-w-3xl" style={bodyStyle}>{story.didIntro[l]}</p>}
         </div>
+        {story.stages.every((s) => !s.text) ? (
+          // Etapas sin texto: etiquetas con su color
+          <ul className="flex flex-wrap gap-3">
+            {story.stages.map((s, i) => (
+              <li key={i} className="flex items-center gap-2.5 rounded-full border border-off-white/15 bg-charcoal/50 px-4 py-2 text-off-white font-semibold">
+                <span aria-hidden className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: s.color }} />
+                {s.title[l]}
+              </li>
+            ))}
+          </ul>
+        ) : (
         <ol className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {story.stages.map((s, i) => (
             <li
@@ -128,7 +139,7 @@ function CaseStoryBody({ story, l }: { story: CaseStory; l: Locale }) {
                 <span aria-hidden className="mt-[7px] w-2.5 h-2.5 rounded-full shrink-0" style={{ background: s.color }} />
                 <span>{s.title[l]}</span>
               </h3>
-              <p className="text-off-white/85" style={{ fontSize: "15.5px", lineHeight: 1.6 }}>{s.text[l]}</p>
+              {s.text && <p className="text-off-white/85" style={{ fontSize: "15.5px", lineHeight: 1.6 }}>{s.text[l]}</p>}
               {s.bullets && (
                 <ul className="flex flex-col gap-2">
                   {s.bullets.map((b, j) => (
@@ -143,6 +154,7 @@ function CaseStoryBody({ story, l }: { story: CaseStory; l: Locale }) {
             </li>
           ))}
         </ol>
+        )}
       </section>
 
       {/* Cómo trabajamos */}

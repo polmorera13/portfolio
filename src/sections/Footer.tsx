@@ -25,7 +25,7 @@ export default function Footer() {
         { label: "MasterD", href: pageHref("case-masterd", lang) },
         { label: "Dogfy Diet", href: pageHref("case-dogfy", lang) },
         { label: "Reactiva Online", href: pageHref("case-reactiva", lang) },
-        { label: t("footer_cols.agency_case"), href: pageHref("case-agency", lang) },
+        { label: "Apple Tree", href: pageHref("case-agency", lang) },
       ],
     },
     {

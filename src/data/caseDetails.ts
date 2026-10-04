@@ -9,7 +9,8 @@ export type CaseSlug = "masterd" | "dogfy" | "reactiva" | "agencia";
 export interface CaseStage {
   color: string;
   title: Translated;
-  text: Translated;
+  /** Sin texto, las etapas se muestran como etiquetas. */
+  text?: Translated;
   bullets?: Translated[];
   after?: Translated;
 }
@@ -32,6 +33,8 @@ export interface CaseDetail {
   caseId?: string;
   /** Nombre a mostrar en lugar del de la marca (casos anónimos), por idioma. */
   displayName?: Translated;
+  /** Vídeos del caso en cuadrícula (todos a la vista) en lugar de un reproductor con selector. */
+  videoGrid?: boolean;
   sector: Translated;
   need: Translated;
   did: Translated;
@@ -56,9 +59,9 @@ export const CASE_DETAILS: CaseDetail[] = [
       ca: "Captar leads per a una acadèmia que acompanya les persones que es presenten a les oposicions de Mossos d'Esquadra.",
     },
     did: {
-      es: "Una creatividad UGC para sus anuncios de captación en TikTok Ads.",
-      en: "A UGC creative for their lead generation ads on TikTok Ads.",
-      ca: "Una creativitat UGC per als seus anuncis de captació a TikTok Ads.",
+      es: "Una serie de creatividades UGC para TikTok Ads que tenían que cumplir unas condiciones: muy cortas, muy rápidas y muy directas.",
+      en: "A series of UGC creatives for TikTok Ads that had to meet a few conditions: very short, very fast and very direct.",
+      ca: "Una sèrie de creativitats UGC per a TikTok Ads que havien de complir unes condicions: molt curtes, molt ràpides i molt directes.",
     },
     metaTitle: {
       es: "Caso MasterD: 390 conversiones en TikTok Ads · Pol Morera",
@@ -77,24 +80,85 @@ export const CASE_DETAILS: CaseDetail[] = [
     brandName: "Dogfy Diet",
     sector: { es: "Comida para perros", en: "Dog food", ca: "Menjar per a gossos" },
     need: {
-      es: "Creatividades para sus anuncios que rindieran como sus mejores contenidos.",
-      en: "Ad creatives that performed as well as their best content.",
-      ca: "Creativitats per als seus anuncis que rendissin com els seus millors continguts.",
+      es: "Contenido rápido y dinámico para sus anuncios durante todo el año.",
+      en: "Fast, dynamic content for their ads all year round.",
+      ca: "Contingut ràpid i dinàmic per als seus anuncis durant tot l'any.",
     },
     did: {
-      es: "Vídeos UGC para anuncios, con un inicio dinámico y el mensaje claro en los primeros segundos.",
-      en: "UGC videos for ads, with a dynamic opening and a clear message in the first seconds.",
-      ca: "Vídeos UGC per a anuncis, amb un inici dinàmic i el missatge clar en els primers segons.",
+      es: "Muchas piezas a lo largo del año, con una introducción dinámica y el mensaje claro en los primeros segundos.",
+      en: "Many pieces throughout the year, with a dynamic opening and a clear message in the first seconds.",
+      ca: "Moltes peces al llarg de l'any, amb una introducció dinàmica i el missatge clar en els primers segons.",
+    },
+    story: {
+      challenge: [
+        {
+          es: "Con Dogfy Diet llevamos dos años trabajando juntos y creamos contenido a lo largo de todo el año.",
+          en: "We've been working with Dogfy Diet for two years, creating content all year round.",
+          ca: "Amb Dogfy Diet fa dos anys que treballem junts i creem contingut al llarg de tot l'any.",
+        },
+        {
+          es: "El reto es saber adaptar un mismo producto a cada una de las fases comerciales del año, con piezas rápidas y dinámicas que muestran el producto en uso.",
+          en: "The challenge is adapting the same product to every commercial moment of the year, with fast, dynamic pieces that show the product in use.",
+          ca: "El repte és saber adaptar un mateix producte a cadascuna de les fases comercials de l'any, amb peces ràpides i dinàmiques que mostren el producte en ús.",
+        },
+      ],
+      didIntro: {
+        es: "Contenido para cada momento comercial del año:",
+        en: "Content for every commercial moment of the year:",
+        ca: "Contingut per a cada moment comercial de l'any:",
+      },
+      stages: [
+        { color: "#EF4444", title: { es: "Black Friday", en: "Black Friday", ca: "Black Friday" } },
+        { color: "#3B82F6", title: { es: "Navidad", en: "Christmas", ca: "Nadal" } },
+        { color: "#22C55E", title: { es: "Primavera", en: "Spring", ca: "Primavera" } },
+        { color: "#EAB308", title: { es: "Verano", en: "Summer", ca: "Estiu" } },
+        { color: "#A855F7", title: { es: "Contenido corporativo", en: "Corporate content", ca: "Contingut corporatiu" } },
+      ],
+      how: [
+        {
+          title: { es: "Una introducción dinámica", en: "A dynamic opening", ca: "Una introducció dinàmica" },
+          text: {
+            es: "Los primeros segundos tienen que enganchar: la introducción, lo más dinámica posible.",
+            en: "The first seconds have to hook: the opening is as dynamic as possible.",
+            ca: "Els primers segons han d'enganxar: la introducció, tan dinàmica com sigui possible.",
+          },
+        },
+        {
+          title: { es: "El mensaje, desde el principio", en: "The message, right from the start", ca: "El missatge, des del principi" },
+          text: {
+            es: "El mensaje tiene que quedar claro en los primeros segundos.",
+            en: "The message has to be clear within the first seconds.",
+            ca: "El missatge ha de quedar clar en els primers segons.",
+          },
+        },
+        {
+          title: { es: "El producto en uso", en: "The product in use", ca: "El producte en ús" },
+          text: {
+            es: "Mostramos el producto en uso, manteniendo la estética de la marca.",
+            en: "We show the product in use while keeping the brand's look and feel.",
+            ca: "Mostrem el producte en ús, mantenint l'estètica de la marca.",
+          },
+        },
+      ],
+      figures: [
+        { label: { es: "Relación", en: "Relationship", ca: "Relació" }, value: { es: "2 años y sigue activa", en: "2 years and still going", ca: "2 anys i continua activa" } },
+        { label: { es: "Tasa de conversión de los leads", en: "Lead conversion rate", ca: "Taxa de conversió dels leads" }, value: { es: "10–20 %", en: "10–20%", ca: "10–20 %" } },
+        { label: { es: "CTR medio de los anuncios", en: "Average ad CTR", ca: "CTR mitjà dels anuncis" }, value: { es: "0,50 %", en: "0.50%", ca: "0,50 %" } },
+        {
+          label: { es: "Momentos del año", en: "Moments of the year", ca: "Moments de l'any" },
+          value: { es: "Black Friday, Navidad, primavera y verano", en: "Black Friday, Christmas, spring and summer", ca: "Black Friday, Nadal, primavera i estiu" },
+        },
+      ],
     },
     metaTitle: {
-      es: "Caso Dogfy Diet: vídeos UGC para anuncios · Pol Morera",
-      en: "Dogfy Diet case study: UGC videos for ads · Pol Morera",
-      ca: "Cas Dogfy Diet: vídeos UGC per a anuncis · Pol Morera",
+      es: "Caso Dogfy Diet: 10–20 % de conversión en los leads · Pol Morera",
+      en: "Dogfy Diet case study: 10–20% lead conversion · Pol Morera",
+      ca: "Cas Dogfy Diet: 10–20 % de conversió dels leads · Pol Morera",
     },
     metaDescription: {
-      es: "Vídeos UGC para los anuncios de Dogfy Diet: CTR medio del 0,50 %, en línea con sus mejores contenidos, y leads con un 10–20 % de conversión.",
-      en: "UGC videos for Dogfy Diet's ads: 0.50% average CTR, in line with their best content, and leads converting at 10–20%.",
-      ca: "Vídeos UGC per als anuncis de Dogfy Diet: CTR mitjà del 0,50 %, en línia amb els seus millors continguts, i leads amb un 10–20 % de conversió.",
+      es: "Dos años creando vídeos para los anuncios de Dogfy Diet en cada momento del año: leads con un 10–20 % de conversión y un CTR medio del 0,50 %.",
+      en: "Two years creating videos for Dogfy Diet's ads for every moment of the year: leads converting at 10–20% and a 0.50% average CTR.",
+      ca: "Dos anys creant vídeos per als anuncis de Dogfy Diet en cada moment de l'any: leads amb un 10–20 % de conversió i un CTR mitjà del 0,50 %.",
     },
   },
   {
@@ -249,13 +313,12 @@ export const CASE_DETAILS: CaseDetail[] = [
     },
   },
   {
-    // Caso anónimo: el contrato de la agencia no permite nombrarla sin permiso
-    // por escrito, ni a las marcas de sus clientes (se describen por sector).
+    // Apple Tree: no se nombra a las personas de la agencia ni a las marcas de sus clientes.
     slug: "agencia",
     page: "case-agency",
-    brandName: "Agencia B Corp",
+    brandName: "Apple Tree",
     caseId: "agencia-b-corp",
-    displayName: { es: "Agencia de comunicación B Corp", en: "B Corp communications agency", ca: "Agència de comunicació B Corp" },
+    videoGrid: true,
     sector: { es: "Agencia de comunicación (B Corp)", en: "Communications agency (B Corp)", ca: "Agència de comunicació (B Corp)" },
     need: {
       es: "Un creador de confianza para el contenido mensual de grandes marcas y vídeos para ganar nuevos clientes.",
@@ -263,16 +326,16 @@ export const CASE_DETAILS: CaseDetail[] = [
       ca: "Un creador de confiança per al contingut mensual de grans marques i vídeos per guanyar clients nous.",
     },
     did: {
-      es: "Más de 220 vídeos en 2,5 años: contenido orgánico recurrente, vídeos para propuestas y campañas puntuales.",
-      en: "220+ videos in 2.5 years: recurring organic content, videos for pitches and one-off campaigns.",
-      ca: "Més de 220 vídeos en 2,5 anys: contingut orgànic recurrent, vídeos per a propostes i campanyes puntuals.",
+      es: "Más de 220 vídeos en 2 años y 7 meses: corporativos, dinámicos, a cámara y entrevistas en la calle.",
+      en: "220+ videos in 2 years and 7 months: corporate, dynamic, to-camera and street interviews.",
+      ca: "Més de 220 vídeos en 2 anys i 7 mesos: corporatius, dinàmics, a càmera i entrevistes al carrer.",
     },
     story: {
       challenge: [
         {
-          es: "La agencia gestiona la comunicación en redes de grandes marcas del sector medioambiental, energético y de movilidad. Necesitaba un creador capaz de:",
-          en: "The agency runs social media communication for big brands in the environmental, energy and mobility sectors. It needed a creator able to:",
-          ca: "L'agència gestiona la comunicació a xarxes de grans marques del sector mediambiental, energètic i de mobilitat. Necessitava un creador capaç de:",
+          es: "Apple Tree es una agencia de comunicación B Corp y uno de nuestros clientes más antiguos: llevamos 2 años y 7 meses trabajando juntos. Gestiona la comunicación en redes de grandes marcas del sector medioambiental, energético y de movilidad, y necesitaba un creador capaz de:",
+          en: "Apple Tree is a B Corp communications agency and one of our longest-standing clients: we've been working together for 2 years and 7 months. It runs social media communication for big brands in the environmental, energy and mobility sectors, and needed a creator able to:",
+          ca: "Apple Tree és una agència de comunicació B Corp i un dels nostres clients més antics: fa 2 anys i 7 mesos que treballem junts. Gestiona la comunicació a xarxes de grans marques del sector mediambiental, energètic i de mobilitat, i necessitava un creador capaç de:",
         },
       ],
       challengeBullets: [
@@ -292,6 +355,11 @@ export const CASE_DETAILS: CaseDetail[] = [
           ca: "Donar-li munició per guanyar clients nous: vídeos per incloure en les seves presentacions i propostes.",
         },
       ],
+      didIntro: {
+        es: "En este tiempo hemos hecho vídeos de todo tipo: corporativos, dinámicos, hablando a cámara y entrevistas en la calle.",
+        en: "Over this time we've made all kinds of videos: corporate, dynamic, talking to camera and street interviews.",
+        ca: "En aquest temps hem fet vídeos de tota mena: corporatius, dinàmics, parlant a càmera i entrevistes al carrer.",
+      },
       stages: [
         {
           color: "#A855F7",
@@ -301,9 +369,9 @@ export const CASE_DETAILS: CaseDetail[] = [
             ca: "Vídeos corporatius per a presentacions i propostes (new business)",
           },
           text: {
-            es: "Cuando la agencia presenta una propuesta a una marca nueva, un vídeo real vale más que cualquier diapositiva. Producimos piezas a medida para que la agencia las incluyera en sus presentaciones a marcas de energía, movilidad, alimentación y otros sectores. Muchas se entregaron en menos de 48 horas.",
-            en: "When the agency pitches a new brand, a real video is worth more than any slide. We produced bespoke pieces for the agency to include in its pitches to brands in energy, mobility, food and other sectors. Many were delivered in under 48 hours.",
-            ca: "Quan l'agència presenta una proposta a una marca nova, un vídeo real val més que qualsevol diapositiva. Vam produir peces a mida perquè l'agència les inclogués a les seves presentacions a marques d'energia, mobilitat, alimentació i altres sectors. Moltes es van lliurar en menys de 48 hores.",
+            es: "Cuando la agencia presenta una propuesta a una marca nueva, un vídeo real vale más que cualquier diapositiva. Producimos piezas a medida para que Apple Tree las incluyera en sus presentaciones a marcas de energía, movilidad, alimentación y otros sectores. Muchas se entregaron en menos de 48 horas.",
+            en: "When the agency pitches a new brand, a real video is worth more than any slide. We produced bespoke pieces for Apple Tree to include in its pitches to brands in energy, mobility, food and other sectors. Many were delivered in under 48 hours.",
+            ca: "Quan l'agència presenta una proposta a una marca nova, un vídeo real val més que qualsevol diapositiva. Vam produir peces a mida perquè Apple Tree les inclogués a les seves presentacions a marques d'energia, mobilitat, alimentació i altres sectors. Moltes es van lliurar en menys de 48 hores.",
           },
         },
         {
@@ -387,18 +455,22 @@ export const CASE_DETAILS: CaseDetail[] = [
         { label: { es: "Marcas en producción mensual", en: "Brands in monthly production", ca: "Marques en producció mensual" }, value: { es: "3", en: "3", ca: "3" } },
         { label: { es: "Marcas en propuestas y campañas puntuales", en: "Brands in pitches and one-off campaigns", ca: "Marques en propostes i campanyes puntuals" }, value: { es: "+10", en: "10+", ca: "+10" } },
         { label: { es: "Récord por pieza", en: "Record for a single piece", ca: "Rècord per peça" }, value: { es: "+1 millón de visualizaciones", en: "1M+ views", ca: "+1 milió de visualitzacions" } },
-        { label: { es: "Relación", en: "Relationship", ca: "Relació" }, value: { es: "2,5 años (desde marzo de 2024) y sigue activa", en: "2.5 years (since March 2024) and still going", ca: "2,5 anys (des de març de 2024) i continua activa" } },
+        {
+          label: { es: "Tipos de vídeo", en: "Types of video", ca: "Tipus de vídeo" },
+          value: { es: "Corporativos, dinámicos, a cámara y entrevistas en la calle", en: "Corporate, dynamic, to-camera and street interviews", ca: "Corporatius, dinàmics, a càmera i entrevistes al carrer" },
+        },
+        { label: { es: "Relación", en: "Relationship", ca: "Relació" }, value: { es: "2 años y 7 meses (desde marzo de 2024) y sigue activa", en: "2 years and 7 months (since March 2024) and still going", ca: "2 anys i 7 mesos (des de març de 2024) i continua activa" } },
       ],
     },
     metaTitle: {
-      es: "Caso agencia de comunicación: +220 vídeos para grandes marcas · Pol Morera",
-      en: "Communications agency case study: 220+ videos for big brands · Pol Morera",
-      ca: "Cas agència de comunicació: +220 vídeos per a grans marques · Pol Morera",
+      es: "Caso Apple Tree: 2 años y 7 meses de vídeo para grandes marcas · Pol Morera",
+      en: "Apple Tree case study: 2 years and 7 months of video for big brands · Pol Morera",
+      ca: "Cas Apple Tree: 2 anys i 7 mesos de vídeo per a grans marques · Pol Morera",
     },
     metaDescription: {
-      es: "El creador de confianza de una agencia de comunicación B Corp: contenido mensual para grandes marcas, vídeos para ganar clientes y piezas de más de un millón de visualizaciones.",
-      en: "The trusted creator for a B Corp communications agency: monthly content for big brands, videos to win clients and pieces with over a million views.",
-      ca: "El creador de confiança d'una agència de comunicació B Corp: contingut mensual per a grans marques, vídeos per guanyar clients i peces de més d'un milió de visualitzacions.",
+      es: "Uno de nuestros clientes más antiguos: más de 220 vídeos para las grandes marcas de Apple Tree, agencia B Corp. Corporativos, dinámicos, a cámara y entrevistas en la calle.",
+      en: "One of our longest-standing clients: 220+ videos for the big brands Apple Tree, a B Corp agency, works with. Corporate, dynamic, to-camera and street interviews.",
+      ca: "Un dels nostres clients més antics: més de 220 vídeos per a les grans marques d'Apple Tree, agència B Corp. Corporatius, dinàmics, a càmera i entrevistes al carrer.",
     },
   },
 ];

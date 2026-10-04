@@ -118,7 +118,7 @@ export default function Cases() {
       <style dangerouslySetInnerHTML={{ __html: `
         #casos .snap-x::-webkit-scrollbar{display:none}
         .case-grid{display:grid;gap:1.5rem;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "media" "body"}
-        @media (min-width:1024px){.case-grid{column-gap:2.5rem;row-gap:1.5rem;grid-template-columns:45fr 55fr;grid-template-areas:"media head" "media body";align-items:start}}
+        @media (min-width:1024px){.case-grid{column-gap:2.5rem;row-gap:1.5rem;grid-template-columns:45fr 55fr;grid-template-rows:auto 1fr;grid-template-areas:"media head" "media body";align-items:start}}
       ` }} />
     </section>
   );
@@ -297,6 +297,28 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
   // Cifra principal (para el marco cuando aún no hay vídeo). Es decorativa: se
   // pinta con CSS (content: attr()) para no repetir el texto de los KPIs en el HTML.
   const lead = (c.kpis.find((k) => k.highlight) ?? c.kpis[0]) || null;
+
+  // Cuadrícula: todos los vídeos a la vista (2×2 en la tarjeta; 4 en fila en la página del caso)
+  if (caseDetailFor(c)?.videoGrid && videos.length > 1) {
+    return (
+      <div
+        className={large ? "grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 w-full" : "grid grid-cols-2 gap-3 w-full mx-auto"}
+        style={large ? undefined : { maxWidth: Math.round(((maxH - 12) / 2) * (9 / 16)) * 2 + 12 }}
+      >
+        {videos.map((v) => (
+          <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16" }}>
+            <VideoPlayer
+              src={getPublicUrl(v.file)}
+              poster={v.poster ? getPublicUrl(v.poster) : null}
+              aspectRatio={v.aspect}
+              title={tr(v.label, lang) || null}
+              client={null}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center gap-3 w-full">
