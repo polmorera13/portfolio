@@ -35,6 +35,8 @@ export interface CaseDetail {
   displayName?: Translated;
   /** Texto breve para la tarjeta de la portada (en lugar de la descripción larga del caso). */
   cardSummary?: Translated;
+  /** Vídeos de la tarjeta de la portada, en orden (si no, todos los del caso). La página del caso los enseña todos. */
+  cardVideos?: string[];
   /** Gráfica solo para la tarjeta de la portada. */
   cardChart?: { title: Translated; bars: { label: Translated; value: number; display: string }[]; note: Translated };
   sector: Translated;
@@ -86,13 +88,13 @@ export const CASE_DETAILS: CaseDetail[] = [
     cardChart: {
       title: { es: "Tasa de conversión", en: "Conversion rate", ca: "Taxa de conversió" },
       bars: [
-        { label: { es: "Dogfy Diet, con mis vídeos", en: "Dogfy Diet, with my videos", ca: "Dogfy Diet, amb els meus vídeos" }, value: 15, display: "10–20 %" },
+        { label: { es: "Mis vídeos para Dogfy Diet", en: "My videos for Dogfy Diet", ca: "Els meus vídeos per a Dogfy Diet" }, value: 15, display: "15 %" },
         { label: { es: "Media de los anuncios de captación en Meta", en: "Average for Meta lead ads", ca: "Mitjana dels anuncis de captació a Meta" }, value: 7.72, display: "7,72 %" },
       ],
       note: {
-        es: "Media de las campañas de captación en Facebook, todos los sectores (WordStream y LocaliQ, 2025).",
-        en: "Average for Facebook lead campaigns across all industries (WordStream and LocaliQ, 2025).",
-        ca: "Mitjana de les campanyes de captació a Facebook, tots els sectors (WordStream i LocaliQ, 2025).",
+        es: "Dogfy Diet: punto medio de su 10–20 %. Media: campañas de captación en Facebook, todos los sectores (WordStream y LocaliQ, 2025).",
+        en: "Dogfy Diet: midpoint of its 10–20%. Average: Facebook lead campaigns across all industries (WordStream and LocaliQ, 2025).",
+        ca: "Dogfy Diet: punt mitjà del seu 10–20 %. Mitjana: campanyes de captació a Facebook, tots els sectors (WordStream i LocaliQ, 2025).",
       },
     },
     sector: { es: "Comida para perros", en: "Dog food", ca: "Menjar per a gossos" },
@@ -176,6 +178,14 @@ export const CASE_DETAILS: CaseDetail[] = [
     slug: "reactiva",
     page: "case-reactiva",
     brandName: "Reactiva Online",
+    // Portada: dos corporativos arriba y los anuncios verticales debajo
+    cardVideos: [
+      "reactiva-vsl-terminado-v3-compressed-web.mp4",
+      "reactiva-vsl-google-ads-web.mp4",
+      "reactiva-remarketing-diagnostico-web.mp4",
+      "reactiva-hogar-04-web.mp4",
+      "hogar-05-casoreal-f1-inviertepanel-9x16-compressed-web.mp4",
+    ],
     caseId: "reactiva-online",
     sector: { es: "Agencia de marketing digital", en: "Digital marketing agency", ca: "Agència de màrqueting digital" },
     need: {

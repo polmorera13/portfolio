@@ -143,7 +143,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
           </h3>
         </div>
         <div style={{ gridArea: "media" }} className="flex flex-col gap-4">
-          <CaseMedia c={c} />
+          <CaseMedia c={c} only={detail?.cardVideos} />
           <CaseEvidence c={c} />
         </div>
         <div style={{ gridArea: "body" }} className="flex flex-col gap-6 min-w-0">
@@ -310,10 +310,12 @@ export function CaseEvidence({ c }: { c: CaseStudy }) {
 // ── Vídeo(s) del caso ────────────────────────────────────────────────────────
 // 0 vídeos: marco con la marca y la cifra principal. 1: reproductor. 2+: reproductor
 // principal y selector debajo. Solo se monta el vídeo activo.
-export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean }) {
+export function CaseMedia({ c, large = false, only }: { c: CaseStudy; large?: boolean; only?: string[] }) {
   const { i18n } = useTranslation();
   const lang = i18n.language;
-  const videos = c.videos.filter((v) => v.file);
+  const all = c.videos.filter((v) => v.file);
+  // En la tarjeta se puede elegir qué vídeos salen (y en qué orden)
+  const videos = only ? only.map((f) => all.find((v) => v.file === f)).filter((v): v is (typeof all)[number] => !!v) : all;
   const [active, setActive] = useState(0);
   const current = videos[Math.min(active, videos.length - 1)];
   const maxH = large ? 640 : 560;
@@ -323,7 +325,7 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
   const lead = (c.kpis.find((k) => k.highlight) ?? c.kpis[0]) || null;
 
   // Varios vídeos: todos a la vista, sin pestañas. Horizontales y verticales van en grupos
-  // separados (cada uno con su cuadrícula), primero el grupo más numeroso.
+  // separados (cada uno con su cuadrícula); primero el grupo del primer vídeo.
   //  - Verticales: en la tarjeta, 2 por fila; en la página del caso, en una fila (hasta 4).
   //  - Horizontales: en la tarjeta, uno debajo de otro y más pequeños (2 por fila si son muchos);
   //    en la página, hasta 3 por fila.
@@ -332,7 +334,7 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
     const horiz = videos.filter((v) => v.aspect === "16:9");
     const vert = videos.filter((v) => v.aspect !== "16:9");
     const mixed = horiz.length > 0 && vert.length > 0;
-    type Group = { items: typeof videos; cls: string; maxWidth?: number; tileWidth?: number };
+    type Group = { items: typeof videos; cls: string; maxWidth?: number; tileWidth?: number; widthPct?: number };
     const groups: Group[] = [];
 
     if (horiz.length) {
@@ -349,6 +351,9 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
         const cols = Math.min(vert.length, 4);
         const cls = cols >= 4 ? "grid grid-cols-2 md:grid-cols-4" : cols === 3 ? "grid grid-cols-2 md:grid-cols-3" : cols === 2 ? "grid grid-cols-2" : "grid grid-cols-1";
         groups.push({ items: vert, cls, maxWidth: cols * 300 + (cols - 1) * GAP });
+      } else if (mixed && vert.length >= 2) {
+        // 3 columnas del mismo ancho; con 2, mismo tamaño de casilla (2/3 del ancho)
+        groups.push({ items: vert, cls: vert.length === 2 ? "grid grid-cols-2" : "grid grid-cols-3", maxWidth: undefined, widthPct: vert.length === 2 ? 66.67 : undefined });
       } else if (mixed) {
         groups.push({ items: vert, cls: "flex flex-wrap justify-center", tileWidth: 150 });
       } else {
@@ -357,12 +362,13 @@ export function CaseMedia({ c, large = false }: { c: CaseStudy; large?: boolean 
         groups.push({ items: vert, cls: "grid grid-cols-2", maxWidth: Math.round(tileH * (9 / 16)) * 2 + GAP });
       }
     }
-    if (vert.length > horiz.length) groups.reverse();
+    // Manda el primer vídeo de la lista: si es vertical, los verticales van primero
+    if (horiz.length && vert.length && videos[0].aspect !== "16:9") groups.reverse();
 
     return (
       <div className="flex flex-col w-full" style={{ gap: GAP }}>
         {groups.map((g, gi) => (
-          <div key={gi} className={`${g.cls} w-full mx-auto`} style={{ gap: GAP, maxWidth: g.maxWidth }}>
+          <div key={gi} className={`${g.cls} w-full mx-auto`} style={{ gap: GAP, maxWidth: g.maxWidth ?? (g.widthPct ? `${g.widthPct}%` : undefined) }}>
             {g.items.map((v) => (
               <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16", ...(g.tileWidth ? { width: g.tileWidth } : {}) }}>
                 <VideoPlayer
