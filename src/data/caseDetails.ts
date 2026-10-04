@@ -68,7 +68,7 @@ export const CASE_DETAILS: CaseDetail[] = [
     },
     metaTitle: {
       es: "Caso MasterD: 390 conversiones en TikTok Ads · Pol Morera",
-      en: "MasterD case study: 390 conversions on TikTok Ads · Pol Morera",
+      en: "MasterD case study: 390 TikTok Ads conversions · Pol Morera",
       ca: "Cas MasterD: 390 conversions a TikTok Ads · Pol Morera",
     },
     metaDescription: {
@@ -162,9 +162,9 @@ export const CASE_DETAILS: CaseDetail[] = [
       ],
     },
     metaTitle: {
-      es: "Caso Dogfy Diet: 10–20 % de conversión en los leads · Pol Morera",
+      es: "Caso Dogfy Diet: 10–20 % de conversión · Pol Morera",
       en: "Dogfy Diet case study: 10–20% lead conversion · Pol Morera",
-      ca: "Cas Dogfy Diet: 10–20 % de conversió dels leads · Pol Morera",
+      ca: "Cas Dogfy Diet: 10–20 % de conversió · Pol Morera",
     },
     metaDescription: {
       es: "Dos años creando vídeos para los anuncios de Dogfy Diet en cada momento del año: leads con un 10–20 % de conversión y un CTR medio del 0,50 %.",
@@ -304,14 +304,14 @@ export const CASE_DETAILS: CaseDetail[] = [
       ],
     },
     metaTitle: {
-      es: "Caso Reactiva Online: vídeo para todo el embudo de ventas · Pol Morera",
-      en: "Reactiva Online case study: video for the whole sales funnel · Pol Morera",
-      ca: "Cas Reactiva Online: vídeo per a tot l'embut de vendes · Pol Morera",
+      es: "Caso Reactiva Online: vídeo para todo el embudo · Pol Morera",
+      en: "Reactiva Online case study: full-funnel video · Pol Morera",
+      ca: "Cas Reactiva Online: vídeo per a tot l'embut · Pol Morera",
     },
     metaDescription: {
-      es: "Vídeo para cada etapa del embudo de Reactiva Online: anuncios en frío, vídeo corporativo, VSL, remarketing, onboarding y redes sociales. Más de 190 entregables en 15 meses.",
-      en: "Video for every stage of Reactiva Online's funnel: cold ads, corporate video, VSLs, remarketing, onboarding and social media. 190+ deliverables in 15 months.",
-      ca: "Vídeo per a cada etapa de l'embut de Reactiva Online: anuncis en fred, vídeo corporatiu, VSL, remàrqueting, onboarding i xarxes socials. Més de 190 lliurables en 15 mesos.",
+      es: "Vídeo para cada etapa del embudo de Reactiva Online: anuncios, vídeo corporativo, VSL, remarketing, onboarding y redes. Más de 190 entregables en 15 meses.",
+      en: "Video for every stage of Reactiva Online's funnel: ads, corporate video, VSLs, remarketing, onboarding and social. 190+ deliverables in 15 months.",
+      ca: "Vídeo per a cada etapa de l'embut de Reactiva Online: anuncis, vídeo corporatiu, VSL, remàrqueting, onboarding i xarxes. Més de 190 lliurables en 15 mesos.",
     },
   },
   {
@@ -334,9 +334,9 @@ export const CASE_DETAILS: CaseDetail[] = [
     story: {
       challenge: [
         {
-          es: "Apple Tree es una agencia de comunicación B Corp y uno de nuestros clientes más antiguos: llevamos 2 años y 7 meses trabajando juntos. Gestiona la comunicación en redes de grandes marcas del sector medioambiental, energético y de movilidad, y necesitaba un creador capaz de:",
-          en: "Apple Tree is a B Corp communications agency and one of our longest-standing clients: we've been working together for 2 years and 7 months. It runs social media communication for big brands in the environmental, energy and mobility sectors, and needed a creator able to:",
-          ca: "Apple Tree és una agència de comunicació B Corp i un dels nostres clients més antics: fa 2 anys i 7 mesos que treballem junts. Gestiona la comunicació a xarxes de grans marques del sector mediambiental, energètic i de mobilitat, i necessitava un creador capaç de:",
+          es: "Apple Tree es una agencia de comunicación B Corp y uno de mis clientes más antiguos: llevamos 2 años y 7 meses trabajando juntos. Gestiona la comunicación en redes de grandes marcas del sector medioambiental, energético y de movilidad, y necesitaba un creador capaz de:",
+          en: "Apple Tree is a B Corp communications agency and one of my longest-standing clients: we've been working together for 2 years and 7 months. It runs social media communication for big brands in the environmental, energy and mobility sectors, and needed a creator able to:",
+          ca: "Apple Tree és una agència de comunicació B Corp i un dels meus clients més antics: fa 2 anys i 7 mesos que treballem junts. Gestiona la comunicació a xarxes de grans marques del sector mediambiental, energètic i de mobilitat, i necessitava un creador capaç de:",
         },
       ],
       challengeBullets: [
@@ -464,14 +464,14 @@ export const CASE_DETAILS: CaseDetail[] = [
       ],
     },
     metaTitle: {
-      es: "Caso Apple Tree: 2 años y 7 meses de vídeo para grandes marcas · Pol Morera",
-      en: "Apple Tree case study: 2 years and 7 months of video for big brands · Pol Morera",
-      ca: "Cas Apple Tree: 2 anys i 7 mesos de vídeo per a grans marques · Pol Morera",
+      es: "Caso Apple Tree: vídeo para grandes marcas · Pol Morera",
+      en: "Apple Tree case study: video for big brands · Pol Morera",
+      ca: "Cas Apple Tree: vídeo per a grans marques · Pol Morera",
     },
     metaDescription: {
-      es: "Uno de nuestros clientes más antiguos: más de 220 vídeos para las grandes marcas de Apple Tree, agencia B Corp. Corporativos, dinámicos, a cámara y entrevistas en la calle.",
-      en: "One of our longest-standing clients: 220+ videos for the big brands Apple Tree, a B Corp agency, works with. Corporate, dynamic, to-camera and street interviews.",
-      ca: "Un dels nostres clients més antics: més de 220 vídeos per a les grans marques d'Apple Tree, agència B Corp. Corporatius, dinàmics, a càmera i entrevistes al carrer.",
+      es: "Más de 220 vídeos en 31 meses para las grandes marcas de Apple Tree, agencia B Corp: corporativos, dinámicos, a cámara y entrevistas en la calle.",
+      en: "220+ videos in 31 months for the big brands of Apple Tree, a B Corp agency: corporate, dynamic, to-camera and street interviews.",
+      ca: "Més de 220 vídeos en 31 mesos per a les grans marques d'Apple Tree, agència B Corp: corporatius, dinàmics, a càmera i entrevistes al carrer.",
     },
   },
 ];

@@ -23,9 +23,9 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
       ca: "Vídeos UGC per a anuncis a Meta i TikTok Ads | Pol Morera",
     },
     description: {
-      es: "Vídeos UGC para tus anuncios de Instagram, Facebook y TikTok: guion, grabación y edición, con varias versiones para ver cuál funciona. Entrega en 5–7 días laborables.",
-      en: "UGC videos for your Instagram, Facebook and TikTok ads: script, filming and editing, with several versions to see which one works. Delivery in 5–7 working days.",
-      ca: "Vídeos UGC per als teus anuncis d'Instagram, Facebook i TikTok: guió, gravació i edició, amb diverses versions per veure quina funciona. Lliurament en 5–7 dies laborables.",
+      es: "Vídeos UGC para tus anuncios de Instagram, Facebook y TikTok: guion, grabación y edición, con varias versiones para probar. Entrega en 5–7 días laborables.",
+      en: "UGC videos for your Instagram, Facebook and TikTok ads: script, filming and editing, with several versions to test. Delivered in 5–7 working days.",
+      ca: "Vídeos UGC per als anuncis d'Instagram, Facebook i TikTok: guió, gravació i edició, amb diverses versions per provar. Lliurament en 5–7 dies laborables.",
     },
   },
   "svc-social": {
@@ -37,7 +37,7 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
     description: {
       es: "Vídeos para el Instagram, TikTok y YouTube de tu negocio: plan de temas, grabación y edición con tu marca. Packs mensuales para publicar con constancia.",
       en: "Videos for your business's Instagram, TikTok and YouTube: topic plan, filming and editing with your branding. Monthly packs to post consistently.",
-      ca: "Vídeos per a l'Instagram, el TikTok i el YouTube del teu negoci: pla de temes, gravació i edició amb la teva marca. Packs mensuals per publicar amb constància.",
+      ca: "Vídeos per a l'Instagram, el TikTok i el YouTube del teu negoci: pla de temes, gravació i edició amb la teva marca. Packs mensuals.",
     },
   },
   "svc-corporate": {
@@ -47,9 +47,9 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
       ca: "Vídeo corporatiu a Barcelona | Pol Morera",
     },
     description: {
-      es: "Vídeo corporativo para explicar lo que hace tu empresa en un minuto: guion incluido, calidad 4K, rótulos animados y versiones para web, equipo comercial y eventos.",
-      en: "Corporate video that explains what your company does in a minute: script included, 4K quality, animated captions and versions for your website, sales team and events.",
-      ca: "Vídeo corporatiu per explicar què fa la teva empresa en un minut: guió inclòs, qualitat 4K, rètols animats i versions per a web, equip comercial i esdeveniments.",
+      es: "Vídeo corporativo para explicar lo que hace tu empresa en un minuto: guion incluido, 4K, rótulos animados y versiones para web, ventas y eventos.",
+      en: "Corporate video that explains what your company does in a minute: script included, 4K, animated captions and versions for web, sales and events.",
+      ca: "Vídeo corporatiu per explicar què fa la teva empresa en un minut: guió inclòs, 4K, rètols animats i versions per a web, vendes i esdeveniments.",
     },
   },
   cases: {
@@ -66,14 +66,14 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
   },
   about: {
     title: {
-      es: "Sobre Pol Morera, UGC creator y productor de vídeo | Pol Morera",
-      en: "About Pol Morera, UGC creator and video producer | Pol Morera",
-      ca: "Sobre Pol Morera, creador UGC i productor de vídeo | Pol Morera",
+      es: "Sobre Pol Morera, UGC creator y productor de vídeo",
+      en: "About Pol Morera, UGC creator and video producer",
+      ca: "Sobre Pol Morera, creador UGC i productor de vídeo",
     },
     description: {
-      es: "Pol Morera (Pol Morera de Frutos), UGC creator y productor de vídeo en Barcelona. Más de 1.000 vídeos para más de 300 marcas, en castellano, catalán e inglés.",
+      es: "Pol Morera (Pol Morera de Frutos), UGC creator y productor de vídeo en Barcelona. Más de 1.000 vídeos para más de 300 marcas, en 3 idiomas.",
       en: "Pol Morera (Pol Morera de Frutos), UGC creator and video producer in Barcelona. Over 1,000 videos for 300+ brands, in Spanish, Catalan and English.",
-      ca: "Pol Morera (Pol Morera de Frutos), creador UGC i productor de vídeo a Barcelona. Més de 1.000 vídeos per a més de 300 marques, en castellà, català i anglès.",
+      ca: "Pol Morera (Pol Morera de Frutos), creador UGC i productor de vídeo a Barcelona. Més de 1.000 vídeos per a més de 300 marques, en 3 idiomes.",
     },
   },
   thanks: {
