@@ -51,6 +51,8 @@ interface VideoPlayerProps {
   indexable?: boolean;
   /** Nombre accesible del reproductor ("Vídeo UGC para MasterD: creatividad 1"). */
   ariaName?: string;
+  /** Miniatura con prioridad alta (la imagen más grande de la primera pantalla). */
+  priority?: boolean;
 }
 
 const BRAND_BLUE = "oklch(58% 0.14 240)";
@@ -74,6 +76,7 @@ export default function VideoPlayer({
   hideLabels = false,
   indexable = false,
   ariaName,
+  priority = false,
 }: VideoPlayerProps) {
   const { t } = useTranslation();
 
@@ -330,7 +333,8 @@ export default function VideoPlayer({
           alt={posterAlt}
           width={pw}
           height={ph}
-          loading={eager ? "eager" : "lazy"}
+          loading={eager || priority ? "eager" : "lazy"}
+          {...(priority ? { fetchpriority: "high" } : {})}
           decoding="async"
           style={{
             position: "absolute",

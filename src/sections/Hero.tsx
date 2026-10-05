@@ -150,6 +150,7 @@ function HeroCluster({ slots }: { slots: ResolvedSlot[] }) {
               client={s.client}
               loop
               eager
+              priority={s.aspectRatio === "16:9"}
             />
           </div>
         </div>
@@ -215,7 +216,7 @@ function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
             title={s.title}
             client={s.client}
             loop
-            eager
+            priority
             hideLabels
           />
         </div>
@@ -239,7 +240,6 @@ function HeroClusterMobile({ slots }: { slots: ResolvedSlot[] }) {
               title={s.title}
               client={s.client}
               loop
-              eager
               hideLabels
             />
           </div>
