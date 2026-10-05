@@ -4,7 +4,8 @@
 // La clave está en public/efb016caefa88e8c137ed376b45c8d55.txt (se publica en https://polmorera.es/efb016caefa88e8c137ed376b45c8d55.txt).
 const KEY = "efb016caefa88e8c137ed376b45c8d55";
 const HOST = "polmorera.es";
-let urls = process.argv.slice(2).map((p) => `https://${HOST}${p}`);
+// Acepta rutas (/casos/) o URL completas (en Git Bash, las rutas se convierten en rutas de Windows: usa URL completas)
+let urls = process.argv.slice(2).map((p) => (p.startsWith("http") ? p : `https://${HOST}${p}`));
 if (!urls.length) {
   const xml = await (await fetch(`https://${HOST}/sitemap.xml`)).text();
   urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
