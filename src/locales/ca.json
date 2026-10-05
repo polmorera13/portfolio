@@ -381,8 +381,10 @@
     "img_alt": "Pol Morera, creador UGC home a Espanya",
     "story_title": "La meva història",
     "story": [
-      "Al principi gravava tot sol. Avui ho faig amb el meu equip: escrivim el guió, gravem i editem, i lliurem cada vídeo en els formats que necessita cada canal.",
-      "Des d'aleshores he fet més de 1.000 vídeos per a més de 300 marques, de grans empreses a negocis locals. El que més m'agrada continua sent el mateix: trobar què fa que algú deixi de fer scroll."
+      "Abans de gravar UGC ja treballava davant d'una càmera i darrere d'unes xarxes. Mentre estudiava Enginyeria Informàtica a la UPC vaig portar les xarxes de la Facultat d'Informàtica de Barcelona, i durant gairebé dos anys vaig presentar i realitzar més de 50 directes per a La Lanza de Plata. Després van venir les retransmissions de Rivals D&D i els seminaris web de GoIT.",
+      "El meu primer vídeo el vaig gravar el 2023 per a Decathlon, on treballava com a venedor especialista en running: amb el mòbil, sense micro i des del garatge de casa. Em vaig aprendre de memòria el guió de gairebé un minut perquè ni em passava pel cap fer talls. El que sí que tenia eren moltes ganes d'explicar el que sabia de sabatilles.",
+      "L'abril del 2024 vaig començar a dedicar-me només a això, mentre estudiava Comunicació a la UOC. Avui treballo com una productora per a empreses i agències: amb el meu equip m'encarrego de tot el procés, de l'estratègia i el guió a la gravació i l'edició. Ja són més de 1.000 vídeos per a més de 300 marques, com Just Eat, Revolut, Marvel Snap o Daikin.",
+      "Hi ha una cosa que no ha canviat des d'aquell primer vídeo: continuo gaudint cada vegada que em poso davant de la càmera."
     ],
     "how_title": "Com treballo",
     "how": [
@@ -417,7 +419,61 @@
         "v": "31",
         "l": "mesos amb un dels meus clients més antics"
       }
-    ]
+    ],
+    "career_title": "Trajectòria",
+    "career": [
+      {
+        "when": "2024 – avui",
+        "role": "Creador UGC i productor de vídeo",
+        "org": "Independent",
+        "d": "UGC, vídeo corporatiu i contingut per a xarxes i anuncis: estratègia, guió, gravació i edició."
+      },
+      {
+        "when": "2022 – 2024",
+        "role": "Venedor especialista en running i salut",
+        "org": "Decathlon",
+        "d": "A més d'assessorar clients i formar altres venedors, creava el contingut del compte de la botiga: idees, guió i producció."
+      },
+      {
+        "when": "2023",
+        "role": "Presentador",
+        "org": "GoIT",
+        "d": "Presentava seminaris web setmanals i gravava vídeos per a les seves xarxes."
+      },
+      {
+        "when": "2022",
+        "role": "Presentador i comentarista",
+        "org": "Rivals D&D",
+        "d": "Presentava les jornades de competició en directe i comentava les partides."
+      },
+      {
+        "when": "2020 – 2022",
+        "role": "Social media manager i presentador",
+        "org": "La Lanza de Plata",
+        "d": "Més de 50 directes d'unes 2 hores, esdeveniments en línia i presencials, comunitat i col·laboracions amb marques."
+      },
+      {
+        "when": "2020 – 2021",
+        "role": "Content manager",
+        "org": "Facultat d'Informàtica de Barcelona (UPC)",
+        "d": "Xarxes socials i notícies del web de la facultat."
+      }
+    ],
+    "talks_title": "Xerrades i tallers",
+    "talks": [
+      {
+        "t": "Taller per a Elastic · 2026",
+        "d": "Vaig dirigir un taller per a l'equip d'Elastic a Barcelona, dins la setmana de benvinguda de les seves noves incorporacions: una activitat d'equip que també va ajudar la Fundación Altarriba."
+      },
+      {
+        "t": "Entrevista a Canal Empresario · 2026",
+        "d": "Vaig parlar amb Luis Crisenti sobre com començar a crear contingut, les eines que hi ha i l'impacte que té en els negocis (en castellà).",
+        "yt": "Veure a YouTube",
+        "sp": "Escoltar a Spotify"
+      }
+    ],
+    "edu": "Formació",
+    "edu_v": "Grau en Comunicació (UOC) i estudis d'Enginyeria Informàtica (UPC)"
   },
   "thanks": {
     "h1": "Gràcies!",

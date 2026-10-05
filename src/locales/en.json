@@ -381,8 +381,10 @@
     "img_alt": "Pol Morera, male UGC creator in Spain",
     "story_title": "My story",
     "story": [
-      "At first I filmed on my own. Today I work with my team: we write the script, film and edit, and deliver every video in the formats each channel needs.",
-      "Since then I've made over 1,000 videos for more than 300 brands, from big companies to local businesses. What I enjoy most is still the same: finding what makes someone stop scrolling."
+      "Before UGC, I was already working in front of a camera and behind social media accounts. While studying Computer Engineering at UPC, I ran the social media of the Barcelona School of Informatics, and for almost two years I hosted and produced more than 50 live streams for La Lanza de Plata. Then came the Rivals D&D broadcasts and GoIT's webinars.",
+      "I filmed my first video in 2023 for Decathlon, where I worked as a running specialist: on my phone, with no mic, in my garage at home. I learned the almost one-minute script by heart because cutting never crossed my mind. What I did have was a huge urge to share what I knew about running shoes.",
+      "In April 2024 I started doing this full time, while studying Communication at UOC. Today I work like a production company for businesses and agencies: with my team, I handle the whole process, from strategy and script to filming and editing. That's over 1,000 videos for more than 300 brands, such as Just Eat, Revolut, Marvel Snap and Daikin.",
+      "One thing hasn't changed since that first video: I still enjoy it every time I step in front of the camera."
     ],
     "how_title": "How I work",
     "how": [
@@ -417,7 +419,61 @@
         "v": "31",
         "l": "months with one of my longest-standing clients"
       }
-    ]
+    ],
+    "career_title": "Career",
+    "career": [
+      {
+        "when": "2024 – today",
+        "role": "UGC creator and video producer",
+        "org": "Freelance",
+        "d": "UGC, corporate video and content for social media and ads: strategy, script, filming and editing."
+      },
+      {
+        "when": "2022 – 2024",
+        "role": "Running and health specialist",
+        "org": "Decathlon",
+        "d": "Besides advising customers and training other sales staff, I created the content for the store's account: ideas, script and production."
+      },
+      {
+        "when": "2023",
+        "role": "Host",
+        "org": "GoIT",
+        "d": "I hosted weekly webinars and filmed videos for their social media."
+      },
+      {
+        "when": "2022",
+        "role": "Host and commentator",
+        "org": "Rivals D&D",
+        "d": "I hosted the live competition days and commentated the matches."
+      },
+      {
+        "when": "2020 – 2022",
+        "role": "Social media manager and host",
+        "org": "La Lanza de Plata",
+        "d": "More than 50 live streams of around 2 hours, online and in-person events, community and brand collaborations."
+      },
+      {
+        "when": "2020 – 2021",
+        "role": "Content manager",
+        "org": "Barcelona School of Informatics (UPC)",
+        "d": "Social media and news for the faculty's website."
+      }
+    ],
+    "talks_title": "Talks and workshops",
+    "talks": [
+      {
+        "t": "Workshop for Elastic · 2026",
+        "d": "I led a workshop for the Elastic team in Barcelona during the onboarding week for their new hires: a team activity that also supported Fundación Altarriba."
+      },
+      {
+        "t": "Interview on Canal Empresario · 2026",
+        "d": "I talked with Luis Crisenti about how to start creating content, the tools available and the impact it has on businesses (in Spanish).",
+        "yt": "Watch on YouTube",
+        "sp": "Listen on Spotify"
+      }
+    ],
+    "edu": "Education",
+    "edu_v": "Degree in Communication (UOC) and Computer Engineering studies (UPC)"
   },
   "thanks": {
     "h1": "Thank you!",

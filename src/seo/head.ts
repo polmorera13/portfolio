@@ -88,6 +88,10 @@ function personNode(lang: Locale) {
     email: "hello@polmorera.es",
     address: { "@type": "PostalAddress", addressLocality: "Barcelona", addressRegion: "Cataluña", addressCountry: "ES" },
     knowsLanguage: ["es", "ca", "en"],
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "Universitat Oberta de Catalunya" },
+      { "@type": "CollegeOrUniversity", name: "Universitat Politècnica de Catalunya" },
+    ],
     knowsAbout: KNOWS_ABOUT[lang],
     sameAs: PERSON.sameAs,
   };

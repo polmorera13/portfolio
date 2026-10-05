@@ -381,8 +381,10 @@
     "img_alt": "Pol Morera, creador UGC hombre en España",
     "story_title": "Mi historia",
     "story": [
-      "Al principio grababa yo solo. Hoy lo hago con mi equipo: escribimos el guion, grabamos y editamos, y entregamos cada vídeo en los formatos que necesita cada canal.",
-      "Desde entonces he hecho más de 1.000 vídeos para más de 300 marcas, de grandes empresas a negocios locales. Lo que más me gusta sigue siendo lo mismo: encontrar qué hace que alguien deje de hacer scroll."
+      "Antes de grabar UGC ya trabajaba delante de una cámara y detrás de unas redes. Mientras estudiaba Ingeniería Informática en la UPC llevé las redes de la Facultad de Informática de Barcelona, y durante casi dos años presenté y realicé más de 50 directos para La Lanza de Plata. Después vinieron las retransmisiones de Rivals D&D y los seminarios web de GoIT.",
+      "Mi primer vídeo lo grabé en 2023 para Decathlon, donde trabajaba como vendedor especialista en running: con el móvil, sin micro y desde el garaje de casa. Me aprendí de memoria el guion de casi un minuto porque ni se me pasaba por la cabeza hacer cortes. Lo que sí tenía eran muchas ganas de contar lo que sabía de zapatillas.",
+      "En abril de 2024 empecé a dedicarme solo a esto, mientras estudiaba Comunicación en la UOC. Hoy trabajo como una productora para empresas y agencias: con mi equipo me encargo de todo el proceso, de la estrategia y el guion a la grabación y la edición. Ya son más de 1.000 vídeos para más de 300 marcas, como Just Eat, Revolut, Marvel Snap o Daikin.",
+      "Hay algo que no ha cambiado desde aquel primer vídeo: sigo disfrutando cada vez que me pongo delante de la cámara."
     ],
     "how_title": "Cómo trabajo",
     "how": [
@@ -417,7 +419,61 @@
         "v": "31",
         "l": "meses con uno de mis clientes más antiguos"
       }
-    ]
+    ],
+    "career_title": "Trayectoria",
+    "career": [
+      {
+        "when": "2024 – hoy",
+        "role": "Creador UGC y productor de vídeo",
+        "org": "Independiente",
+        "d": "UGC, vídeo corporativo y contenido para redes y anuncios: estrategia, guion, grabación y edición."
+      },
+      {
+        "when": "2022 – 2024",
+        "role": "Vendedor especialista en running y salud",
+        "org": "Decathlon",
+        "d": "Además de asesorar a clientes y formar a otros vendedores, creaba el contenido de la cuenta de la tienda: ideas, guion y producción."
+      },
+      {
+        "when": "2023",
+        "role": "Presentador",
+        "org": "GoIT",
+        "d": "Presentaba seminarios web semanales y grababa vídeos para sus redes."
+      },
+      {
+        "when": "2022",
+        "role": "Presentador y comentarista",
+        "org": "Rivals D&D",
+        "d": "Presentaba las jornadas de competición en directo y comentaba las partidas."
+      },
+      {
+        "when": "2020 – 2022",
+        "role": "Social media manager y presentador",
+        "org": "La Lanza de Plata",
+        "d": "Más de 50 directos de unas 2 horas, eventos online y presenciales, comunidad y colaboraciones con marcas."
+      },
+      {
+        "when": "2020 – 2021",
+        "role": "Content manager",
+        "org": "Facultad de Informática de Barcelona (UPC)",
+        "d": "Redes sociales y noticias de la web de la facultad."
+      }
+    ],
+    "talks_title": "Charlas y talleres",
+    "talks": [
+      {
+        "t": "Taller para Elastic · 2026",
+        "d": "Dirigí un taller para el equipo de Elastic en Barcelona, dentro de la semana de bienvenida de sus nuevas incorporaciones: una actividad de equipo que también ayudó a la Fundación Altarriba."
+      },
+      {
+        "t": "Entrevista en Canal Empresario · 2026",
+        "d": "Hablé con Luis Crisenti sobre cómo empezar a crear contenido, las herramientas que hay y el impacto que tiene en los negocios.",
+        "yt": "Ver en YouTube",
+        "sp": "Escuchar en Spotify"
+      }
+    ],
+    "edu": "Formación",
+    "edu_v": "Grado en Comunicación (UOC) y estudios de Ingeniería Informática (UPC)"
   },
   "thanks": {
     "h1": "¡Gracias!",
