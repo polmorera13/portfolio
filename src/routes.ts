@@ -20,7 +20,9 @@ export type PageKey =
   | "case-reactiva"
   | "case-agency"
   | "about"
-  | "thanks";
+  | "thanks"
+  | "privacy"
+  | "legal";
 
 export const PATHS: Record<PageKey, Record<Locale, string>> = {
   home: { es: "/", en: "/en/", ca: "/ca/" },
@@ -34,16 +36,17 @@ export const PATHS: Record<PageKey, Record<Locale, string>> = {
   "case-agency": { es: "/casos/apple-tree/", en: "/en/case-studies/apple-tree/", ca: "/ca/casos/apple-tree/" },
   about: { es: "/sobre-mi/", en: "/en/about/", ca: "/ca/sobre-mi/" },
   thanks: { es: "/gracias/", en: "/en/thank-you/", ca: "/ca/gracies/" },
+  privacy: { es: "/politica-privacidad/", en: "/en/privacy-policy/", ca: "/ca/politica-privacitat/" },
+  legal: { es: "/aviso-legal/", en: "/en/legal-notice/", ca: "/ca/avis-legal/" },
 };
 
 /** Páginas que no van al sitemap y llevan noindex. */
-export const NOINDEX_PAGES: PageKey[] = ["thanks"];
+export const NOINDEX_PAGES: PageKey[] = ["thanks", "privacy", "legal"];
 
 /** Rutas sin versión por idioma (noindex): textos legales. */
 /** Páginas de caso (dependen de "Casos" en las migas de pan). */
 export const CASE_PAGES: PageKey[] = ["case-masterd", "case-dogfy", "case-reactiva", "case-agency"];
 
-export const LEGAL_PATHS = { privacy: "/politica-privacidad/", legal: "/aviso-legal/" } as const;
 
 /** Enlace interno a una página en un idioma, respetando la base (/ o /test/). */
 export function pageHref(key: PageKey, lang: Locale, hash = ""): string {

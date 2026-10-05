@@ -68,6 +68,12 @@ function breadcrumbList(key: PageKey, lang: Locale) {
   };
 }
 
+const KNOWS_ABOUT: Record<Locale, string[]> = {
+  es: ["UGC", "vídeo para anuncios", "vídeo para redes sociales", "vídeo corporativo", "Meta Ads", "TikTok Ads"],
+  en: ["UGC", "video ads", "social media video", "corporate video", "Meta Ads", "TikTok Ads"],
+  ca: ["UGC", "vídeo per a anuncis", "vídeo per a xarxes socials", "vídeo corporatiu", "Meta Ads", "TikTok Ads"],
+};
+
 function personNode(lang: Locale) {
   return {
     "@type": "Person",
@@ -81,6 +87,7 @@ function personNode(lang: Locale) {
     email: "hello@polmorera.es",
     address: { "@type": "PostalAddress", addressLocality: "Barcelona", addressRegion: "Cataluña", addressCountry: "ES" },
     knowsLanguage: ["es", "ca", "en"],
+    knowsAbout: KNOWS_ABOUT[lang],
     sameAs: PERSON.sameAs,
   };
 }
@@ -165,7 +172,22 @@ function structuredData(key: PageKey, lang: Locale, title: string, description: 
   // Páginas de caso: migas de pan y un VideoObject por vídeo
   const vids = videoNodes(videos, lang);
   if (vids.length) return jsonLd({ "@context": "https://schema.org", "@graph": [breadcrumbList(key, lang), ...vids] });
-  // Índice de casos
+  // Índice de casos: colección con la lista de casos
+  if (key === "cases") {
+    const items = CASE_DETAILS.map((d, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: pageUrl(d.page, lang),
+      name: (d.displayName ? d.displayName[lang] : d.brandName) + " · " + d.metaTitle[lang].split(" · ")[0].replace(/^(Caso|Cas) [^:]+: |^[^:]+ case study: /, ""),
+    }));
+    return jsonLd({
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "CollectionPage", url, name: title, description, inLanguage: lang, mainEntity: { "@type": "ItemList", itemListElement: items } },
+        breadcrumbList(key, lang),
+      ],
+    });
+  }
   return jsonLd({ "@context": "https://schema.org", ...breadcrumbList(key, lang) });
 }
 
@@ -174,7 +196,7 @@ function titleAndDescription(key: PageKey, lang: Locale) {
     const d = CASE_DETAILS.find((c) => c.page === key)!;
     return { title: d.metaTitle[lang], description: d.metaDescription[lang] };
   }
-  const m = META[key];
+  const m = META[key as keyof typeof META]; // las páginas de caso ya han salido arriba
   return { title: m.title[lang], description: m.description[lang] };
 }
 

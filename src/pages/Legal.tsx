@@ -1,23 +1,22 @@
 import { useEffect } from "react";
 import { useTranslation } from "../lib/i18n";
-import Header from "../components/Header";
-import Footer from "../sections/Footer";
-import { useLanguage } from "../hooks/useLanguage";
+import { usePage } from "../lib/page";
+import { pageHref } from "../routes";
 import { privacyPolicy, legalNotice, type LegalDoc } from "../data/legal";
 import type { Locale } from "../types";
-import { withBase } from "../lib/paths";
+
 
 const DOCS: Record<"privacy" | "legal", Record<Locale, LegalDoc>> = {
   privacy: privacyPolicy,
   legal: legalNotice,
 };
 
-// Página de texto legal (/politica-privacidad, /aviso-legal) con la cabecera y
-// el pie de la web.
+// Página de texto legal (política de privacidad y aviso legal), una por idioma.
+// La cabecera y el pie los pone el Layout común.
 export default function Legal({ doc }: { doc: keyof typeof DOCS }) {
   const { t } = useTranslation();
-  const { currentLang } = useLanguage();
-  const content = DOCS[doc][currentLang] ?? DOCS[doc].es;
+  const { lang } = usePage();
+  const content = DOCS[doc][lang] ?? DOCS[doc].es;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,11 +29,9 @@ export default function Legal({ doc }: { doc: keyof typeof DOCS }) {
   }, [content.title]);
 
   return (
-    <div className="min-h-screen bg-navy flex flex-col">
-      <Header />
-      <main className="flex-1 pt-[72px]">
+    <div className="pt-[72px]">
         <article className="max-w-3xl mx-auto section-padding py-16 lg:py-24 flex flex-col gap-10">
-          <a href={withBase("/")} className="text-steel-blue hover:text-off-white text-sm transition-colors w-fit">
+          <a href={pageHref("home", lang)} className="text-steel-blue hover:text-off-white text-sm transition-colors w-fit">
             {t("legal.back")}
           </a>
 
@@ -59,8 +56,6 @@ export default function Legal({ doc }: { doc: keyof typeof DOCS }) {
             </section>
           ))}
         </article>
-      </main>
-      <Footer />
     </div>
   );
 }

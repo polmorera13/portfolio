@@ -29,4 +29,4 @@ export { preloadAll };
 export { pageVideos, mediaAbs } from './seo/videos';
 export { ogText, ogImageSource, ogSlug } from './seo/og';
 export { buildHead } from './seo/head';
-export { PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } from './routes';
+export { PATHS, LOCALES, NOINDEX_PAGES, SITE_URL } from './routes';

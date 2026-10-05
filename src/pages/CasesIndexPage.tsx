@@ -33,6 +33,10 @@ export default function CasesIndexPage() {
               className="group rounded-[22px] border border-off-white/10 bg-charcoal/50 p-6 lg:p-8 flex flex-col gap-5 hover:border-brand-blue/50 transition-colors">
               <CaseHeader c={c} />
               <h2 className="text-off-white font-bold text-2xl leading-tight">{tr(c.title, i18n.language)}</h2>
+              {/* Del propio caso: sector y qué hicimos */}
+              <p className="text-steel-blue" style={{ fontSize: "15.5px", lineHeight: 1.55 }}>
+                <span className="text-off-white/90 font-semibold">{d.sector[lang]}.</span> {d.did[lang]}
+              </p>
               {lead && (
                 <span className="flex items-baseline gap-3">
                   <span className="text-brand-blue font-bold text-4xl tabular-nums">{lead.value}</span>

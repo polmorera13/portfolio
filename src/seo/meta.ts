@@ -76,6 +76,22 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
       ca: "Pol Morera (Pol Morera de Frutos), creador UGC i productor de vídeo a Barcelona. Més de 1.000 vídeos per a més de 300 marques, en 3 idiomes.",
     },
   },
+  privacy: {
+    title: { es: "Política de privacidad | Pol Morera", en: "Privacy policy | Pol Morera", ca: "Política de privacitat | Pol Morera" },
+    description: {
+      es: "Cómo trata polmorera.es los datos que envías por el formulario de contacto.",
+      en: "How polmorera.es handles the data you send through the contact form.",
+      ca: "Com tracta polmorera.es les dades que envies pel formulari de contacte.",
+    },
+  },
+  legal: {
+    title: { es: "Aviso legal | Pol Morera", en: "Legal notice | Pol Morera", ca: "Avís legal | Pol Morera" },
+    description: {
+      es: "Aviso legal de polmorera.es.",
+      en: "Legal notice of polmorera.es.",
+      ca: "Avís legal de polmorera.es.",
+    },
+  },
   thanks: {
     title: { es: "Gracias | Pol Morera", en: "Thank you | Pol Morera", ca: "Gràcies | Pol Morera" },
     description: {

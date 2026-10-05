@@ -1,7 +1,6 @@
 import { useTranslation } from "../lib/i18n";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
-import { withBase } from "../lib/paths";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
 import RotatingPhotos from "../components/RotatingPhotos";

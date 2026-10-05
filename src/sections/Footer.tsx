@@ -3,7 +3,7 @@ import { Instagram, Linkedin } from "lucide-react";
 import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
 import { withBase } from "../lib/paths";
 import { usePage } from "../lib/page";
-import { pageHref, LEGAL_PATHS } from "../routes";
+import { pageHref } from "../routes";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -88,10 +88,10 @@ export default function Footer() {
         <div className="border-t border-charcoal pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-steel-blue/60 text-xs">{t("footer.copyright")}</p>
           <div className="flex items-center gap-4">
-            <a href={withBase(LEGAL_PATHS.privacy)} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+            <a href={pageHref("privacy", lang)} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
               {t("footer.privacy")}
             </a>
-            <a href={withBase(LEGAL_PATHS.legal)} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+            <a href={pageHref("legal", lang)} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
               {t("footer.legal")}
             </a>
           </div>

@@ -15,7 +15,7 @@ const BASE = process.env.BASE_PATH || "/";
 const API = "https://api.polmorera.es";
 
 const server = await import(pathToFileURL(path.join(ROOT, "dist-ssr", "entry-server.js")).href);
-const { render, buildHead, pageVideos, mediaAbs, ogText, ogImageSource, ogSlug, PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } = server;
+const { render, buildHead, pageVideos, mediaAbs, ogText, ogImageSource, ogSlug, PATHS, LOCALES, NOINDEX_PAGES, SITE_URL } = server;
 await server.preloadAll(); // todas las páginas cargadas antes de prerenderizar
 const { renderOgImage } = await import(pathToFileURL(path.join(ROOT, "scripts", "og-images.mjs")).href);
 
@@ -87,7 +87,7 @@ const PAGE_SRC = {
   home: "src/pages/HomePage.tsx", "svc-ads": "src/pages/ServicePage.tsx", "svc-social": "src/pages/ServicePage.tsx",
   "svc-corporate": "src/pages/ServicePage.tsx", cases: "src/pages/CasesIndexPage.tsx", "case-masterd": "src/pages/CasePage.tsx",
   "case-dogfy": "src/pages/CasePage.tsx", "case-reactiva": "src/pages/CasePage.tsx", "case-agency": "src/pages/CasePage.tsx",
-  about: "src/pages/AboutPage.tsx", thanks: "src/pages/ThanksPage.tsx", legal: "src/pages/Legal.tsx", notfound: "src/pages/NotFoundPage.tsx",
+  about: "src/pages/AboutPage.tsx", thanks: "src/pages/ThanksPage.tsx", privacy: "src/pages/Legal.tsx", legal: "src/pages/Legal.tsx", notfound: "src/pages/NotFoundPage.tsx",
 };
 function chunkFiles(key, seen = new Set()) {
   const m = manifest[key];
@@ -160,13 +160,6 @@ for (const key of Object.keys(PATHS)) {
   console.log(`Imágenes para compartir: ${n} (la más pesada, ${maxKb} KB)`);
 }
 
-// ── Textos legales (noindex, en español) ────────────────────────────────────
-for (const [doc, url] of Object.entries(LEGAL_PATHS)) {
-  const head = buildHead({ kind: "legal", doc, path: url });
-  write(url, page({ head: head.html, lang: "es", appHtml: render(loc(url), "es", data), preload: modulePreloads("legal", "es") }));
-  count++;
-}
-
 // ── 404 ──────────────────────────────────────────────────────────────────────
 {
   const head = buildHead({ kind: "404", lang: "es" });
@@ -179,10 +172,9 @@ for (const url of ["/login/", "/admin/"]) {
 }
 
 // ── Sitemap (solo URLs indexables, en los tres idiomas) ─────────────────────
-const today = new Date().toISOString().slice(0, 10);
 const urls = Object.keys(PATHS)
   .filter((k) => !NOINDEX_PAGES.includes(k))
-  .flatMap((k) => LOCALES.map((l) => `  <url>\n    <loc>${SITE_URL}${PATHS[k][l]}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`));
+  .flatMap((k) => LOCALES.map((l) => `  <url>\n    <loc>${SITE_URL}${PATHS[k][l]}</loc>\n  </url>`));
 fs.writeFileSync(
   path.join(DIST, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`,

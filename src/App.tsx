@@ -5,7 +5,7 @@ import Layout from './components/Layout';
 import { PageContext } from './lib/page';
 import { preloadable } from './lib/preloadable';
 import { BASE } from './lib/paths';
-import { LOCALES, PATHS, LEGAL_PATHS, pageFromPath, type PageKey } from './routes';
+import { LOCALES, PATHS, pageFromPath, type PageKey } from './routes';
 import type { Locale } from './types';
 
 // Cada página va en su propio archivo de JavaScript: el navegador solo descarga la que abre.
@@ -30,15 +30,15 @@ const PAGE_LOADER: Record<PageKey, () => Promise<void>> = {
   'case-agency': CasePage.load,
   about: AboutPage.load,
   thanks: ThanksPage.load,
+  privacy: Legal.load,
+  legal: Legal.load,
 };
 
 /** Carga el código de la página de una URL (antes de hidratar, en main.tsx). */
 export function preloadForPath(pathname: string): Promise<void> {
   const page = pageFromPath(pathname);
   if (page) return PAGE_LOADER[page.key]();
-  let p = pathname.replace(new RegExp('^' + BASE.replace(/\/$/, '')), '') || '/';
-  if (!p.endsWith('/')) p += '/';
-  if (p === LEGAL_PATHS.privacy || p === LEGAL_PATHS.legal) return Legal.load();
+  const p = pathname.replace(new RegExp('^' + BASE.replace(/\/$/, '')), '') || '/';
   if (p.startsWith('/login') || p.startsWith('/admin')) return Promise.resolve();
   return NotFoundPage.load();
 }
@@ -65,6 +65,8 @@ function pageElement(key: PageKey): ReactNode {
     case 'case-agency': return <CasePage slug="agencia" />;
     case 'about': return <AboutPage />;
     case 'thanks': return <ThanksPage />;
+    case 'privacy': return <Legal doc="privacy" />;
+    case 'legal': return <Legal doc="legal" />;
   }
 }
 
@@ -86,8 +88,6 @@ export default function App({ fallbackLang = 'es' }: { fallbackLang?: Locale }) 
             <Route key={`${key}-${lang}`} path={PATHS[key][lang]} element={withPage(key, lang, pageElement(key))} />
           )),
         )}
-        <Route path={LEGAL_PATHS.privacy} element={<PageContext.Provider value={{ key: null, lang: fallbackLang }}><Legal doc="privacy" /></PageContext.Provider>} />
-        <Route path={LEGAL_PATHS.legal} element={<PageContext.Provider value={{ key: null, lang: fallbackLang }}><Legal doc="legal" /></PageContext.Provider>} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/admin"
