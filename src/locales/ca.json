@@ -10,7 +10,8 @@
     "svc_ads": "Vídeos per a anuncis",
     "svc_social": "Vídeos per a xarxes",
     "svc_corporate": "Vídeo corporatiu",
-    "services_menu": "Serveis"
+    "services_menu": "Serveis",
+    "svc_male": "UGC home"
   },
   "hero": {
     "eyebrow": "Pol Morera · Creador UGC home a Espanya",
@@ -312,7 +313,9 @@
   "links": {
     "more_service": "Més sobre aquest servei →",
     "full_case": "Veure el cas complet →",
-    "more_about": "Més sobre mi →"
+    "more_about": "Més sobre mi →",
+    "ugc_male_about": "Què faig com a creador UGC home →",
+    "ugc_male_svc": "Busques un creador UGC home? →"
   },
   "svcpage": {
     "examples": "Exemples",
@@ -433,6 +436,29 @@
     "cases": "Casos",
     "about": "Sobre mi",
     "all_cases": "Tots els casos",
-    "agency_case": "Agència de comunicació"
+    "agency_case": "Agència de comunicació",
+    "ugc_male": "Creador UGC home"
+  },
+  "ugcpage": {
+    "crumb": "Creador UGC home",
+    "h1": "Creador UGC home per a la teva marca",
+    "intro": "Soc en Pol Morera, creador UGC home a Espanya. Vaig ser dels primers creadors UGC del país i el primer UGC home. Gravo vídeos en què parlo del teu producte com ho faria un client, per als teus anuncis, les teves xarxes i la teva web. Escric el guió, gravo, i el meu equip l'edita.",
+    "main_aria": "Pol Morera, creador UGC home, en un vídeo per a {{brand}}",
+    "when_title": "Quan et convé un creador UGC home?",
+    "when": [
+      "Quan la majoria dels teus clients són homes, o el teu producte el fa servir sobretot un home.",
+      "Quan vols que l'anunci soni a recomanació d'algú com el teu client: \"jo el faig servir i em funciona\".",
+      "Quan vols provar als teus anuncis una versió amb veu masculina davant d'una altra amb veu femenina, per veure quina ven més."
+    ],
+    "sectors_label": "Sectors en què he treballat:",
+    "sectors": [
+      "finances: Revolut, Qonto, Scalable Capital i Bitnovo;",
+      "mobilitat: Kymco;",
+      "llar: Daikin;",
+      "cura personal: Gillette;",
+      "menjar a domicili: Just Eat."
+    ],
+    "who_title": "Tu decideixes qui surt",
+    "who_text": "Normalment surto jo. Si la teva campanya necessita un altre home d'una altra edat, o una dona, treballo amb la meva xarxa d'actors i actrius de diferents edats i perfils. Ho decidim junts segons el to de la campanya i a qui li vens."
   }
 }

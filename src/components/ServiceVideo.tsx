@@ -20,8 +20,11 @@ export default function ServiceVideo({
   style,
   indexable = false,
   ariaName,
+  poster: posterPath,
 }: {
   file: string;
+  /** Miniatura (ruta en media.polmorera.es); por defecto, la del catálogo (thumbs/). */
+  poster?: string;
   /** Proporción fija ("9 / 16"); si no se pasa, la marca el className (aspect-[…]). */
   aspect?: string;
   className?: string;
@@ -45,7 +48,7 @@ export default function ServiceVideo({
   const [manualPlay, setManualPlay] = useState(false);
 
   const src = getPublicUrl(file);
-  const poster = getPublicUrl(`thumbs/${file.replace(/\.mp4$/, ".jpg")}`);
+  const poster = getPublicUrl(posterPath ?? `thumbs/${file.replace(/\.mp4$/, ".jpg")}`);
 
   // ¿Está en pantalla?
   useEffect(() => {

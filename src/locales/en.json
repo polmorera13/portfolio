@@ -10,7 +10,8 @@
     "svc_ads": "Videos for ads",
     "svc_social": "Social media videos",
     "svc_corporate": "Corporate video",
-    "services_menu": "Services"
+    "services_menu": "Services",
+    "svc_male": "Male UGC creator"
   },
   "hero": {
     "eyebrow": "Pol Morera · Male UGC creator in Spain",
@@ -312,7 +313,9 @@
   "links": {
     "more_service": "More about this service →",
     "full_case": "See the full case →",
-    "more_about": "More about me →"
+    "more_about": "More about me →",
+    "ugc_male_about": "What I do as a male UGC creator →",
+    "ugc_male_svc": "Looking for a male UGC creator? →"
   },
   "svcpage": {
     "examples": "Examples",
@@ -433,6 +436,29 @@
     "cases": "Case studies",
     "about": "About me",
     "all_cases": "All case studies",
-    "agency_case": "Communications agency"
+    "agency_case": "Communications agency",
+    "ugc_male": "Male UGC creator"
+  },
+  "ugcpage": {
+    "crumb": "Male UGC creator",
+    "h1": "Male UGC creator for your brand",
+    "intro": "I'm Pol Morera, a male UGC creator in Spain. I was one of the first UGC creators in the country and the first male one. I film videos where I talk about your product the way a customer would, for your ads, your social media and your website. I write the script, I film, and my team edits it.",
+    "main_aria": "Pol Morera, male UGC creator, in a video for {{brand}}",
+    "when_title": "When does a male UGC creator make sense?",
+    "when": [
+      "When most of your customers are men, or your product is mainly used by men.",
+      "When you want the ad to sound like a recommendation from someone like your customer: \"I use it and it works for me\".",
+      "When you want to test a version with a male voice against one with a female voice in your ads, to see which one sells more."
+    ],
+    "sectors_label": "Sectors I've worked in:",
+    "sectors": [
+      "finance: Revolut, Qonto, Scalable Capital and Bitnovo;",
+      "mobility: Kymco;",
+      "home: Daikin;",
+      "personal care: Gillette;",
+      "food delivery: Just Eat."
+    ],
+    "who_title": "You choose who's on camera",
+    "who_text": "Usually it's me. If your campaign needs another man of a different age, or a woman, I work with my network of actors and actresses of different ages and profiles. We decide together based on the tone of the campaign and who you're selling to."
   }
 }

@@ -4,6 +4,7 @@ import type { PageKey } from "../routes";
 import type { InitialData } from "../lib/initialData";
 import { CASE_DETAILS, caseDetailFor } from "../data/caseDetails";
 import { services as SERVICES } from "../data/services";
+import { UGC_MALE_MAIN, ugcMaleExamples } from "../data/ugcMale";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Vídeos de cada página (casos y servicios), para que Google pueda indexarlos:
@@ -55,8 +56,18 @@ const SVC_OF: Partial<Record<PageKey, "ads" | "organic" | "corporate">> = {
   "svc-corporate": "corporate",
 };
 
-/** Vídeos indexables de una página: todos los del caso, o el principal del servicio. */
+/** Vídeos indexables de una página: todos los del caso, el principal del servicio o los de "Creador UGC hombre". */
 export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null): PageVideo[] {
+  if (key === "ugc-male") {
+    const description = `${tl(lang, "ugcpage.h1")}. ${firstSentence(tl(lang, "ugcpage.intro"))}`;
+    const main: PageVideo = {
+      file: UGC_MALE_MAIN.file,
+      poster: UGC_MALE_MAIN.poster,
+      name: tl(lang, "ugcpage.main_aria").replace("{{brand}}", UGC_MALE_MAIN.brand),
+      description,
+    };
+    return [main, ...ugcMaleExamples(data).map((v) => ({ file: v.file, poster: v.poster, name: videoName(v.brand, null, lang), description }))];
+  }
   const detail = CASE_DETAILS.find((d) => d.page === key);
   if (detail) {
     const c = (data?.cases ?? []).find((x) => caseDetailFor(x)?.slug === detail.slug);

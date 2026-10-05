@@ -52,6 +52,18 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
       ca: "Vídeo corporatiu per explicar què fa la teva empresa en un minut: guió inclòs, 4K, rètols animats i versions per a web, vendes i esdeveniments.",
     },
   },
+  "ugc-male": {
+    title: {
+      es: "UGC hombre: creador UGC masculino para tu marca · Pol Morera",
+      en: "Male UGC creator in Spain for your brand · Pol Morera",
+      ca: "Creador UGC home per a la teva marca · Pol Morera",
+    },
+    description: {
+      es: "Vídeos UGC con un creador hombre para tus anuncios y tus redes: guion, grabación y edición en toda España. Y si necesitas otro perfil, mi red de actores.",
+      en: "UGC videos with a male creator for your ads and social media: script, filming and editing across Spain. Need another profile? I have a network of actors.",
+      ca: "Vídeos UGC amb un creador home per als teus anuncis i xarxes: guió, gravació i edició a tot Espanya. I si cal un altre perfil, la meva xarxa d'actors.",
+    },
+  },
   cases: {
     title: {
       es: "Casos reales de vídeos UGC | Pol Morera",
@@ -125,6 +137,12 @@ export const BUSINESS_DESCRIPTION: Translated = {
   es: "Creador UGC hombre en España: vídeos UGC para anuncios en Meta Ads y TikTok Ads, vídeos para redes sociales y vídeo corporativo. Más de 1.000 vídeos para más de 300 marcas.",
   en: "Male UGC creator in Spain: UGC videos for Meta Ads and TikTok Ads, social media videos and corporate video. Over 1,000 videos for 300+ brands.",
   ca: "Creador UGC home a Espanya: vídeos UGC per a anuncis a Meta Ads i TikTok Ads, vídeos per a xarxes socials i vídeo corporatiu. Més de 1.000 vídeos per a més de 300 marques.",
+};
+
+/** Servicio de la página "Creador UGC hombre" (JSON-LD). */
+export const UGC_MALE_SERVICE = {
+  name: { es: "Creador UGC hombre", en: "Male UGC creator", ca: "Creador UGC home" } as Translated,
+  serviceType: { es: "UGC hombre", en: "Male UGC", ca: "UGC home" } as Translated,
 };
 
 export const SERVICE_TYPES: Record<"svc-ads" | "svc-social" | "svc-corporate", Translated> = {

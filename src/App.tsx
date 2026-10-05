@@ -11,6 +11,7 @@ import type { Locale } from './types';
 // Cada página va en su propio archivo de JavaScript: el navegador solo descarga la que abre.
 const HomePage = preloadable(() => import('./pages/HomePage'));
 const ServicePage = preloadable(() => import('./pages/ServicePage'));
+const UgcMalePage = preloadable(() => import('./pages/UgcMalePage'));
 const CasesIndexPage = preloadable(() => import('./pages/CasesIndexPage'));
 const CasePage = preloadable(() => import('./pages/CasePage'));
 const AboutPage = preloadable(() => import('./pages/AboutPage'));
@@ -23,6 +24,7 @@ const PAGE_LOADER: Record<PageKey, () => Promise<void>> = {
   'svc-ads': ServicePage.load,
   'svc-social': ServicePage.load,
   'svc-corporate': ServicePage.load,
+  'ugc-male': UgcMalePage.load,
   cases: CasesIndexPage.load,
   'case-masterd': CasePage.load,
   'case-dogfy': CasePage.load,
@@ -45,7 +47,7 @@ export function preloadForPath(pathname: string): Promise<void> {
 
 /** Todas las páginas (para prerenderizar). */
 export function preloadAll(): Promise<unknown> {
-  return Promise.all([HomePage, ServicePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal].map((p) => p.load()));
+  return Promise.all([HomePage, ServicePage, UgcMalePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal].map((p) => p.load()));
 }
 
 const Login = lazy(() => import('./pages/Login'));
@@ -58,6 +60,7 @@ function pageElement(key: PageKey): ReactNode {
     case 'svc-ads': return <ServicePage service="ads" />;
     case 'svc-social': return <ServicePage service="organic" />;
     case 'svc-corporate': return <ServicePage service="corporate" />;
+    case 'ugc-male': return <UgcMalePage />;
     case 'cases': return <CasesIndexPage />;
     case 'case-masterd': return <CasePage slug="masterd" />;
     case 'case-dogfy': return <CasePage slug="dogfy" />;

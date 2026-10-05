@@ -85,7 +85,7 @@ const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manife
 const mainEntry = Object.values(manifest).find((m) => m.isEntry);
 const PAGE_SRC = {
   home: "src/pages/HomePage.tsx", "svc-ads": "src/pages/ServicePage.tsx", "svc-social": "src/pages/ServicePage.tsx",
-  "svc-corporate": "src/pages/ServicePage.tsx", cases: "src/pages/CasesIndexPage.tsx", "case-masterd": "src/pages/CasePage.tsx",
+  "svc-corporate": "src/pages/ServicePage.tsx", "ugc-male": "src/pages/UgcMalePage.tsx", cases: "src/pages/CasesIndexPage.tsx", "case-masterd": "src/pages/CasePage.tsx",
   "case-dogfy": "src/pages/CasePage.tsx", "case-reactiva": "src/pages/CasePage.tsx", "case-agency": "src/pages/CasePage.tsx",
   about: "src/pages/AboutPage.tsx", thanks: "src/pages/ThanksPage.tsx", privacy: "src/pages/Legal.tsx", legal: "src/pages/Legal.tsx", notfound: "src/pages/NotFoundPage.tsx",
 };

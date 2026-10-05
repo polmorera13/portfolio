@@ -5,6 +5,7 @@ import RotatingPhotos from "../components/RotatingPhotos";
 import { aboutPhotos } from "../data/aboutPhotos";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
+import { UgcMaleLink } from "../components/ServiceBlocks";
 
 // "Quién está detrás": texto a la izquierda y foto a la derecha en escritorio
 // (al revés que "El problema", que va justo antes); en móvil, foto arriba.
@@ -46,6 +47,10 @@ export default function About() {
             >
               {t("about.p1")}
             </motion.p>
+
+            <motion.div variants={fadeUp} className="-mt-4">
+              <UgcMaleLink textKey="links.ugc_male_about" className="text-lg" />
+            </motion.div>
 
             <motion.p
               variants={fadeUp}

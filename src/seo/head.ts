@@ -3,7 +3,7 @@ import en from "../locales/en.json";
 import ca from "../locales/ca.json";
 import type { Locale } from "../types";
 import { LOCALES, NOINDEX_PAGES, SITE_URL, CASE_PAGES, pageUrl, type PageKey } from "../routes";
-import { META, OG_LOCALE, PERSON, BUSINESS_DESCRIPTION, SERVICE_TYPES } from "./meta";
+import { META, OG_LOCALE, PERSON, BUSINESS_DESCRIPTION, SERVICE_TYPES, UGC_MALE_SERVICE } from "./meta";
 import { CASE_DETAILS } from "../data/caseDetails";
 import { privacyPolicy, legalNotice } from "../data/legal";
 import { ogImageUrl, ogText, OG_WIDTH, OG_HEIGHT } from "./og";
@@ -43,6 +43,7 @@ function crumbLabel(key: PageKey, lang: Locale): string {
     case "svc-ads": return t.nav.svc_ads;
     case "svc-social": return t.nav.svc_social;
     case "svc-corporate": return t.nav.svc_corporate;
+    case "ugc-male": return t.ugcpage.crumb;
     case "cases": return t.nav.cases;
     case "about": return t.aboutpage.h1;
     default: {
@@ -149,6 +150,24 @@ function structuredData(key: PageKey, lang: Locale, title: string, description: 
           "@type": "Service",
           name: L[lang].svcpage[svcKey].h1,
           serviceType: SERVICE_TYPES[key][lang],
+          description,
+          url,
+          provider: { "@id": PERSON_ID },
+          areaServed: { "@type": "Country", name: "España" },
+        },
+        breadcrumbList(key, lang),
+        ...videoNodes(videos, lang),
+      ],
+    });
+  }
+  if (key === "ugc-male") {
+    return jsonLd({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          name: UGC_MALE_SERVICE.name[lang],
+          serviceType: UGC_MALE_SERVICE.serviceType[lang],
           description,
           url,
           provider: { "@id": PERSON_ID },

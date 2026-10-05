@@ -10,7 +10,8 @@
     "svc_ads": "Vídeos para anuncios",
     "svc_social": "Vídeos para redes",
     "svc_corporate": "Vídeo corporativo",
-    "services_menu": "Servicios"
+    "services_menu": "Servicios",
+    "svc_male": "UGC hombre"
   },
   "hero": {
     "eyebrow": "Pol Morera · Creador UGC hombre en España",
@@ -312,7 +313,9 @@
   "links": {
     "more_service": "Más sobre este servicio →",
     "full_case": "Ver el caso completo →",
-    "more_about": "Más sobre mí →"
+    "more_about": "Más sobre mí →",
+    "ugc_male_about": "Qué hago como creador UGC hombre →",
+    "ugc_male_svc": "¿Buscas un creador UGC hombre? →"
   },
   "svcpage": {
     "examples": "Ejemplos",
@@ -433,6 +436,29 @@
     "cases": "Casos",
     "about": "Sobre mí",
     "all_cases": "Todos los casos",
-    "agency_case": "Agencia de comunicación"
+    "agency_case": "Agencia de comunicación",
+    "ugc_male": "Creador UGC hombre"
+  },
+  "ugcpage": {
+    "crumb": "Creador UGC hombre",
+    "h1": "Creador UGC hombre para tu marca",
+    "intro": "Soy Pol Morera, creador UGC hombre en España. Fui de los primeros creadores UGC del país y el primer UGC hombre. Grabo vídeos en los que hablo de tu producto como lo haría un cliente, para tus anuncios, tus redes y tu web. Escribo el guion, grabo, y mi equipo lo edita.",
+    "main_aria": "Pol Morera, creador UGC hombre, en un vídeo para {{brand}}",
+    "when_title": "¿Cuándo te conviene un creador UGC hombre?",
+    "when": [
+      "Cuando la mayoría de tus clientes son hombres, o tu producto lo usa sobre todo un hombre.",
+      "Cuando quieres que el anuncio suene a recomendación de alguien como tu cliente: \"yo lo uso y me funciona\".",
+      "Cuando quieres probar en tus anuncios una versión con voz masculina frente a otra con voz femenina, para ver cuál vende más."
+    ],
+    "sectors_label": "Sectores en los que he trabajado:",
+    "sectors": [
+      "finanzas: Revolut, Qonto, Scalable Capital y Bitnovo;",
+      "movilidad: Kymco;",
+      "hogar: Daikin;",
+      "cuidado personal: Gillette;",
+      "comida a domicilio: Just Eat."
+    ],
+    "who_title": "Tú decides quién sale",
+    "who_text": "Normalmente salgo yo. Si tu campaña necesita a otro hombre de otra edad, o a una mujer, trabajo con mi red de actores y actrices de distintas edades y perfiles. Lo decidimos juntos según el tono de la campaña y a quién le vendes."
   }
 }

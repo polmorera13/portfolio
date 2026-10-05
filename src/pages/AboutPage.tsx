@@ -6,6 +6,7 @@ import CtaBlock from "../components/CtaBlock";
 import RotatingPhotos from "../components/RotatingPhotos";
 import { aboutPhotos } from "../data/aboutPhotos";
 import LogoMarquee from "../sections/LogoMarquee";
+import { UgcMaleLink } from "../components/ServiceBlocks";
 import type { Locale } from "../types";
 
 export const PROFILES = [
@@ -66,6 +67,7 @@ export default function AboutPage() {
           {(t("aboutpage.story", { returnObjects: true }) as string[]).map((p, i) => (
             <p key={i} className="text-off-white/90" style={{ fontSize: "18px", lineHeight: 1.65 }}>{p}</p>
           ))}
+          <UgcMaleLink textKey="links.ugc_male_about" className="text-lg mt-2" />
         </div>
       </section>
 

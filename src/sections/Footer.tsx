@@ -16,6 +16,7 @@ export default function Footer() {
         { label: t("nav.svc_ads"), href: pageHref("svc-ads", lang) },
         { label: t("nav.svc_social"), href: pageHref("svc-social", lang) },
         { label: t("nav.svc_corporate"), href: pageHref("svc-corporate", lang) },
+        { label: t("footer_cols.ugc_male"), href: pageHref("ugc-male", lang) },
       ],
     },
     {

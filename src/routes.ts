@@ -14,6 +14,7 @@ export type PageKey =
   | "svc-ads"
   | "svc-social"
   | "svc-corporate"
+  | "ugc-male"
   | "cases"
   | "case-masterd"
   | "case-dogfy"
@@ -29,6 +30,7 @@ export const PATHS: Record<PageKey, Record<Locale, string>> = {
   "svc-ads": { es: "/videos-ugc-para-anuncios/", en: "/en/ugc-video-ads/", ca: "/ca/videos-ugc-per-a-anuncis/" },
   "svc-social": { es: "/videos-para-redes-sociales/", en: "/en/social-media-videos/", ca: "/ca/videos-per-a-xarxes-socials/" },
   "svc-corporate": { es: "/video-corporativo/", en: "/en/corporate-video/", ca: "/ca/video-corporatiu/" },
+  "ugc-male": { es: "/creador-ugc-hombre/", en: "/en/male-ugc-creator-spain/", ca: "/ca/creador-ugc-home/" },
   cases: { es: "/casos/", en: "/en/case-studies/", ca: "/ca/casos/" },
   "case-masterd": { es: "/casos/masterd-tiktok-ads/", en: "/en/case-studies/masterd-tiktok-ads/", ca: "/ca/casos/masterd-tiktok-ads/" },
   "case-dogfy": { es: "/casos/dogfy-diet/", en: "/en/case-studies/dogfy-diet/", ca: "/ca/casos/dogfy-diet/" },

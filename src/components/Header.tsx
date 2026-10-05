@@ -43,6 +43,7 @@ export default function Header() {
     { key: "svc-ads", label: t("nav.svc_ads") },
     { key: "svc-social", label: t("nav.svc_social") },
     { key: "svc-corporate", label: t("nav.svc_corporate") },
+    { key: "ugc-male", label: t("nav.svc_male") },
   ];
   const navLinks = [
     { label: t("nav.cases"), href: pageHref("cases", lang) },

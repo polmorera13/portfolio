@@ -1,8 +1,7 @@
 import { useTranslation } from "../lib/i18n";
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { services } from "../data/services";
 import { faqItems } from "../data/faq";
-import { CASE_DETAILS } from "../data/caseDetails";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
 import { getInitialData } from "../lib/initialData";
@@ -15,6 +14,7 @@ import CtaBlock from "../components/CtaBlock";
 import FaqList from "../components/FaqList";
 import Method3x3 from "../components/Method3x3";
 import VideoPlayer from "../components/VideoPlayer";
+import { ProcessSteps, RelatedCases, UgcMaleLink } from "../components/ServiceBlocks";
 import ServiceVideo, { ServiceVideoStack } from "../components/ServiceVideo";
 import type { Locale } from "../types";
 
@@ -54,9 +54,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
 
   const { videos } = useVideos(EXAMPLE_CATS[service]);
   const examples = videos.slice(0, 6);
-  const steps = t("process.steps", { returnObjects: true }) as { day: string; n: string; title: string }[];
   const faqs = FAQ_FOR[service].map((q) => faqItems.find((f) => f.question.es === q)).filter(Boolean) as typeof faqItems;
-  const related = CASE_DETAILS.filter((c) => RELATED[service].includes(c.slug));
   const l = lang as Locale;
   // Nombre del vídeo principal (el mismo que va en su VideoObject)
   const mainVideo = pageVideos(PAGE_OF[service], l, getInitialData())[0];
@@ -84,6 +82,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
               ))}
             </ul>
             {service === "ads" && <Method3x3 />}
+            {service !== "corporate" && <UgcMaleLink textKey="links.ugc_male_svc" />}
             <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">{s.tag[l]}</span>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
               <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-colors">
@@ -104,18 +103,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
         </div>
       </section>
 
-      {/* Cómo trabajo, versión corta */}
-      <section className="max-w-content mx-auto section-padding py-10 lg:py-14">
-        <h2 className="text-off-white font-bold text-2xl lg:text-3xl mb-6">{t("svcpage.process")}</h2>
-        <ol className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {Array.isArray(steps) && steps.map((st, i) => (
-            <li key={i} className={`rounded-xl bg-charcoal p-5 ${i === steps.length - 1 ? "border-2 border-brand-blue" : "border border-brand-blue/15"}`}>
-              <span className="block text-brand-blue text-xs font-bold tracking-[0.15em] mb-1">{st.day}</span>
-              <span className="text-off-white font-bold text-lg"><span className="text-brand-blue mr-1.5">{st.n}</span>{st.title}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <ProcessSteps />
 
       {/* Ejemplos */}
       {examples.length > 0 && (
@@ -136,23 +124,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
         </section>
       )}
 
-      {/* Casos relacionados */}
-      {related.length > 0 && (
-        <section className="max-w-content mx-auto section-padding py-10 lg:py-14">
-          <h2 className="text-off-white font-bold text-2xl lg:text-3xl mb-6">{related.length > 1 ? t("svcpage.related_many") : t("svcpage.related")}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {related.map((c) => (
-              <a key={c.slug} href={pageHref(c.page, l)} className="group rounded-xl border border-off-white/10 bg-charcoal/50 p-6 flex flex-col gap-2 hover:border-brand-blue/50 transition-colors">
-                <span className="text-steel-blue text-sm font-semibold">{c.displayName ? c.displayName[l] : `${c.brandName} · ${c.sector[l]}`}</span>
-                <span className="text-off-white font-bold text-lg leading-snug">{c.metaTitle[l].split(" · ")[0]}</span>
-                <span className="inline-flex items-center gap-2 text-brand-blue font-semibold text-sm mt-1">
-                  {t("casespage.see")} <ArrowRight size={14} aria-hidden className="group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+      <RelatedCases slugs={RELATED[service]} />
 
       {/* Preguntas */}
       <section className="max-w-content mx-auto section-padding py-10 lg:py-14">
