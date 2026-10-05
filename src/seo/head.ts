@@ -69,9 +69,9 @@ function breadcrumbList(key: PageKey, lang: Locale) {
 }
 
 const KNOWS_ABOUT: Record<Locale, string[]> = {
-  es: ["UGC", "vídeo para anuncios", "vídeo para redes sociales", "vídeo corporativo", "Meta Ads", "TikTok Ads"],
-  en: ["UGC", "video ads", "social media video", "corporate video", "Meta Ads", "TikTok Ads"],
-  ca: ["UGC", "vídeo per a anuncis", "vídeo per a xarxes socials", "vídeo corporatiu", "Meta Ads", "TikTok Ads"],
+  es: ["UGC", "UGC hombre", "vídeo para anuncios", "vídeo para redes sociales", "vídeo corporativo", "Meta Ads", "TikTok Ads"],
+  en: ["UGC", "male UGC", "video ads", "social media video", "corporate video", "Meta Ads", "TikTok Ads"],
+  ca: ["UGC", "UGC home", "vídeo per a anuncis", "vídeo per a xarxes socials", "vídeo corporatiu", "Meta Ads", "TikTok Ads"],
 };
 
 function personNode(lang: Locale) {

@@ -13,7 +13,7 @@
     "services_menu": "Serveis"
   },
   "hero": {
-    "eyebrow": "Pol Morera · Creador UGC a Barcelona",
+    "eyebrow": "Pol Morera · Creador UGC home a Espanya",
     "h1_line1": "Vídeos que",
     "h1_line2": "venen.",
     "tagline": "Vídeos que converteixen en vendes, que donen a conèixer la teva marca i que donen vida a la teva web.",
@@ -277,10 +277,10 @@
   "about": {
     "eyebrow": "05 / QUI HI HA AL DARRERE",
     "title": "Feia UGC quan a Espanya gairebé ningú sabia què era.",
-    "p1": "Soc en Pol Morera. Vaig començar quan les marques encara no tenien nom per a això. Vaig ser un dels primers creadors UGC del país i el primer UGC home.",
+    "p1": "Soc en Pol Morera, creador UGC home. Vaig començar quan les marques encara no tenien nom per a això: vaig ser un dels primers creadors UGC d'Espanya i el primer UGC home.",
     "p2": "Tants anys m'han donat una cosa que no s'aprèn de pressa: saber què fa que algú deixi de fer scroll i què es crema en dues setmanes. Això és el que poso a cada vídeo que faig amb el meu equip per a la teva marca.",
     "cta": "Parlem →",
-    "img_alt": "Pol Morera, creador UGC",
+    "img_alt": "Pol Morera, creador UGC home a Espanya",
     "img_alt_camera": "Pol Morera gravant un vídeo a càmera",
     "img_alt_event": "Pol Morera parlant en un esdeveniment"
   },
@@ -340,7 +340,8 @@
       "subtitle": "3 anuncis amb 3 ganxos cadascun: 9 versions per testejar",
       "ad": "Anunci",
       "hook": "Ganxo"
-    }
+    },
+    "on_camera": "Normalment surto jo, com a creador UGC home; si necessites un altre perfil, treballo amb la meva xarxa d'actors i actrius."
   },
   "casespage": {
     "h1": "Casos reals",
@@ -365,7 +366,7 @@
     "name": "Nom",
     "name_v": "Pol Morera de Frutos (professionalment, Pol Morera)",
     "what": "Què faig",
-    "what_v": "Creador UGC i productor de vídeo",
+    "what_v": "Creador UGC home i productor de vídeo",
     "where": "On",
     "where_v": "Barcelona, per a tot Espanya",
     "track": "Trajectòria",
@@ -374,7 +375,7 @@
     "langs_v": "Castellà, català i anglès",
     "services": "Serveis",
     "profiles": "Perfils oficials",
-    "img_alt": "Pol Morera, creador UGC a Barcelona",
+    "img_alt": "Pol Morera, creador UGC home a Espanya",
     "story_title": "La meva història",
     "story": [
       "Al principi gravava tot sol. Avui ho faig amb el meu equip: escrivim el guió, gravem i editem, i lliurem cada vídeo en els formats que necessita cada canal.",

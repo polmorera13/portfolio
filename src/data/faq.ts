@@ -80,9 +80,9 @@ export const faqItems: FAQItem[] = [
       ca: "Surts tu a càmera o treballes amb actors?",
     },
     answer: {
-      es: "Depende del proyecto. Normalmente salgo yo en cámara, pero también trabajo con una red de actores y actrices de distintas edades y perfiles. Todo se define según el tono de la campaña, el público objetivo y las necesidades específicas del proyecto.",
-      en: "It depends on the project. I usually appear on camera myself, but I also work with a network of actors and actresses of different ages and profiles. Everything is defined according to the campaign tone, target audience, and the specific needs of the project.",
-      ca: "Depèn del projecte. Normalment surto jo a càmera, però també treballo amb una xarxa d'actors i actrius de diferents edats i perfils. Tot es defineix segons el to de la campanya, el públic objectiu i les necessitats específiques del projecte.",
+      es: "Normalmente salgo yo: soy creador UGC hombre. Si tu campaña necesita otro perfil (otra edad, o una mujer), trabajo con una red de actores y actrices de distintas edades. Lo decidimos según el tono de la campaña y a quién le vendes.",
+      en: "Usually it's me on camera: I'm a male UGC creator. If your campaign needs a different profile (another age, or a woman), I work with a network of actors and actresses of different ages. We decide based on the tone of the campaign and who you're selling to.",
+      ca: "Normalment surto jo: soc creador UGC home. Si la teva campanya necessita un altre perfil (una altra edat, o una dona), treballo amb una xarxa d'actors i actrius de diferents edats. Ho decidim segons el to de la campanya i a qui li vens.",
     },
   },
   {

@@ -58,7 +58,8 @@ const h = (type, style, children) => ({ type, props: { style, children } });
 function layout({ eyebrow, title, figure }, image) {
   return h("div", { width: 1200, height: 630, display: "flex", background: COLORS.navy, fontFamily: "Poppins" }, [
     h("div", { width: 732, height: 630, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "60px 56px 56px 64px" }, [
-      h("div", { display: "flex", fontSize: 21, fontWeight: 600, color: COLORS.steel, letterSpacing: 2.5, textTransform: "uppercase" }, eyebrow),
+      // Antetítulo en una sola línea: si es largo, letra algo más pequeña
+      h("div", { display: "flex", fontSize: eyebrow.length > 36 ? 17 : 21, fontWeight: 600, color: COLORS.steel, letterSpacing: eyebrow.length > 36 ? 2 : 2.5, textTransform: "uppercase" }, eyebrow),
       h("div", { display: "flex", flexDirection: "column", gap: 14 }, [
         ...(figure ? [h("div", { display: "flex", fontSize: figure.length > 22 ? 58 : 72, fontWeight: 800, color: COLORS.blue, lineHeight: 1.05, letterSpacing: -1 }, figure)] : []),
         h("div", { display: "flex", fontSize: figure ? 44 : title.length > 30 ? 56 : 64, fontWeight: 700, color: COLORS.white, lineHeight: 1.1, letterSpacing: -0.5 }, title),

@@ -6,14 +6,14 @@ import type { PageKey } from "../routes";
 export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case-reactiva" | "case-agency">, { title: Translated; description: Translated }> = {
   home: {
     title: {
-      es: "Pol Morera · UGC creator y productor de vídeo en Barcelona",
-      en: "Pol Morera · UGC creator & video producer in Barcelona",
-      ca: "Pol Morera · Creador UGC i productor de vídeo a Barcelona",
+      es: "UGC hombre España | Vídeos que venden — Pol Morera",
+      en: "Male UGC creator Spain | Videos that sell — Pol Morera",
+      ca: "Creador UGC home Espanya | Vídeos que venen — Pol Morera",
     },
     description: {
-      es: "Vídeos UGC para los anuncios, las redes y la web de tu negocio. Más de 1.000 vídeos para más de 300 marcas. Desde Barcelona para toda España.",
-      en: "UGC videos for your business's ads, social media and website. Over 1,000 videos for 300+ brands. Based in Barcelona, working across Spain.",
-      ca: "Vídeos UGC per als anuncis, les xarxes i la web del teu negoci. Més de 1.000 vídeos per a més de 300 marques. Des de Barcelona per a tot Espanya.",
+      es: "Creador UGC hombre en España: vídeos UGC para los anuncios, las redes y la web de tu negocio. Más de 1.000 vídeos para más de 300 marcas, desde Barcelona.",
+      en: "Male UGC creator in Spain: UGC videos for your business's ads, social media and website. 1,000+ videos for 300+ brands, based in Barcelona.",
+      ca: "Creador UGC home a Espanya: vídeos UGC per als anuncis, les xarxes i la web del teu negoci. Més de 1.000 vídeos per a més de 300 marques, des de Barcelona.",
     },
   },
   "svc-ads": {
@@ -66,14 +66,14 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
   },
   about: {
     title: {
-      es: "Sobre Pol Morera, UGC creator y productor de vídeo",
-      en: "About Pol Morera, UGC creator and video producer",
-      ca: "Sobre Pol Morera, creador UGC i productor de vídeo",
+      es: "Sobre Pol Morera, creador UGC hombre en España",
+      en: "About Pol Morera, male UGC creator in Spain",
+      ca: "Sobre Pol Morera, creador UGC home a Espanya",
     },
     description: {
-      es: "Pol Morera (Pol Morera de Frutos), UGC creator y productor de vídeo en Barcelona. Más de 1.000 vídeos para más de 300 marcas, en 3 idiomas.",
-      en: "Pol Morera (Pol Morera de Frutos), UGC creator and video producer in Barcelona. Over 1,000 videos for 300+ brands, in Spanish, Catalan and English.",
-      ca: "Pol Morera (Pol Morera de Frutos), creador UGC i productor de vídeo a Barcelona. Més de 1.000 vídeos per a més de 300 marques, en 3 idiomes.",
+      es: "Pol Morera (Pol Morera de Frutos), creador UGC hombre en España y productor de vídeo en Barcelona. Más de 1.000 vídeos para más de 300 marcas.",
+      en: "Pol Morera (Pol Morera de Frutos), male UGC creator in Spain and video producer in Barcelona. 1,000+ videos for 300+ brands.",
+      ca: "Pol Morera (Pol Morera de Frutos), creador UGC home a Espanya i productor de vídeo a Barcelona. Més de 1.000 vídeos per a més de 300 marques.",
     },
   },
   privacy: {
@@ -108,7 +108,7 @@ export const OG_LOCALE: Record<Locale, string> = { es: "es_ES", en: "en_GB", ca:
 export const PERSON = {
   name: "Pol Morera",
   alternateName: "Pol Morera de Frutos",
-  jobTitle: { es: "UGC creator y productor de vídeo", en: "UGC creator and video producer", ca: "Creador UGC i productor de vídeo" } as Translated,
+  jobTitle: { es: "Creador UGC hombre y productor de vídeo", en: "Male UGC creator and video producer", ca: "Creador UGC home i productor de vídeo" } as Translated,
   description: {
     es: "Creador UGC y productor de vídeo en Barcelona. Hace vídeos para anuncios, redes sociales y vídeo corporativo. Más de 1.000 vídeos para más de 300 marcas.",
     en: "UGC creator and video producer in Barcelona. Makes videos for ads, social media and corporate video. Over 1,000 videos for 300+ brands.",
@@ -117,13 +117,14 @@ export const PERSON = {
   sameAs: [
     "https://www.instagram.com/polmoreraugc/",
     "https://www.linkedin.com/in/pol-morera-de-frutos-9b8b35124/",
+    "https://www.youtube.com/@polmorera",
   ],
 };
 
 export const BUSINESS_DESCRIPTION: Translated = {
-  es: "Vídeos UGC para anuncios en Meta Ads y TikTok Ads, vídeos para redes sociales y vídeo corporativo. Más de 1.000 vídeos para más de 300 marcas.",
-  en: "UGC videos for Meta Ads and TikTok Ads, social media videos and corporate video. Over 1,000 videos for 300+ brands.",
-  ca: "Vídeos UGC per a anuncis a Meta Ads i TikTok Ads, vídeos per a xarxes socials i vídeo corporatiu. Més de 1.000 vídeos per a més de 300 marques.",
+  es: "Creador UGC hombre en España: vídeos UGC para anuncios en Meta Ads y TikTok Ads, vídeos para redes sociales y vídeo corporativo. Más de 1.000 vídeos para más de 300 marcas.",
+  en: "Male UGC creator in Spain: UGC videos for Meta Ads and TikTok Ads, social media videos and corporate video. Over 1,000 videos for 300+ brands.",
+  ca: "Creador UGC home a Espanya: vídeos UGC per a anuncis a Meta Ads i TikTok Ads, vídeos per a xarxes socials i vídeo corporatiu. Més de 1.000 vídeos per a més de 300 marques.",
 };
 
 export const SERVICE_TYPES: Record<"svc-ads" | "svc-social" | "svc-corporate", Translated> = {

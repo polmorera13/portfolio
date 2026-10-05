@@ -13,7 +13,7 @@
     "services_menu": "Servicios"
   },
   "hero": {
-    "eyebrow": "Pol Morera · UGC creator en Barcelona",
+    "eyebrow": "Pol Morera · Creador UGC hombre en España",
     "h1_line1": "Vídeos que",
     "h1_line2": "venden.",
     "tagline": "Vídeos que convierten en ventas, que dan a conocer tu marca y que dan vida a tu web.",
@@ -277,10 +277,10 @@
   "about": {
     "eyebrow": "05 / QUIÉN ESTÁ DETRÁS",
     "title": "Hacía UGC cuando en España casi nadie sabía qué era.",
-    "p1": "Soy Pol Morera. Empecé cuando las marcas aún no tenían nombre para esto. Fui uno de los primeros creadores UGC del país y el primer UGC hombre.",
+    "p1": "Soy Pol Morera, creador UGC hombre. Empecé cuando las marcas aún no tenían nombre para esto: fui uno de los primeros creadores UGC de España y el primer UGC hombre.",
     "p2": "Tantos años me han dado algo que no se aprende rápido: saber qué hace que alguien deje de hacer scroll y qué se quema en dos semanas. Eso es lo que pongo en cada vídeo que hago con mi equipo para tu marca.",
     "cta": "Hablemos →",
-    "img_alt": "Pol Morera, creador UGC",
+    "img_alt": "Pol Morera, creador UGC hombre en España",
     "img_alt_camera": "Pol Morera grabando un vídeo a cámara",
     "img_alt_event": "Pol Morera hablando en un evento"
   },
@@ -340,7 +340,8 @@
       "subtitle": "3 anuncios con 3 ganchos cada uno: 9 versiones para testear",
       "ad": "Anuncio",
       "hook": "Gancho"
-    }
+    },
+    "on_camera": "Normalmente salgo yo, como creador UGC hombre; si necesitas otro perfil, trabajo con mi red de actores y actrices."
   },
   "casespage": {
     "h1": "Casos reales",
@@ -365,7 +366,7 @@
     "name": "Nombre",
     "name_v": "Pol Morera de Frutos (profesionalmente, Pol Morera)",
     "what": "Qué hago",
-    "what_v": "UGC creator y productor de vídeo",
+    "what_v": "Creador UGC hombre y productor de vídeo",
     "where": "Dónde",
     "where_v": "Barcelona, para toda España",
     "track": "Trayectoria",
@@ -374,7 +375,7 @@
     "langs_v": "Castellano, catalán e inglés",
     "services": "Servicios",
     "profiles": "Perfiles oficiales",
-    "img_alt": "Pol Morera, creador UGC en Barcelona",
+    "img_alt": "Pol Morera, creador UGC hombre en España",
     "story_title": "Mi historia",
     "story": [
       "Al principio grababa yo solo. Hoy lo hago con mi equipo: escribimos el guion, grabamos y editamos, y entregamos cada vídeo en los formatos que necesita cada canal.",

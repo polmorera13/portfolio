@@ -70,7 +70,10 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
             <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               {t(`svcpage.${service}.h1`)}
             </h1>
-            <p className="text-steel-blue text-lg leading-relaxed">{t(`svcpage.${service}.intro`)}</p>
+            <p className="text-steel-blue text-lg leading-relaxed">
+              {t(`svcpage.${service}.intro`)}
+              {service !== "corporate" && <> {t("svcpage.on_camera")}</>}
+            </p>
             <p className="text-off-white" style={{ fontSize: "17px", lineHeight: 1.55 }}>{s.ideal[l]}</p>
             <ul className="flex flex-col gap-3">
               {s.bullets.map((b, i) => (
