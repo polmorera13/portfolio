@@ -134,6 +134,18 @@ function page({ head, lang, appHtml, withData = true, preload = "" }) {
       "<!--app-data-->",
       withData ? `<script>window.__PM_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>` : "",
     );
+  // JavaScript después del primer pintado (solo en páginas prerenderizadas; el panel, vacío, lo carga
+  // ya): el HTML prerenderizado trae todo el contenido, así
+  // que primero se pinta (texto, fondo del hero) y justo después se piden el código de la web y el
+  // de la página (antes competían con la primera pintura en conexiones lentas).
+  const entry = html.match(/<script type="module" crossorigin src="([^"]+)"><\/script>\s*/);
+  if (entry && appHtml.trim()) {
+    const mods = [...html.matchAll(/<link rel="modulepreload" crossorigin href="([^"]+)"\s*\/?>\s*/g)];
+    for (const m of mods) html = html.replace(m[0], "");
+    html = html.replace(entry[0], "");
+    const loader = `<script>(function(){var d=0,m=${JSON.stringify(mods.map((m) => m[1]))};function go(){if(d)return;d=1;m.forEach(function(h){var l=document.createElement("link");l.rel="modulepreload";l.crossOrigin="";l.href=h;document.head.appendChild(l)});var s=document.createElement("script");s.type="module";s.crossOrigin="";s.src=${JSON.stringify(entry[1])};document.head.appendChild(s)}try{if((PerformanceObserver.supportedEntryTypes||[]).indexOf("paint")<0)throw 0;var po=new PerformanceObserver(function(l){if(l.getEntriesByName("first-contentful-paint").length){po.disconnect();setTimeout(go,0)}});po.observe({type:"paint",buffered:true})}catch(e){requestAnimationFrame(function(){setTimeout(go,0)})}setTimeout(go,1500)})()</script>`;
+    html = html.replace("</body>", loader + "\n  </body>");
+  }
   // Iconos y manifest con la base (/ o /test/)
   html = html.replace(/href="\/(favicon\.ico|favicon\.svg|apple-touch-icon\.png|site\.webmanifest)"/g, `href="${baseNoSlash}/$1"`);
   return html;
