@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
 import { fetchHero } from "../lib/api";

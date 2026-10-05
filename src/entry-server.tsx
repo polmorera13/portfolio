@@ -1,9 +1,16 @@
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
-import { applyLanguage } from './lib/i18n';
+import { StaticRouter } from './lib/router';
+import { applyLanguage, addLocale } from './lib/i18n';
+import es from './locales/es.json';
+import en from './locales/en.json';
+import ca from './locales/ca.json';
 import { ROUTER_BASENAME } from './lib/paths';
 import { setInitialData, type InitialData } from './lib/initialData';
-import App from './App';
+import App, { preloadAll } from './App';
+
+addLocale('es', es);
+addLocale('en', en);
+addLocale('ca', ca);
 import type { Locale } from './types';
 
 // Prerenderizado: genera el HTML de una URL con sus datos, en su idioma.
@@ -18,6 +25,7 @@ export function render(url: string, lang: Locale, data: InitialData): string {
   );
 }
 
+export { preloadAll };
 export { pageVideos, mediaAbs } from './seo/videos';
 export { ogText, ogImageSource, ogSlug } from './seo/og';
 export { buildHead } from './seo/head';

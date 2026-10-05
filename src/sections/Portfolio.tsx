@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "../lib/motion-lite";
+import { useTranslation } from "../lib/i18n";
 import { fadeUp, staggerContainer, viewportOnce, ease } from "../lib/motion";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { CheckCircle } from "lucide-react";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";

@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { setLanguage } from "../lib/i18n";
 import type { Locale } from "../types";
 

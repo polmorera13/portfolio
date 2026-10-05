@@ -1,6 +1,4 @@
-import es from "../locales/es.json";
-import en from "../locales/en.json";
-import ca from "../locales/ca.json";
+import i18n from "../lib/i18n";
 import type { Locale } from "../types";
 import type { PageKey } from "../routes";
 import type { InitialData } from "../lib/initialData";
@@ -12,7 +10,7 @@ import { services as SERVICES } from "../data/services";
 // el nombre accesible del reproductor y el VideoObject del JSON-LD salen de aquí,
 // así siempre coinciden con lo que se ve.
 // ─────────────────────────────────────────────────────────────────────────────
-const L = { es, en, ca } as const;
+const tl = (lang: Locale, key: string) => i18n.getFixedT(lang)(key);
 const MEDIA = "https://media.polmorera.es";
 
 type Tri = Partial<Record<Locale, string>> | undefined;
@@ -25,7 +23,7 @@ const firstSentence = (s: string) => {
 
 /** "Vídeo UGC para MasterD: creatividad 1" (o "Vídeo UGC para Verisure" sin etiqueta). */
 export function videoName(brand: string, label: string | null | undefined, lang: Locale): string {
-  const base = `${L[lang].player.video_of} ${brand}`;
+  const base = `${tl(lang, "player.video_of")} ${brand}`;
   return label ? `${base}: ${lowerFirst(label)}` : base;
 }
 
@@ -79,12 +77,13 @@ export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null)
     const file = serviceMainFile(svc, data);
     if (!file) return [];
     const brand = catalogBrand(file, data);
-    const page = L[lang].svcpage[svc];
+    const h1 = tl(lang, `svcpage.${svc}.h1`);
+    const intro = tl(lang, `svcpage.${svc}.intro`);
     return [{
       file,
       poster: catalogPoster(file),
-      name: brand ? videoName(brand, null, lang) : page.h1,
-      description: `${page.h1}. ${firstSentence(page.intro)}`,
+      name: brand ? videoName(brand, null, lang) : h1,
+      description: `${h1}. ${firstSentence(intro)}`,
     }];
   }
   return [];

@@ -16,6 +16,7 @@ const API = "https://api.polmorera.es";
 
 const server = await import(pathToFileURL(path.join(ROOT, "dist-ssr", "entry-server.js")).href);
 const { render, buildHead, pageVideos, mediaAbs, ogText, ogImageSource, ogSlug, PATHS, LOCALES, NOINDEX_PAGES, LEGAL_PATHS, SITE_URL } = server;
+await server.preloadAll(); // todas las páginas cargadas antes de prerenderizar
 const { renderOgImage } = await import(pathToFileURL(path.join(ROOT, "scripts", "og-images.mjs")).href);
 
 // ── Datos de la API (si falla algo, la página se genera igualmente) ─────────
@@ -77,11 +78,36 @@ async function videosFor(key, lang) {
   return out;
 }
 
+// ── JavaScript de cada página (modulepreload) ──────────────────────────────
+// Con el manifest de Vite: el archivo de la página, el de su idioma y lo que importan.
+const manifestPath = path.join(DIST, ".vite", "manifest.json");
+const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : {};
+const mainEntry = Object.values(manifest).find((m) => m.isEntry);
+const PAGE_SRC = {
+  home: "src/pages/HomePage.tsx", "svc-ads": "src/pages/ServicePage.tsx", "svc-social": "src/pages/ServicePage.tsx",
+  "svc-corporate": "src/pages/ServicePage.tsx", cases: "src/pages/CasesIndexPage.tsx", "case-masterd": "src/pages/CasePage.tsx",
+  "case-dogfy": "src/pages/CasePage.tsx", "case-reactiva": "src/pages/CasePage.tsx", "case-agency": "src/pages/CasePage.tsx",
+  about: "src/pages/AboutPage.tsx", thanks: "src/pages/ThanksPage.tsx", legal: "src/pages/Legal.tsx", notfound: "src/pages/NotFoundPage.tsx",
+};
+function chunkFiles(key, seen = new Set()) {
+  const m = manifest[key];
+  if (!m || seen.has(key)) return seen;
+  seen.add(key);
+  for (const imp of m.imports || []) chunkFiles(imp, seen);
+  return seen;
+}
+function modulePreloads(pageKey, lang) {
+  const keys = new Set([...chunkFiles(PAGE_SRC[pageKey] || ""), ...chunkFiles(`src/locales/${lang}.json`)]);
+  const files = [...keys].map((k) => manifest[k].file).filter((f) => f && f !== mainEntry?.file);
+  return files.map((f) => `<link rel="modulepreload" crossorigin href="${baseNoSlash}/${f}" />`).join("\n    ");
+}
+
 // ── Plantilla ────────────────────────────────────────────────────────────────
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
 const baseNoSlash = BASE.replace(/\/$/, "");
 
-function page({ head, lang, appHtml, withData = true }) {
+function page({ head, lang, appHtml, withData = true, preload = "" }) {
+  if (preload) head = head + "\n    " + preload;
   // Si React no pudo pintar la página (error en el render), mejor parar el build que publicarla vacía
   if (appHtml.includes("<template data-msg=")) throw new Error("Error al prerenderizar: " + (appHtml.match(/data-msg="([^"]*)"/)?.[1] ?? "?"));
   let html = template
@@ -112,7 +138,7 @@ for (const key of Object.keys(PATHS)) {
   for (const lang of LOCALES) {
     const url = PATHS[key][lang];
     const head = buildHead({ kind: "page", key, lang, videos: await videosFor(key, lang) });
-    write(url, page({ head: head.html, lang, appHtml: render(loc(url), lang, data) }));
+    write(url, page({ head: head.html, lang, appHtml: render(loc(url), lang, data), preload: modulePreloads(key, lang) }));
     count++;
   }
 }
@@ -137,14 +163,14 @@ for (const key of Object.keys(PATHS)) {
 // ── Textos legales (noindex, en español) ────────────────────────────────────
 for (const [doc, url] of Object.entries(LEGAL_PATHS)) {
   const head = buildHead({ kind: "legal", doc, path: url });
-  write(url, page({ head: head.html, lang: "es", appHtml: render(loc(url), "es", data) }));
+  write(url, page({ head: head.html, lang: "es", appHtml: render(loc(url), "es", data), preload: modulePreloads("legal", "es") }));
   count++;
 }
 
 // ── 404 ──────────────────────────────────────────────────────────────────────
 {
   const head = buildHead({ kind: "404", lang: "es" });
-  write("/404.html", page({ head: head.html, lang: "es", appHtml: render(loc("/__no-existe__/"), "es", data) }));
+  write("/404.html", page({ head: head.html, lang: "es", appHtml: render(loc("/__no-existe__/"), "es", data), preload: modulePreloads("notfound", "es") }));
 }
 
 // ── Panel (sin prerenderizar: lo pinta el navegador) ────────────────────────
@@ -168,4 +194,5 @@ fs.writeFileSync(
   `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
 );
 
+fs.rmSync(path.join(DIST, ".vite"), { recursive: true, force: true });
 console.log(`Prerenderizadas ${count} páginas + 404 + panel. Sitemap con ${urls.length} URLs. Base: ${BASE}`);

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { Star } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
+import { motion } from "../lib/motion-lite";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { withBase } from "../lib/paths";
 

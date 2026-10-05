@@ -44,6 +44,8 @@ export default defineConfig({
   base: process.env.BASE_PATH || '/',
   plugins: [react(), copyPublicSafe()],
   publicDir: false,
+  // manifest: lo lee el prerenderizado para anunciar el JavaScript de cada página
+  build: { manifest: true },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

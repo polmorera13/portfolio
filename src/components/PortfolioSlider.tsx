@@ -3,7 +3,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 // useLayoutEffect en el navegador; en el prerenderizado no hace nada (evita el aviso)
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 import { createPortal } from "react-dom";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { CaretLeft, CaretRight, Pause, Play } from "@phosphor-icons/react";
 import VideoPlayer from "./VideoPlayer";
 

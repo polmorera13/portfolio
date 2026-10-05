@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { motion } from "../lib/motion-lite";
+import { useTranslation } from "../lib/i18n";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 
 interface StatCard {

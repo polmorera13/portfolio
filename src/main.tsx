@@ -1,11 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { applyLanguage, rememberLanguage, storedLanguage } from './lib/i18n';
+import { BrowserRouter } from './lib/router';
+import { applyLanguage, loadLocale, rememberLanguage, storedLanguage } from './lib/i18n';
 import { ROUTER_BASENAME } from './lib/paths';
 import { pageFromPath, LOCALES } from './routes';
 import type { Locale } from './types';
-import App from './App.tsx';
+import App, { preloadForPath } from './App.tsx';
 import './index.css';
 
 // El idioma lo marca la URL. Nunca se redirige.
@@ -19,7 +19,6 @@ const page = pageFromPath(window.location.pathname);
 const htmlLang = document.documentElement.lang as Locale;
 const lang: Locale =
   page?.lang ?? (hydrating && LOCALES.includes(htmlLang) ? htmlLang : null) ?? storedLanguage() ?? 'es';
-applyLanguage(lang);
 if (page) rememberLanguage(page.lang);
 
 const tree = (
@@ -30,6 +29,10 @@ const tree = (
   </StrictMode>
 );
 
+// Antes de pintar: los textos del idioma y el código de esta página (en paralelo).
 // Páginas prerenderizadas: React "hidrata" el HTML que ya viene del servidor.
-if (hydrating) hydrateRoot(root, tree);
-else createRoot(root).render(tree);
+Promise.all([loadLocale(lang), preloadForPath(window.location.pathname)]).then(() => {
+  applyLanguage(lang);
+  if (hydrating) hydrateRoot(root, tree);
+  else createRoot(root).render(tree);
+});

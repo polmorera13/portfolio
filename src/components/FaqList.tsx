@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { ChevronDown } from "lucide-react";
 import type { FAQItem, Locale } from "../types";
 

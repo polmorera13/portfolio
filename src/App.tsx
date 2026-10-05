@@ -1,18 +1,52 @@
 import { Suspense, lazy, type ReactNode } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from './lib/router';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import ServicePage from './pages/ServicePage';
-import CasesIndexPage from './pages/CasesIndexPage';
-import CasePage from './pages/CasePage';
-import AboutPage from './pages/AboutPage';
-import ThanksPage from './pages/ThanksPage';
-import NotFoundPage from './pages/NotFoundPage';
-import Legal from './pages/Legal';
 import { PageContext } from './lib/page';
-import { LOCALES, PATHS, LEGAL_PATHS, type PageKey } from './routes';
+import { preloadable } from './lib/preloadable';
+import { BASE } from './lib/paths';
+import { LOCALES, PATHS, LEGAL_PATHS, pageFromPath, type PageKey } from './routes';
 import type { Locale } from './types';
+
+// Cada página va en su propio archivo de JavaScript: el navegador solo descarga la que abre.
+const HomePage = preloadable(() => import('./pages/HomePage'));
+const ServicePage = preloadable(() => import('./pages/ServicePage'));
+const CasesIndexPage = preloadable(() => import('./pages/CasesIndexPage'));
+const CasePage = preloadable(() => import('./pages/CasePage'));
+const AboutPage = preloadable(() => import('./pages/AboutPage'));
+const ThanksPage = preloadable(() => import('./pages/ThanksPage'));
+const NotFoundPage = preloadable(() => import('./pages/NotFoundPage'));
+const Legal = preloadable(() => import('./pages/Legal'));
+
+const PAGE_LOADER: Record<PageKey, () => Promise<void>> = {
+  home: HomePage.load,
+  'svc-ads': ServicePage.load,
+  'svc-social': ServicePage.load,
+  'svc-corporate': ServicePage.load,
+  cases: CasesIndexPage.load,
+  'case-masterd': CasePage.load,
+  'case-dogfy': CasePage.load,
+  'case-reactiva': CasePage.load,
+  'case-agency': CasePage.load,
+  about: AboutPage.load,
+  thanks: ThanksPage.load,
+};
+
+/** Carga el código de la página de una URL (antes de hidratar, en main.tsx). */
+export function preloadForPath(pathname: string): Promise<void> {
+  const page = pageFromPath(pathname);
+  if (page) return PAGE_LOADER[page.key]();
+  let p = pathname.replace(new RegExp('^' + BASE.replace(/\/$/, '')), '') || '/';
+  if (!p.endsWith('/')) p += '/';
+  if (p === LEGAL_PATHS.privacy || p === LEGAL_PATHS.legal) return Legal.load();
+  if (p.startsWith('/login') || p.startsWith('/admin')) return Promise.resolve();
+  return NotFoundPage.load();
+}
+
+/** Todas las páginas (para prerenderizar). */
+export function preloadAll(): Promise<unknown> {
+  return Promise.all([HomePage, ServicePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal].map((p) => p.load()));
+}
 
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { Menu, X, ChevronDown } from "lucide-react";
 import type { Locale } from "../types";
 import { usePage } from "../lib/page";

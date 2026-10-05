@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { ArrowRight } from "lucide-react";
 import { useCases } from "../hooks/useCases";
 import { usePage } from "../lib/page";

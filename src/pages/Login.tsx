@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../lib/router";
 import { useAuth } from "../hooks/useAuth";
 
 const BLUE = "oklch(58% 0.14 240)";

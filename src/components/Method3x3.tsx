@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 
 /** Tarjeta blanca de la metodología 3×3: 3 anuncios (cuerpos) × 3 ganchos = 9 versiones para testear.
  *  Va debajo de los puntos del servicio de anuncios (portada y página del servicio). */

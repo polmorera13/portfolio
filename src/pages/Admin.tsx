@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../lib/router";
 import { LogOut, Trash2, ArrowUp, ArrowDown, UploadCloud, Check } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import {

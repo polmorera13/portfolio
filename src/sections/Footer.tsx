@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { Instagram, Linkedin } from "lucide-react";
 import { whatsappUrl, WhatsAppIcon } from "../lib/whatsapp";
 import { withBase } from "../lib/paths";

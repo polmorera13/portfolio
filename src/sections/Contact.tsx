@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useTranslation, Trans } from "react-i18next";
+import { motion } from "../lib/motion-lite";
+import { useTranslation, Trans } from "../lib/i18n";
 import { Mail, Instagram, Linkedin, CheckCircle } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { sendContact, type ContactType } from "../lib/api";

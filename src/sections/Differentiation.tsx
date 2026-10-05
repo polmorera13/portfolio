@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { motion } from "../lib/motion-lite";
+import { useTranslation } from "../lib/i18n";
 import { TrendingUp, Target, Globe, Layers } from "lucide-react";
 import { fadeUp, staggerContainer, viewportOnce, ease } from "../lib/motion";
 

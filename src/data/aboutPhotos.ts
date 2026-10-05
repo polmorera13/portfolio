@@ -1,4 +1,4 @@
-import type { TFunction } from "i18next";
+import type { TFunction } from "../lib/i18n";
 import type { Photo } from "../components/RotatingPhotos";
 
 /** Fotos de "Quién está detrás" (portada y página Sobre mí), en el orden en que rotan. */

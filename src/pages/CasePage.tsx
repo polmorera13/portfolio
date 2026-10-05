@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../lib/i18n";
 import { useCases } from "../hooks/useCases";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";

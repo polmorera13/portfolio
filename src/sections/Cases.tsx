@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { motion } from "../lib/motion-lite";
+import { useTranslation } from "../lib/i18n";
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import type { CaseStudy, Tri } from "../lib/api";
