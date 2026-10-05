@@ -59,7 +59,7 @@ export default function MobileCTABar() {
         <a
           href="#contacto-propuesta"
           tabIndex={visible ? 0 : -1}
-          className="flex-[2] flex items-center justify-center bg-brand-blue text-off-white font-semibold text-base rounded-lg shadow-lg shadow-black/30"
+          className="flex-[2] flex items-center justify-center bg-brand-blue-deep text-off-white font-semibold text-base rounded-lg shadow-lg shadow-black/30"
           style={{ height: BAR_HEIGHT }}
         >
           {t("nav.cta")}

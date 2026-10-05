@@ -41,7 +41,7 @@ export default function CTASection() {
             {/* Baja al formulario con la propuesta gratis ya marcada */}
             <a
               href="#contacto-propuesta"
-              className="bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] pulse-glow"
+              className="bg-brand-blue-deep text-off-white font-semibold text-lg px-10 py-4 rounded-md hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.02] pulse-glow"
             >
               {t("cta.button")}
             </a>

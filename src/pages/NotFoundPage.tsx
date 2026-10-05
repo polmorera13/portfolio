@@ -12,7 +12,7 @@ export default function NotFoundPage() {
       <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(28px, 4vw, 48px)", lineHeight: 1.1 }}>{t("notfound.h1")}</h1>
       <p className="text-steel-blue text-lg">{t("notfound.text")}</p>
       <div className="flex flex-col sm:flex-row gap-3 mt-2 w-full sm:w-auto">
-        <a href={pageHref("home", lang)} className="bg-brand-blue text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-colors">
+        <a href={pageHref("home", lang)} className="bg-brand-blue-deep text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-colors">
           {t("notfound.home")}
         </a>
         <a href={pageHref("home", lang, "contacto")} className="border border-brand-blue/40 text-brand-blue font-semibold px-7 py-3.5 rounded-lg text-center hover:border-brand-blue hover:text-off-white transition-colors">

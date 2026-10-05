@@ -22,7 +22,7 @@ export default function ThanksPage() {
       {proposal && <p className="text-steel-blue text-lg">{t("thanks.proposal")}</p>}
       <div className="flex flex-col sm:flex-row gap-3 mt-4 w-full sm:w-auto">
         <a href={whatsappUrl(t("contact.whatsapp_msg"))} target="_blank" rel="noopener"
-          className="inline-flex items-center justify-center gap-2 bg-brand-blue text-off-white font-semibold px-7 py-3.5 rounded-lg hover:bg-brand-blue/90 transition-colors">
+          className="inline-flex items-center justify-center gap-2 bg-brand-blue-deep text-off-white font-semibold px-7 py-3.5 rounded-lg hover:bg-brand-blue-deep/90 transition-colors">
           <WhatsAppIcon size={18} /> WhatsApp
         </a>
         <a href={pageHref("home", lang)}

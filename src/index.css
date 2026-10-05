@@ -130,6 +130,8 @@ html {
 .on-light .text-steel-blue,
 .on-light .text-steel-blue\/80 { color: #4A6580; }
 .on-light .text-brand-blue { color: #2F74C0; }
+/* Sobre tarjetas grises (charcoal), el azul de marca no llega a 4,5:1: uno más claro */
+.bg-charcoal .text-brand-blue, .bg-charcoal\/50 .text-brand-blue { color: #74AEEB; }
 .on-light .bg-charcoal\/50,
 .on-light .bg-charcoal\/40,
 .on-light .bg-navy\/40 { background-color: #F2F5F9; }

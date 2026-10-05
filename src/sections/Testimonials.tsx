@@ -104,10 +104,11 @@ function BrandMark({ brand, author }: { brand: string; author: string }) {
 }
 
 function StarRow() {
+  const { t } = useTranslation();
   return (
-    <div className="flex gap-[3px] mb-4" aria-label="5 out of 5 stars">
+    <div className="flex gap-[3px] mb-4" role="img" aria-label={t("testimonials.stars")}>
       {[0, 1, 2, 3, 4].map((i) => (
-        <Star key={i} size={14} weight="fill" color={STAR_COLOR} />
+        <Star key={i} size={14} weight="fill" color={STAR_COLOR} aria-hidden="true" />
       ))}
     </div>
   );

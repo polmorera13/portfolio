@@ -1,4 +1,5 @@
 import { useRef, useState, useCallback, useEffect } from "react";
+import { thumbSrcSet, posterUrl } from "../lib/thumbs";
 import { useTranslation } from "../lib/i18n";
 import {
   Play,
@@ -330,6 +331,8 @@ export default function VideoPlayer({
       {poster && !indexable && (
         <img
           src={poster}
+          srcSet={thumbSrcSet(poster)}
+          sizes={aspectRatio === "9:16" ? "(min-width: 1024px) 280px, 50vw" : "(min-width: 1024px) 640px, 100vw"}
           alt={posterAlt}
           width={pw}
           height={ph}
@@ -353,7 +356,7 @@ export default function VideoPlayer({
       <video
         ref={videoRef}
         src={src}
-        poster={poster ?? undefined}
+        poster={posterUrl(poster, aspectRatio === "9:16")}
         preload={indexable ? "none" : "metadata"}
         playsInline
         muted={isMuted}

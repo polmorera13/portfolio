@@ -41,7 +41,7 @@ export default function MiniCTA({ textKey, variant = "default", buttonKey = "min
           <motion.a
             variants={fadeUp}
             href="#contacto-propuesta"
-            className="w-full sm:w-auto bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-lg text-center hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02]"
+            className="w-full sm:w-auto bg-brand-blue-deep text-off-white font-semibold text-lg px-10 py-4 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.02]"
           >
             {t(buttonKey)}
           </motion.a>
@@ -74,7 +74,7 @@ export default function MiniCTA({ textKey, variant = "default", buttonKey = "min
         <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-3">
           <a
             href="#contacto-propuesta"
-            className="bg-brand-blue text-off-white font-semibold text-sm px-6 py-3 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02]"
+            className="bg-brand-blue-deep text-off-white font-semibold text-sm px-6 py-3 rounded-md hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.02]"
           >
             {t(buttonKey)}
           </a>

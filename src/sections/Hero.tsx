@@ -322,10 +322,10 @@ export default function Hero() {
               >
                 {t("hero.eyebrow")}
               </span>{" "}
-              <span className="hero-in" style={{ ["--hero-delay" as string]: "80ms", ["--hero-o" as string]: 1, display: "block" }}>
+              <span className="hero-in" style={{ ["--hero-o" as string]: 1, display: "block" }}>
                 {t("hero.h1_line1")}
               </span>{" "}
-              <span className="hero-in" style={{ ["--hero-delay" as string]: "160ms", ["--hero-o" as string]: 1, display: "block", color: BLUE }}>
+              <span className="hero-in" style={{ ["--hero-o" as string]: 1, display: "block", color: BLUE }}>
                 {t("hero.h1_line2")}
               </span>
             </h1>
@@ -336,7 +336,6 @@ export default function Hero() {
                 ["--hero-d" as string]: "360ms",
                 ["--hero-o" as string]: 1,
                 ["--hero-y" as string]: "12px",
-                ["--hero-delay" as string]: "280ms",
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 400,
                 fontSize: "1.0625rem",
@@ -365,7 +364,7 @@ export default function Hero() {
                     fontSize: "1rem",
                     padding: "0.875rem 2rem",
                     borderRadius: "8px",
-                    background: BLUE,
+                    background: "#2D6FB8",
                     color: OFFWHITE,
                     textDecoration: "none",
                     transition: "transform 160ms ease-out",

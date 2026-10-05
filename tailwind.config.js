@@ -5,7 +5,8 @@ export default {
     extend: {
       colors: {
         navy: '#0D1B2A',
-        'brand-blue': '#4A90D9',
+        // deep: fondo de botones y bandas con texto blanco (contraste 4,5:1)
+        'brand-blue': { DEFAULT: '#4A90D9', deep: '#2D6FB8' },
         'steel-blue': '#8AAFCC',
         'off-white': '#F4F6F9',
         charcoal: '#2C3E50',

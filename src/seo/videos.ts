@@ -46,6 +46,8 @@ export interface PageVideo {
   /** Ruta en media.polmorera.es */
   file: string;
   poster: string | null;
+  /** Vertical (9:16): su póster en la página es la versión de 480 px. */
+  vertical: boolean;
   name: string;
   description: string;
 }
@@ -63,10 +65,11 @@ export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null)
     const main: PageVideo = {
       file: UGC_MALE_MAIN.file,
       poster: UGC_MALE_MAIN.poster,
+      vertical: true,
       name: tl(lang, "ugcpage.main_aria").replace("{{brand}}", UGC_MALE_MAIN.brand),
       description,
     };
-    return [main, ...ugcMaleExamples(data).map((v) => ({ file: v.file, poster: v.poster, name: videoName(v.brand, null, lang), description }))];
+    return [main, ...ugcMaleExamples(data).map((v) => ({ file: v.file, poster: v.poster, vertical: true, name: videoName(v.brand, null, lang), description }))];
   }
   const detail = CASE_DETAILS.find((d) => d.page === key);
   if (detail) {
@@ -79,6 +82,7 @@ export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null)
       .map((v) => ({
         file: v.file,
         poster: v.poster || null,
+        vertical: v.aspect !== "16:9",
         name: videoName(brand, tr(v.label as Tri, lang) || v.name || null, lang),
         description,
       }));
@@ -93,6 +97,7 @@ export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null)
     return [{
       file,
       poster: catalogPoster(file),
+      vertical: svc !== "corporate",
       name: brand ? videoName(brand, null, lang) : h1,
       description: `${h1}. ${firstSentence(intro)}`,
     }];

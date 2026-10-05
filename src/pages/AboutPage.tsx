@@ -93,7 +93,7 @@ export default function AboutPage() {
       </section>
 
       {/* En cifras */}
-      <section className="bg-brand-blue">
+      <section className="bg-brand-blue-deep">
         <div className="max-w-content mx-auto section-padding py-12 lg:py-16">
           <h2 className="sr-only">{t("aboutpage.numbers_title")}</h2>
           <dl className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">

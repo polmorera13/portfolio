@@ -191,7 +191,7 @@ export default function Contact() {
                 href={whatsappUrl(t("contact.whatsapp_msg"))}
                 target="_blank"
                 rel="noopener"
-                className="self-start inline-flex items-center gap-3 bg-brand-blue text-off-white font-semibold text-base px-6 py-3.5 rounded-lg hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.01] mb-2"
+                className="self-start inline-flex items-center gap-3 bg-brand-blue-deep text-off-white font-semibold text-base px-6 py-3.5 rounded-lg hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.01] mb-2"
               >
                 <WhatsAppIcon size={20} />
                 {t("contact.whatsapp")}
@@ -255,7 +255,7 @@ export default function Contact() {
                         onClick={() => chooseType(key)}
                         className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                           type === key
-                            ? "bg-brand-blue text-off-white"
+                            ? "bg-brand-blue-deep text-off-white"
                             : "border border-steel-blue/30 text-steel-blue hover:border-steel-blue/60 hover:text-off-white"
                         }`}
                       >
@@ -359,7 +359,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-2 bg-brand-blue text-off-white font-semibold text-base px-8 py-3.5 rounded-lg hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 relative overflow-hidden"
+                  className="mt-2 bg-brand-blue-deep text-off-white font-semibold text-base px-8 py-3.5 rounded-lg hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 relative overflow-hidden"
                 >
                   {submitting ? (
                     <span className="flex items-center justify-center gap-2">

@@ -39,7 +39,7 @@ export default function UgcMalePage() {
             </h1>
             <p className="text-steel-blue text-lg leading-relaxed">{t("ugcpage.intro")}</p>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-colors">
+              <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue-deep text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-colors">
                 {t("minicta.primary")}
               </a>
               <a href={pageHref("home", l, "contacto")} className="text-brand-blue font-semibold px-2 py-3.5 text-center hover:text-off-white transition-colors">

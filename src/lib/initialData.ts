@@ -9,6 +9,8 @@ export interface InitialData {
   hero: Record<string, string | null>;
   services: ServicesConfig;
   cases: CaseStudy[];
+  /** Miniaturas con versiones de 320/480 px: ruta sin extensión → ancho original (media.polmorera.es/variants.json). */
+  variants?: Record<string, number>;
 }
 
 declare global {

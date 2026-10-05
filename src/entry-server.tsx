@@ -30,3 +30,4 @@ export { pageVideos, mediaAbs } from './seo/videos';
 export { ogText, ogImageSource, ogSlug } from './seo/og';
 export { buildHead } from './seo/head';
 export { PATHS, LOCALES, NOINDEX_PAGES, SITE_URL } from './routes';
+export { posterUrl } from './lib/thumbs';

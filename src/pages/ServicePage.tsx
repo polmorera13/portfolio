@@ -81,11 +81,11 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
                 </li>
               ))}
             </ul>
-            {service === "ads" && <Method3x3 />}
+            {service === "ads" && <Method3x3 as="h2" />}
             {service !== "corporate" && <UgcMaleLink textKey="links.ugc_male_svc" />}
             <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">{s.tag[l]}</span>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-colors">
+              <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue-deep text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-colors">
                 {t("minicta.primary")}
               </a>
               <a href={pageHref("home", l, "contacto")} className="text-brand-blue font-semibold px-2 py-3.5 text-center hover:text-off-white transition-colors">

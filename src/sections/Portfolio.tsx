@@ -147,7 +147,7 @@ export default function Portfolio() {
                 onClick={() => setActiveFilter(key)}
                 className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                   activeFilter === key
-                    ? "bg-brand-blue text-off-white"
+                    ? "bg-brand-blue-deep text-off-white"
                     : "border border-charcoal text-steel-blue hover:border-steel-blue/60 hover:text-off-white"
                 }`}
               >

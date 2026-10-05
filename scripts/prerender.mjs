@@ -37,6 +37,13 @@ const data = {
   cases: await get("/api/cases", []),
 };
 if (!Object.keys(data.hero).length) delete data.hero;
+// Miniaturas que tienen versiones de 320 y 480 px (ver src/lib/thumbs.ts)
+try {
+  const r = await fetch("https://media.polmorera.es/variants.json", { signal: AbortSignal.timeout(15000) });
+  if (r.ok) data.variants = await r.json();
+} catch (e) {
+  console.warn(`  ! variants.json: ${e.message} (miniaturas sin versiones)`);
+}
 
 // ── Vídeos: fecha de subida y duración (para el VideoObject) ────────────────
 // La fecha es el Last-Modified del archivo en media.polmorera.es. La duración se
@@ -73,7 +80,9 @@ async function videosFor(key, lang) {
   const out = [];
   for (const v of list) {
     const m = await videoMeta(v.file);
-    out.push({ name: v.name, description: v.description, thumbnailUrl: v.poster ? mediaAbs(v.poster) : "", contentUrl: mediaAbs(v.file), ...m });
+    const thumbnailUrl = v.poster ? mediaAbs(v.poster) : "";
+    // Póster que pinta la página (480 px en los verticales): es el que se precarga
+    out.push({ name: v.name, description: v.description, thumbnailUrl, posterUrl: server.posterUrl(thumbnailUrl, v.vertical, data) || thumbnailUrl, contentUrl: mediaAbs(v.file), ...m });
   }
   return out;
 }
@@ -106,7 +115,14 @@ function modulePreloads(pageKey, lang) {
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
 const baseNoSlash = BASE.replace(/\/$/, "");
 
+// Fuentes del primer pantallazo (Poppins latin 300/400/600/700): se piden a la vez que el CSS
+const FONT_PRELOADS = fs.readdirSync(path.join(DIST, "assets"))
+  .filter((f) => /^poppins-latin-(300|400|600|700)-normal-.*\.woff2$/.test(f))
+  .map((f) => `<link rel="preload" as="font" type="font/woff2" crossorigin href="${baseNoSlash}/assets/${f}" />`)
+  .join("\n    ");
+
 function page({ head, lang, appHtml, withData = true, preload = "" }) {
+  head = head + "\n    " + FONT_PRELOADS;
   if (preload) head = head + "\n    " + preload;
   // Si React no pudo pintar la página (error en el render), mejor parar el build que publicarla vacía
   if (appHtml.includes("<template data-msg=")) throw new Error("Error al prerenderizar: " + (appHtml.match(/data-msg="([^"]*)"/)?.[1] ?? "?"));

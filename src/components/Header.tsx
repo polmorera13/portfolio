@@ -124,7 +124,7 @@ export default function Header() {
           </div>
           <a
             href={pageHref("home", lang, "contacto-propuesta")}
-            className="bg-brand-blue text-off-white font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02] shrink-0"
+            className="bg-brand-blue-deep text-off-white font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.02] shrink-0"
           >
             {t("nav.cta")}
           </a>
@@ -170,7 +170,7 @@ export default function Header() {
           <a
             href={pageHref("home", lang, "contacto-propuesta")}
             onClick={() => setMenuOpen(false)}
-            className="mt-2 bg-brand-blue text-off-white font-semibold text-base px-6 py-3.5 rounded-md text-center hover:bg-brand-blue/90 transition-colors"
+            className="mt-2 bg-brand-blue-deep text-off-white font-semibold text-base px-6 py-3.5 rounded-md text-center hover:bg-brand-blue-deep/90 transition-colors"
           >
             {t("nav.cta")}
           </a>

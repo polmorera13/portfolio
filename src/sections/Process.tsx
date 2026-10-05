@@ -81,7 +81,7 @@ export default function Process() {
             </p>
             <a
               href="#contacto-propuesta"
-              className="w-full sm:w-auto bg-brand-blue text-off-white font-semibold text-lg px-10 py-4 rounded-lg text-center hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.02]"
+              className="w-full sm:w-auto bg-brand-blue-deep text-off-white font-semibold text-lg px-10 py-4 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.02]"
             >
               {t("minicta.after_process_button")}
             </a>

@@ -20,7 +20,7 @@ export default function LogoMarquee() {
       <div className="max-w-content mx-auto section-padding mb-6">
         <p
           className="text-sm font-semibold uppercase text-center"
-          style={{ color: "#8AAFCC", letterSpacing: "0.25em" }}
+          style={{ color: "#557891", letterSpacing: "0.25em" }}
         >
           {t("logos.title")}
         </p>

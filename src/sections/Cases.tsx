@@ -455,7 +455,7 @@ export function CaseMedia({ c, large = false, only }: { c: CaseStudy; large?: bo
               aria-selected={i === active}
               onClick={() => setActive(i)}
               className={`px-3.5 py-1.5 rounded-full text-sm font-semibold transition-colors ${
-                i === active ? "bg-brand-blue text-off-white" : "border border-steel-blue/40 text-steel-blue hover:text-off-white"
+                i === active ? "bg-brand-blue-deep text-off-white" : "border border-steel-blue/40 text-steel-blue hover:text-off-white"
               }`}
             >
               {tr(v.label, lang) || v.name || `${i + 1}`}

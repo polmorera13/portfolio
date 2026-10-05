@@ -78,7 +78,7 @@ export default function Services() {
                   aria-controls={`servicio-panel-${s.id}`}
                   onClick={() => setActive(i)}
                   className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue ${
-                    i === active ? "bg-brand-blue text-off-white" : "border border-steel-blue/40 text-steel-blue hover:text-off-white"
+                    i === active ? "bg-brand-blue-deep text-off-white" : "border border-steel-blue/40 text-steel-blue hover:text-off-white"
                   }`}
                 >
                   {s.tab[lang]}
@@ -171,7 +171,7 @@ function ServiceBody({ service, lang, moreHref }: { service: Service; lang: Loca
       <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-center lg:gap-6 mt-1">
         <a
           href="#contacto-propuesta"
-          className="bg-brand-blue text-off-white font-semibold text-base px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue/90 transition-all duration-200 hover:scale-[1.01]"
+          className="bg-brand-blue-deep text-off-white font-semibold text-base px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-all duration-200 hover:scale-[1.01]"
         >
           {t("minicta.primary")}
         </a>

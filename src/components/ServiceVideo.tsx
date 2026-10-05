@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { posterUrl } from "../lib/thumbs";
 import { useTranslation } from "../lib/i18n";
 import { Play, SpeakerSimpleHigh, SpeakerSimpleSlash } from "@phosphor-icons/react";
 import { getPublicUrl } from "../lib/supabase";
@@ -48,7 +49,7 @@ export default function ServiceVideo({
   const [manualPlay, setManualPlay] = useState(false);
 
   const src = getPublicUrl(file);
-  const poster = getPublicUrl(posterPath ?? `thumbs/${file.replace(/\.mp4$/, ".jpg")}`);
+  const poster = posterUrl(getPublicUrl(posterPath ?? `thumbs/${file.replace(/\.mp4$/, ".jpg")}`), aspect === "9 / 16");
 
   // ¿Está en pantalla?
   useEffect(() => {

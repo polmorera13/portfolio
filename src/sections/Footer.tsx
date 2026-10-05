@@ -87,12 +87,12 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-charcoal pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-steel-blue/60 text-xs">{t("footer.copyright")}</p>
+          <p className="text-steel-blue/80 text-xs">{t("footer.copyright")}</p>
           <div className="flex items-center gap-4">
-            <a href={pageHref("privacy", lang)} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+            <a href={pageHref("privacy", lang)} className="text-steel-blue/80 hover:text-steel-blue text-xs transition-colors">
               {t("footer.privacy")}
             </a>
-            <a href={pageHref("legal", lang)} className="text-steel-blue/60 hover:text-steel-blue text-xs transition-colors">
+            <a href={pageHref("legal", lang)} className="text-steel-blue/80 hover:text-steel-blue text-xs transition-colors">
               {t("footer.legal")}
             </a>
           </div>

@@ -171,12 +171,12 @@ function HowAndFigures({ story, l }: { story: CaseStory; l: Locale }) {
   const { t } = useTranslation();
   return (
     <>
-      <section className="bg-brand-blue">
+      <section className="bg-brand-blue-deep">
         <div className="max-w-content mx-auto section-padding py-14 lg:py-20 flex flex-col gap-6">
           <h2 className="text-white font-bold text-2xl lg:text-3xl">{t("casepage.how")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {story.how.map((h, i) => (
-              <div key={i} className="rounded-2xl bg-white/10 border border-white/25 p-5 lg:p-6 flex flex-col gap-2">
+              <div key={i} className="rounded-2xl bg-navy/20 border border-white/25 p-5 lg:p-6 flex flex-col gap-2">
                 <h3 className="text-white font-bold text-lg leading-snug">{h.title[l]}</h3>
                 <p className="text-white/90" style={{ fontSize: "15.5px", lineHeight: 1.6 }}>{h.text[l]}</p>
               </div>

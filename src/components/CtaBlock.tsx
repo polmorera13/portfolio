@@ -23,7 +23,7 @@ export default function CtaBlock({ title, text }: { title?: string; text?: strin
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
           <a
             href={pageHref("home", lang, "contacto-propuesta")}
-            className="w-full sm:w-auto bg-brand-blue text-off-white font-semibold text-lg px-8 py-4 rounded-lg text-center hover:bg-brand-blue/90 transition-colors"
+            className="w-full sm:w-auto bg-brand-blue-deep text-off-white font-semibold text-lg px-8 py-4 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-colors"
           >
             {t("minicta.primary")}
           </a>
