@@ -7,6 +7,7 @@ import { META, OG_LOCALE, PERSON, BUSINESS_DESCRIPTION, SERVICE_TYPES, UGC_MALE_
 import { CASE_DETAILS } from "../data/caseDetails";
 import { privacyPolicy, legalNotice } from "../data/legal";
 import { ogImageUrl, ogText, OG_WIDTH, OG_HEIGHT } from "./og";
+import { GUIDE_PUBLISHED, GUIDE_UPDATED } from "../data/guide";
 
 // <head> de cada página prerenderizada: título, descripción, robots, canonical,
 // hreflang recíprocos, Open Graph y JSON-LD. Lo usa scripts/prerender.mjs.
@@ -46,6 +47,7 @@ function crumbLabel(key: PageKey, lang: Locale): string {
     case "svc-social": return t.nav.svc_social;
     case "svc-corporate": return t.nav.svc_corporate;
     case "ugc-male": return t.ugcpage.crumb;
+    case "guide-ugc": return t.guide.crumb;
     case "cases": return t.nav.cases;
     case "about": return t.aboutpage.h1;
     default: {
@@ -163,6 +165,28 @@ function structuredData(key: PageKey, lang: Locale, title: string, description: 
         },
         breadcrumbList(key, lang),
         ...videoNodes(videos, lang),
+      ],
+    });
+  }
+  if (key === "guide-ugc") {
+    return jsonLd({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          headline: L[lang].guide.h1,
+          description,
+          url,
+          mainEntityOfPage: url,
+          inLanguage: lang,
+          datePublished: GUIDE_PUBLISHED,
+          dateModified: GUIDE_UPDATED,
+          image: ogImageUrl(key, lang),
+          author: { "@type": "Person", "@id": PERSON_ID, name: PERSON.name, url: pageUrl("about", lang) },
+          publisher: { "@type": "Person", "@id": PERSON_ID, name: PERSON.name, url: SITE_URL },
+          about: { "@type": "Thing", name: "User-generated content (UGC)" },
+        },
+        breadcrumbList(key, lang),
       ],
     });
   }

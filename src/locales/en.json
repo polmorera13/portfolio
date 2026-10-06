@@ -39,14 +39,14 @@
     "highlight": "Every piece with a clear objective: attract, convince, or convert. Everything else is noise."
   },
   "services": {
-    "eyebrow": "02 / SERVICES",
+    "eyebrow": "03 / SERVICES",
     "title": "What I do for you",
     "subtitle": "Choose what your business needs",
     "examples": "See examples",
     "sound_on": "Turn on sound"
   },
   "process": {
-    "eyebrow": "04 / PROCESS",
+    "eyebrow": "05 / PROCESS",
     "title": "How I work",
     "subtitle": "You don't need to know about marketing or prepare anything.",
     "badge": "From call to video: 5–7 days",
@@ -124,7 +124,7 @@
     "secondary": "or request a quote"
   },
   "testimonials": {
-    "eyebrow": "03 / TESTIMONIALS",
+    "eyebrow": "04 / TESTIMONIALS",
     "title": "What brands say",
     "label": "What they say",
     "items": [
@@ -162,12 +162,12 @@
     "stars": "5 out of 5 stars"
   },
   "faq": {
-    "eyebrow": "06 / QUESTIONS",
+    "eyebrow": "07 / QUESTIONS",
     "title": "Frequently asked questions",
     "more": "More questions"
   },
   "contact": {
-    "eyebrow": "07 / CONTACT",
+    "eyebrow": "08 / CONTACT",
     "title": "Tell me about your project",
     "subtitle": "I reply within 24 h on working days.",
     "email": "hello@polmorera.es",
@@ -277,7 +277,7 @@
     "legal": "Legal notice"
   },
   "about": {
-    "eyebrow": "05 / WHO'S BEHIND IT",
+    "eyebrow": "06 / WHO'S BEHIND IT",
     "title": "I was making UGC before most people in Spain knew what it was.",
     "p1": "I'm Pol Morera, a male UGC creator. I started when brands didn't even have a name for this: I was one of the first UGC creators in Spain, and the first male one.",
     "p2": "All these years taught me something you can't learn fast: what makes people stop scrolling, and what burns out in two weeks. That's what I bring to every video my team and I make for your brand.",
@@ -300,7 +300,7 @@
     "testimonials_note": "I'll tell you which 3 videos your business needs. Free, within 2 days."
   },
   "cases": {
-    "eyebrow": "RESULTS",
+    "eyebrow": "02 / RESULTS",
     "title": "Case studies",
     "subtitle": "I don't judge a video only by how it looks on screen. These are real campaigns where my videos have brought in visits, enquiries and customers.",
     "case": "Case",
@@ -316,7 +316,8 @@
     "full_case": "See the full case →",
     "more_about": "More about me →",
     "ugc_male_about": "What I do as a male UGC creator →",
-    "ugc_male_svc": "Looking for a male UGC creator? →"
+    "ugc_male_svc": "Looking for a male UGC creator? →",
+    "guide": "What is UGC: a guide →"
   },
   "svcpage": {
     "examples": "Examples",
@@ -329,15 +330,38 @@
     "or_quote": "or request a quote",
     "ads": {
       "h1": "UGC videos for your ads",
-      "intro": "I film videos where a real person talks about your product the way a customer would, made for Instagram, Facebook and TikTok ads. I write the script and film, and my team edits them with several different openings so you can see which one works best."
+      "intro": "I film videos where a real person talks about your product the way a customer would, made for Instagram, Facebook and TikTok ads. I write the script and film, and my team edits them with several different openings so you can see which one works best.",
+      "includes": [
+        "A script written for ads, with an opening that hooks viewers in the first seconds",
+        "Filming with a UGC creator: usually me or, if you need a different profile, someone from my network of actors and actresses",
+        "Several versions of each ad to test: with the 3×3 method, 3 ads with 3 hooks make 9 versions",
+        "Vertical and square videos, ready for Meta Ads (Instagram and Facebook) and TikTok Ads",
+        "Delivery in 5–7 working days, changes included"
+      ],
+      "for_who": "For businesses and agencies that invest in Meta Ads or TikTok Ads and need new creatives to test: online stores, apps, services and education. For example, I made a series of TikTok Ads creatives for MasterD, and the main one got 390 conversions in 3 months."
     },
     "organic": {
       "h1": "Videos for your business's social media",
-      "intro": "I plan the topics, then film and edit the videos with your logo and colours so you can post consistently without thinking every week about what to upload. I work with monthly packs."
+      "intro": "I plan the topics, then film and edit the videos with your logo and colours so you can post consistently without thinking every week about what to upload. I work with monthly packs.",
+      "includes": [
+        "A topic plan so you never run out of ideas",
+        "Filming at your business or with your product",
+        "Editing with your logo, your colours and on-screen text",
+        "Videos ready for Instagram, TikTok and YouTube",
+        "Monthly packs to post consistently"
+      ],
+      "for_who": "For businesses that want to post consistently and get recognised: consumer brands, local businesses and companies that want to show what they do. With Apple Tree, one of the agencies I work with, I've been producing videos for their clients non-stop for 31 months."
     },
     "corporate": {
       "h1": "Corporate video for your company",
-      "intro": "A video that explains what you do in a minute and makes a great impression. I write the script and film in 4K, and my team adds animated captions and prepares versions for your website, your sales team and your events."
+      "intro": "A video that explains what you do in a minute and makes a great impression. I write the script and film in 4K, and my team adds animated captions and prepares versions for your website, your sales team and your events.",
+      "includes": [
+        "Script included: I help you explain what you do in a minute",
+        "4K filming at your company or wherever explains it best",
+        "Animated captions with names and job titles",
+        "Versions for your website, your sales team and your events"
+      ],
+      "for_who": "For companies that need to explain what they do clearly and look good doing it: software, B2B services and industry. For Reactiva Online, for example, I've been making corporate videos, ads and website videos for 15 months."
     },
     "method3x3": {
       "title": "The 3×3 method",
@@ -345,7 +369,9 @@
       "ad": "Ad",
       "hook": "Hook"
     },
-    "on_camera": "Usually it's me on camera, as a male UGC creator; if you need a different profile, I work with my network of actors and actresses."
+    "on_camera": "Usually it's me on camera, as a male UGC creator; if you need a different profile, I work with my network of actors and actresses.",
+    "includes_title": "What's included",
+    "for_who_title": "Who is it for?"
   },
   "casespage": {
     "h1": "Case studies",
@@ -362,7 +388,9 @@
     "want": "Want something like this for your business?",
     "challenge": "The challenge",
     "how": "How we work",
-    "figures": "In numbers"
+    "figures": "In numbers",
+    "related_service": "The service behind this case",
+    "other_cases": "Other case studies"
   },
   "aboutpage": {
     "h1": "About me",
@@ -494,7 +522,8 @@
     "about": "About me",
     "all_cases": "All case studies",
     "agency_case": "Communications agency",
-    "ugc_male": "Male UGC creator"
+    "ugc_male": "Male UGC creator",
+    "guide": "What is UGC (guide)"
   },
   "ugcpage": {
     "crumb": "Male UGC creator",
@@ -586,5 +615,73 @@
     "faq_title": "Frequently asked questions",
     "final_title": "Shall we start with the proposal?",
     "final_text": "I'll tell you which 3 videos your business needs. For free."
+  },
+  "guide": {
+    "crumb": "What is UGC",
+    "h1": "What UGC is and how to use it in your business",
+    "lead": "UGC (User Generated Content) is content where a real person talks about a product the way a customer would. I've been filming UGC videos for brands since 2023: in this guide I explain what it is, what it's for and how it's made, without the jargon.",
+    "updated": "Updated on",
+    "by": "Written by",
+    "author_bio": "UGC creator and video producer in Barcelona. 1,000+ videos for 300+ brands.",
+    "sections": [
+      {
+        "h": "What is a UGC video?",
+        "p": [
+          "A UGC video is a video where a person, usually filmed vertically and talking to camera, shares their experience with a product or service. It doesn't look like a typical ad: it looks like a recommendation.",
+          "UGC started as whatever customers posted on their own. Today brands commission it from UGC creators, who film that kind of video professionally: with a script, good light and good sound, and with a clear goal (selling, getting known or explaining something)."
+        ]
+      },
+      {
+        "h": "What is UGC for?",
+        "p": [
+          "Mainly three things:"
+        ],
+        "list": [
+          "Ads on Meta Ads (Instagram and Facebook) and TikTok Ads: it's the format closest to what people already watch on those platforms.",
+          "The brand's social media: to post consistently and get the business recognised.",
+          "The website and product pages: to explain how something works and build trust before people buy."
+        ]
+      },
+      {
+        "h": "Why do UGC videos work in ads?",
+        "p": [
+          "Because they don't interrupt: they look like just another video in the feed. A real person speaking clearly builds more trust than a heavily produced ad. And since they're quick to film, you can make several versions and test which works best.",
+          "I do it with the 3×3 method: 3 ads with 3 hooks each, 9 versions to test. For MasterD, the main creative of a TikTok Ads series got 390 conversions in 3 months."
+        ]
+      },
+      {
+        "h": "What's the difference between UGC and influencers?",
+        "p": [
+          "An influencer posts the video on their own profile, and what you pay for is reaching their audience. A UGC creator films the video for the brand to post: in its ads, on its social media or on its website.",
+          "That's why with UGC the creator's follower count doesn't matter; what matters is that the video works. On your social media and website you can use it with no time limit; for paid ads, usage is licensed for set periods."
+        ]
+      },
+      {
+        "h": "How is a UGC video made?",
+        "p": [
+          "This is how I do it, in 5–7 working days:"
+        ],
+        "ol": [
+          "Call: you tell me about your business, what you sell and to whom.",
+          "Script: I send it over and you approve it before filming.",
+          "Production: I film at your business or with your product, and my team edits.",
+          "Delivery: you get the videos ready to post, changes included."
+        ]
+      },
+      {
+        "h": "What is a male UGC creator and when does it make sense?",
+        "p": [
+          "It's a UGC creator who is a man. It makes sense when most of your customers are men, when you want the ad to sound like \"someone like me uses it and it works\", or when you want to test a male voice against a female one in your ads. I was one of the first UGC creators in Spain, and the first male one."
+        ],
+        "link": "ugc-male",
+        "linkText": "Male UGC creator: what I do →"
+      },
+      {
+        "h": "How much does a UGC video cost?",
+        "p": [
+          "It depends on how many videos you need, where they're filmed and where you'll use them. I work from a single video and send you a fixed quote within 24 h, no strings attached. If you're not sure where to start, get your free proposal: I'll tell you which 3 videos your business needs."
+        ]
+      }
+    ]
   }
 }

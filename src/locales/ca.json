@@ -39,14 +39,14 @@
     "highlight": "Cada peça amb un objectiu clar: atraure, convèncer o convertir. La resta és soroll."
   },
   "services": {
-    "eyebrow": "02 / SERVEIS",
+    "eyebrow": "03 / SERVEIS",
     "title": "Què faig per a tu",
     "subtitle": "Tria el que necessita el teu negoci",
     "examples": "Veure exemples",
     "sound_on": "Activa el so"
   },
   "process": {
-    "eyebrow": "04 / PROCÉS",
+    "eyebrow": "05 / PROCÉS",
     "title": "Com treballo",
     "subtitle": "No cal que sàpigues de màrqueting ni que preparis res.",
     "badge": "De la trucada al vídeo: 5–7 dies",
@@ -124,7 +124,7 @@
     "secondary": "o demana pressupost"
   },
   "testimonials": {
-    "eyebrow": "03 / TESTIMONIS",
+    "eyebrow": "04 / TESTIMONIS",
     "title": "Què diuen les marques",
     "label": "Què en diuen",
     "items": [
@@ -162,12 +162,12 @@
     "stars": "5 de 5 estrelles"
   },
   "faq": {
-    "eyebrow": "06 / PREGUNTES",
+    "eyebrow": "07 / PREGUNTES",
     "title": "Preguntes freqüents",
     "more": "Més preguntes"
   },
   "contact": {
-    "eyebrow": "07 / CONTACTE",
+    "eyebrow": "08 / CONTACTE",
     "title": "Explica'm el teu projecte",
     "subtitle": "Et responc en menys de 24 h en dies laborables.",
     "email": "hello@polmorera.es",
@@ -277,7 +277,7 @@
     "legal": "Avís legal"
   },
   "about": {
-    "eyebrow": "05 / QUI HI HA AL DARRERE",
+    "eyebrow": "06 / QUI HI HA AL DARRERE",
     "title": "Feia UGC quan a Espanya gairebé ningú sabia què era.",
     "p1": "Soc en Pol Morera, creador UGC home. Vaig començar quan les marques encara no tenien nom per a això: vaig ser un dels primers creadors UGC d'Espanya i el primer UGC home.",
     "p2": "Tants anys m'han donat una cosa que no s'aprèn de pressa: saber què fa que algú deixi de fer scroll i què es crema en dues setmanes. Això és el que poso a cada vídeo que faig amb el meu equip per a la teva marca.",
@@ -300,7 +300,7 @@
     "testimonials_note": "Et dic quins 3 vídeos necessita el teu negoci. Gratis i en 2 dies."
   },
   "cases": {
-    "eyebrow": "RESULTATS",
+    "eyebrow": "02 / RESULTATS",
     "title": "Casos d'èxit",
     "subtitle": "No mesuro l'èxit d'un vídeo només per com queda a la pantalla. Aquestes són campanyes reals en què els meus vídeos han portat visites, contactes i clients.",
     "case": "Cas",
@@ -316,7 +316,8 @@
     "full_case": "Veure el cas complet →",
     "more_about": "Més sobre mi →",
     "ugc_male_about": "Què faig com a creador UGC home →",
-    "ugc_male_svc": "Busques un creador UGC home? →"
+    "ugc_male_svc": "Busques un creador UGC home? →",
+    "guide": "Què és l'UGC: guia →"
   },
   "svcpage": {
     "examples": "Exemples",
@@ -329,15 +330,38 @@
     "or_quote": "o demana pressupost",
     "ads": {
       "h1": "Vídeos UGC per als teus anuncis",
-      "intro": "Gravo vídeos en què una persona real parla del teu producte com ho faria un client, pensats per a anuncis d'Instagram, Facebook i TikTok. Escric el guió, gravo, i el meu equip els edita amb diversos inicis diferents perquè vegis quin funciona millor."
+      "intro": "Gravo vídeos en què una persona real parla del teu producte com ho faria un client, pensats per a anuncis d'Instagram, Facebook i TikTok. Escric el guió, gravo, i el meu equip els edita amb diversos inicis diferents perquè vegis quin funciona millor.",
+      "includes": [
+        "Guió pensat per a anuncis, amb un inici que enganxa en els primers segons",
+        "Gravació amb un creador UGC: normalment jo o, si necessites un altre perfil, algú de la meva xarxa d'actors i actrius",
+        "Diverses versions de cada anunci per provar: amb la metodologia 3×3, 3 anuncis amb 3 ganxos són 9 versions",
+        "Vídeos en vertical i en quadrat, a punt per a Meta Ads (Instagram i Facebook) i TikTok Ads",
+        "Lliurament en 5–7 dies laborables, amb canvis inclosos"
+      ],
+      "for_who": "Per a negocis i agències que inverteixen a Meta Ads o TikTok Ads i necessiten creativitats noves per provar: botigues en línia, apps, serveis i formació. Per exemple, per a MasterD vaig fer una sèrie de creativitats per a TikTok Ads, i la principal va aconseguir 390 conversions en 3 mesos."
     },
     "organic": {
       "h1": "Vídeos per a les xarxes del teu negoci",
-      "intro": "Preparo un pla de temes, gravo i edito els vídeos amb el teu logo i els teus colors perquè publiquis amb constància sense pensar cada setmana què penjar. Treballo amb packs mensuals."
+      "intro": "Preparo un pla de temes, gravo i edito els vídeos amb el teu logo i els teus colors perquè publiquis amb constància sense pensar cada setmana què penjar. Treballo amb packs mensuals.",
+      "includes": [
+        "Un pla de temes perquè no et quedis en blanc",
+        "Gravació al teu negoci o amb el teu producte",
+        "Edició amb el teu logo, els teus colors i textos en pantalla",
+        "Vídeos a punt per a Instagram, TikTok i YouTube",
+        "Packs mensuals per publicar amb constància"
+      ],
+      "for_who": "Per a negocis que volen publicar amb constància i que la gent els reconegui: marques de consum, negocis locals i empreses que volen explicar què fan. Amb Apple Tree, una de les agències amb què treballo, fa 31 mesos que produeixo vídeos de manera contínua per als seus clients."
     },
     "corporate": {
       "h1": "Vídeo corporatiu per a la teva empresa",
-      "intro": "Un vídeo per explicar què fas en un minut i donar bona imatge. Escric el guió, gravo en 4K, i el meu equip hi afegeix rètols animats i prepara versions per a la teva web, el teu equip comercial i els teus esdeveniments."
+      "intro": "Un vídeo per explicar què fas en un minut i donar bona imatge. Escric el guió, gravo en 4K, i el meu equip hi afegeix rètols animats i prepara versions per a la teva web, el teu equip comercial i els teus esdeveniments.",
+      "includes": [
+        "Guió inclòs: t'ajudo a explicar què fas en un minut",
+        "Gravació en 4K, a la teva empresa o al lloc que ho expliqui millor",
+        "Rètols animats amb noms i càrrecs",
+        "Versions per a la teva web, el teu equip comercial i els teus esdeveniments"
+      ],
+      "for_who": "Per a empreses que necessiten explicar què fan de manera clara i donar bona imatge: programari, serveis entre empreses i indústria. Per a Reactiva Online, per exemple, fa 15 mesos que faig vídeos corporatius, anuncis i vídeos per a la seva web."
     },
     "method3x3": {
       "title": "Metodologia 3×3",
@@ -345,7 +369,9 @@
       "ad": "Anunci",
       "hook": "Ganxo"
     },
-    "on_camera": "Normalment surto jo, com a creador UGC home; si necessites un altre perfil, treballo amb la meva xarxa d'actors i actrius."
+    "on_camera": "Normalment surto jo, com a creador UGC home; si necessites un altre perfil, treballo amb la meva xarxa d'actors i actrius.",
+    "includes_title": "Què inclou",
+    "for_who_title": "Per a qui és?"
   },
   "casespage": {
     "h1": "Casos reals",
@@ -362,7 +388,9 @@
     "want": "Vols alguna cosa així per al teu negoci?",
     "challenge": "El repte",
     "how": "Com treballem",
-    "figures": "En xifres"
+    "figures": "En xifres",
+    "related_service": "El servei d'aquest cas",
+    "other_cases": "Altres casos"
   },
   "aboutpage": {
     "h1": "Sobre mi",
@@ -494,7 +522,8 @@
     "about": "Sobre mi",
     "all_cases": "Tots els casos",
     "agency_case": "Agència de comunicació",
-    "ugc_male": "Creador UGC home"
+    "ugc_male": "Creador UGC home",
+    "guide": "Què és l'UGC (guia)"
   },
   "ugcpage": {
     "crumb": "Creador UGC home",
@@ -586,5 +615,73 @@
     "faq_title": "Preguntes freqüents",
     "final_title": "Comencem per la proposta?",
     "final_text": "Et dic quins 3 vídeos necessita el teu negoci. Gratis."
+  },
+  "guide": {
+    "crumb": "Què és l'UGC",
+    "h1": "Què és l'UGC i com fer-lo servir al teu negoci",
+    "lead": "L'UGC (User Generated Content, contingut generat per usuaris) és contingut en què una persona real parla d'un producte com ho faria un client. Gravo vídeos UGC per a marques des del 2023: en aquesta guia t'explico què és, per a què serveix i com es fa, sense tecnicismes.",
+    "updated": "Actualitzat el",
+    "by": "Escrit per",
+    "author_bio": "Creador UGC i productor de vídeo a Barcelona. Més de 1.000 vídeos per a més de 300 marques.",
+    "sections": [
+      {
+        "h": "Què és un vídeo UGC?",
+        "p": [
+          "Un vídeo UGC és un vídeo en què una persona, normalment en vertical i parlant a càmera, explica la seva experiència amb un producte o un servei. No sembla un anunci dels de sempre: sembla una recomanació.",
+          "Al principi l'UGC era el que els clients publicaven pel seu compte. Avui les marques l'encarreguen a creadors UGC, que graven aquest tipus de vídeo de manera professional: amb guió, bona llum i bon so, i pensant en un objectiu concret (vendre, donar-se a conèixer o explicar alguna cosa)."
+        ]
+      },
+      {
+        "h": "Per a què serveix l'UGC?",
+        "p": [
+          "Sobretot per a tres coses:"
+        ],
+        "list": [
+          "Anuncis a Meta Ads (Instagram i Facebook) i TikTok Ads: és el format que més s'assembla al que la gent ja veu en aquestes xarxes.",
+          "Les xarxes socials de la marca: per publicar amb constància i que la gent reconegui el negoci.",
+          "La web i les pàgines de producte: per explicar com funciona una cosa i donar confiança abans de comprar."
+        ]
+      },
+      {
+        "h": "Per què funcionen els vídeos UGC als anuncis?",
+        "p": [
+          "Perquè no interrompen: es veuen com un vídeo més del feed. Una persona real parlant clar transmet més confiança que un anunci molt produït. I com que es graven ràpid, se'n poden fer diverses versions i provar quina funciona millor.",
+          "Jo ho faig amb la metodologia 3×3: 3 anuncis amb 3 ganxos cadascun, 9 versions per testar. Per a MasterD, la creativitat principal d'una sèrie per a TikTok Ads va aconseguir 390 conversions en 3 mesos."
+        ]
+      },
+      {
+        "h": "Quina diferència hi ha entre UGC i influencer?",
+        "p": [
+          "Un influencer publica el vídeo al seu perfil, i el que pagues és arribar a la seva audiència. Un creador UGC grava el vídeo perquè el publiqui la marca: als seus anuncis, a les seves xarxes o a la seva web.",
+          "Per això en l'UGC no importa quants seguidors tingui el creador, sinó que el vídeo funcioni. A les teves xarxes i a la teva web el pots fer servir sense límit de temps; en anuncis de pagament, l'ús es contracta per períodes."
+        ]
+      },
+      {
+        "h": "Com es fa un vídeo UGC?",
+        "p": [
+          "Així ho faig jo, en 5–7 dies laborables:"
+        ],
+        "ol": [
+          "Trucada: m'expliques el teu negoci, què vens i a qui.",
+          "Guió: te'l passo i l'aproves abans de gravar.",
+          "Producció: gravo al teu negoci o amb el teu producte, i el meu equip edita.",
+          "Lliurament: reps els vídeos a punt per publicar, amb els canvis inclosos."
+        ]
+      },
+      {
+        "h": "Què és un creador UGC home i quan convé?",
+        "p": [
+          "És un creador UGC que és home. Convé quan els teus clients són sobretot homes, quan vols que l'anunci soni a «algú com jo el fa servir i li funciona» o quan vols provar als teus anuncis una veu masculina davant d'una de femenina. Jo vaig ser un dels primers creadors UGC d'Espanya i el primer UGC home."
+        ],
+        "link": "ugc-male",
+        "linkText": "Creador UGC home: el que faig →"
+      },
+      {
+        "h": "Quant costa un vídeo UGC?",
+        "p": [
+          "Depèn de quants vídeos necessitis, d'on es gravin i d'on els facis servir. Treballo des d'un sol vídeo i t'envio un pressupost tancat en menys de 24 h, sense compromís. Si no saps per on començar, demana la teva proposta gratis: et dic quins 3 vídeos necessita el teu negoci."
+        ]
+      }
+    ]
   }
 }

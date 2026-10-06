@@ -109,6 +109,10 @@ export default function UgcMalePage() {
         </section>
       )}
 
+      <section className="max-w-content mx-auto section-padding pb-4">
+        <a href={pageHref("guide-ugc", l)} className="text-brand-blue font-semibold hover:text-off-white transition-colors">{t("links.guide")}</a>
+      </section>
+
       <ProcessSteps />
       <RelatedCases slugs={["masterd"]} />
 

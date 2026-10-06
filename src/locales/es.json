@@ -39,14 +39,14 @@
     "highlight": "Cada pieza con un objetivo claro: atraer, convencer o convertir. Lo demás es ruido."
   },
   "services": {
-    "eyebrow": "02 / SERVICIOS",
+    "eyebrow": "03 / SERVICIOS",
     "title": "Qué hago para ti",
     "subtitle": "Elige lo que necesita tu negocio",
     "examples": "Ver ejemplos",
     "sound_on": "Activar sonido"
   },
   "process": {
-    "eyebrow": "04 / PROCESO",
+    "eyebrow": "05 / PROCESO",
     "title": "Cómo trabajo",
     "subtitle": "No necesitas saber de marketing ni preparar nada.",
     "badge": "De la llamada al vídeo: 5–7 días",
@@ -124,7 +124,7 @@
     "secondary": "o pide presupuesto"
   },
   "testimonials": {
-    "eyebrow": "03 / TESTIMONIOS",
+    "eyebrow": "04 / TESTIMONIOS",
     "title": "Lo que dicen las marcas",
     "label": "Lo que dicen",
     "items": [
@@ -162,12 +162,12 @@
     "stars": "5 de 5 estrellas"
   },
   "faq": {
-    "eyebrow": "06 / PREGUNTAS",
+    "eyebrow": "07 / PREGUNTAS",
     "title": "Preguntas frecuentes",
     "more": "Ver más preguntas"
   },
   "contact": {
-    "eyebrow": "07 / CONTACTO",
+    "eyebrow": "08 / CONTACTO",
     "title": "Cuéntame tu proyecto",
     "subtitle": "Te respondo en menos de 24 h en días laborables.",
     "email": "hello@polmorera.es",
@@ -277,7 +277,7 @@
     "legal": "Aviso legal"
   },
   "about": {
-    "eyebrow": "05 / QUIÉN ESTÁ DETRÁS",
+    "eyebrow": "06 / QUIÉN ESTÁ DETRÁS",
     "title": "Hacía UGC cuando en España casi nadie sabía qué era.",
     "p1": "Soy Pol Morera, creador UGC hombre. Empecé cuando las marcas aún no tenían nombre para esto: fui uno de los primeros creadores UGC de España y el primer UGC hombre.",
     "p2": "Tantos años me han dado algo que no se aprende rápido: saber qué hace que alguien deje de hacer scroll y qué se quema en dos semanas. Eso es lo que pongo en cada vídeo que hago con mi equipo para tu marca.",
@@ -300,7 +300,7 @@
     "testimonials_note": "Te digo qué 3 vídeos necesita tu negocio. Gratis y en 2 días."
   },
   "cases": {
-    "eyebrow": "RESULTADOS",
+    "eyebrow": "02 / RESULTADOS",
     "title": "Casos de éxito",
     "subtitle": "No mido el éxito de un vídeo solo por cómo queda en pantalla. Estas son campañas reales en las que mis vídeos han traído visitas, contactos y clientes.",
     "case": "Caso",
@@ -316,7 +316,8 @@
     "full_case": "Ver el caso completo →",
     "more_about": "Más sobre mí →",
     "ugc_male_about": "Qué hago como creador UGC hombre →",
-    "ugc_male_svc": "¿Buscas un creador UGC hombre? →"
+    "ugc_male_svc": "¿Buscas un creador UGC hombre? →",
+    "guide": "Qué es el UGC: guía →"
   },
   "svcpage": {
     "examples": "Ejemplos",
@@ -329,15 +330,38 @@
     "or_quote": "o pide presupuesto",
     "ads": {
       "h1": "Vídeos UGC para tus anuncios",
-      "intro": "Grabo vídeos en los que una persona real habla de tu producto como lo haría un cliente, pensados para anuncios de Instagram, Facebook y TikTok. Escribo el guion, grabo, y mi equipo los edita con varios inicios distintos para que veas cuál funciona mejor."
+      "intro": "Grabo vídeos en los que una persona real habla de tu producto como lo haría un cliente, pensados para anuncios de Instagram, Facebook y TikTok. Escribo el guion, grabo, y mi equipo los edita con varios inicios distintos para que veas cuál funciona mejor.",
+      "includes": [
+        "Guion pensado para anuncios, con un inicio que engancha en los primeros segundos",
+        "Grabación con un creador UGC: normalmente yo o, si necesitas otro perfil, alguien de mi red de actores y actrices",
+        "Varias versiones de cada anuncio para probar: con la metodología 3×3, 3 anuncios con 3 ganchos son 9 versiones",
+        "Vídeos en vertical y en cuadrado, listos para Meta Ads (Instagram y Facebook) y TikTok Ads",
+        "Entrega en 5–7 días laborables, con cambios incluidos"
+      ],
+      "for_who": "Para negocios y agencias que invierten en Meta Ads o TikTok Ads y necesitan creatividades nuevas para probar: tiendas online, apps, servicios y formación. Por ejemplo, para MasterD hice una serie de creatividades para TikTok Ads, y la principal consiguió 390 conversiones en 3 meses."
     },
     "organic": {
       "h1": "Vídeos para las redes de tu negocio",
-      "intro": "Preparo un plan de temas, grabo y edito los vídeos con tu logo y tus colores para que publiques con constancia sin pensar cada semana qué subir. Trabajo con packs mensuales."
+      "intro": "Preparo un plan de temas, grabo y edito los vídeos con tu logo y tus colores para que publiques con constancia sin pensar cada semana qué subir. Trabajo con packs mensuales.",
+      "includes": [
+        "Un plan de temas para que no te quedes en blanco",
+        "Grabación en tu negocio o con tu producto",
+        "Edición con tu logo, tus colores y textos en pantalla",
+        "Vídeos listos para Instagram, TikTok y YouTube",
+        "Packs mensuales para publicar con constancia"
+      ],
+      "for_who": "Para negocios que quieren publicar con constancia y que la gente los reconozca: marcas de consumo, negocios locales y empresas que quieren contar lo que hacen. Con Apple Tree, una de las agencias con las que trabajo, llevo 31 meses produciendo vídeos de forma continua para sus clientes."
     },
     "corporate": {
       "h1": "Vídeo corporativo para tu empresa",
-      "intro": "Un vídeo para explicar lo que haces en un minuto y dar buena imagen. Escribo el guion, grabo en 4K, y mi equipo añade rótulos animados y prepara versiones para tu web, tu equipo comercial y tus eventos."
+      "intro": "Un vídeo para explicar lo que haces en un minuto y dar buena imagen. Escribo el guion, grabo en 4K, y mi equipo añade rótulos animados y prepara versiones para tu web, tu equipo comercial y tus eventos.",
+      "includes": [
+        "Guion incluido: te ayudo a contar lo que haces en un minuto",
+        "Grabación en 4K, en tu empresa o en el lugar que lo explique mejor",
+        "Rótulos animados con nombres y cargos",
+        "Versiones para tu web, tu equipo comercial y tus eventos"
+      ],
+      "for_who": "Para empresas que necesitan explicar lo que hacen de forma clara y dar buena imagen: software, servicios entre empresas e industria. Para Reactiva Online, por ejemplo, llevo 15 meses haciendo vídeos corporativos, anuncios y vídeos para su web."
     },
     "method3x3": {
       "title": "Metodología 3×3",
@@ -345,7 +369,9 @@
       "ad": "Anuncio",
       "hook": "Gancho"
     },
-    "on_camera": "Normalmente salgo yo, como creador UGC hombre; si necesitas otro perfil, trabajo con mi red de actores y actrices."
+    "on_camera": "Normalmente salgo yo, como creador UGC hombre; si necesitas otro perfil, trabajo con mi red de actores y actrices.",
+    "includes_title": "Qué incluye",
+    "for_who_title": "¿Para quién es?"
   },
   "casespage": {
     "h1": "Casos reales",
@@ -362,7 +388,9 @@
     "want": "¿Quieres algo así para tu negocio?",
     "challenge": "El reto",
     "how": "Cómo trabajamos",
-    "figures": "En cifras"
+    "figures": "En cifras",
+    "related_service": "El servicio de este caso",
+    "other_cases": "Otros casos"
   },
   "aboutpage": {
     "h1": "Sobre mí",
@@ -494,7 +522,8 @@
     "about": "Sobre mí",
     "all_cases": "Todos los casos",
     "agency_case": "Agencia de comunicación",
-    "ugc_male": "Creador UGC hombre"
+    "ugc_male": "Creador UGC hombre",
+    "guide": "Qué es el UGC (guía)"
   },
   "ugcpage": {
     "crumb": "Creador UGC hombre",
@@ -586,5 +615,73 @@
     "faq_title": "Preguntas frecuentes",
     "final_title": "¿Empezamos por la propuesta?",
     "final_text": "Te digo qué 3 vídeos necesita tu negocio. Gratis."
+  },
+  "guide": {
+    "crumb": "Qué es el UGC",
+    "h1": "Qué es el UGC y cómo usarlo en tu negocio",
+    "lead": "El UGC (User Generated Content, contenido generado por usuarios) es contenido en el que una persona real habla de un producto como lo haría un cliente. Grabo vídeos UGC para marcas desde 2023: en esta guía te explico qué es, para qué sirve y cómo se hace, sin tecnicismos.",
+    "updated": "Actualizado el",
+    "by": "Escrito por",
+    "author_bio": "Creador UGC y productor de vídeo en Barcelona. Más de 1.000 vídeos para más de 300 marcas.",
+    "sections": [
+      {
+        "h": "¿Qué es un vídeo UGC?",
+        "p": [
+          "Un vídeo UGC es un vídeo en el que una persona, normalmente en vertical y hablando a cámara, cuenta su experiencia con un producto o un servicio. No parece un anuncio de los de siempre: parece una recomendación.",
+          "Al principio el UGC era lo que los clientes publicaban por su cuenta. Hoy las marcas lo encargan a creadores UGC, que graban ese tipo de vídeo de forma profesional: con guion, buena luz y buen sonido, y pensando en un objetivo concreto (vender, darse a conocer o explicar algo)."
+        ]
+      },
+      {
+        "h": "¿Para qué sirve el UGC?",
+        "p": [
+          "Sobre todo para tres cosas:"
+        ],
+        "list": [
+          "Anuncios en Meta Ads (Instagram y Facebook) y TikTok Ads: es el formato que más se parece a lo que la gente ya ve en esas redes.",
+          "Las redes sociales de la marca: para publicar con constancia y que la gente reconozca el negocio.",
+          "La web y las páginas de producto: para explicar cómo funciona algo y dar confianza antes de comprar."
+        ]
+      },
+      {
+        "h": "¿Por qué funcionan los vídeos UGC en los anuncios?",
+        "p": [
+          "Porque no interrumpen: se ven como un vídeo más del feed. Una persona real hablando claro transmite más confianza que un anuncio muy producido. Y como se graban rápido, se pueden hacer varias versiones y probar cuál funciona mejor.",
+          "Yo lo hago con la metodología 3×3: 3 anuncios con 3 ganchos cada uno, 9 versiones para testear. Para MasterD, la creatividad principal de una serie para TikTok Ads consiguió 390 conversiones en 3 meses."
+        ]
+      },
+      {
+        "h": "¿Qué diferencia hay entre UGC e influencer?",
+        "p": [
+          "Un influencer publica el vídeo en su perfil, y lo que pagas es llegar a su audiencia. Un creador UGC graba el vídeo para que lo publique la marca: en sus anuncios, en sus redes o en su web.",
+          "Por eso en el UGC no importa cuántos seguidores tenga el creador, sino que el vídeo funcione. En tus redes y en tu web puedes usarlo sin límite de tiempo; en anuncios de pago, el uso se contrata por periodos."
+        ]
+      },
+      {
+        "h": "¿Cómo se hace un vídeo UGC?",
+        "p": [
+          "Así lo hago yo, en 5–7 días laborables:"
+        ],
+        "ol": [
+          "Llamada: me cuentas tu negocio, qué vendes y a quién.",
+          "Guion: te lo paso y lo apruebas antes de grabar.",
+          "Producción: grabo en tu negocio o con tu producto, y mi equipo edita.",
+          "Entrega: recibes los vídeos listos para publicar, con los cambios incluidos."
+        ]
+      },
+      {
+        "h": "¿Qué es un creador UGC hombre y cuándo conviene?",
+        "p": [
+          "Es un creador UGC que es hombre. Conviene cuando tus clientes son sobre todo hombres, cuando quieres que el anuncio suene a «alguien como yo lo usa y le funciona» o cuando quieres probar en tus anuncios una voz masculina frente a una femenina. Yo fui uno de los primeros creadores UGC de España y el primer UGC hombre."
+        ],
+        "link": "ugc-male",
+        "linkText": "Creador UGC hombre: lo que hago →"
+      },
+      {
+        "h": "¿Cuánto cuesta un vídeo UGC?",
+        "p": [
+          "Depende de cuántos vídeos necesites, de dónde se graben y de dónde vayas a usarlos. Trabajo desde un solo vídeo y te envío un presupuesto cerrado en menos de 24 h, sin compromiso. Si no sabes por dónde empezar, pide tu propuesta gratis: te digo qué 3 vídeos necesita tu negocio."
+        ]
+      }
+    ]
   }
 }

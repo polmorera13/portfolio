@@ -114,6 +114,28 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
         </div>
       </section>
 
+      {/* Qué incluye y para quién es (respuestas directas, fáciles de citar) */}
+      <section className="max-w-content mx-auto section-padding py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("svcpage.includes_title")}</h2>
+          <ul className="flex flex-col gap-3">
+            {(t(`svcpage.${service}.includes`, { returnObjects: true }) as string[]).map((it, i) => (
+              <li key={i} className="flex items-start gap-3 text-off-white/90" style={{ fontSize: "16.5px", lineHeight: 1.55 }}>
+                <Check size={18} className="text-brand-blue mt-1 shrink-0" strokeWidth={3} aria-hidden />
+                {it}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col gap-5">
+          <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("svcpage.for_who_title")}</h2>
+          <p className="text-off-white/90" style={{ fontSize: "17px", lineHeight: 1.65 }}>{t(`svcpage.${service}.for_who`)}</p>
+          {service === "ads" && (
+            <a href={pageHref("guide-ugc", l)} className="self-start text-brand-blue font-semibold hover:text-off-white transition-colors">{t("links.guide")}</a>
+          )}
+        </div>
+      </section>
+
       <ProcessSteps />
 
       {/* Ejemplos */}

@@ -13,6 +13,7 @@ import type { Locale } from './types';
 const HomePage = preloadable(() => import('./pages/HomePage'));
 const ServicePage = preloadable(() => import('./pages/ServicePage'));
 const UgcMalePage = preloadable(() => import('./pages/UgcMalePage'));
+const GuidePage = preloadable(() => import('./pages/GuidePage'));
 const CasesIndexPage = preloadable(() => import('./pages/CasesIndexPage'));
 const CasePage = preloadable(() => import('./pages/CasePage'));
 const AboutPage = preloadable(() => import('./pages/AboutPage'));
@@ -27,6 +28,7 @@ const PAGE_LOADER: Record<PageKey, () => Promise<void>> = {
   'svc-social': ServicePage.load,
   'svc-corporate': ServicePage.load,
   'ugc-male': UgcMalePage.load,
+  'guide-ugc': GuidePage.load,
   cases: CasesIndexPage.load,
   'case-masterd': CasePage.load,
   'case-dogfy': CasePage.load,
@@ -50,7 +52,7 @@ export function preloadForPath(pathname: string): Promise<void> {
 
 /** Todas las páginas (para prerenderizar). */
 export function preloadAll(): Promise<unknown> {
-  return Promise.all([HomePage, ServicePage, UgcMalePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal, LandingPage].map((p) => p.load()));
+  return Promise.all([HomePage, ServicePage, UgcMalePage, GuidePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal, LandingPage].map((p) => p.load()));
 }
 
 const Login = lazy(() => import('./pages/Login'));
@@ -64,6 +66,7 @@ function pageElement(key: PageKey): ReactNode {
     case 'svc-social': return <ServicePage service="organic" />;
     case 'svc-corporate': return <ServicePage service="corporate" />;
     case 'ugc-male': return <UgcMalePage />;
+    case 'guide-ugc': return <GuidePage />;
     case 'cases': return <CasesIndexPage />;
     case 'case-masterd': return <CasePage slug="masterd" />;
     case 'case-dogfy': return <CasePage slug="dogfy" />;

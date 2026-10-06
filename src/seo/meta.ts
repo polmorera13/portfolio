@@ -64,6 +64,18 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
       ca: "Vídeos UGC amb un creador home per als teus anuncis i xarxes: guió, gravació i edició a tot Espanya. I si cal un altre perfil, la meva xarxa d'actors.",
     },
   },
+  "guide-ugc": {
+    title: {
+      es: "Qué es el UGC: guía para empresas | Pol Morera",
+      en: "What is UGC? A guide for businesses | Pol Morera",
+      ca: "Què és l'UGC: guia per a empreses | Pol Morera",
+    },
+    description: {
+      es: "Qué es un vídeo UGC, para qué sirve, en qué se diferencia de un influencer y cómo se hace. Guía de Pol Morera, creador UGC en España.",
+      en: "What a UGC video is, what it's for, how it differs from influencer content and how it's made. A guide by Pol Morera, UGC creator in Spain.",
+      ca: "Què és un vídeo UGC, per a què serveix, en què es diferencia d'un influencer i com es fa. Guia de Pol Morera, creador UGC a Espanya.",
+    },
+  },
   cases: {
     title: {
       es: "Casos reales de vídeos UGC | Pol Morera",

@@ -2,7 +2,7 @@ import { useTranslation } from "../lib/i18n";
 import { useCases } from "../hooks/useCases";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
-import { caseDetailBySlug, caseDetailFor, type CaseSlug, type CaseStory } from "../data/caseDetails";
+import { CASE_DETAILS, caseDetailBySlug, caseDetailFor, type CaseSlug, type CaseStory } from "../data/caseDetails";
 import { tr, CaseHeader, CaseMedia, CaseResults, CaseEvidence } from "../sections/Cases";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
@@ -88,6 +88,8 @@ export default function CasePage({ slug }: { slug: CaseSlug }) {
       </div>
 
       {story && <HowAndFigures story={story} l={l} />}
+
+      <CaseLinks slug={slug} l={l} />
 
       <CtaBlock title={t("casepage.want")} />
     </>
@@ -197,5 +199,44 @@ function HowAndFigures({ story, l }: { story: CaseStory; l: Locale }) {
         </dl>
       </section>
     </>
+  );
+}
+
+// Servicio de cada caso (para enlazarlo desde el caso)
+const CASE_SERVICE: Record<string, "svc-ads" | "svc-social" | "svc-corporate"> = {
+  masterd: "svc-ads",
+  dogfy: "svc-ads",
+  reactiva: "svc-corporate",
+  agencia: "svc-social",
+};
+
+/** Al final del caso: el servicio del caso y los otros casos. */
+function CaseLinks({ slug, l }: { slug: string; l: Locale }) {
+  const { t } = useTranslation();
+  const svc = CASE_SERVICE[slug];
+  const others = CASE_DETAILS.filter((c) => c.slug !== slug);
+  const svcLabel = svc === "svc-ads" ? t("nav.svc_ads") : svc === "svc-social" ? t("nav.svc_social") : t("nav.svc_corporate");
+  return (
+    <section className="max-w-content mx-auto section-padding pt-14 lg:pt-20 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-14">
+      {svc && (
+        <div className="flex flex-col gap-3">
+          <h2 className="text-off-white font-bold text-xl">{t("casepage.related_service")}</h2>
+          <a href={pageHref(svc, l)} className="self-start rounded-xl border border-brand-blue/40 bg-charcoal/50 px-5 py-4 text-off-white font-semibold hover:border-brand-blue transition-colors">{svcLabel} →</a>
+        </div>
+      )}
+      <div className="flex flex-col gap-3">
+        <h2 className="text-off-white font-bold text-xl">{t("casepage.other_cases")}</h2>
+        <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {others.map((c) => (
+            <li key={c.slug}>
+              <a href={pageHref(c.page, l)} className="h-full flex flex-col gap-1 rounded-xl border border-off-white/10 bg-charcoal/50 px-5 py-4 hover:border-brand-blue/50 transition-colors">
+                <span className="text-off-white font-semibold">{c.displayName ? c.displayName[l] : c.brandName}</span>
+                <span className="text-steel-blue text-sm">{c.sector[l]}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
