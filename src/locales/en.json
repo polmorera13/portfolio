@@ -517,5 +517,74 @@
     ],
     "who_title": "You choose who's on camera",
     "who_text": "Usually it's me. If your campaign needs another man of a different age, or a woman, I work with my network of actors and actresses of different ages and profiles. We decide together based on the tone of the campaign and who you're selling to."
+  },
+  "landing": {
+    "eyebrow": "Pol Morera · UGC creator and video producer",
+    "h1": "The 3 videos your business needs to sell more",
+    "sub": "Watch the video: I explain the video I make for your ads, your social media and your website. And I'll tell you for free which ones you need.",
+    "vsl_placeholder": "Your presentation video (VSL) goes here",
+    "vsl_aria": "Pol Morera explains the 3 videos your business needs",
+    "cta": "Get my free proposal",
+    "cta_note": "Free, no strings attached. I reply within 2 working days.",
+    "header_cta": "Free proposal",
+    "works": "See all my work →",
+    "proof": [
+      "1,000+ videos",
+      "300+ brands",
+      "Based in Barcelona, working across Spain"
+    ],
+    "concepts_eyebrow": "What I do",
+    "concepts_title": "Three kinds of video, each with a goal",
+    "concept_want": "I want this video →",
+    "results_title": "Real results from clients",
+    "results": [
+      {
+        "v": "390",
+        "l": "conversions for MasterD on TikTok Ads"
+      },
+      {
+        "v": "10–20%",
+        "l": "conversion rate on Dogfy Diet's leads"
+      },
+      {
+        "v": "31 months",
+        "l": "working with Apple Tree"
+      }
+    ],
+    "steps_title": "How it works",
+    "steps": [
+      {
+        "t": "Tell me about your business",
+        "d": "Fill in the form with your website or your Instagram."
+      },
+      {
+        "t": "I tell you which 3 videos you need",
+        "d": "Within 2 working days and for free: which video, what for and where to post it."
+      },
+      {
+        "t": "We film them",
+        "d": "If it's a fit, I write the script, I film and my team edits. Most projects are ready in 5–7 working days."
+      }
+    ],
+    "testimonials_title": "What brands say",
+    "form_title": "Get your free proposal",
+    "form_text": "I'll tell you which 3 videos your business needs.",
+    "form_points": [
+      "Free, no strings attached",
+      "Within 2 working days",
+      "For your ads, your social media or your website"
+    ],
+    "form_need": "Which video are you interested in?",
+    "form_need_optional": "(optional)",
+    "need_options": [
+      "Ads",
+      "Social media",
+      "Corporate video",
+      "Not sure yet"
+    ],
+    "or_whatsapp": "Rather talk? Message me on WhatsApp",
+    "faq_title": "Frequently asked questions",
+    "final_title": "Shall we start with the proposal?",
+    "final_text": "I'll tell you which 3 videos your business needs. For free."
   }
 }

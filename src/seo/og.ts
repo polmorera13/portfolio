@@ -49,6 +49,8 @@ export function ogText(key: PageKey, lang: Locale): OgText {
     figure = CASE_FIGURE[detail.slug]?.[lang];
   } else if (SVC[key]) {
     title = t.svcpage[SVC[key]!].h1;
+  } else if (key === "landing") {
+    title = t.landing.h1;
   } else if (key === "ugc-male") {
     title = t.ugcpage.crumb;
   } else if (key === "cases") {

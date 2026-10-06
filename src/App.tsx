@@ -2,6 +2,7 @@ import { Suspense, lazy, type ReactNode } from 'react';
 import { Routes, Route } from './lib/router';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import Layout from './components/Layout';
+import LandingLayout from './components/LandingLayout';
 import { PageContext } from './lib/page';
 import { preloadable } from './lib/preloadable';
 import { BASE } from './lib/paths';
@@ -18,6 +19,7 @@ const AboutPage = preloadable(() => import('./pages/AboutPage'));
 const ThanksPage = preloadable(() => import('./pages/ThanksPage'));
 const NotFoundPage = preloadable(() => import('./pages/NotFoundPage'));
 const Legal = preloadable(() => import('./pages/Legal'));
+const LandingPage = preloadable(() => import('./pages/LandingPage'));
 
 const PAGE_LOADER: Record<PageKey, () => Promise<void>> = {
   home: HomePage.load,
@@ -34,6 +36,7 @@ const PAGE_LOADER: Record<PageKey, () => Promise<void>> = {
   thanks: ThanksPage.load,
   privacy: Legal.load,
   legal: Legal.load,
+  landing: LandingPage.load,
 };
 
 /** Carga el código de la página de una URL (antes de hidratar, en main.tsx). */
@@ -47,7 +50,7 @@ export function preloadForPath(pathname: string): Promise<void> {
 
 /** Todas las páginas (para prerenderizar). */
 export function preloadAll(): Promise<unknown> {
-  return Promise.all([HomePage, ServicePage, UgcMalePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal].map((p) => p.load()));
+  return Promise.all([HomePage, ServicePage, UgcMalePage, CasesIndexPage, CasePage, AboutPage, ThanksPage, NotFoundPage, Legal, LandingPage].map((p) => p.load()));
 }
 
 const Login = lazy(() => import('./pages/Login'));
@@ -70,13 +73,14 @@ function pageElement(key: PageKey): ReactNode {
     case 'thanks': return <ThanksPage />;
     case 'privacy': return <Legal doc="privacy" />;
     case 'legal': return <Legal doc="legal" />;
+    case 'landing': return <LandingPage />;
   }
 }
 
 function withPage(key: PageKey | null, lang: Locale, node: ReactNode) {
   return (
     <PageContext.Provider value={{ key, lang }}>
-      <Layout>{node}</Layout>
+      {key === 'landing' ? <LandingLayout>{node}</LandingLayout> : <Layout>{node}</Layout>}
     </PageContext.Provider>
   );
 }

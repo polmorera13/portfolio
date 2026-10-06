@@ -517,5 +517,74 @@
     ],
     "who_title": "Tu decideixes qui surt",
     "who_text": "Normalment surto jo. Si la teva campanya necessita un altre home d'una altra edat, o una dona, treballo amb la meva xarxa d'actors i actrius de diferents edats i perfils. Ho decidim junts segons el to de la campanya i a qui li vens."
+  },
+  "landing": {
+    "eyebrow": "Pol Morera · Creador UGC i productor de vídeo",
+    "h1": "Els 3 vídeos que el teu negoci necessita per vendre més",
+    "sub": "Mira el vídeo: t'explico quin vídeo faig per als teus anuncis, per a les teves xarxes i per a la teva web. I et dic gratis quins necessites tu.",
+    "vsl_placeholder": "Aquí va el vídeo de presentació (VSL)",
+    "vsl_aria": "Pol Morera explica els 3 vídeos que necessita el teu negoci",
+    "cta": "Vull la meva proposta gratis",
+    "cta_note": "Gratis i sense compromís. Et responc en 2 dies laborables.",
+    "header_cta": "Proposta gratis",
+    "works": "Veure tots els meus treballs →",
+    "proof": [
+      "+1.000 vídeos",
+      "+300 marques",
+      "Des de Barcelona per a tot Espanya"
+    ],
+    "concepts_eyebrow": "El que faig",
+    "concepts_title": "Tres tipus de vídeo, cadascun amb un objectiu",
+    "concept_want": "Vull aquest vídeo →",
+    "results_title": "Resultats reals de clients",
+    "results": [
+      {
+        "v": "390",
+        "l": "conversions per a MasterD a TikTok Ads"
+      },
+      {
+        "v": "10–20 %",
+        "l": "de conversió dels leads de Dogfy Diet"
+      },
+      {
+        "v": "31 mesos",
+        "l": "treballant amb Apple Tree"
+      }
+    ],
+    "steps_title": "Com funciona",
+    "steps": [
+      {
+        "t": "M'expliques el teu negoci",
+        "d": "Omples el formulari amb la teva web o el teu Instagram."
+      },
+      {
+        "t": "Et dic quins 3 vídeos necessites",
+        "d": "En 2 dies laborables i gratis: quin vídeo, per a què i on publicar-lo."
+      },
+      {
+        "t": "Els gravem",
+        "d": "Si t'encaixa, escric el guió, gravo i el meu equip edita. La majoria de projectes estan llestos en 5–7 dies laborables."
+      }
+    ],
+    "testimonials_title": "El que diuen les marques",
+    "form_title": "Demana la teva proposta gratis",
+    "form_text": "Et dic quins 3 vídeos necessita el teu negoci.",
+    "form_points": [
+      "Gratis i sense compromís",
+      "En 2 dies laborables",
+      "Per als teus anuncis, les teves xarxes o la teva web"
+    ],
+    "form_need": "Quin vídeo t'interessa?",
+    "form_need_optional": "(opcional)",
+    "need_options": [
+      "Anuncis",
+      "Xarxes socials",
+      "Vídeo corporatiu",
+      "Encara no ho sé"
+    ],
+    "or_whatsapp": "Prefereixes parlar? Escriu-me per WhatsApp",
+    "faq_title": "Preguntes freqüents",
+    "final_title": "Comencem per la proposta?",
+    "final_text": "Et dic quins 3 vídeos necessita el teu negoci. Gratis."
   }
 }

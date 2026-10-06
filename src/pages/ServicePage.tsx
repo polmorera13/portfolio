@@ -1,6 +1,6 @@
 import { useTranslation } from "../lib/i18n";
 import { Check } from "lucide-react";
-import { services } from "../data/services";
+import { services, serviceFiles } from "../data/services";
 import { faqItems } from "../data/faq";
 import { useVideos } from "../hooks/useVideos";
 import { getPublicUrl } from "../lib/supabase";
@@ -15,7 +15,8 @@ import FaqList from "../components/FaqList";
 import Method3x3 from "../components/Method3x3";
 import VideoPlayer from "../components/VideoPlayer";
 import { ProcessSteps, RelatedCases, UgcMaleLink } from "../components/ServiceBlocks";
-import ServiceVideo, { ServiceVideoStack } from "../components/ServiceVideo";
+import { ServiceVideoStack } from "../components/ServiceVideo";
+import ServiceTrio from "../components/ServiceTrio";
 import type { Locale } from "../types";
 
 type ServiceKey = "ads" | "organic" | "corporate";
@@ -48,23 +49,25 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
   const { t, i18n } = useTranslation();
   const { lang } = usePage();
   const s = services.find((x) => x.configKey === service)!;
-  const cfg = getInitialData()?.services?.[service];
-  const mainVideos = (cfg ?? []).filter((v): v is string => !!v);
-  const videosMain = mainVideos.length ? mainVideos : s.videos;
+  const data = getInitialData();
+  const videosMain = serviceFiles(service, data?.services?.[service]);
 
   const { videos } = useVideos(EXAMPLE_CATS[service]);
-  const examples = videos.slice(0, 6);
+  // Ejemplos: sin repetir los de arriba
+  const examples = videos.filter((v) => !videosMain.includes(v.storage_path)).slice(0, 6);
   const faqs = FAQ_FOR[service].map((q) => faqItems.find((f) => f.question.es === q)).filter(Boolean) as typeof faqItems;
   const l = lang as Locale;
-  // Nombre del vídeo principal (el mismo que va en su VideoObject)
-  const mainVideo = pageVideos(PAGE_OF[service], l, getInitialData())[0];
+  // Nombres de los vídeos de arriba (los mismos que van en sus VideoObject)
+  const topVideos = pageVideos(PAGE_OF[service], l, data);
+  const mainVideo = topVideos[0];
 
   return (
     <>
       <section className="max-w-content mx-auto section-padding pt-28 lg:pt-36 pb-10 lg:pb-16">
         <Breadcrumbs items={[{ label: t(`nav.svc_${service === "organic" ? "social" : service}`) }]} />
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14 items-start mt-8">
-          <div className="flex flex-col gap-6">
+        {/* En móvil: título e introducción, los vídeos y el resto; en escritorio, los vídeos a la derecha */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-x-14 gap-y-8 items-start mt-8">
+          <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-1">
             <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               {t(`svcpage.${service}.h1`)}
             </h1>
@@ -72,6 +75,21 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
               {t(`svcpage.${service}.intro`)}
               {service !== "corporate" && <> {t("svcpage.on_camera")}</>}
             </p>
+          </div>
+          <div className="flex justify-center lg:col-start-2 lg:row-start-1 lg:row-span-2">
+            {service === "corporate" ? (
+              <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 520px)" }} indexable ariaName={mainVideo?.name} />
+            ) : (
+              <ServiceTrio
+                videos={videosMain.map((file, i) => ({
+                  file,
+                  brand: data?.videos?.find((v) => v.storage_path === file)?.title ?? null,
+                  name: topVideos[i]?.name,
+                }))}
+              />
+            )}
+          </div>
+          <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-2">
             <p className="text-off-white" style={{ fontSize: "17px", lineHeight: 1.55 }}>{s.ideal[l]}</p>
             <ul className="flex flex-col gap-3">
               {s.bullets.map((b, i) => (
@@ -92,13 +110,6 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
                 {t("svcpage.or_quote")}
               </a>
             </div>
-          </div>
-          <div className="flex justify-center">
-            {service === "corporate" ? (
-              <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 520px)" }} indexable ariaName={mainVideo?.name} />
-            ) : (
-              <ServiceVideo file={videosMain[0]} aspect="9 / 16" style={{ width: "min(100%, calc(80vh * 9 / 16))" }} indexable ariaName={mainVideo?.name} />
-            )}
           </div>
         </div>
       </section>

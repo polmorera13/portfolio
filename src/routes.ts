@@ -23,7 +23,8 @@ export type PageKey =
   | "about"
   | "thanks"
   | "privacy"
-  | "legal";
+  | "legal"
+  | "landing";
 
 export const PATHS: Record<PageKey, Record<Locale, string>> = {
   home: { es: "/", en: "/en/", ca: "/ca/" },
@@ -40,10 +41,12 @@ export const PATHS: Record<PageKey, Record<Locale, string>> = {
   thanks: { es: "/gracias/", en: "/en/thank-you/", ca: "/ca/gracies/" },
   privacy: { es: "/politica-privacidad/", en: "/en/privacy-policy/", ca: "/ca/politica-privacitat/" },
   legal: { es: "/aviso-legal/", en: "/en/legal-notice/", ca: "/ca/avis-legal/" },
+  // Landing de los anuncios (noindex: solo se llega desde los anuncios)
+  landing: { es: "/propuesta-gratis/", en: "/en/free-proposal/", ca: "/ca/proposta-gratis/" },
 };
 
 /** Páginas que no van al sitemap y llevan noindex. */
-export const NOINDEX_PAGES: PageKey[] = ["thanks", "privacy", "legal"];
+export const NOINDEX_PAGES: PageKey[] = ["thanks", "privacy", "legal", "landing"];
 
 /** Rutas sin versión por idioma (noindex): textos legales. */
 /** Páginas de caso (dependen de "Casos" en las migas de pan). */

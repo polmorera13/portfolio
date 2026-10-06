@@ -9,14 +9,26 @@ const BAR_GAP = 12; // separación del borde inferior
 // Aparece cuando los botones de la portada (#hero-ctas) salen de pantalla y se
 // oculta cuando el contacto está a la vista. Con el menú abierto la oculta el
 // CSS (html[data-menu-open], lo pone el Header).
-export default function MobileCTABar() {
+export default function MobileCTABar({
+  href = "#contacto-propuesta",
+  label,
+  heroId = "hero-ctas",
+  contactId = "contacto",
+}: {
+  /** Adónde lleva el botón principal y su texto (por defecto, la propuesta gratis del contacto). */
+  href?: string;
+  label?: string;
+  /** Mientras estos dos elementos se ven, la barra se oculta. */
+  heroId?: string;
+  contactId?: string;
+} = {}) {
   const { t } = useTranslation();
   const [heroCtasVisible, setHeroCtasVisible] = useState(true);
   const [contactVisible, setContactVisible] = useState(false);
 
   useEffect(() => {
-    const heroCtas = document.getElementById("hero-ctas");
-    const contact = document.getElementById("contacto");
+    const heroCtas = document.getElementById(heroId);
+    const contact = document.getElementById(contactId);
     const observers: IntersectionObserver[] = [];
 
     if (heroCtas) {
@@ -30,7 +42,7 @@ export default function MobileCTABar() {
       observers.push(o);
     }
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [heroId, contactId]);
 
   const visible = !heroCtasVisible && !contactVisible;
 
@@ -57,12 +69,12 @@ export default function MobileCTABar() {
         aria-hidden={!visible}
       >
         <a
-          href="#contacto-propuesta"
+          href={href}
           tabIndex={visible ? 0 : -1}
           className="flex-[2] flex items-center justify-center bg-brand-blue-deep text-off-white font-semibold text-base rounded-lg shadow-lg shadow-black/30"
           style={{ height: BAR_HEIGHT }}
         >
-          {t("nav.cta")}
+          {label ?? t("nav.cta")}
         </a>
         <a
           href={whatsappUrl(t("contact.whatsapp_msg"))}

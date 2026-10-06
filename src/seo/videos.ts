@@ -3,7 +3,7 @@ import type { Locale } from "../types";
 import type { PageKey } from "../routes";
 import type { InitialData } from "../lib/initialData";
 import { CASE_DETAILS, caseDetailFor } from "../data/caseDetails";
-import { services as SERVICES } from "../data/services";
+import { serviceFiles } from "../data/services";
 import { UGC_MALE_MAIN, ugcMaleExamples } from "../data/ugcMale";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -31,10 +31,9 @@ export function videoName(brand: string, label: string | null | undefined, lang:
 /** Miniatura de un vídeo del catálogo (thumbs/<archivo>.jpg). */
 export const catalogPoster = (file: string) => `thumbs/${file.replace(/\.mp4$/, ".jpg")}`;
 
-/** Archivo principal del servicio (el vídeo grande de la página). */
+/** Archivo principal del servicio (el primero de arriba de la página). */
 export function serviceMainFile(svc: "ads" | "organic" | "corporate", data: InitialData | null): string | null {
-  const cfg = (data?.services?.[svc] ?? []).filter((v): v is string => !!v);
-  return cfg[0] ?? SERVICES.find((s) => s.configKey === svc)?.videos[0] ?? null;
+  return serviceFiles(svc, data?.services?.[svc])[0] ?? null;
 }
 
 /** Marca de un vídeo del catálogo (o null si no está). */
@@ -89,18 +88,20 @@ export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null)
   }
   const svc = SVC_OF[key];
   if (svc) {
-    const file = serviceMainFile(svc, data);
-    if (!file) return [];
-    const brand = catalogBrand(file, data);
+    const files = serviceFiles(svc, data?.services?.[svc]);
     const h1 = tl(lang, `svcpage.${svc}.h1`);
     const intro = tl(lang, `svcpage.${svc}.intro`);
-    return [{
-      file,
-      poster: catalogPoster(file),
-      vertical: svc !== "corporate",
-      name: brand ? videoName(brand, null, lang) : h1,
-      description: `${h1}. ${firstSentence(intro)}`,
-    }];
+    // Anuncios y redes: los tres de arriba; corporativo: el primero
+    return (svc === "corporate" ? files.slice(0, 1) : files.slice(0, 3)).map((file) => {
+      const brand = catalogBrand(file, data);
+      return {
+        file,
+        poster: catalogPoster(file),
+        vertical: svc !== "corporate",
+        name: brand ? videoName(brand, null, lang) : h1,
+        description: `${h1}. ${firstSentence(intro)}`,
+      };
+    });
   }
   return [];
 }

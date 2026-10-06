@@ -72,7 +72,7 @@ export default function Admin() {
   const svcVideos = (key: "ads" | "organic" | "corporate") => {
     const def = SERVICES.find((x) => x.configKey === key)!.videos;
     const chosen = svc[key];
-    return def.map((d, i) => (chosen && chosen.length ? chosen[i] ?? null : d));
+    return def.map((d, i): string | null => chosen?.[i] || d);
   };
 
   async function setServiceSlot(key: "ads" | "organic" | "corporate", index: number, slug: string) {

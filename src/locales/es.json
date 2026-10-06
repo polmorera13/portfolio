@@ -517,5 +517,74 @@
     ],
     "who_title": "Tú decides quién sale",
     "who_text": "Normalmente salgo yo. Si tu campaña necesita a otro hombre de otra edad, o a una mujer, trabajo con mi red de actores y actrices de distintas edades y perfiles. Lo decidimos juntos según el tono de la campaña y a quién le vendes."
+  },
+  "landing": {
+    "eyebrow": "Pol Morera · Creador UGC y productor de vídeo",
+    "h1": "Los 3 vídeos que tu negocio necesita para vender más",
+    "sub": "Mira el vídeo: te explico qué vídeo hago para tus anuncios, para tus redes y para tu web. Y te digo gratis cuáles necesitas tú.",
+    "vsl_placeholder": "Aquí va el vídeo de presentación (VSL)",
+    "vsl_aria": "Pol Morera explica los 3 vídeos que necesita tu negocio",
+    "cta": "Quiero mi propuesta gratis",
+    "cta_note": "Gratis y sin compromiso. Te respondo en 2 días laborables.",
+    "header_cta": "Propuesta gratis",
+    "works": "Ver todos mis trabajos →",
+    "proof": [
+      "+1.000 vídeos",
+      "+300 marcas",
+      "Desde Barcelona para toda España"
+    ],
+    "concepts_eyebrow": "Lo que hago",
+    "concepts_title": "Tres tipos de vídeo, cada uno con un objetivo",
+    "concept_want": "Quiero este vídeo →",
+    "results_title": "Resultados reales de clientes",
+    "results": [
+      {
+        "v": "390",
+        "l": "conversiones para MasterD en TikTok Ads"
+      },
+      {
+        "v": "10–20 %",
+        "l": "de conversión de los leads de Dogfy Diet"
+      },
+      {
+        "v": "31 meses",
+        "l": "trabajando con Apple Tree"
+      }
+    ],
+    "steps_title": "Cómo funciona",
+    "steps": [
+      {
+        "t": "Me cuentas tu negocio",
+        "d": "Rellenas el formulario con tu web o tu Instagram."
+      },
+      {
+        "t": "Te digo qué 3 vídeos necesitas",
+        "d": "En 2 días laborables y gratis: qué vídeo, para qué y dónde publicarlo."
+      },
+      {
+        "t": "Los grabamos",
+        "d": "Si te encaja, escribo el guion, grabo y mi equipo edita. La mayoría de proyectos están listos en 5–7 días laborables."
+      }
+    ],
+    "testimonials_title": "Lo que dicen las marcas",
+    "form_title": "Pide tu propuesta gratis",
+    "form_text": "Te digo qué 3 vídeos necesita tu negocio.",
+    "form_points": [
+      "Gratis y sin compromiso",
+      "En 2 días laborables",
+      "Para tus anuncios, tus redes o tu web"
+    ],
+    "form_need": "¿Qué vídeo te interesa?",
+    "form_need_optional": "(opcional)",
+    "need_options": [
+      "Anuncios",
+      "Redes sociales",
+      "Vídeo corporativo",
+      "Aún no lo sé"
+    ],
+    "or_whatsapp": "¿Prefieres hablar? Escríbeme por WhatsApp",
+    "faq_title": "Preguntas frecuentes",
+    "final_title": "¿Empezamos por la propuesta?",
+    "final_text": "Te digo qué 3 vídeos necesita tu negocio. Gratis."
   }
 }

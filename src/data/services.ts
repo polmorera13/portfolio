@@ -26,7 +26,8 @@ export const services: Service[] = [
     ],
     tag: { es: "Entrega en 5–7 días laborables", en: "Delivery in 5–7 working days", ca: "Lliurament en 5–7 dies laborables" },
     configKey: "ads",
-    videos: ["verisure-0726-crea9-compressed-web.mp4"],
+    // Tres de ejemplo (arriba de su página; en la portada se ve el primero)
+    videos: ["verisure-0726-crea9-compressed-web.mp4", "rastreator-5-09-26-compressed-web.mp4", "dogfy-diet-26-08-26-2-web.mp4"],
     portfolioHash: "#portfolio-anuncios",
   },
   {
@@ -46,7 +47,7 @@ export const services: Service[] = [
     ],
     tag: { es: "Packs mensuales", en: "Monthly packs", ca: "Packs mensuals" },
     configKey: "organic",
-    videos: ["axa-1-web.mp4"],
+    videos: ["axa-1-web.mp4", "bezoya-04-26-compressed-web.mp4", "yadea-23-04-26-compressed-web.mp4"],
     portfolioHash: "#portfolio-redes",
   },
   {
@@ -75,3 +76,9 @@ export const services: Service[] = [
     portfolioHash: "#portfolio-empresa",
   },
 ];
+
+/** Vídeos de un servicio: los elegidos en el panel (/api/services) casilla a casilla y, donde no hay, los por defecto. */
+export function serviceFiles(key: Service["configKey"], cfg?: (string | null)[] | null): string[] {
+  const def = services.find((s) => s.configKey === key)?.videos ?? [];
+  return def.map((d, i) => cfg?.[i] || d);
+}

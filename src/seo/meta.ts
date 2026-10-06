@@ -104,6 +104,18 @@ export const META: Record<Exclude<PageKey, "case-masterd" | "case-dogfy" | "case
       ca: "Avís legal de polmorera.es.",
     },
   },
+  landing: {
+    title: {
+      es: "Propuesta gratis: los 3 vídeos que necesita tu negocio | Pol Morera",
+      en: "Free proposal: the 3 videos your business needs | Pol Morera",
+      ca: "Proposta gratis: els 3 vídeos que necessita el teu negoci | Pol Morera",
+    },
+    description: {
+      es: "Vídeos para tus anuncios, tus redes y tu web. Pide tu propuesta gratis: te digo qué 3 vídeos necesita tu negocio en 2 días laborables.",
+      en: "Videos for your ads, your social media and your website. Get your free proposal: I'll tell you which 3 videos your business needs within 2 working days.",
+      ca: "Vídeos per als teus anuncis, les teves xarxes i la teva web. Demana la proposta gratis: et dic quins 3 vídeos necessita el teu negoci en 2 dies laborables.",
+    },
+  },
   thanks: {
     title: { es: "Gracias | Pol Morera", en: "Thank you | Pol Morera", ca: "Gràcies | Pol Morera" },
     description: {
