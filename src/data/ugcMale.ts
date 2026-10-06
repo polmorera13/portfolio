@@ -5,21 +5,21 @@ import type { InitialData } from "../lib/initialData";
 // Página "Creador UGC hombre": vídeos en los que sale Pol y preguntas propias.
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Vídeo principal: la creatividad 1 de MasterD (sale Pol). */
+/** Vídeo principal: Rastreator (sale Pol). El de MasterD se queda solo en su caso. */
 export const UGC_MALE_MAIN = {
-  file: "cases/masterd-2403-1-web.mp4",
-  poster: "cases/masterd-2403-1-web.webp",
-  brand: "MasterD",
+  file: "rastreator-5-09-26-compressed-web.mp4",
+  poster: "thumbs/rastreator-5-09-26-compressed.jpg",
+  brand: "Rastreator",
 };
 
 /** Ejemplos del portfolio en los que sale Pol (en todos menos en el de Wala). */
 export const UGC_MALE_EXAMPLES = [
-  "rastreator-5-09-26-compressed-web.mp4",
   "verisure-0726-crea9-compressed-web.mp4",
   "yadea-23-04-26-compressed-web.mp4",
   "dogfy-diet-oct-25-1-1-1-web.mp4",
   "petroprix2-240725-1-1-1-web.mp4",
   "bezoya-04-26-compressed-web.mp4",
+  "yoigo-3-vert-09-26-1-web.mp4",
 ];
 
 export interface UgcMaleExample {
