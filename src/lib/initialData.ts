@@ -11,6 +11,8 @@ export interface InitialData {
   cases: CaseStudy[];
   /** Miniaturas con versiones de 320/480 px: ruta sin extensión → ancho original (media.polmorera.es/variants.json). */
   variants?: Record<string, number>;
+  /** Vídeos con versión ligera en media.polmorera.es/v720/ (media.polmorera.es/v720.json). */
+  light?: string[];
 }
 
 declare global {

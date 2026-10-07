@@ -37,6 +37,13 @@ const data = {
   cases: await get("/api/cases", []),
 };
 if (!Object.keys(data.hero).length) delete data.hero;
+// Vídeos con versión ligera en /v720/ (ver src/lib/supabase.ts)
+try {
+  const r = await fetch("https://media.polmorera.es/v720.json", { signal: AbortSignal.timeout(15000) });
+  if (r.ok) data.light = await r.json();
+} catch (e) {
+  console.warn(`  ! v720.json: ${e.message} (vídeos originales)`);
+}
 // Miniaturas que tienen versiones de 320 y 480 px (ver src/lib/thumbs.ts)
 try {
   const r = await fetch("https://media.polmorera.es/variants.json", { signal: AbortSignal.timeout(15000) });

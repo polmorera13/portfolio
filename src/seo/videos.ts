@@ -1,4 +1,5 @@
 import i18n from "../lib/i18n";
+import { lightVideo } from "../lib/supabase";
 import type { Locale } from "../types";
 import type { PageKey } from "../routes";
 import type { InitialData } from "../lib/initialData";
@@ -106,4 +107,4 @@ export function pageVideos(key: PageKey, lang: Locale, data: InitialData | null)
   return [];
 }
 
-export const mediaAbs = (p: string) => (p.startsWith("http") ? p : `${MEDIA}/${p.replace(/^\//, "")}`);
+export const mediaAbs = (p: string) => (p.startsWith("http") ? p : `${MEDIA}/${lightVideo(p.replace(/^\//, ""))}`);
