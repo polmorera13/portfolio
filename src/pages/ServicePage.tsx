@@ -66,7 +66,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
       <section className="max-w-content mx-auto section-padding pt-28 lg:pt-36 pb-10 lg:pb-16">
         <Breadcrumbs items={[{ label: t(`nav.svc_${service === "organic" ? "social" : service}`) }]} />
         {/* En móvil: título e introducción, los vídeos y el resto; en escritorio, los vídeos a la derecha */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-x-14 gap-y-8 items-start mt-8">
+        <div className={`grid grid-cols-1 ${service === "corporate" ? "lg:grid-cols-[1.1fr_1fr]" : "lg:grid-cols-2"} gap-x-14 gap-y-8 items-start mt-8`}>
           <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-1">
             <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               {t(`svcpage.${service}.h1`)}
@@ -76,7 +76,7 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
               {service !== "corporate" && <> {t("svcpage.on_camera")}</>}
             </p>
           </div>
-          <div className="flex justify-center lg:col-start-2 lg:row-start-1 lg:row-span-2">
+          <div className="flex justify-center lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-28">
             {service === "corporate" ? (
               <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 520px)" }} indexable ariaName={mainVideo?.name} />
             ) : (
@@ -115,24 +115,28 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
       </section>
 
       {/* Qué incluye y para quién es (respuestas directas, fáciles de citar) */}
-      <section className="max-w-content mx-auto section-padding py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
-        <div className="flex flex-col gap-5">
-          <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("svcpage.includes_title")}</h2>
-          <ul className="flex flex-col gap-3">
-            {(t(`svcpage.${service}.includes`, { returnObjects: true }) as string[]).map((it, i) => (
-              <li key={i} className="flex items-start gap-3 text-off-white/90" style={{ fontSize: "16.5px", lineHeight: 1.55 }}>
-                <Check size={18} className="text-brand-blue mt-1 shrink-0" strokeWidth={3} aria-hidden />
-                {it}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col gap-5">
-          <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("svcpage.for_who_title")}</h2>
-          <p className="text-off-white/90" style={{ fontSize: "17px", lineHeight: 1.65 }}>{t(`svcpage.${service}.for_who`)}</p>
-          {service === "ads" && (
-            <a href={pageHref("guide-ugc", l)} className="self-start text-brand-blue font-semibold hover:text-off-white transition-colors">{t("links.guide")}</a>
-          )}
+      <section className="on-light mt-6">
+        <div className="max-w-content mx-auto section-padding py-14 lg:py-20 grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
+          <div className="flex flex-col gap-6">
+            <h2 className="font-bold" style={{ color: "#0D1B2A", fontSize: "clamp(26px, 3vw, 40px)", lineHeight: 1.1 }}>{t("svcpage.includes_title")}</h2>
+            <ul className="flex flex-col">
+              {(t(`svcpage.${service}.includes`, { returnObjects: true }) as string[]).map((it, i) => (
+                <li key={i} className="flex items-start gap-4 py-4 border-b" style={{ borderColor: "#DCE3EC", color: "#0D1B2A", fontSize: "17px", lineHeight: 1.5 }}>
+                  <span className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EAF2FB" }}>
+                    <Check size={17} color="#2D6FB8" strokeWidth={3} aria-hidden />
+                  </span>
+                  <span className="pt-0.5">{it}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-3xl bg-brand-blue-deep p-7 sm:p-9 flex flex-col gap-5 shadow-xl lg:mt-14" style={{ boxShadow: "0 24px 50px rgba(45,111,184,.25)" }}>
+            <h2 className="font-bold text-white" style={{ fontSize: "clamp(24px, 2.6vw, 34px)", lineHeight: 1.15 }}>{t("svcpage.for_who_title")}</h2>
+            <p className="text-white" style={{ fontSize: "18px", lineHeight: 1.65 }}>{t(`svcpage.${service}.for_who`)}</p>
+            {service === "ads" && (
+              <a href={pageHref("guide-ugc", l)} className="self-start text-white font-semibold underline underline-offset-4 decoration-white/50 hover:decoration-white">{t("links.guide")}</a>
+            )}
+          </div>
         </div>
       </section>
 

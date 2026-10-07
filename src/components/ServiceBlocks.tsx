@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { useTranslation } from "../lib/i18n";
 import { usePage } from "../lib/page";
 import { pageHref } from "../routes";
@@ -14,11 +14,18 @@ export function ProcessSteps() {
   return (
     <section className="max-w-content mx-auto section-padding py-10 lg:py-14">
       <h2 className="text-off-white font-bold text-2xl lg:text-3xl mb-6">{t("svcpage.process")}</h2>
-      <ol className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <ol className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-10">
         {Array.isArray(steps) && steps.map((st, i) => (
-          <li key={i} className={`rounded-xl bg-charcoal p-5 ${i === steps.length - 1 ? "border-2 border-brand-blue" : "border border-brand-blue/15"}`}>
+          <li key={i} className={`relative rounded-xl bg-charcoal p-5 ${i === steps.length - 1 ? "border-2 border-brand-blue" : "border border-brand-blue/15"}`}>
             <span className="block text-brand-blue text-xs font-bold tracking-[0.15em] mb-1">{st.day}</span>
             <span className="text-off-white font-bold text-lg"><span className="text-brand-blue mr-1.5">{st.n}</span>{st.title}</span>
+            {/* Flecha al siguiente paso: hacia abajo en móvil, a la derecha en escritorio */}
+            {i < steps.length - 1 && (
+              <span aria-hidden="true" className="absolute z-[1] w-8 h-8 rounded-full bg-brand-blue-deep text-white flex items-center justify-center shadow-lg left-1/2 -bottom-7 -translate-x-1/2 lg:left-auto lg:bottom-auto lg:translate-x-0 lg:-right-9 lg:top-1/2 lg:-translate-y-1/2">
+                <ArrowDown size={16} strokeWidth={2.5} className="lg:hidden" />
+                <ArrowRight size={16} strokeWidth={2.5} className="hidden lg:block" />
+              </span>
+            )}
           </li>
         ))}
       </ol>

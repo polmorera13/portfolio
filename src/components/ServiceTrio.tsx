@@ -20,16 +20,17 @@ export interface TrioVideo {
 
 export default function ServiceTrio({ videos }: { videos: TrioVideo[] }) {
   return (
-    <div className="relative w-full max-w-[560px] mx-auto px-1 pb-6">
+    <div className="relative w-full max-w-[560px] lg:max-w-none mx-auto px-1 pb-6 lg:pt-4">
       {/* Halo azul detrás de los tres */}
       <div aria-hidden="true" className="absolute inset-x-6 top-10 bottom-10 rounded-full bg-brand-blue/25 blur-3xl" />
-      <ul className="relative grid grid-cols-3 gap-2.5 sm:gap-4 items-start">
+      {/* Móvil: tres columnas. Escritorio: más grandes, un poco solapados y el del centro delante */}
+      <ul className="relative grid grid-cols-3 gap-2.5 sm:gap-4 items-start lg:flex lg:justify-center lg:gap-0">
         {videos.slice(0, 3).map((v, i) => {
           const f = FRAMES[i];
           return (
             <li
               key={v.file}
-              className="trio-card rounded-2xl p-1.5 sm:p-2 shadow-2xl shadow-black/40 transition-transform duration-300 ease-out"
+              className={`trio-card rounded-2xl p-1.5 sm:p-2 shadow-2xl shadow-black/40 transition-transform duration-300 ease-out lg:w-[44%] lg:shrink-0 lg:-mx-[3%] ${i === 1 ? "trio-center relative z-10" : ""}`}
               style={{ background: f.bg, ["--trio-r" as string]: `${f.rotate}deg`, ["--trio-y" as string]: `${f.y}px` }}
             >
               <VideoPlayer

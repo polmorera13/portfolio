@@ -76,22 +76,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Trayectoria (de LinkedIn) */}
-      <section className="max-w-content mx-auto section-padding py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-14">
-        <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("aboutpage.career_title")}</h2>
-        <ol className="flex flex-col max-w-3xl">
-          {(t("aboutpage.career", { returnObjects: true }) as { when: string; role: string; org: string; d: string }[]).map((c, i) => (
-            <li key={i} className="grid grid-cols-1 sm:grid-cols-[130px_1fr] gap-1 sm:gap-6 border-t border-off-white/10 py-5">
-              <span className="text-brand-blue font-bold text-sm tabular-nums pt-0.5">{c.when}</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-off-white font-bold text-lg leading-snug">{c.role} <span className="text-steel-blue font-semibold">· {c.org}</span></h3>
-                <p className="text-off-white/85" style={{ fontSize: "16px", lineHeight: 1.6 }}>{c.d}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       {/* En cifras */}
       <section className="bg-brand-blue-deep">
         <div className="max-w-content mx-auto section-padding py-12 lg:py-16">

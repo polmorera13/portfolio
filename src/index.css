@@ -150,8 +150,9 @@ html {
 @media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } }
 
 /* ── Tres vídeos de ejemplo de las páginas de servicio (ServiceTrio) ── */
-.trio-card { transform: rotate(var(--trio-r, 0deg)) translateY(var(--trio-y, 0px)); }
-.trio-card:hover, .trio-card:focus-within { transform: rotate(0deg) translateY(calc(var(--trio-y, 0px) - 6px)); }
+.trio-card { transform: rotate(var(--trio-r, 0deg)) translateY(var(--trio-y, 0px)) scale(var(--trio-s, 1)); }
+.trio-card:hover, .trio-card:focus-within { transform: rotate(0deg) translateY(calc(var(--trio-y, 0px) - 6px)) scale(var(--trio-s, 1)); z-index: 20; }
+@media (min-width: 1024px) { .trio-center { --trio-s: 1.06; } }
 @media (prefers-reduced-motion: reduce) { .trio-card, .trio-card:hover { transition: none; } }
 
 /* ── Aparecer al hacer scroll (motion-lite) ── */

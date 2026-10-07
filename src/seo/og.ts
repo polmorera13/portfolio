@@ -22,7 +22,7 @@ export const ogImageUrl = (key: PageKey, lang: Locale) => `${SITE_URL}/og/${ogSl
 
 const CASE_FIGURE: Record<string, Record<Locale, string>> = {
   masterd: { es: "390 conversiones", en: "390 conversions", ca: "390 conversions" },
-  dogfy: { es: "10–20 % de conversión", en: "10–20% conversion rate", ca: "10–20 % de conversió" },
+  dogfy: { es: "15 % de conversión", en: "15% conversion rate", ca: "15 % de conversió" },
   reactiva: { es: "+190 entregables en 15 meses", en: "190+ deliverables in 15 months", ca: "+190 lliurables en 15 mesos" },
   agencia: { es: "31 meses · +220 vídeos", en: "31 months · 220+ videos", ca: "31 mesos · +220 vídeos" },
 };

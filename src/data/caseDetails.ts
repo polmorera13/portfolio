@@ -92,9 +92,9 @@ export const CASE_DETAILS: CaseDetail[] = [
         { label: { es: "Media de los anuncios de captación en Meta", en: "Average for Meta lead ads", ca: "Mitjana dels anuncis de captació a Meta" }, value: 7.72, display: "7,72 %" },
       ],
       note: {
-        es: "Dogfy Diet: punto medio de su 10–20 %. Media: campañas de captación en Facebook, todos los sectores (WordStream y LocaliQ, 2025).",
-        en: "Dogfy Diet: midpoint of its 10–20%. Average: Facebook lead campaigns across all industries (WordStream and LocaliQ, 2025).",
-        ca: "Dogfy Diet: punt mitjà del seu 10–20 %. Mitjana: campanyes de captació a Facebook, tots els sectors (WordStream i LocaliQ, 2025).",
+        es: "Media: campañas de captación en Facebook, todos los sectores (WordStream y LocaliQ, 2025).",
+        en: "Average: Facebook lead campaigns across all industries (WordStream and LocaliQ, 2025).",
+        ca: "Mitjana: campanyes de captació a Facebook, tots els sectors (WordStream i LocaliQ, 2025).",
       },
     },
     sector: { es: "Comida para perros", en: "Dog food", ca: "Menjar per a gossos" },
@@ -155,7 +155,7 @@ export const CASE_DETAILS: CaseDetail[] = [
       ],
       figures: [
         { label: { es: "Relación", en: "Relationship", ca: "Relació" }, value: { es: "2 años y sigue activa", en: "2 years and still going", ca: "2 anys i continua activa" } },
-        { label: { es: "Tasa de conversión de los leads", en: "Lead conversion rate", ca: "Taxa de conversió dels leads" }, value: { es: "10–20 %", en: "10–20%", ca: "10–20 %" } },
+        { label: { es: "Tasa de conversión de los leads", en: "Lead conversion rate", ca: "Taxa de conversió dels leads" }, value: { es: "15 %", en: "15%", ca: "15 %" } },
         { label: { es: "CTR medio de los anuncios", en: "Average ad CTR", ca: "CTR mitjà dels anuncis" }, value: { es: "0,50 %", en: "0.50%", ca: "0,50 %" } },
         {
           label: { es: "Momentos del año", en: "Moments of the year", ca: "Moments de l'any" },
@@ -164,14 +164,14 @@ export const CASE_DETAILS: CaseDetail[] = [
       ],
     },
     metaTitle: {
-      es: "Caso Dogfy Diet: 10–20 % de conversión · Pol Morera",
-      en: "Dogfy Diet case study: 10–20% lead conversion · Pol Morera",
-      ca: "Cas Dogfy Diet: 10–20 % de conversió · Pol Morera",
+      es: "Caso Dogfy Diet: 15 % de conversión · Pol Morera",
+      en: "Dogfy Diet case study: 15% lead conversion · Pol Morera",
+      ca: "Cas Dogfy Diet: 15 % de conversió · Pol Morera",
     },
     metaDescription: {
-      es: "Dos años creando vídeos para los anuncios de Dogfy Diet en cada momento del año: leads con un 10–20 % de conversión y un CTR medio del 0,50 %.",
-      en: "Two years creating videos for Dogfy Diet's ads for every moment of the year: leads converting at 10–20% and a 0.50% average CTR.",
-      ca: "Dos anys creant vídeos per als anuncis de Dogfy Diet en cada moment de l'any: leads amb un 10–20 % de conversió i un CTR mitjà del 0,50 %.",
+      es: "Dos años creando vídeos para los anuncios de Dogfy Diet en cada momento del año: leads con un 15 % de conversión y un CTR medio del 0,50 %.",
+      en: "Two years creating videos for Dogfy Diet's ads for every moment of the year: leads converting at 15% and a 0.50% average CTR.",
+      ca: "Dos anys creant vídeos per als anuncis de Dogfy Diet en cada moment de l'any: leads amb un 15 % de conversió i un CTR mitjà del 0,50 %.",
     },
   },
   {

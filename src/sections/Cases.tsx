@@ -14,6 +14,7 @@ import { videoName } from "../seo/videos";
 import type { Locale } from "../types";
 import { useCases } from "../hooks/useCases";
 import VideoPlayer from "../components/VideoPlayer";
+import { AxisChart, CaseVisual } from "../components/CaseVisuals";
 
 // "Casos de éxito / KPIs": carrusel de casos (uno visible cada vez), gestionado
 // desde el panel (/api/cases). Si no hay casos publicados, la sección no se muestra.
@@ -173,6 +174,11 @@ function CaseCard({ c }: { c: CaseStudy }) {
         </div>
         <CaseResults c={c} card />
         {detail && (
+          <div className="flex-1 flex flex-col justify-center empty:hidden">
+            <CaseVisual slug={detail.slug} lang={lang as Locale} />
+          </div>
+        )}
+        {detail && (
           <a href={pageHref(detail.page, lang)} className="mt-auto self-start text-brand-blue font-semibold hover:underline underline-offset-4">
             {t("links.full_case")}
           </a>
@@ -250,7 +256,16 @@ export function CaseResults({ c, showQuote = true, card = false }: { c: CaseStud
         </blockquote>
       )}
 
-      {bars.length > 0 && (
+      {bars.length > 0 && detail?.cardChart && (
+        <AxisChart
+          title={tr(chart.title, lang)}
+          bars={bars.map((b) => ({ label: tr(b.label, lang), value: b.value, display: b.display || String(b.value) }))}
+          note={chart.note ? tr(chart.note, lang) : undefined}
+          lang={lang as Locale}
+        />
+      )}
+
+      {bars.length > 0 && !detail?.cardChart && (
         <div className="rounded-xl border border-off-white/10 bg-navy/40 p-4 sm:p-5 flex flex-col gap-3">
           {tr(chart.title, lang) && (
             <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{tr(chart.title, lang)}</span>
