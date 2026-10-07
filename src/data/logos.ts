@@ -1,41 +1,65 @@
 export type LogoItem = {
   name: string;
   file: string;
+  /** Ajuste fino del tamaño (1 = el que le toca por su forma; los que son un bloque de color, algo menos). */
   scale?: number;
-  /** Medidas reales del archivo (evitan saltos al cargar). */
-  width?: number;
-  height?: number;
+  /** Medidas reales del archivo (sin márgenes): dan la forma del logo y evitan saltos al cargar. */
+  width: number;
+  height: number;
 };
 
+// Muro de logos: marcas con las que he trabajado. Los archivos están recortados
+// (sin márgenes) y sin fondo; el tamaño en pantalla lo calcula LogoMarquee según
+// la forma de cada logo, para que todos pesen parecido a la vista.
 export const logos: LogoItem[] = [
-  { name: "Daikin",           file: "/logos/logo-def-5.webp", width: 238, height: 192 },
-  { name: "Wallapop",         file: "/logos/wallapoplogo.webp", width: 495, height: 192 },
-  { name: "Qonto",            file: "/logos/logo-web-1.webp", width: 238, height: 192 },
-  { name: "Scalable Capital", file: "/logos/logo-web-12.webp", width: 238, height: 192 },
-  { name: "Bezoya",           file: "/logos/logobezoya.webp", width: 238, height: 192 },
-  { name: "Securitas Direct", file: "/logos/logo-web-4.webp", width: 238, height: 192 },
-  { name: "Yoigo",            file: "/logos/logo-web-3.webp", width: 238, height: 192 },
-  { name: "Just Eat",         file: "/logos/logojusteat.webp", width: 238, height: 192 },
-  { name: "Revolut",          file: "/logos/logo-web-11.webp", width: 238, height: 192 },
-  { name: "Zscaler",          file: "/logos/logo-def-4.webp", width: 238, height: 192 },
-  { name: "Ecoembes",         file: "/logos/ecoembes_384x136.png", scale: 0.78, width: 768, height: 272 },
-  { name: "Dogfy Diet",       file: "/logos/logo-web-13.webp", width: 238, height: 192 },
-  { name: "Natural Elements", file: "/logos/logo-def-3.webp", width: 238, height: 192 },
-  { name: "Pato",             file: "/logos/logo.webp", width: 180, height: 192 },
-  { name: "Kit Digital",      file: "/logos/logo-def-1.webp", width: 238, height: 192 },
-  { name: "SkyShowtime",      file: "/logos/logoskyshowtime.svg", width: 2000, height: 467 },
-  { name: "Reactiva Online",  file: "/logos/logo-def-2.webp", width: 238, height: 192 },
-  { name: "Gillette",         file: "/logos/logo-def-10.webp", width: 238, height: 192 },
-  { name: "Iberdrola",        file: "/logos/logo-def-6.webp", width: 238, height: 192 },
-  { name: "Moeve",            file: "/logos/logo-def-7.webp", width: 238, height: 192 },
-  { name: "QuéComparo.es",    file: "/logos/logo-def-8.webp", width: 238, height: 192 },
-  { name: "IFEMA Madrid",     file: "/logos/logo-def-9.webp", width: 238, height: 192 },
-  { name: "Curaprox",         file: "/logos/logo-def-11.webp", width: 238, height: 192 },
-  { name: "Bitnovo",          file: "/logos/logo-def-12.webp", width: 238, height: 192 },
-  { name: "sepiia",           file: "/logos/logo-def-13.webp", width: 238, height: 192 },
-  { name: "Marvel Snap",      file: "/logos/logo-def-15.webp", width: 238, height: 192 },
-  { name: "Kymco",            file: "/logos/logo-def-18.webp", width: 238, height: 192 },
-  { name: "Reverso",          file: "/logos/logo-def-19.webp", width: 238, height: 192 },
-  { name: "Wala",             file: "/logos/logo-def-16.webp", width: 238, height: 192 },
-  { name: "Pascual",          file: "/logos/logo-1.webp", width: 416, height: 192 },
+  { name: "Revolut", file: "/logos/revolut.webp", width: 360, height: 84 },
+  { name: "AXA", file: "/logos/axa.webp", width: 116, height: 116, scale: 0.82 },
+  { name: "Verisure", file: "/logos/verisure.webp", width: 269, height: 116 },
+  { name: "Gillette", file: "/logos/gillette.webp", width: 360, height: 91 },
+  { name: "Iberdrola", file: "/logos/iberdrola.webp", width: 100, height: 116 },
+  { name: "Yoigo", file: "/logos/yoigo.webp", width: 360, height: 114 },
+  { name: "Just Eat", file: "/logos/justeat.webp", width: 117, height: 116 },
+  { name: "Daikin", file: "/logos/daikin.webp", width: 360, height: 77 },
+  { name: "Fiverr", file: "/logos/fiverr.webp", width: 360, height: 109 },
+  { name: "Rastreator", file: "/logos/rastreator.webp", width: 360, height: 48 },
+  { name: "Wallapop", file: "/logos/wallapop.webp", width: 360, height: 94 },
+  { name: "Qonto", file: "/logos/qonto.webp", width: 360, height: 109 },
+  { name: "Ecoembes", file: "/logos/ecoembes.webp", width: 360, height: 90 },
+  { name: "Too Good To Go", file: "/logos/toogoodtogo.webp", width: 149, height: 116 },
+  { name: "Moeve", file: "/logos/moeve.webp", width: 360, height: 68 },
+  { name: "Ironhack", file: "/logos/ironhack.webp", width: 108, height: 116, scale: 0.9 },
+  { name: "Securitas Direct", file: "/logos/securitas.webp", width: 174, height: 116 },
+  { name: "MasterD", file: "/logos/masterd.webp", width: 360, height: 40 },
+  { name: "Bezoya", file: "/logos/bezoya.webp", width: 193, height: 116 },
+  { name: "Yadea", file: "/logos/yadea.webp", width: 360, height: 97 },
+  { name: "Scalable Capital", file: "/logos/scalable.webp", width: 360, height: 113 },
+  { name: "Rioja", file: "/logos/rioja.webp", width: 360, height: 92 },
+  { name: "Pascual", file: "/logos/pascual.webp", width: 245, height: 116, scale: 0.9 },
+  { name: "Dogfy Diet", file: "/logos/dogfy.webp", width: 157, height: 116, scale: 0.85 },
+  { name: "SkyShowtime", file: "/logos/skyshowtime.webp", width: 360, height: 81, scale: 1.15 },
+  { name: "Marvel Snap", file: "/logos/marvelsnap.webp", width: 360, height: 77 },
+  { name: "Bitnovo", file: "/logos/bitnovo.webp", width: 360, height: 110 },
+  { name: "Breathe Right", file: "/logos/breatheright.webp", width: 228, height: 116 },
+  { name: "Zscaler", file: "/logos/zscaler.webp", width: 255, height: 116 },
+  { name: "Kymco", file: "/logos/kymco.webp", width: 145, height: 116 },
+  { name: "IFEMA Madrid", file: "/logos/ifema.webp", width: 169, height: 116 },
+  { name: "Curaprox", file: "/logos/curaprox.webp", width: 360, height: 89, scale: 0.9 },
+  { name: "Reverso", file: "/logos/reverso.webp", width: 360, height: 87 },
+  { name: "sepiia", file: "/logos/sepiia.webp", width: 165, height: 116 },
+  { name: "Reactiva Online", file: "/logos/reactiva.webp", width: 137, height: 116 },
+  { name: "Natural Elements", file: "/logos/naturalelements.webp", width: 321, height: 116 },
+  { name: "Pato", file: "/logos/pato.webp", width: 108, height: 116 },
+  { name: "Kit Digital", file: "/logos/kitdigital.webp", width: 360, height: 103 },
+  { name: "QuéComparo.es", file: "/logos/quecomparo.webp", width: 306, height: 116, scale: 0.9 },
+  { name: "Wala", file: "/logos/wala.webp", width: 116, height: 116, scale: 0.85 },
+  { name: "Roamless", file: "/logos/roamless.webp", width: 360, height: 63 },
+  { name: "Murwal", file: "/logos/murwal.webp", width: 360, height: 58 },
+  { name: "Nordy", file: "/logos/nordy.webp", width: 360, height: 104 },
+  { name: "NorthPlanner", file: "/logos/northplanner.webp", width: 360, height: 41 },
+  { name: "Uvesa", file: "/logos/uvesa.webp", width: 115, height: 116, scale: 0.85 },
+  { name: "Equito", file: "/logos/equito.webp", width: 360, height: 84 },
+  { name: "Lo Reclamamos", file: "/logos/loreclamamos.webp", width: 360, height: 96 },
+  { name: "Workerpark", file: "/logos/workerpark.webp", width: 360, height: 57 },
+  { name: "PlayFilm", file: "/logos/playfilm.webp", width: 360, height: 85 },
+  { name: "Letrame", file: "/logos/letrame.webp", width: 360, height: 116 },
 ];

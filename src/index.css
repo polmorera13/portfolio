@@ -42,7 +42,7 @@
 }
 
 .animate-marquee {
-  animation: marquee 35s linear infinite;
+  animation: marquee 60s linear infinite; /* 50 logos: la misma velocidad que antes con 30 */
 }
 
 .animate-marquee-fast {
@@ -60,11 +60,10 @@
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* ── Logo marquee mobile height ─────────────────────────────── */
+/* ── Muro de logos: tamaño según la forma (LogoMarquee), algo menor en móvil ── */
+.logo-img { width: calc(var(--logo-w) * var(--logo-k, 1)); height: calc(var(--logo-h) * var(--logo-k, 1)); }
 @media (max-width: 767px) {
-  .logo-img {
-    max-height: 40px !important;
-  }
+  .logo-img { --logo-k: 0.78; }
 }
 
 /* ── Hero reel float ─────────────────────────────────────────── */
