@@ -34,7 +34,7 @@ export const logos: LogoItem[] = [
   { name: "Rioja", file: "/logos/rioja.webp", width: 360, height: 92 },
   { name: "Pascual", file: "/logos/pascual.webp", width: 245, height: 116, scale: 0.9 },
   { name: "Dogfy Diet", file: "/logos/dogfy.webp", width: 157, height: 116, scale: 0.85 },
-  { name: "SkyShowtime", file: "/logos/skyshowtime.webp", width: 360, height: 83, scale: 1.15 },
+  { name: "SkyShowtime", file: "/logos/skyshowtime-2.webp", width: 360, height: 83, scale: 1.15 },
   { name: "Marvel Snap", file: "/logos/marvelsnap.webp", width: 360, height: 77 },
   { name: "Bitnovo", file: "/logos/bitnovo.webp", width: 360, height: 110 },
   { name: "Breathe Right", file: "/logos/breatheright.webp", width: 228, height: 116 },
