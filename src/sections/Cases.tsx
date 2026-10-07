@@ -70,7 +70,8 @@ export default function Cases() {
           </div>
 
           {/* Carrusel: una tarjeta cada vez; se desliza con el dedo o el trackpad */}
-          <motion.div variants={fadeUp} className="flex flex-col gap-5">
+          <motion.div variants={fadeUp} className="flex flex-col gap-4">
+            <div className="relative">
             <div
               ref={trackRef}
               onScroll={onScroll}
@@ -83,7 +84,7 @@ export default function Cases() {
               {cases.map((c, i) => (
                 <div
                   key={c.id}
-                  className="w-full shrink-0 snap-center"
+                  className="w-full shrink-0 snap-center flex"
                   role="group"
                   aria-roledescription="slide"
                   aria-label={`${t("cases.case")} ${pad(i + 1)} / ${pad(cases.length)}`}
@@ -94,25 +95,32 @@ export default function Cases() {
             </div>
 
             {cases.length > 1 && (
-              <div className="flex items-center justify-center gap-4">
+              <>
                 <button type="button" onClick={() => go(index - 1)} disabled={index === 0}
-                  className="w-10 h-10 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-off-white hover:border-steel-blue/60 disabled:opacity-30 transition-colors"
+                  className="case-arrow -left-2 lg:-left-7"
                   aria-label={t("carousel.prev")}>
-                  <CaretLeft size={18} weight="bold" />
+                  <CaretLeft size={22} weight="bold" />
                 </button>
+                <button type="button" onClick={() => go(index + 1)} disabled={index === cases.length - 1}
+                  className="case-arrow -right-2 lg:-right-7"
+                  aria-label={t("carousel.next")}>
+                  <CaretRight size={22} weight="bold" />
+                </button>
+              </>
+            )}
+            </div>
+
+            {cases.length > 1 && (
+              <div className="flex items-center justify-center gap-4">
                 <span className="text-sm font-semibold text-off-white tabular-nums">
                   {t("cases.case")} {pad(index + 1)} <span className="text-steel-blue">/ {pad(cases.length)}</span>
                 </span>
-                <div className="flex gap-2" aria-hidden="true">
+                <div className="flex gap-2">
                   {cases.map((_, i) => (
-                    <span key={i} className={`w-2 h-2 rounded-full transition-colors ${i === index ? "bg-brand-blue" : "bg-steel-blue/40"}`} />
+                    <button key={i} type="button" onClick={() => go(i)} aria-label={`${t("cases.case")} ${pad(i + 1)}`} aria-current={i === index ? "true" : undefined}
+                      className={`h-2 rounded-full transition-all ${i === index ? "w-6 bg-brand-blue" : "w-2 bg-steel-blue/40 hover:bg-steel-blue/70"}`} />
                   ))}
                 </div>
-                <button type="button" onClick={() => go(index + 1)} disabled={index === cases.length - 1}
-                  className="w-10 h-10 rounded-full border border-charcoal flex items-center justify-center text-steel-blue hover:text-off-white hover:border-steel-blue/60 disabled:opacity-30 transition-colors"
-                  aria-label={t("carousel.next")}>
-                  <CaretRight size={18} weight="bold" />
-                </button>
               </div>
             )}
           </motion.div>
@@ -120,7 +128,11 @@ export default function Cases() {
       </div>
       <style dangerouslySetInnerHTML={{ __html: `
         #casos .snap-x::-webkit-scrollbar{display:none}
-        .case-grid{display:grid;gap:1.5rem;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "media" "body"}
+        .case-grid{display:grid;gap:1.5rem;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;grid-template-areas:"head" "media" "body";flex:1}
+        .case-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:#2D6FB8;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 0 4px rgba(13,27,42,.9);transition:transform .2s,background .2s,opacity .2s}
+        .case-arrow:hover:not(:disabled){background:#4A90D9;transform:translateY(-50%) scale(1.08)}
+        .case-arrow:disabled{opacity:0;pointer-events:none}
+        @media (min-width:1024px){.case-arrow{width:56px;height:56px}}
         @media (min-width:1024px){.case-grid{column-gap:2.5rem;row-gap:1.5rem;grid-template-columns:45fr 55fr;grid-template-rows:auto 1fr;grid-template-areas:"media head" "media body";align-items:start}}
       ` }} />
     </section>
@@ -134,7 +146,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
   const detail = caseDetailFor(c);
 
   return (
-    <article className="rounded-[22px] border border-off-white/10 bg-charcoal/50 p-5 sm:p-7 lg:p-9">
+    <article className="w-full flex flex-col rounded-[22px] border border-off-white/10 bg-charcoal/50 p-5 sm:p-7 lg:p-9">
       <div className="case-grid">
         <div style={{ gridArea: "head" }} className="flex flex-col gap-3">
           <CaseHeader c={c} />
@@ -149,7 +161,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
         <div style={{ gridArea: "body" }} className="flex flex-col gap-6 min-w-0">
           <CaseResults c={c} card />
           {detail && (
-            <a href={pageHref(detail.page, lang)} className="self-start text-brand-blue font-semibold hover:text-off-white transition-colors">
+            <a href={pageHref(detail.page, lang)} className="mt-auto self-start text-brand-blue font-semibold hover:text-off-white transition-colors">
               {t("links.full_case")}
             </a>
           )}
