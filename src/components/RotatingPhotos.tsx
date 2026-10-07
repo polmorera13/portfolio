@@ -16,8 +16,13 @@ export interface Photo {
  * desde ahí. Gira solo con el marco a la vista; con "reducir movimiento" no gira
  * (las miniaturas siguen funcionando).
  */
-export default function RotatingPhotos({ photos, interval = 2000, className = "", style }: {
+// Versiones más pequeñas de cada foto (generadas junto al original): 640 px para el marco y 160 px para las miniaturas
+const sized = (src: string, w: 640 | 160) => src.replace(/.webp$/, `-${w}.webp`);
+
+export default function RotatingPhotos({ photos, interval = 2000, className = "", style, priority = false }: {
   photos: Photo[];
+  /** La primera foto es lo primero que se ve de la página: se pide enseguida. */
+  priority?: boolean;
   interval?: number;
   /** Clases y estilo del marco grande (tamaño, bordes, proporción). */
   className?: string;
@@ -27,6 +32,11 @@ export default function RotatingPhotos({ photos, interval = 2000, className = ""
   const [restart, setRestart] = useState(0); // al elegir una a mano, el contador vuelve a empezar
   const ref = useRef<HTMLDivElement>(null);
   const n = photos.length;
+  // Solo se descargan la foto que se ve y la siguiente (las demás, cuando les toca)
+  const [ready, setReady] = useState<Set<number>>(() => new Set([0]));
+  useEffect(() => {
+    setReady((r) => (r.has(index) && r.has((index + 1) % n) ? r : new Set([...r, index, (index + 1) % n])));
+  }, [index, n]);
 
   useEffect(() => {
     const el = ref.current;
@@ -50,12 +60,15 @@ export default function RotatingPhotos({ photos, interval = 2000, className = ""
         {photos.map((p, i) => (
           <img
             key={p.src}
-            src={withBase(p.src)}
+            src={ready.has(i) ? withBase(sized(p.src, 640)) : undefined}
+            srcSet={ready.has(i) ? `${withBase(sized(p.src, 640))} 640w, ${withBase(p.src)} ${p.width}w` : undefined}
+            sizes="(min-width: 1024px) 480px, 100vw"
             alt={i === index ? p.alt : ""}
             width={p.width}
             height={p.height}
             aria-hidden={i === index ? undefined : true}
-            loading="lazy"
+            loading={priority && i === 0 ? "eager" : "lazy"}
+            {...(priority && i === 0 ? { fetchpriority: "high" } : {})}
             decoding="async"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: p.position ?? "50% 50%", opacity: i === index ? 1 : 0, transition: "opacity 700ms ease" }}
@@ -73,7 +86,7 @@ export default function RotatingPhotos({ photos, interval = 2000, className = ""
               className="w-14 sm:w-16 rounded-lg overflow-hidden border border-off-white/15 opacity-70 hover:opacity-100 hover:border-brand-blue transition"
               style={{ aspectRatio: "4 / 5" }}
             >
-              <img src={withBase(photos[i].src)} alt="" width={photos[i].width} height={photos[i].height} loading="lazy" decoding="async" className="w-full h-full object-cover"
+              <img src={withBase(sized(photos[i].src, 160))} alt="" width={160} height={Math.round((160 * photos[i].height) / photos[i].width)} loading="lazy" decoding="async" className="w-full h-full object-cover"
                 style={{ objectPosition: photos[i].position ?? "50% 50%" }} />
             </button>
           ))}

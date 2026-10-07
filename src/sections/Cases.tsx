@@ -416,6 +416,7 @@ export function CaseMedia({ c, large = false, only }: { c: CaseStudy; large?: bo
               <div key={v.file} style={{ aspectRatio: v.aspect === "16:9" ? "16 / 9" : "9 / 16", ...(g.tileWidth ? { width: g.tileWidth } : {}) }}>
                 <VideoPlayer
                   indexable={large}
+                  sizes={large ? undefined : "(min-width: 1024px) 180px, 34vw"}
                   ariaName={videoName(caseName(c, lang), tr(v.label, lang) || v.name || null, lang as Locale)}
                   src={getPublicUrl(v.file)}
                   poster={v.poster ? getPublicUrl(v.poster) : null}
@@ -439,6 +440,7 @@ export function CaseMedia({ c, large = false, only }: { c: CaseStudy; large?: bo
             <VideoPlayer
               key={current.file}
               indexable={large}
+                  sizes={large ? undefined : "(min-width: 1024px) 180px, 34vw"}
               ariaName={videoName(caseName(c, lang), tr(current.label, lang) || current.name || null, lang as Locale)}
               src={getPublicUrl(current.file)}
               poster={current.poster ? getPublicUrl(current.poster) : null}

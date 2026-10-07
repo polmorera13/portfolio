@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { posterUrl } from "../lib/thumbs";
+import { posterUrl, thumbSrcSet } from "../lib/thumbs";
 import { useTranslation } from "../lib/i18n";
 import { Play, SpeakerSimpleHigh, SpeakerSimpleSlash } from "@phosphor-icons/react";
 import { getPublicUrl } from "../lib/supabase";
 
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/** Sin reproducción automática: móvil, ahorro de datos o conexión lenta (el vídeo pesa varios MB). */
+const noAutoplay = () => {
+  if (typeof window === "undefined") return false;
+  const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  return prefersReducedMotion() || window.matchMedia("(max-width: 767px)").matches || !!c?.saveData || /(^|-)(2g|3g)$/.test(c?.effectiveType ?? "");
+};
 
 /**
  * Vídeo del servicio abierto en "Qué produzco".
@@ -43,7 +50,7 @@ export default function ServiceVideo({
   const [visible, setVisible] = useState(indexable); // para el fundido (visible de entrada si es indexable)
   // Se lee en el navegador (no al prerenderizar) para que el HTML coincida
   const [reduced, setReduced] = useState(false);
-  useEffect(() => setReduced(prefersReducedMotion()), []);
+  useEffect(() => setReduced(noAutoplay()), []);
   // El archivo no se pide hasta que el vídeo entra en pantalla por primera vez
   const [armed, setArmed] = useState(false);
   const [manualPlay, setManualPlay] = useState(false);
@@ -167,6 +174,8 @@ export function ServiceVideoStack({ files, style, className = "", indexable = fa
           >
             <img
               src={getPublicUrl(`thumbs/${file.replace(/\.mp4$/, ".jpg")}`)}
+              srcSet={thumbSrcSet(getPublicUrl(`thumbs/${file.replace(/\.mp4$/, ".jpg")}`))}
+              sizes="(min-width: 1024px) 470px, 100vw"
               alt=""
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"

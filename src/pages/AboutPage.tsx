@@ -61,7 +61,7 @@ export default function AboutPage() {
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p1")}</p>
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p2")}</p>
           </div>
-          <RotatingPhotos photos={aboutPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} />
+          <RotatingPhotos photos={aboutPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} priority />
         </div>
       </section>
 

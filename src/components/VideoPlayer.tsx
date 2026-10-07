@@ -54,6 +54,8 @@ interface VideoPlayerProps {
   ariaName?: string;
   /** Miniatura con prioridad alta (la imagen más grande de la primera pantalla). */
   priority?: boolean;
+  /** Ancho con el que se ve la miniatura (atributo sizes); por defecto, según la proporción. */
+  sizes?: string;
 }
 
 const BRAND_BLUE = "oklch(58% 0.14 240)";
@@ -78,6 +80,7 @@ export default function VideoPlayer({
   indexable = false,
   ariaName,
   priority = false,
+  sizes,
 }: VideoPlayerProps) {
   const { t } = useTranslation();
 
@@ -332,7 +335,7 @@ export default function VideoPlayer({
         <img
           src={poster}
           srcSet={thumbSrcSet(poster)}
-          sizes={aspectRatio === "9:16" ? "(min-width: 1024px) 280px, 50vw" : "(min-width: 1024px) 640px, 100vw"}
+          sizes={sizes ?? (aspectRatio === "9:16" ? "(min-width: 1024px) 280px, 50vw" : "(min-width: 1024px) 640px, 100vw")}
           alt={posterAlt}
           width={pw}
           height={ph}

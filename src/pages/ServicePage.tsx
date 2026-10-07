@@ -65,21 +65,34 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
     <>
       <section className="max-w-content mx-auto section-padding pt-28 lg:pt-36 pb-10 lg:pb-16">
         <Breadcrumbs items={[{ label: t(`nav.svc_${service === "organic" ? "social" : service}`) }]} />
-        {/* En móvil: título e introducción, los vídeos y el resto; en escritorio, los vídeos a la derecha */}
-        <div className={`grid grid-cols-1 ${service === "corporate" ? "lg:grid-cols-[1.1fr_1fr]" : "lg:grid-cols-2"} gap-x-14 gap-y-8 items-start mt-8`}>
-          <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-1">
-            <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
-              {t(`svcpage.${service}.h1`)}
-            </h1>
-            <p className="text-steel-blue text-lg leading-relaxed">
-              {t(`svcpage.${service}.intro`)}
-              {service !== "corporate" && <> {t("svcpage.on_camera")}</>}
-            </p>
+        {service === "corporate" ? (
+          // Corporativo: texto a la izquierda y los tres vídeos horizontales apilados a la derecha (misma altura)
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-x-14 gap-y-8 items-center mt-8">
+            <div className="flex flex-col gap-6">
+              <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
+                {t(`svcpage.${service}.h1`)}
+              </h1>
+              <p className="text-steel-blue text-lg leading-relaxed">{t(`svcpage.${service}.intro`)}</p>
+              <ServiceBullets s={s} l={l} />
+              <ServiceCtas s={s} l={l} service={service} />
+            </div>
+            <div className="flex justify-center">
+              <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 470px)" }} indexable ariaName={mainVideo?.name} />
+            </div>
           </div>
-          <div className="flex justify-center lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-28">
-            {service === "corporate" ? (
-              <ServiceVideoStack files={videosMain} style={{ width: "min(100%, 520px)" }} indexable ariaName={mainVideo?.name} />
-            ) : (
+        ) : (
+          <>
+            {/* Título e introducción al lado de los tres vídeos (en móvil, los vídeos debajo) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-8 items-center mt-8">
+              <div className="flex flex-col gap-6">
+                <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
+                  {t(`svcpage.${service}.h1`)}
+                </h1>
+                <p className="text-steel-blue text-lg leading-relaxed">
+                  {t(`svcpage.${service}.intro`)} {t("svcpage.on_camera")}
+                </p>
+                <p className="text-off-white" style={{ fontSize: "17px", lineHeight: 1.55 }}>{s.ideal[l]}</p>
+              </div>
               <ServiceTrio
                 videos={videosMain.map((file, i) => ({
                   file,
@@ -87,31 +100,25 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
                   name: topVideos[i]?.name,
                 }))}
               />
-            )}
-          </div>
-          <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-2">
-            <p className="text-off-white" style={{ fontSize: "17px", lineHeight: 1.55 }}>{s.ideal[l]}</p>
-            <ul className="flex flex-col gap-3">
+            </div>
+
+            {/* Los puntos del servicio, a todo el ancho */}
+            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-10 lg:mt-14">
               {s.bullets.map((b, i) => (
-                <li key={i} className="flex items-start gap-3 text-off-white" style={{ fontSize: "16px" }}>
+                <li key={i} className="rounded-xl border border-brand-blue/25 bg-charcoal/50 px-5 py-4 flex items-start gap-3 text-off-white" style={{ fontSize: "16px", lineHeight: 1.45 }}>
                   <Check size={18} className="text-brand-blue mt-0.5 shrink-0" strokeWidth={3} aria-hidden />
                   {b[l]}
                 </li>
               ))}
             </ul>
-            {service === "ads" && <Method3x3 as="h2" />}
-            {service !== "corporate" && <UgcMaleLink textKey="links.ugc_male_svc" />}
-            <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">{s.tag[l]}</span>
-            <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue-deep text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-colors">
-                {t("minicta.primary")}
-              </a>
-              <a href={pageHref("home", l, "contacto")} className="text-brand-blue font-semibold px-2 py-3.5 text-center hover:text-off-white transition-colors">
-                {t("svcpage.or_quote")}
-              </a>
+
+            {/* Anuncios: la metodología 3×3 justo después de los puntos, y al lado los botones */}
+            <div className={`grid grid-cols-1 ${service === "ads" ? "lg:grid-cols-[1.15fr_1fr]" : ""} gap-8 lg:gap-14 items-center mt-8`}>
+              {service === "ads" && <Method3x3 as="h2" />}
+              <ServiceCtas s={s} l={l} service={service} />
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </section>
 
       {/* Qué incluye y para quién es (respuestas directas, fáciles de citar) */}
@@ -174,5 +181,41 @@ export default function ServicePage({ service }: { service: ServiceKey }) {
   );
 }
 
+
+/** Frase "Ideal si…" y los puntos del servicio (corporativo). */
+function ServiceBullets({ s, l }: { s: (typeof services)[number]; l: Locale }) {
+  return (
+    <>
+      <p className="text-off-white" style={{ fontSize: "17px", lineHeight: 1.55 }}>{s.ideal[l]}</p>
+      <ul className="flex flex-col gap-3">
+        {s.bullets.map((b, i) => (
+          <li key={i} className="flex items-start gap-3 text-off-white" style={{ fontSize: "16px" }}>
+            <Check size={18} className="text-brand-blue mt-0.5 shrink-0" strokeWidth={3} aria-hidden />
+            {b[l]}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+/** Plazo, enlace a "Creador UGC hombre" y botones de la propuesta. */
+function ServiceCtas({ s, l, service }: { s: (typeof services)[number]; l: Locale; service: ServiceKey }) {
+  const { t } = useTranslation();
+  return (
+    <div className="flex flex-col gap-5">
+      {service !== "corporate" && <UgcMaleLink textKey="links.ugc_male_svc" />}
+      <span className="self-start rounded-full border border-brand-blue/50 px-3.5 py-1.5 text-sm font-semibold text-off-white">{s.tag[l]}</span>
+      <div className="flex flex-col sm:flex-row gap-3">
+        <a href={pageHref("home", l, "contacto-propuesta")} className="bg-brand-blue-deep text-off-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-brand-blue-deep/90 transition-colors">
+          {t("minicta.primary")}
+        </a>
+        <a href={pageHref("home", l, "contacto")} className="text-brand-blue font-semibold px-2 py-3.5 text-center hover:text-off-white transition-colors">
+          {t("svcpage.or_quote")}
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export { PAGE_OF };
