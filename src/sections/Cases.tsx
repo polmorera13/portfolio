@@ -138,12 +138,14 @@ export default function Cases() {
       </div>
       <style dangerouslySetInnerHTML={{ __html: `
         #casos .snap-x::-webkit-scrollbar{display:none}
-        .case-grid{display:grid;gap:1.5rem;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;grid-template-areas:"head" "media" "body";flex:1}
+        .case-light{background:#F4F6F9;flex:1}
+        .case-light .text-brand-blue{color:#2A6AAF}
+        .case-media-panel .text-steel-blue,.case-media-panel .text-steel-blue\/80{color:rgba(255,255,255,.88)}
+        .case-media-panel .border-off-white\/15{border-color:rgba(255,255,255,.35)}
         .case-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:#2D6FB8;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 0 4px rgba(13,27,42,.9);transition:transform .2s,background .2s,opacity .2s}
         .case-arrow:hover:not(:disabled){background:#4A90D9;transform:translateY(-50%) scale(1.08)}
         .case-arrow:disabled{opacity:0;pointer-events:none}
         @media (min-width:1024px){.case-arrow{width:56px;height:56px}}
-        @media (min-width:1024px){.case-grid{column-gap:2.5rem;row-gap:1.5rem;grid-template-columns:45fr 55fr;grid-template-rows:auto 1fr;grid-template-areas:"media head" "media body";align-items:start}}
       ` }} />
     </section>
   );
@@ -155,27 +157,26 @@ function CaseCard({ c }: { c: CaseStudy }) {
   const { lang } = usePage();
   const detail = caseDetailFor(c);
 
+  // Tarjeta partida: vídeos y captura sobre un panel azul; título, cifras y gráfica en claro
   return (
-    <article className="w-full flex flex-col rounded-[22px] border border-off-white/10 bg-charcoal/50 p-5 sm:p-7 lg:p-9">
-      <div className="case-grid">
-        <div style={{ gridArea: "head" }} className="flex flex-col gap-3">
+    <article className="case-card w-full flex flex-col lg:grid lg:grid-cols-[44fr_56fr] rounded-[22px] overflow-hidden">
+      <div className="case-media-panel bg-brand-blue-deep p-5 sm:p-7 lg:p-8 flex flex-col justify-center gap-4">
+        <CaseMedia c={c} only={detail?.cardVideos} />
+        <CaseEvidence c={c} />
+      </div>
+      <div className="on-light case-light flex flex-col gap-5 p-5 sm:p-7 lg:p-9 min-w-0">
+        <div className="flex flex-col gap-3">
           <CaseHeader c={c} />
           <h3 className="text-off-white font-bold" style={{ fontSize: "clamp(22px, 2.2vw, 30px)", lineHeight: 1.2 }}>
             {tr(c.title, i18n.language)}
           </h3>
         </div>
-        <div style={{ gridArea: "media" }} className="flex flex-col gap-4">
-          <CaseMedia c={c} only={detail?.cardVideos} />
-          <CaseEvidence c={c} />
-        </div>
-        <div style={{ gridArea: "body" }} className="flex flex-col gap-6 min-w-0">
-          <CaseResults c={c} card />
-          {detail && (
-            <a href={pageHref(detail.page, lang)} className="mt-auto self-start text-brand-blue font-semibold hover:text-off-white transition-colors">
-              {t("links.full_case")}
-            </a>
-          )}
-        </div>
+        <CaseResults c={c} card />
+        {detail && (
+          <a href={pageHref(detail.page, lang)} className="mt-auto self-start text-brand-blue font-semibold hover:underline underline-offset-4">
+            {t("links.full_case")}
+          </a>
+        )}
       </div>
     </article>
   );
