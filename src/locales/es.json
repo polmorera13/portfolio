@@ -306,7 +306,11 @@
     "case": "Caso",
     "insight": "Aprendizaje creativo",
     "evidence": "Resultados en la plataforma",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "headline_1": "No solo vídeos bonitos.",
+    "headline_2": "Vídeos con",
+    "headline_hl": "resultados.",
+    "count_label": "casos reales"
   },
   "crumbs": {
     "home": "Inicio"

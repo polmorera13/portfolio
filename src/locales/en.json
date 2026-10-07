@@ -306,7 +306,11 @@
     "case": "Case",
     "insight": "Creative insight",
     "evidence": "Platform results",
-    "close": "Close"
+    "close": "Close",
+    "headline_1": "Not just good-looking videos.",
+    "headline_2": "Videos with",
+    "headline_hl": "results.",
+    "count_label": "real case studies"
   },
   "crumbs": {
     "home": "Home"

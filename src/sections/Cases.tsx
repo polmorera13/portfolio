@@ -57,16 +57,26 @@ export default function Cases() {
           variants={staggerContainer}
           className="flex flex-col gap-8 lg:gap-10"
         >
-          <div className="flex flex-col gap-3 lg:gap-4 max-w-3xl">
-            <motion.span variants={fadeUp} className="eyebrow">{t("cases.eyebrow")}</motion.span>
-            <motion.h2
-              variants={fadeUp}
-              className="text-off-white font-bold"
-              style={{ fontSize: "clamp(28px, 4vw, 56px)", letterSpacing: "-0.01em", lineHeight: 1.08 }}
-            >
-              {t("cases.title")}
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-steel-blue text-lg">{t("cases.subtitle")}</motion.p>
+          {/* Título: frase con la palabra clave resaltada en azul y, a la derecha, cuántos casos hay */}
+          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+            <div className="flex flex-col gap-3 lg:gap-4 max-w-4xl">
+              <motion.span variants={fadeUp} className="eyebrow">{t("cases.eyebrow")}</motion.span>
+              <motion.h2
+                variants={fadeUp}
+                className="text-off-white font-bold"
+                style={{ fontSize: "clamp(32px, 5.2vw, 72px)", letterSpacing: "-0.02em", lineHeight: 1.08 }}
+              >
+                <span className="block">{t("cases.headline_1")}</span>
+                <span className="block">
+                  {t("cases.headline_2")}{" "}
+                  <span className="inline-block bg-brand-blue-deep text-white rounded-lg px-[0.22em] py-[0.02em] -rotate-2 mt-[0.12em]">{t("cases.headline_hl")}</span>
+                </span>
+              </motion.h2>
+            </div>
+            <motion.p variants={fadeUp} className="flex items-baseline gap-2 text-steel-blue font-semibold lg:flex-col lg:items-end lg:gap-0 lg:text-right">
+              <span className="text-off-white font-bold tabular-nums leading-none" style={{ fontSize: "clamp(32px, 4vw, 56px)" }}>{pad(cases.length)}</span>
+              {t("cases.count_label")}
+            </motion.p>
           </div>
 
           {/* Carrusel: una tarjeta cada vez; se desliza con el dedo o el trackpad */}

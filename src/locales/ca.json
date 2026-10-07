@@ -306,7 +306,11 @@
     "case": "Cas",
     "insight": "Aprenentatge creatiu",
     "evidence": "Resultats a la plataforma",
-    "close": "Tanca"
+    "close": "Tanca",
+    "headline_1": "No només vídeos bonics.",
+    "headline_2": "Vídeos amb",
+    "headline_hl": "resultats.",
+    "count_label": "casos reals"
   },
   "crumbs": {
     "home": "Inici"
