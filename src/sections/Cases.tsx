@@ -174,7 +174,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
         </div>
         <CaseResults c={c} card />
         {detail && (
-          <div className="flex-1 flex flex-col justify-center empty:hidden">
+          <div className="flex-1 flex flex-col justify-start lg:justify-center empty:hidden">
             <CaseVisual slug={detail.slug} lang={lang as Locale} />
           </div>
         )}

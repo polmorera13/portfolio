@@ -19,8 +19,10 @@ export interface Photo {
 // Versiones más pequeñas de cada foto (generadas junto al original): 640 px para el marco y 160 px para las miniaturas
 const sized = (src: string, w: 640 | 160) => src.replace(/.webp$/, `-${w}.webp`);
 
-export default function RotatingPhotos({ photos, interval = 2000, className = "", style, priority = false }: {
+export default function RotatingPhotos({ photos, interval = 2000, className = "", style, priority = false, thumbs = true }: {
   photos: Photo[];
+  /** Miniaturas de las demás debajo (para elegir una a mano). */
+  thumbs?: boolean;
   /** La primera foto es lo primero que se ve de la página: se pide enseguida. */
   priority?: boolean;
   interval?: number;
@@ -75,7 +77,7 @@ export default function RotatingPhotos({ photos, interval = 2000, className = ""
           />
         ))}
       </div>
-      {n > 1 && (
+      {thumbs && n > 1 && (
         <div className="flex gap-2">
           {others.map((i) => (
             <button

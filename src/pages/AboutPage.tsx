@@ -4,7 +4,7 @@ import { pageHref } from "../routes";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CtaBlock from "../components/CtaBlock";
 import RotatingPhotos from "../components/RotatingPhotos";
-import { aboutPhotos } from "../data/aboutPhotos";
+import { aboutHeroPhotos, aboutStoryPhotos } from "../data/aboutPhotos";
 import LogoMarquee from "../sections/LogoMarquee";
 import { UgcMaleLink } from "../components/ServiceBlocks";
 import type { Locale } from "../types";
@@ -50,9 +50,9 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="max-w-content mx-auto section-padding pt-28 lg:pt-36 pb-10">
+      <section className="max-w-content mx-auto section-padding pt-28 lg:pt-36 pb-4 lg:pb-6">
         <Breadcrumbs items={[{ label: t("aboutpage.h1") }]} />
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-10 lg:gap-14 mt-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-14 mt-8 items-center">
           <div className="flex flex-col gap-6">
             <h1 className="text-off-white font-bold" style={{ fontSize: "clamp(34px, 5vw, 64px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               {t("aboutpage.h1")}
@@ -61,14 +61,19 @@ export default function AboutPage() {
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p1")}</p>
             <p className="text-steel-blue" style={{ fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6 }}>{t("about.p2")}</p>
           </div>
-          <RotatingPhotos photos={aboutPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} priority />
+          <div className="w-full max-w-[400px] mx-auto lg:mx-0">
+            <RotatingPhotos photos={aboutHeroPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} priority thumbs={false} interval={3500} />
+          </div>
         </div>
       </section>
 
-      {/* Mi historia */}
-      <section className="max-w-content mx-auto section-padding py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 lg:gap-14">
-        <h2 className="text-off-white font-bold text-2xl lg:text-3xl">{t("aboutpage.story_title")}</h2>
-        <div className="flex flex-col gap-4 max-w-3xl">
+      {/* Mi historia: foto del evento a la izquierda del texto */}
+      <section className="max-w-content mx-auto section-padding pt-8 pb-12 lg:pt-10 lg:pb-16 grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-14 items-center">
+        <div className="order-2 lg:order-1 w-full max-w-[400px] mx-auto lg:mx-0">
+          <RotatingPhotos photos={aboutStoryPhotos(t)} className="w-full rounded-xl" style={{ aspectRatio: "4/5" }} thumbs={false} interval={3500} />
+        </div>
+        <div className="order-1 lg:order-2 flex flex-col gap-4 max-w-3xl">
+          <h2 className="text-off-white font-bold text-2xl lg:text-3xl mb-1">{t("aboutpage.story_title")}</h2>
           {(t("aboutpage.story", { returnObjects: true }) as string[]).map((p, i) => (
             <p key={i} className="text-off-white/90" style={{ fontSize: "18px", lineHeight: 1.65 }}>{p}</p>
           ))}

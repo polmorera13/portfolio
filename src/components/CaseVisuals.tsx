@@ -1,8 +1,8 @@
-import { ArrowRight, Building2, MapPin, Megaphone, Mic, MonitorPlay, Repeat2, Zap, type LucideIcon } from "lucide-react";
+import { ArrowRight, Building2, MapPin, Megaphone, Mic, MonitorPlay, Repeat2, Target, Timer, Zap, type LucideIcon } from "lucide-react";
 import type { Locale } from "../types";
 
 // Visuales de las tarjetas de casos de la portada (lado claro de la tarjeta):
-// la gráfica con ejes de Dogfy Diet y los esquemas de Reactiva Online y Apple Tree.
+// la gráfica con ejes de Dogfy Diet y los esquemas de MasterD, Reactiva Online y Apple Tree.
 
 type Tri = Record<Locale, string>;
 const tx = (v: Tri, l: Locale) => v[l] ?? v.es;
@@ -72,6 +72,16 @@ export function AxisChart({ title, bars, note, lang }: { title?: string; bars: A
 // ── Esquemas de las tarjetas ─────────────────────────────────────────────────
 interface Step { icon: LucideIcon; label: Tri; sub?: Tri }
 
+// Las tres condiciones del brief de MasterD (versión compacta: le queda poco hueco)
+const MASTERD: { title: Tri; steps: Step[] } = {
+  title: { es: "El brief: tres condiciones", en: "The brief: three conditions", ca: "El brief: tres condicions" },
+  steps: [
+    { icon: Timer, label: { es: "Muy cortas", en: "Very short", ca: "Molt curtes" } },
+    { icon: Zap, label: { es: "Muy rápidas", en: "Very fast", ca: "Molt ràpides" } },
+    { icon: Target, label: { es: "Muy directas", en: "Very direct", ca: "Molt directes" } },
+  ],
+};
+
 const REACTIVA: { title: Tri; steps: Step[] } = {
   title: { es: "Contenido para cada etapa del embudo", en: "Content for every stage of the funnel", ca: "Contingut per a cada etapa de l'embut" },
   steps: [
@@ -106,8 +116,28 @@ function StepTile({ s, l }: { s: Step; l: Locale }) {
   );
 }
 
-/** Esquema del caso (si tiene): embudo de Reactiva Online o tipos de vídeo de Apple Tree. */
+/** Esquema del caso (si tiene): brief de MasterD, embudo de Reactiva Online o tipos de vídeo de Apple Tree. */
 export function CaseVisual({ slug, lang }: { slug: string; lang: Locale }) {
+  if (slug === "masterd") {
+    return (
+      <figure className="rounded-xl border border-off-white/10 bg-white p-4 flex flex-col gap-3" aria-label={tx(MASTERD.title, lang)}>
+        <figcaption className="text-[11px] font-bold tracking-[0.14em] uppercase text-steel-blue">{tx(MASTERD.title, lang)}</figcaption>
+        <ul className="grid grid-cols-3 gap-2">
+          {MASTERD.steps.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <li key={i} className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2.5 rounded-lg px-2 py-2 sm:px-3" style={{ background: "#EAF2FB" }}>
+                <span className="w-8 h-8 shrink-0 rounded-lg flex items-center justify-center" style={{ background: BLUE }}>
+                  <Icon size={17} color="#fff" strokeWidth={2.2} aria-hidden />
+                </span>
+                <span className="font-bold leading-tight text-[13px] text-center sm:text-left" style={{ color: NAVY }}>{tx(s.label, lang)}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </figure>
+    );
+  }
   if (slug === "reactiva") {
     return (
       <figure className="rounded-xl border border-off-white/10 bg-white p-4 flex flex-col gap-3" aria-label={tx(REACTIVA.title, lang)}>
