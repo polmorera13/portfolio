@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Propuesta para Vestadium · Pol Morera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Poppins:wght@500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,500;1,600&display=swap">
+<style>
+:root{color-scheme:light}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+:root{
+  /* Layout: programa de partido — portada, 4 códigos, 3 fichas de vídeo, convocatoria de rodaje */
+  --bg:#ECECE9; --paper:#FFFFFF; --ink:#1D1D1B; --muted:#5C5C57; --line:#D3D3CE;
+  --hi:#E2DE03; --hi-ink:#1D1D1B; --chip:#1D1D1B; --chip-ink:#FFFFFF; --soft:#F6F6F3; --warn:#FE5100; --warn-ink:#1D1D1B;
+  --f-display:'Montserrat', 'Gotham', 'Helvetica Neue', Arial, sans-serif;
+  --f-body:'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --f-serif:'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-cond:'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#151514; --paper:#1E1E1C; --ink:#F1F1EC; --muted:#A6A69E; --line:#34342F;
+  --hi:#E2DE03; --hi-ink:#151514; --chip:#F1F1EC; --chip-ink:#151514; --soft:#242422; --warn:#FF6A1F; --warn-ink:#151514; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#151514; --paper:#1E1E1C; --ink:#F1F1EC; --muted:#A6A69E; --line:#34342F;
+  --hi:#E2DE03; --hi-ink:#151514; --chip:#F1F1EC; --chip-ink:#151514; --soft:#242422; --warn:#FF6A1F; --warn-ink:#151514; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 64px}
+.wrap{max-width:1120px; margin:0 auto}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0}
+p{margin:0}
+a{color:inherit; text-decoration-thickness:1px; text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--hi); outline-offset:2px}
+.mark{background:var(--hi); color:var(--hi-ink); padding:0 .18em; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+.serif{font-family:var(--f-serif); font-style:italic; font-weight:500}
+.eyebrow{font-family:var(--f-cond); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:14px; color:var(--muted)}
+
+/* portada */
+.hero{padding-block:48px 40px; display:grid; gap:28px}
+.hero-top{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+.brandrow{display:flex; align-items:center; gap:12px}
+.brandrow img{width:40px; height:auto}
+.sym-dark{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sym-light{display:none} :root:not([data-theme="light"]) .sym-dark{display:block} }
+:root[data-theme="dark"] .sym-light{display:none} :root[data-theme="dark"] .sym-dark{display:block}
+.hero h1{font-weight:900; font-size:clamp(44px, 9vw, 112px); line-height:.92; letter-spacing:-.02em}
+.hero h1 .serif{display:block; font-weight:500; font-size:.46em; letter-spacing:0; margin-top:.25em; line-height:1.1}
+.lede{max-width:62ch; font-size:18px}
+.meta{display:flex; flex-wrap:wrap; gap:10px}
+.pill{font-family:var(--f-cond); font-weight:600; font-size:15px; letter-spacing:.06em; text-transform:uppercase;
+  border:1px solid var(--line); background:var(--paper); padding:6px 12px; border-radius:999px; white-space:nowrap}
+.pill.on{background:var(--hi); color:var(--hi-ink); border-color:var(--hi)}
+
+section{padding-block:40px; border-top:1px solid var(--line)}
+.sec-head{display:grid; gap:8px; margin-bottom:24px}
+.sec-head h2{font-weight:900; font-size:clamp(28px, 4.4vw, 44px); line-height:1.05}
+.sec-head p{color:var(--muted); max-width:66ch}
+
+/* códigos */
+.codes{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px}
+.code{background:var(--paper); border:1px solid var(--line); display:grid; grid-template-rows:auto 1fr}
+.code img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; filter:none}
+.code div{padding:14px 16px 18px; display:grid; gap:6px; align-content:start}
+.code h3{font-size:17px; font-weight:800}
+.code p{font-size:14.5px; color:var(--muted)}
+
+/* evidencia */
+.evid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:0; border:1px solid var(--line); background:var(--paper)}
+.ev{padding:20px 22px; display:grid; gap:8px; align-content:start; border-bottom:1px solid var(--line); min-width:0}
+.ev:nth-child(odd){border-right:1px solid var(--line)}
+.ev:nth-last-child(-n+2){border-bottom:0}
+.ev h3{font-size:18px; font-weight:800}
+.ev p{font-size:15px; color:var(--muted)}
+.ev .src{font-family:var(--f-cond); font-size:14px; letter-spacing:.05em; text-transform:uppercase; display:flex; flex-wrap:wrap; gap:10px}
+.note{margin-top:14px; font-size:13.5px; color:var(--muted)}
+
+/* ficha de vídeo */
+.vid{padding-block:48px}
+.vid-head{display:grid; grid-template-columns:auto minmax(0,1fr); gap:6px 22px; align-items:end; margin-bottom:22px}
+.num{font-family:var(--f-display); font-weight:900; font-size:clamp(84px, 13vw, 150px); line-height:.78;
+  color:var(--hi-ink); background:var(--hi); padding:10px 16px 4px; grid-row:span 2; align-self:stretch; display:flex; align-items:flex-end}
+.vid-head h2{font-weight:900; font-size:clamp(30px, 5vw, 54px); line-height:1}
+.vid-head .serif{font-size:clamp(20px, 2.6vw, 28px); color:var(--muted)}
+.facts{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px}
+.idea{font-size:18px; max-width:68ch; margin-bottom:28px}
+
+.board{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px; margin-bottom:34px}
+.board figure{margin:0; display:grid; gap:8px; min-width:0}
+.board img{display:block; width:100%; height:auto; aspect-ratio:9/16; object-fit:cover; background:var(--soft); border:1px solid var(--line)}
+.board figcaption{font-size:13.5px; line-height:1.35; color:var(--muted)}
+.board figcaption b{font-family:var(--f-cond); font-weight:700; letter-spacing:.06em; color:var(--ink); margin-right:6px; font-size:15px}
+
+h3.sub{font-size:13px; font-family:var(--f-cond); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:12px}
+.hooks{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:10px}
+.hook{background:var(--paper); border:1px solid var(--line); padding:16px 18px; display:grid; gap:8px; align-content:start; min-width:0}
+.hook.rec{border:2px solid var(--ink)}
+.hook .hk{display:flex; justify-content:space-between; gap:8px; align-items:center}
+.hook .letter{font-family:var(--f-display); font-weight:900; font-size:22px}
+.hook .tag{font-family:var(--f-cond); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.hook.rec .tag{background:var(--hi); color:var(--hi-ink); padding:2px 8px}
+.hook p{font-size:15px}
+.hook-note{font-size:14.5px; color:var(--muted); max-width:80ch; margin-bottom:30px}
+
+.tbl{overflow-x:auto; border:1px solid var(--line); background:var(--paper); margin-bottom:26px}
+table{border-collapse:collapse; width:100%; min-width:900px; font-size:14.5px}
+th,td{text-align:left; vertical-align:top; padding:11px 14px; border-bottom:1px solid var(--line)}
+th{font-family:var(--f-cond); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:13px; color:var(--muted); background:var(--soft)}
+tr:last-child td{border-bottom:0}
+td.t{font-family:var(--f-cond); font-weight:700; font-size:15px; white-space:nowrap; font-variant-numeric:tabular-nums}
+td.say{font-weight:600}
+td.pl{font-family:var(--f-cond); font-weight:600; font-size:14.5px; letter-spacing:.02em}
+td.osd{font-family:var(--f-cond); font-weight:700; letter-spacing:.03em; font-size:14px}
+td.osd span{background:var(--hi); color:var(--hi-ink); padding:1px 5px; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+col.c1{width:76px} col.c1b{width:17%} col.c2{width:25%} col.c3{width:31%}
+.tbl-foot{font-size:13px; color:var(--muted); padding:10px 14px; border-top:1px solid var(--line); background:var(--soft)}
+
+.two{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px}
+.box{background:var(--paper); border:1px solid var(--line); padding:18px 20px; display:grid; gap:10px; align-content:start; min-width:0}
+.box ul{margin:0; padding-left:18px; display:grid; gap:6px; font-size:15px}
+.box p{font-size:15px}
+
+/* rodaje */
+.call{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:16px}
+.sched{background:var(--paper); border:1px solid var(--line)}
+.slot{display:grid; grid-template-columns:70px 92px minmax(0,1fr); gap:12px; padding:12px 16px; border-bottom:1px solid var(--line); font-size:14.5px}
+.slot:last-child{border-bottom:0}
+.slot .h{font-family:var(--f-cond); font-weight:700; font-size:17px; font-variant-numeric:tabular-nums}
+.slot .w{font-weight:800}
+.slot.v .w span{background:var(--hi); color:var(--hi-ink); padding:0 5px}
+.slot p{color:var(--muted)}
+.props{display:grid; gap:16px; align-content:start}
+.list{background:var(--paper); border:1px solid var(--line); padding:6px 0}
+.li{padding:10px 16px; display:grid; gap:2px; border-bottom:1px solid var(--line); font-size:14.5px}
+.li:last-child{border-bottom:0}
+.li b{font-weight:700}
+.li span{color:var(--muted)}
+
+.needs{counter-reset:n; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px}
+.need{background:var(--paper); border:1px solid var(--line); padding:16px 18px 16px 60px; position:relative; min-width:0}
+.need::before{counter-increment:n; content:counter(n); position:absolute; left:16px; top:14px; width:30px; height:30px;
+  display:grid; place-items:center; font-family:var(--f-display); font-weight:900; background:var(--chip); color:var(--chip-ink); font-size:15px}
+.need b{display:block; font-weight:800; margin-bottom:4px}
+.need span{font-size:14.5px; color:var(--muted)}
+
+footer{border-top:1px solid var(--line); padding-block:28px 0; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted)}
+footer b{color:var(--ink)}
+
+/* cabecera polmorera.es */
+.site-head{background:#0D1B2A; color:#F4F6F9; font-family:'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  margin-left:calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right:calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.sh-in{max-width:1120px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; padding-block:14px}
+.sh-brand{color:#F4F6F9; font-weight:600; font-size:17px; text-decoration:none; letter-spacing:.01em}
+.sh-brand:hover{color:#4A90D9}
+.sh-brand:focus-visible{outline:3px solid #4A90D9; outline-offset:3px}
+.sh-sep{color:#8AAFCC}
+.sh-title{color:#8AAFCC; font-size:15px; font-weight:500}
+.rp-name{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+.rp-name label{font-weight:700; font-size:14.5px}
+.rp-name input{font:15px/1.4 var(--f-body); color:var(--ink); background:var(--soft); border:1px solid var(--line); padding:9px 12px; min-width:0; flex:1 1 220px; max-width:360px}
+.rp-name input:focus-visible{outline:3px solid var(--hi); outline-offset:2px}
+
+/* gancho único */
+.hook1{background:var(--paper); border:2px solid var(--ink); padding:18px 20px; display:grid; gap:8px; margin-bottom:30px; max-width:860px}
+.hook1 .q{font-size:19px; font-weight:700; line-height:1.4}
+.hook1 .w{font-size:14.5px; color:var(--muted)}
+
+/* revisión */
+.revpanel{border:2px solid var(--ink); background:var(--paper); padding:16px 18px; display:grid; gap:10px; max-width:860px}
+.rp-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px 16px}
+.rp-status{font-weight:800; font-size:18px}
+.rp-chips{display:flex; flex-wrap:wrap; gap:8px}
+.rp-chip{text-decoration:none; font-family:var(--f-cond); font-weight:700; font-size:15px; letter-spacing:.05em; text-transform:uppercase;
+  padding:6px 12px; border:1px solid var(--line); background:var(--soft); color:var(--ink)}
+.rp-chip[data-state="ok"], .rv-chip[data-state="ok"]{background:var(--hi); color:var(--hi-ink); border-color:var(--hi)}
+.rp-chip[data-state="changes"], .rv-chip[data-state="changes"]{background:var(--warn); color:var(--warn-ink); border-color:var(--warn)}
+.rp-note, .rv-msg{font-size:13.5px; color:var(--muted)}
+.review{margin-top:22px; border:2px solid var(--ink); background:var(--paper); padding:18px 20px; display:grid; gap:12px}
+.rv-head{display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center}
+.rv-chip{font-family:var(--f-cond); font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:14px; padding:4px 10px; border:1px solid var(--line); background:var(--soft)}
+.rv-who{font-size:13.5px; color:var(--muted)}
+.rv-note{font-size:15px; font-style:italic}
+.rv-actions{display:flex; flex-wrap:wrap; gap:10px}
+.btn{font:700 15px/1 var(--f-body); padding:12px 16px; border:2px solid var(--ink); background:var(--paper); color:var(--ink); cursor:pointer}
+.btn:hover:not(:disabled){background:var(--soft)}
+.btn.ok[aria-pressed="true"]{background:var(--hi); color:var(--hi-ink); border-color:var(--hi)}
+.btn.ch[aria-pressed="true"]{background:var(--warn); color:var(--warn-ink); border-color:var(--warn)}
+.btn.ghost{border-color:var(--line); font-weight:600}
+.btn:disabled, .opt:disabled{opacity:.45; cursor:not-allowed}
+.btn:focus-visible, .opt:focus-visible, textarea:focus-visible, .rp-chip:focus-visible{outline:3px solid var(--hi); outline-offset:2px}
+.rv-form{display:grid; gap:8px}
+.rv-form label{font-weight:700; font-size:14.5px}
+.rv-form textarea{font:15px/1.5 var(--f-body); color:var(--ink); background:var(--soft); border:1px solid var(--line); padding:10px 12px; width:100%; resize:vertical}
+.rv-form div{display:flex; flex-wrap:wrap; gap:10px}
+.opts{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.opt{font:600 14px/1 var(--f-body); padding:9px 12px; border:1px solid var(--ink); background:var(--paper); color:var(--ink); cursor:pointer}
+.opt[aria-pressed="true"]{background:var(--hi); color:var(--hi-ink); border-color:var(--hi)}
+.nd-who{font-size:13px; color:var(--muted); margin-top:8px}
+.need.done::before{background:var(--hi); color:var(--hi-ink)}
+.nd-sum{font-weight:800; margin-top:10px}
+
+@media (max-width: 900px){
+  .codes{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .board{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .hooks{grid-template-columns:minmax(0,1fr)}
+  .call{grid-template-columns:minmax(0,1fr)}
+  .needs{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width: 640px){
+  .evid, .two, .needs{grid-template-columns:minmax(0,1fr)}
+  .ev:nth-child(odd){border-right:0}
+  .ev:nth-last-child(2){border-bottom:1px solid var(--line)}
+  .slot{grid-template-columns:56px minmax(0,1fr)}
+  .slot p{grid-column:2}
+  .codes{grid-template-columns:minmax(0,1fr)}
+  .code img{aspect-ratio:16/9}
+}
+@media (prefers-reduced-motion: no-preference){
+  .board img{transition:transform .25s ease}
+  .board figure:hover img{transform:translateY(-3px)}
+}
+</style>
+</head>
+<body>
+<header class="site-head"><div class="sh-in"><a class="sh-brand" href="https://polmorera.es/">Pol Morera</a><span class="sh-sep" aria-hidden="true">·</span><span class="sh-title">Propuesta para Vestadium</span></div></header>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div class="brandrow"><img class="sym-light" src="/vestadium/img/symbol_k.png" alt="" width="40" height="39"><img class="sym-dark" src="/vestadium/img/symbol_y.png" alt="" width="40" height="39"><span class="eyebrow">Propuesta para Vestadium · 3 nov 2026</span></div>
+    <span class="eyebrow">Pol Morera · polmorera.es</span>
+  </div>
+  <h1>Saltamos <span class="mark">al campo.</span><span class="serif">Tres reels para el lanzamiento, grabados mañana.</span></h1>
+  <p class="lede">Os propongo grabar los tres guiones como <b>una serie</b>: mismo presentador, los mismos códigos visuales y un plano distinto en cada frase, con la cámara en movimiento. Hablan a quien ya ahorra o invierte cada mes y busca dónde diversificar: el deporte engancha y la inversión es lo que se explica. Mantengo toda la información de vuestros guiones; los ganchos y los cierres son nuevos, contados a cámara, de forma cercana y directa. Todo en interior y en un solo día de rodaje.</p>
+  <div class="meta">
+    <span class="pill on">Rodaje · mar 4 nov</span>
+    <span class="pill">Lanzamiento · mié 5 nov</span>
+    <span class="pill">3 reels 9:16</span>
+    <span class="pill">Interior: plató + despacho</span>
+    <span class="pill">Para quien invierte cada mes</span>
+    <span class="pill">Instagram orgánico</span>
+  </div>
+  <div class="revpanel" id="revpanel">
+    <div class="rp-top"><span class="eyebrow">Revisión</span><span class="rp-status" id="rp-status">0 de 3 vídeos aprobados</span></div>
+    <div class="rp-chips">
+      <a href="#v1" class="rp-chip" data-video="v1">1 · Qué es · <span class="rp-st">Pendiente</span></a>
+      <a href="#v2" class="rp-chip" data-video="v2">2 · Tokenización · <span class="rp-st">Pendiente</span></a>
+      <a href="#v3" class="rp-chip" data-video="v3">3 · Cómo se hace · <span class="rp-st">Pendiente</span></a>
+    </div>
+    <div class="rp-name"><label for="rv-name">Tu nombre</label><input id="rv-name" type="text" maxlength="80" autocomplete="name" placeholder="Para que Pol sepa quién responde"></div>
+    <p class="rp-note" id="rp-note">Cargando la revisión…</p>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><p class="eyebrow">El sistema</p><h2>Cuatro códigos que se repiten en los tres vídeos</h2>
+  <p>Son la forma de que alguien reconozca un vídeo de Vestadium sin ver el logo.</p></div>
+  <div class="codes"><article class="code"><img src="/vestadium/img/ref_split.jpg" alt="Color, y B/N cuando sale el amarillo"><div><h3>Color, y B/N cuando sale el amarillo</h3><p>Los vídeos van en color: ganchos, presentador y croma. El blanco y negro aparece solo cuando entra el amarillo de la marca (los tokens y la tarjeta amarilla), para que el amarillo salte. En el guion, esas escenas van marcadas «B/N + amarillo».</p></div></article><article class="code"><img src="/vestadium/img/ref_ref_uves.jpg" alt="Planos que se mueven"><div><h3>Planos que se mueven</h3><p>Cada frase tiene su plano: cámara en mano, acercamientos, cenitales, travelling y gráficos a pantalla completa. Las transiciones se hacen con las tres uves del símbolo.</p></div></article><article class="code"><img src="/vestadium/img/ref_card.jpg" alt="La tarjeta amarilla"><div><h3>La tarjeta amarilla</h3><p>El aviso de riesgo llega siempre igual: el presentador saca una tarjeta amarilla y aparece el texto. La letra pequeña se convierte en algo que se recuerda.</p></div></article><article class="code"><img src="/vestadium/img/ref_ref_handV.jpg" alt="El gesto V"><div><h3>El gesto V</h3><p>Los tres vídeos cierran con la V de la mano, como en la portada de vuestro brand book. La V se convierte en el símbolo.</p></div></article></div>
+</section>
+
+<section>
+  <div class="sec-head"><p class="eyebrow">Por qué así</p><h2>Lo que he visto en el sector</h2>
+  <p>He revisado la Biblioteca de anuncios de Meta (España) y vídeos orgánicos sobre tokenización.</p></div>
+  <div class="evid"><div class="ev"><h3>Presentador a cámara con subtítulos</h3><p>Es el formato de vídeo que más tiempo sigue activo entre las plataformas de inversión en España. Urbanitae lleva 175 días con una presentadora en mesa (alcance UE 26.925) y Reental 75 días con un presentador en plató (alcance UE 70.981).</p><div class="src"><a href="https://www.facebook.com/ads/library/?id=1005003655193971" target="_blank" rel="noopener">Urbanitae ↗</a><a href="https://www.facebook.com/ads/library/?id=1989143135104236" target="_blank" rel="noopener">Reental ↗</a></div></div><div class="ev"><h3>El riesgo, a la vista</h3><p>Mintos pone el aviso fijo en pantalla desde el primer segundo en sus vídeos activos. Reental lo deja para el cierre, en letra pequeña. La tarjeta amarilla y el rótulo fijo del vídeo 3 van en la línea de Mintos.</p><div class="src"><a href="https://www.facebook.com/ads/library/?id=1116970340823957" target="_blank" rel="noopener">Mintos ↗</a><a href="https://www.facebook.com/ads/library/?id=1273497714956835" target="_blank" rel="noopener">Mintos ↗</a></div></div><div class="ev"><h3>Un hueco: el tutorial real</h3><p>No he encontrado ningún vídeo activo de «cómo invertir en X pasos» con la pantalla real entre Reental, Urbanitae, Mintos, Brickken, Bit2Me y Socios.com. El vídeo 3 lo ocupa.</p></div><div class="ev"><h3>Lo que viene después</h3><p>En orgánico, lo que más se sale de la media es un caso concreto contado por su protagonista. Un vídeo de TikTok sobre una ganadería tokenizada tuvo 354.000 vistas, unas 24 veces la media de su cuenta. Encaja con vuestro carrusel «Clubes que crecieron de la mano de su afición» para la siguiente fase.</p><div class="src"><a href="https://www.tiktok.com/@daniglabs/video/7698343913626668310" target="_blank" rel="noopener">TikTok ↗</a></div></div></div>
+  <p class="note">Datos de la Biblioteca de anuncios de Meta, consultados el 3 nov 2026. Los días cuentan desde la fecha de inicio de cada anuncio y el alcance es el que muestra la ficha para la UE.</p>
+</section>
+
+
+<section class="vid" id="v1">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">1</div>
+    <p class="eyebrow">Vídeo 1 de 3</p>
+    <div><h2>Qué es Vestadium</h2><p class="serif">Qué es, dicho a cámara desde la primera frase</p></div>
+  </div>
+  <div class="facts">
+    <span class="pill on">Que os conozcan</span>
+    <span class="pill">Reel 9:16</span>
+    <span class="pill">Plató</span>
+    <span class="pill">Día del lanzamiento · 5 nov</span>
+    <span class="pill">Subtítulos quemados</span>
+  </div>
+  <p class="idea">Directo desde el primer fotograma: el presentador dice a cámara qué es Vestadium y a quién le interesa, a quien invierte una parte de sus ahorros cada mes. Todo es interior, pero la cámara no se queda quieta: acercamientos, entradas caminando, travelling, cenital y planos detalle de una lámina que se corta en tokens.</p>
+  <h3 class="sub">Storyboard de referencia</h3>
+  <div class="board"><figure data-comment-target><img src="/vestadium/img/v1_h.jpg" alt="Storyboard Qué es Vestadium, escena 1: Gancho: «Esto es Vestadium», a cámara" width="540" height="960"><figcaption><b>Escena 1</b>Gancho: «Esto es Vestadium», a cámara</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v1_e.jpg" alt="Storyboard Qué es Vestadium, escena 2: Entra caminando hacia cámara" width="540" height="960"><figcaption><b>Escena 2</b>Entra caminando hacia cámara</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v1_c.jpg" alt="Storyboard Qué es Vestadium, escena 5: La lámina del proyecto se corta en tokens" width="540" height="960"><figcaption><b>Escena 5</b>La lámina del proyecto se corta en tokens</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v1_d.jpg" alt="Storyboard Qué es Vestadium, escena 8: Gesto V → símbolo → logo" width="540" height="960"><figcaption><b>Escena 8</b>Gesto V → símbolo → logo</figcaption></figure></div>
+  <h3 class="sub">El gancho</h3>
+  <div class="hook1" data-comment-target><p class="q">[Primer plano desde el primer fotograma; el logo entra a su lado] «Esto es Vestadium: una plataforma para invertir en los proyectos de los clubes deportivos.»</p><p class="w">Dice qué es Vestadium en la primera frase, sin rodeos. En un lanzamiento, lo primero que tiene que quedar es el nombre y qué hace; la segunda frase ya señala a quién le interesa.</p></div>
+  <h3 class="sub">Guion de rodaje</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody><tr data-comment-target><td class="t">1</td><td class="pl">Plató · primer plano, cámara en mano con acercamiento</td><td>El presentador a cámara desde el primer fotograma. El logo entra a su lado.</td><td class="say">«Esto es Vestadium: una plataforma para invertir en los proyectos de los clubes deportivos.»</td><td class="osd"><span>ESTO ES vestadium</span></td></tr><tr data-comment-target><td class="t">2</td><td class="pl">Plató · plano medio, entra caminando hacia cámara</td><td>Camina hacia cámara por el plató blanco.</td><td class="say">«Y si cada mes inviertes una parte de tus ahorros, te interesa conocerla.»</td><td class="osd"><span>¿INVIERTES CADA MES?</span></td></tr><tr data-comment-target><td class="t">3</td><td class="pl">Plató · plano medio y corte a primer plano en cada meta</td><td>Entran los iconos lineales de vuestro brand book: camiseta, campo, edificio y estadio.</td><td class="say">«Cada club tiene metas: fichar a un jugador, mejorar sus instalaciones, construir una residencia deportiva o transformar su estadio. Y para cumplirlas necesita financiación.»</td><td class="osd"><span>FICHAR · INSTALACIONES · RESIDENCIA · ESTADIO</span></td></tr><tr data-comment-target><td class="t">4</td><td class="pl">Transición · las tres uves</td><td>Las tres uves giran y forman el símbolo. Detrás, el presentador en plano medio. Grafismo: el club en el centro, aficionados e inversores a los lados.</td><td class="say">«Vestadium conecta a esos clubes con aficionados e inversores que quieren participar en sus proyectos.»</td><td class="osd"><span>CLUBES · AFICIONADOS · INVERSORES</span></td></tr><tr data-comment-target><td class="t">5</td><td class="pl">Plató · cenital sobre la mesa · B/N + amarillo</td><td>Las manos del presentador cortan con tijeras una lámina «Proyecto · Ciudad deportiva» en cuadrados con el sello vstd.</td><td class="say">«¿Cómo? El club presenta su proyecto y cuánto necesita. Y esa inversión se divide en pequeñas partes digitales: los tokens.»</td><td class="osd"><span>TOKENS</span></td></tr><tr data-comment-target><td class="t">6</td><td class="pl">Plató · plano detalle que abre a plano medio · B/N + amarillo</td><td>Coge un cuadrado y lo enseña a cámara. Tres casillas que se marcan; en «riesgos», la tarjeta amarilla un segundo.</td><td class="say">«Cada token da unos derechos concretos. Y antes de invertir ves para qué es el dinero, qué derechos tienes y qué riesgos hay.»</td><td class="osd"><span>✓ PARA QUÉ ES EL DINERO · ✓ TUS DERECHOS · ✓ LOS RIESGOS</span></td></tr><tr data-comment-target><td class="t">7</td><td class="pl">Plató · travelling lateral</td><td>El presentador cruza el plató caminando y la cámara le acompaña de lado.</td><td class="say">«Para el club, una nueva forma de crecer. Para ti, una forma de diversificar en un sector real: el deporte. Y no hace falta ser un experto ni un apasionado del fútbol.»</td><td class="osd"><span>DIVERSIFICAR EN UN SECTOR REAL</span></td></tr><tr data-comment-target><td class="t">8</td><td class="pl">Plató · se para en primer plano</td><td>Mira a cámara y hace la V con la mano. La V se convierte en el símbolo y cierra en negro con el logo.</td><td class="say">«En el próximo vídeo te enseño qué compras exactamente, con una pizarra. Síguenos para no perdértelo.»</td><td class="osd"><span>@vestadium</span></td></tr></tbody>
+  </table></div>
+  <div class="two">
+    <div class="box"><h3 class="sub" style="margin:0">Qué cambia de vuestro guion</h3><ul><li>Gancho directo: «Esto es Vestadium: una plataforma para invertir en los proyectos de los clubes deportivos.» Quito el montaje de archivo del arranque: el vídeo empieza con el presentador.</li><li>Añado vuestro mensaje para el inversor del Talk Kit: «una forma de diversificar en un sector real» y «no hace falta ser un experto ni un apasionado del deporte».</li><li>Cierre nuevo: en vez de «Síguenos para descubrirlo todo», anuncia el vídeo 2. Así seguir la cuenta tiene un motivo concreto. La tarjeta amarilla aparece aquí por primera vez.</li></ul></div>
+    <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>El formato de vídeo que más tiempo sigue activo en vuestro sector es un presentador a cámara con subtítulos (Urbanitae lleva 175 días; Reental, 75). Aquí además cambia de plano en cada frase y la cámara se mueve, que es lo que pedíais para que no sea un vídeo estático.</p></div>
+  </div>
+  <div class="review" id="review-v1" data-video="v1">
+    <div class="rv-head"><span class="eyebrow">Revisión del vídeo 1</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v1" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v1" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v1" hidden>
+      <label for="note-v1">¿Qué cambiarías del vídeo 1?</label>
+      <textarea id="note-v1" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v1">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v1">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+<section class="vid" id="v2">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">2</div>
+    <p class="eyebrow">Vídeo 2 de 3</p>
+    <div><h2>Tokenización deportiva</h2><p class="serif">Qué compras, explicado en una pizarra</p></div>
+  </div>
+  <div class="facts">
+    <span class="pill on">Que lo entiendan y confíen</span>
+    <span class="pill">Reel 9:16</span>
+    <span class="pill">Plató</span>
+    <span class="pill">Propuesta · 7 nov</span>
+    <span class="pill">Subtítulos quemados</span>
+  </div>
+  <p class="idea">El presentador explica la tokenización con una pizarra táctica, como un entrenador en el vestuario. La pizarra no es física: es una animación en gráficos que se monta en edición, a su lado o a pantalla completa. Un imán grande es «lo normal» (un préstamo o un gran inversor) y muchas fichas amarillas son los tokens. El presentador se graba en plató con planos distintos y cámara en movimiento.</p>
+  <h3 class="sub">Storyboard de referencia</h3>
+  <div class="board"><figure data-comment-target><img src="/vestadium/img/v2_a.jpg" alt="Storyboard Tokenización deportiva, escena 1: Presentador y pizarra animada" width="540" height="960"><figcaption><b>Escena 1</b>Presentador y pizarra animada</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v2_b.jpg" alt="Storyboard Tokenización deportiva, escena 4: Lo normal frente a la tokenización" width="540" height="960"><figcaption><b>Escena 4</b>Lo normal frente a la tokenización</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v2_c.jpg" alt="Storyboard Tokenización deportiva, escena 5: Tres públicos y la flecha a la meta" width="540" height="960"><figcaption><b>Escena 5</b>Tres públicos y la flecha a la meta</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v2_d.jpg" alt="Storyboard Tokenización deportiva, escena 8: Tarjeta amarilla: los riesgos" width="540" height="960"><figcaption><b>Escena 8</b>Tarjeta amarilla: los riesgos</figcaption></figure></div>
+  <h3 class="sub">El gancho</h3>
+  <div class="hook1" data-comment-target><p class="q">[A cámara; a su lado se dibuja la pizarra táctica animada] «¿Qué compras exactamente cuando inviertes en el proyecto de un club? Te lo explico en una pizarra.»</p><p class="w">Es la primera pregunta de quien se plantea invertir, y está en vuestras preguntas frecuentes. La pizarra animada se entiende sin sonido y promete una explicación fácil.</p></div>
+  <h3 class="sub">Guion de rodaje</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody><tr data-comment-target><td class="t">1</td><td class="pl">Plató · plano medio, cámara en mano con acercamiento</td><td>El presentador a cámara. A su lado se dibuja la pizarra táctica animada.</td><td class="say">«¿Qué compras exactamente cuando inviertes en el proyecto de un club? Te lo explico en una pizarra.»</td><td class="osd"><span>¿QUÉ COMPRAS EXACTAMENTE?</span></td></tr><tr data-comment-target><td class="t">2</td><td class="pl">Gráfico · pizarra animada a pantalla completa</td><td>En la pizarra se escribe «INSTALACIONES NUEVAS».</td><td class="say">«Tu club quiere construir unas instalaciones nuevas.»</td><td class="osd"></td></tr><tr data-comment-target><td class="t">3</td><td class="pl">Plató · primer plano, con la pizarra en una esquina</td><td>En la pizarra aparece un solo imán grande y negro en el centro del campo.</td><td class="say">«Lo normal: pedir un préstamo o buscar un gran inversor.»</td><td class="osd"><span>LO NORMAL: 1 PRÉSTAMO O 1 GRAN INVERSOR</span></td></tr><tr data-comment-target><td class="t">4</td><td class="pl">Gráfico · pizarra animada a pantalla completa</td><td>El imán grande desaparece y el campo se llena de fichas amarillas.</td><td class="say">«Con la tokenización, ese proyecto se divide en muchas partes pequeñas: los tokens.»</td><td class="osd"><span>MUCHAS PARTES PEQUEÑAS = TOKENS</span></td></tr><tr data-comment-target><td class="t">5</td><td class="pl">Plató · travelling lateral, con la pizarra a su lado</td><td>Las fichas se agrupan en tres grupos: blancas, amarillas y negras.</td><td class="say">«Así pueden participar muchas personas a la vez: aficionados, inversores particulares y grandes inversores.»</td><td class="osd"><span>AFICIONADOS · PARTICULARES · GRANDES INVERSORES</span></td></tr><tr data-comment-target><td class="t">6</td><td class="pl">Gráfico · zoom a una ficha</td><td>La cámara del gráfico se acerca a una ficha con el sello vstd.</td><td class="say">«Lo que compras es un token con unos derechos económicos sobre ese proyecto, normalmente de deuda o de capital. Y los conoces antes de invertir.»</td><td class="osd"><span>DERECHOS ECONÓMICOS · SEGÚN CADA EMISIÓN</span></td></tr><tr data-comment-target><td class="t">7</td><td class="pl">Gráfico · pizarra animada</td><td>Una flecha se dibuja hasta la portería.</td><td class="say">«El club consigue financiación para su meta. Y tú inviertes en un proyecto real.»</td><td class="osd"><span>META</span></td></tr><tr data-comment-target><td class="t">8</td><td class="pl">Plató · primer plano con acercamiento rápido · B/N + amarillo</td><td>Saca la tarjeta amarilla a cámara.</td><td class="say">«Eso sí: como cualquier inversión, tiene riesgos, incluida la posibilidad de perder lo invertido. Infórmate bien antes de participar.»</td><td class="osd"><span>TODA INVERSIÓN IMPLICA RIESGO, INCLUIDA LA PÉRDIDA DE LO INVERTIDO</span></td></tr><tr data-comment-target><td class="t">9</td><td class="pl">Plató · plano medio</td><td>Gesto V → símbolo → logo.</td><td class="say">«En el próximo vídeo te enseño cómo se hace, en cuatro pasos. Síguenos.»</td><td class="osd"><span>@vestadium</span></td></tr></tbody>
+  </table></div>
+  <div class="two">
+    <div class="box"><h3 class="sub" style="margin:0">Qué cambia de vuestro guion</h3><ul><li>El gancho pasa de «¿Y si tu club deportivo pudiera financiar sus proyectos con la ayuda de su afición?» a la pregunta del inversor: «¿Qué compras exactamente…?» La pizarra es una animación en gráficos, no un objeto: se monta en edición.</li><li>Concreto qué da cada token con vuestras preguntas frecuentes: derechos económicos, normalmente de deuda o de capital, según cada emisión.</li><li>Cierre nuevo: en vez de «Y ahí entramos nosotros», anuncia el vídeo 3 («te enseño cómo se hace, en cuatro pasos»).</li></ul></div>
+    <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Vuestro Talk Kit pide «humanizar la tokenización con ejemplos deportivos». En la Biblioteca de anuncios de Meta no he encontrado a nadie en España que lo explique con un objeto del deporte, así que es un hueco. El presentador con subtítulos es el formato que más dura activo (Urbanitae, 175 días).</p></div>
+  </div>
+  <div class="review" id="review-v2" data-video="v2">
+    <div class="rv-head"><span class="eyebrow">Revisión del vídeo 2</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v2" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v2" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v2" hidden>
+      <label for="note-v2">¿Qué cambiarías del vídeo 2?</label>
+      <textarea id="note-v2" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v2">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v2">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+<section class="vid" id="v3">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">3</div>
+    <p class="eyebrow">Vídeo 3 de 3</p>
+    <div><h2>Cómo se hace</h2><p class="serif">Cuatro pasos, cuatro dedos</p></div>
+  </div>
+  <div class="facts">
+    <span class="pill on">Que entren a ver los proyectos</span>
+    <span class="pill">Reel 9:16</span>
+    <span class="pill">Despacho + croma</span>
+    <span class="pill">Propuesta · 10 nov</span>
+    <span class="pill">Subtítulos quemados</span>
+  </div>
+  <p class="idea">El presentador está en un despacho con el móvil y cuenta los pasos con la mano, como en el índice de vuestro brand book: un dedo, dos, tres, cuatro. En los pasos con pantalla, el presentador sigue en cámara delante de un croma, con la web real detrás señalando lo que se ve. Al final baja dos dedos y queda la V. El aviso de riesgo va fijo en pantalla durante todo el vídeo.</p>
+  <h3 class="sub">Storyboard de referencia</h3>
+  <div class="board"><figure data-comment-target><img src="/vestadium/img/v3_a.jpg" alt="Storyboard Cómo se hace, escena 1: Cuatro dedos, cuatro pasos" width="540" height="960"><figcaption><b>Escena 1</b>Cuatro dedos, cuatro pasos</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v3_b.jpg" alt="Storyboard Cómo se hace, escena 2: Paso 1: la pantalla de registro" width="540" height="960"><figcaption><b>Escena 2</b>Paso 1: la pantalla de registro</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v3_c.jpg" alt="Storyboard Cómo se hace, escena 3: Paso 2: la ficha del proyecto" width="540" height="960"><figcaption><b>Escena 3</b>Paso 2: la ficha del proyecto</figcaption></figure><figure data-comment-target><img src="/vestadium/img/v3_d.jpg" alt="Storyboard Cómo se hace, escena 7: Enlace en la bio y tarjeta amarilla" width="540" height="960"><figcaption><b>Escena 7</b>Enlace en la bio y tarjeta amarilla</figcaption></figure></div>
+  <h3 class="sub">El gancho</h3>
+  <div class="hook1" data-comment-target><p class="q">[En el despacho, levanta la mano con cuatro dedos] «Invertir en el proyecto de tu club son cuatro pasos. Cuéntalos conmigo.»</p><p class="w">El número se ve en la mano desde el primer plano y el espectador cuenta con el presentador.</p></div>
+  <h3 class="sub">Guion de rodaje</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody><tr data-comment-target><td class="t">1</td><td class="pl">Despacho · primer plano, cámara en mano</td><td>El presentador levanta la mano con cuatro dedos.</td><td class="say">«Invertir en el proyecto de tu club son cuatro pasos. Cuéntalos conmigo.»</td><td class="osd"><span>4 PASOS</span></td></tr><tr data-comment-target><td class="t">2</td><td class="pl">Croma · plano medio, el presentador delante de la web</td><td>Un dedo. Detrás de él, la pantalla de registro y verificación; la señala mientras habla.</td><td class="say">«Uno: crea tu cuenta en nuestra web y verifica tu identidad. Así se protege a todos los que participan.»</td><td class="osd"><span>1 · CREA TU CUENTA Y VERIFICA TU IDENTIDAD</span></td></tr><tr data-comment-target><td class="t">3</td><td class="pl">Croma · plano medio con acercamiento</td><td>Dos dedos. Detrás, la ficha de un proyecto hace scroll y él señala cada apartado.</td><td class="say">«Dos: elige el proyecto. En su ficha tienes qué ingresos reparte, el estado de la ronda, la documentación y sus riesgos.»</td><td class="osd"><span>2 · ELIGE EL PROYECTO</span></td></tr><tr data-comment-target><td class="t">4</td><td class="pl">Despacho · plano medio, sentado en la mesa</td><td>Tres dedos, con el móvil en la otra mano.</td><td class="say">«Tres: participa con el importe que quieras, a partir del mínimo de cada proyecto.»</td><td class="osd"><span>3 · PARTICIPA DESDE EL MÍNIMO</span></td></tr><tr data-comment-target><td class="t">5</td><td class="pl">Croma · plano medio</td><td>Cuatro dedos. Detrás, el panel con los tokens y los ingresos.</td><td class="say">«Cuatro: sigue tu inversión, tus tokens y los ingresos que te correspondan. Y si quieres, puedes venderlos a otros usuarios, siempre que haya alguien interesado.»</td><td class="osd"><span>4 · SIGUE TU INVERSIÓN</span></td></tr><tr data-comment-target><td class="t">6</td><td class="pl">Despacho · se levanta y camina hacia cámara</td><td>Baja dos dedos y queda la V, que se convierte en el símbolo.</td><td class="say">«Y así ya formas parte del proyecto de tu club.»</td><td class="osd"></td></tr><tr data-comment-target><td class="t">7</td><td class="pl">Despacho · primer plano · B/N + amarillo en «riesgos»</td><td>Señala hacia arriba (la bio). En «riesgos», saca la tarjeta amarilla.</td><td class="say">«Los proyectos disponibles están en el enlace de nuestra bio. Y ojo: como toda inversión, tiene riesgos. Infórmate bien antes de invertir.»</td><td class="osd"><span>ENLACE EN LA BIO</span></td></tr></tbody>
+  </table><div class="tbl-foot">Rótulo fijo durante todo el vídeo: «Invertir conlleva riesgos, incluida la pérdida total o parcial del capital invertido. Infórmate antes de invertir.»</div></div>
+  <div class="two">
+    <div class="box"><h3 class="sub" style="margin:0">Qué cambia de vuestro guion</h3><ul><li>El gancho pasa de «Te enseñamos en cuatro pasos… Es más fácil de lo que parece» a la mano con cuatro dedos. En un vídeo que habla de invertir, «más fácil de lo que parece» puede sonar a venta.</li><li>El resto es vuestro guion, con los números dichos («Uno», «Dos»…) para que cuadren con los dedos. Rótulo fijo durante todo el vídeo: «Invertir conlleva riesgos, incluida la pérdida total o parcial del capital invertido. Infórmate antes de invertir.»</li><li>Propuesta para validar: en el paso 4, «siempre que la emisión lo permita y haya alguien interesado», que es lo que dicen vuestras preguntas frecuentes.</li></ul></div>
+    <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Es el vídeo que lleva a invertir, así que el aviso va como en Mintos: fijo en pantalla desde el primer segundo en sus vídeos activos. No he encontrado ningún tutorial activo de «cómo invertir en X pasos» con la pantalla real entre Reental, Urbanitae, Mintos, Brickken, Bit2Me y Socios.com. Grabarlo móvil en mano enseña que se hace en unos minutos, desde casa.</p></div>
+  </div>
+  <div class="review" id="review-v3" data-video="v3">
+    <div class="rv-head"><span class="eyebrow">Revisión del vídeo 3</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v3" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v3" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v3" hidden>
+      <label for="note-v3">¿Qué cambiarías del vídeo 3?</label>
+      <textarea id="note-v3" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v3">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v3">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="rodaje">
+  <div class="sec-head"><p class="eyebrow">Convocatoria</p><h2>Rodaje · martes 4 de noviembre</h2>
+  <p>Todo en interior: plató con fondo blanco y un despacho. Dos cámaras 4K: una en trípode para cenitales y detalles, y otra en mano para los planos en movimiento. Micro inalámbrico y luz regulable. El vídeo 1 se cierra por la mañana para editarlo esa misma noche.</p></div>
+  <div class="call">
+    <div class="sched"><div class="slot"><span class="h">08:30</span><span class="w">Atrezo</span><p>Tarjeta amarilla, lámina impresa del proyecto, tijeras y pegatinas del sello vstd. Croma para el vídeo 3.</p></div><div class="slot"><span class="h">09:30</span><span class="w">Plató</span><p>Fondo blanco despejado, luz frontal suave y contraluz para separar del fondo.</p></div><div class="slot v"><span class="h">10:00</span><span class="w"><span>Vídeo 2</span></span><p>Presentador a cámara: plano medio en mano, primeros planos, travelling y tarjeta amarilla. Deja hueco a un lado para la pizarra animada.</p></div><div class="slot v"><span class="h">11:45</span><span class="w"><span>Vídeo 1</span></span><p>Todo en plató: entrada caminando, iconos, lámina en cenital, tarjeta amarilla, travelling y gesto V.</p></div><div class="slot"><span class="h">13:30</span><span class="w">Comida</span><p></p></div><div class="slot"><span class="h">14:15</span><span class="w">Pantallas</span><p>Grabación de la web (registro, ficha, importe y panel) para ponerla detrás del croma.</p></div><div class="slot v"><span class="h">15:00</span><span class="w"><span>Vídeo 3</span></span><p>Croma: escenas 2, 3 y 5 con el presentador señalando la web. Despacho: primer plano en mano, dedos en la mesa, levantarse y cierre.</p></div><div class="slot"><span class="h">16:30</span><span class="w">Cierre</span><p>Recursos (gesto V, tarjeta, fichas en detalle) y copia de seguridad. Empieza la edición del vídeo 1.</p></div></div>
+    <div class="props">
+      <div><h3 class="sub">Atrezo y vestuario</h3><div class="list"><div class="li"><b>Pizarra táctica animada (gráficos)</b><span>Vídeo 2. No hace falta pizarra física: la animación se prepara aparte y se monta en edición.</span></div><div class="li"><b>Lámina impresa «Proyecto · Ciudad deportiva» y tijeras</b><span>Vídeo 1, escena 6. A3 con cuadrícula de sellos vstd.</span></div><div class="li"><b>Tarjeta amarilla de árbitro (2 unidades)</b><span>Vídeos 1, 2 y 3.</span></div><div class="li"><b>Croma (fondo verde) con luz uniforme</b><span>Vídeo 3, escenas 2, 3 y 5: el presentador delante y la web detrás.</span></div><div class="li"><b>Móvil con la web de Vestadium abierta</b><span>Vídeo 3. Pantalla limpia, sin notificaciones.</span></div><div class="li"><b>Despacho con mesa y silla</b><span>Vídeo 3. Sin objetos amarillos ni logos de marcas a la vista: el amarillo se quedaría en color.</span></div><div class="li"><b>Camiseta negra lisa o camiseta Vestadium</b><span>Sin escudos ni colores de ningún club: el vídeo habla de «tu club», sea cual sea.</span></div></div></div>
+      <div class="box"><h3 class="sub" style="margin:0">Entregas</h3>
+        <ul><li>Vídeo 1: la noche del 4 de noviembre, listo para publicar el 5.</li><li>Vídeos 2 y 3: 6 de noviembre.</li><li>Cada vídeo en 9:16, con subtítulos y portada para la cuadrícula del perfil.</li><li>Música libre de derechos: las cuentas de empresa no pueden usar la música comercial de Instagram.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="necesito">
+  <div class="sec-head"><p class="eyebrow">Para hoy</p><h2>Lo que necesito de vosotros</h2>
+  <p>Con los puntos 1 y 2 podemos grabar mañana. El resto lo cerramos durante la edición. Marca tu respuesta y me llega al momento.</p></div>
+  <div class="needs"><div class="need" data-need="guiones" data-comment-target><b>OK a los tres guiones</b><span>Con los botones «Aprobar» o «Pedir cambios» de cada vídeo.</span><p class="nd-sum" data-sum>0 de 3 aprobados</p></div><div class="need" data-need="web" data-comment-target><b>Acceso a la web para grabar pantallas</b><span>Registro, ficha de un proyecto, importe y panel. Si aún no está en producción, vale un entorno de pruebas o los diseños.</span><div class="opts"><button type="button" class="opt" data-val="Enviado" id="opt-web-0" aria-pressed="false" disabled>Enviado</button></div><p class="nd-who"></p></div><div class="need" data-need="movil" data-comment-target><b>La web en el móvil</b><span>El vídeo 3 enseña la web en un móvil. Si aún no está adaptada, grabamos la pantalla del ordenador.</span><div class="opts"><button type="button" class="opt" data-val="Funciona en móvil" id="opt-movil-0" aria-pressed="false" disabled>Funciona en móvil</button><button type="button" class="opt" data-val="Mejor ordenador" id="opt-movil-1" aria-pressed="false" disabled>Mejor ordenador</button></div><p class="nd-who"></p></div><div class="need" data-need="marca" data-comment-target><b>Logo, sello y tipografías en archivo</b><span>Logo en vector o PNG, sello vstd, Gotham y Acumin (o la licencia para usarlas en vídeo).</span><div class="opts"><button type="button" class="opt" data-val="Enviado" id="opt-marca-0" aria-pressed="false" disabled>Enviado</button></div><p class="nd-who"></p></div><div class="need" data-need="legal" data-comment-target><b>Revisión legal de los textos de riesgo</b><span>Son vídeos que hablan de invertir: conviene que vuestro equipo legal revise los rótulos con la normativa de publicidad de la CNMV (Circular 2/2020).</span><div class="opts"><button type="button" class="opt" data-val="Revisado" id="opt-legal-0" aria-pressed="false" disabled>Revisado</button><button type="button" class="opt" data-val="Lo revisamos después" id="opt-legal-1" aria-pressed="false" disabled>Lo revisamos después</button></div><p class="nd-who"></p></div><div class="need" data-need="claim" data-comment-target><b>Claim del cierre</b><span>El Talk Kit dice «Beyond Goals» como eslogan y en la portada aparece «Backing Goals». ¿Va alguno en el cierre?</span><div class="opts"><button type="button" class="opt" data-val="Beyond Goals" id="opt-claim-0" aria-pressed="false" disabled>Beyond Goals</button><button type="button" class="opt" data-val="Backing Goals" id="opt-claim-1" aria-pressed="false" disabled>Backing Goals</button><button type="button" class="opt" data-val="Ninguno" id="opt-claim-2" aria-pressed="false" disabled>Ninguno</button></div><p class="nd-who"></p></div><div class="need" data-need="test" data-comment-target><b>Paso 1 del vídeo 3</b><span>Vuestras preguntas frecuentes incluyen un test de conveniencia además de la verificación. ¿Lo nombramos?</span><div class="opts"><button type="button" class="opt" data-val="Sí, nombrarlo" id="opt-test-0" aria-pressed="false" disabled>Sí, nombrarlo</button><button type="button" class="opt" data-val="No" id="opt-test-1" aria-pressed="false" disabled>No</button></div><p class="nd-who"></p></div><div class="need" data-need="calendario" data-comment-target><b>Calendario de publicación</b><span>Propongo vídeo 1 el 5 nov, vídeo 2 el 7 nov y vídeo 3 el 10 nov.</span><div class="opts"><button type="button" class="opt" data-val="Nos vale" id="opt-calendario-0" aria-pressed="false" disabled>Nos vale</button><button type="button" class="opt" data-val="Otro (lo comentamos)" id="opt-calendario-1" aria-pressed="false" disabled>Otro (lo comentamos)</button></div><p class="nd-who"></p></div></div>
+</section>
+
+<footer>
+  <span><b>Pol Morera</b> · +1.000 vídeos para +300 marcas · polmorera.es</span>
+  <span>Storyboard de referencia: montajes con fotos de Pol y pantallas ilustrativas. Las de la web se sustituyen por la grabación real.</span>
+</footer>
+</div>
+<script src="/vestadium/config.js"></script>
+<script src="/vestadium/respuestas.js"></script>
+</body>
+</html>

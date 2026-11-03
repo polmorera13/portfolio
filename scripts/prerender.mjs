@@ -218,7 +218,7 @@ fs.writeFileSync(
 // ── robots.txt ──────────────────────────────────────────────────────────────
 fs.writeFileSync(
   path.join(DIST, "robots.txt"),
-  `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+  `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /login\nDisallow: /vestadium\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
 );
 
 fs.rmSync(path.join(DIST, ".vite"), { recursive: true, force: true });

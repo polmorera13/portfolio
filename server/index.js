@@ -395,6 +395,86 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// ── Propuesta Vestadium (polmorera.es/vestadium) ──────────────────────────────
+// Mismas reglas que las funciones vestadium_leer / vestadium_responder del SQL:
+// solo con la clave del enlace de revisión (?k=...). Se guarda en /data/vestadium.json.
+const VESTADIUM_PATH = process.env.VESTADIUM_PATH || path.join(path.dirname(HERO_PATH), "vestadium.json");
+const VESTADIUM_KEY = process.env.VESTADIUM_KEY || "vst-idbb2yxwsqk18g";
+const VESTADIUM_NEEDS = ["web", "movil", "marca", "legal", "claim", "test", "calendario"];
+let vestadiumQueue = Promise.resolve();
+
+async function readVestadium() {
+  try {
+    const obj = JSON.parse(await fs.readFile(VESTADIUM_PATH, "utf8"));
+    return obj && typeof obj === "object" && !Array.isArray(obj) ? obj : {};
+  } catch {
+    return {};
+  }
+}
+const vestadiumRows = (obj) => Object.values(obj).sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+function vestadiumKeyOk(req, res) {
+  if (req.body?.p_key !== VESTADIUM_KEY) {
+    res.status(401).json({ error: "clave no válida" });
+    return false;
+  }
+  return true;
+}
+
+app.post("/api/vestadium/vestadium_leer", async (req, res) => {
+  if (!vestadiumKeyOk(req, res)) return;
+  res.set("Cache-Control", "no-store");
+  res.json(vestadiumRows(await readVestadium()));
+});
+
+app.post("/api/vestadium/vestadium_responder", async (req, res) => {
+  if (!vestadiumKeyOk(req, res)) return;
+  const { p_tipo, p_clave, p_estado, p_nota, p_autor } = req.body || {};
+  const estado = p_estado === null || p_estado === undefined ? null : p_estado;
+  if (estado !== null && typeof estado !== "string") return res.status(400).json({ error: "estado no válido" });
+  if (p_tipo === "review") {
+    if (!["v1", "v2", "v3"].includes(p_clave)) return res.status(400).json({ error: "vídeo no válido" });
+    if (estado !== null && !["ok", "changes"].includes(estado)) return res.status(400).json({ error: "estado no válido" });
+  } else if (p_tipo === "need") {
+    if (!VESTADIUM_NEEDS.includes(p_clave)) return res.status(400).json({ error: "pregunta no válida" });
+    if (estado !== null && estado.length > 60) return res.status(400).json({ error: "respuesta no válida" });
+  } else {
+    return res.status(400).json({ error: "tipo no válido" });
+  }
+  const id = `${p_tipo}:${p_clave}`;
+  const job = vestadiumQueue.then(async () => {
+    const all = await readVestadium();
+    all[id] = {
+      id,
+      tipo: p_tipo,
+      clave: p_clave,
+      estado,
+      nota: str(p_nota, 1000),
+      autor: str(p_autor, 80),
+      updated_at: new Date().toISOString(),
+    };
+    await fs.writeFile(VESTADIUM_PATH, JSON.stringify(all, null, 2), "utf8");
+  });
+  vestadiumQueue = job.catch(() => {});
+  try {
+    await job;
+    res.status(204).end();
+  } catch (e) {
+    console.error("vestadium write error", e);
+    res.status(500).json({ error: "write_failed" });
+  }
+});
+
+// Panel: ver o borrar las respuestas (p. ej. las de prueba)
+app.get("/api/admin/vestadium", requireAuth, async (_req, res) => {
+  res.json(vestadiumRows(await readVestadium()));
+});
+app.delete("/api/admin/vestadium", requireAuth, async (_req, res) => {
+  const job = vestadiumQueue.then(() => fs.writeFile(VESTADIUM_PATH, "{}", "utf8"));
+  vestadiumQueue = job.catch(() => {});
+  await job;
+  res.json({ ok: true });
+});
+
 // Admin: upload a new video
 app.post("/api/admin/videos", requireAuth, upload.single("file"), async (req, res) => {
   try {
