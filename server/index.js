@@ -452,6 +452,15 @@ app.post("/api/vestadium/vestadium_responder", async (req, res) => {
       autor: str(p_autor, 80),
       updated_at: new Date().toISOString(),
     };
+    // Los comentarios de "Pedir cambios" se acumulan (no los pisa la siguiente respuesta)
+    const nota = str(p_nota, 1000).trim();
+    if (p_tipo === "review" && estado === "changes" && nota) {
+      const n = Object.keys(all).filter((k) => k.startsWith("comment:")).length;
+      if (n < 500) {
+        const cid = `comment:${p_clave}:${String(Date.now()).padStart(14, "0")}`;
+        all[cid] = { id: cid, tipo: "comment", clave: p_clave, estado: null, nota, autor: str(p_autor, 80), updated_at: new Date().toISOString() };
+      }
+    }
     await fs.writeFile(VESTADIUM_PATH, JSON.stringify(all, null, 2), "utf8");
   });
   vestadiumQueue = job.catch(() => {});

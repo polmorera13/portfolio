@@ -3,7 +3,7 @@
 (function () {
   var CFG = window.VESTADIUM_CONFIG || {};
   var VIDEOS = ['v1', 'v2', 'v3'];
-  var S = { review: {}, needs: {}, key: null, ready: false, readonly: true };
+  var S = { review: {}, needs: {}, comments: {}, key: null, ready: false, readonly: true };
   var pending = {};
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -63,7 +63,23 @@
       chip.textContent = stLabel(st, false);
       $('.rv-who', box).textContent = (r && r.estado) ? ((r.autor || 'Alguien del equipo') + ' · ' + fmtDate(r.updated_at)) : '';
       var nt = $('.rv-note', box);
-      if (st === 'changes' && r.nota) { nt.hidden = false; nt.textContent = '«' + r.nota + '»'; } else { nt.hidden = true; nt.textContent = ''; }
+      // Todos los comentarios del vídeo (quién y qué), en el orden en que llegaron
+      var cs = S.comments[v] || [];
+      var cbox = $('.rv-comments', box);
+      if (cs.length && cbox) {
+        nt.hidden = true; nt.textContent = '';
+        var ul = $('ul', cbox); ul.textContent = '';
+        cs.forEach(function (c) {
+          var li = document.createElement('li'), b = document.createElement('b');
+          b.textContent = (c.autor || 'Alguien del equipo') + ':';
+          li.appendChild(b); li.appendChild(document.createTextNode(c.nota));
+          ul.appendChild(li);
+        });
+        cbox.hidden = false;
+      } else {
+        if (cbox) cbox.hidden = true;
+        if (st === 'changes' && r.nota) { nt.hidden = false; nt.textContent = '«' + r.nota + '»'; } else { nt.hidden = true; nt.textContent = ''; }
+      }
       $$('.btn[data-act="ok"], .btn[data-act="changes"]', box).forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.act === st)); });
       var hc = $('.rp-chip[data-video="' + v + '"]');
       if (hc) { hc.dataset.state = st; $('.rp-st', hc).textContent = stLabel(st, true); }
@@ -88,9 +104,13 @@
   async function load() {
     if (!S.key) return;
     var rows = await rpc('vestadium_leer', { p_key: S.key });
-    var rev = {}, nds = {};
-    (rows || []).forEach(function (r) { if (r.tipo === 'review') rev[r.clave] = r; else nds[r.clave] = r; });
-    S.review = rev; S.needs = nds;
+    var rev = {}, nds = {}, cms = {};
+    (rows || []).forEach(function (r) {
+      if (r.tipo === 'review') rev[r.clave] = r;
+      else if (r.tipo === 'comment') (cms[r.clave] = cms[r.clave] || []).push(r);
+      else nds[r.clave] = r;
+    });
+    S.review = rev; S.needs = nds; S.comments = cms;
     render();
   }
 
@@ -140,8 +160,6 @@
         form.hidden = !form.hidden;
         if (!form.hidden) {
           var ta = $('#note-' + v);
-          var r = S.review[v];
-          if (!ta.value && r && r.nota) ta.value = r.nota;
           ta.focus();
         }
       });
