@@ -205,6 +205,11 @@ footer b{color:var(--ink)}
 .nd-who{font-size:13px; color:var(--muted); margin-top:8px}
 .need.done::before{background:var(--hi); color:var(--hi-ink)}
 .nd-sum{font-weight:800; margin-top:10px}
+.need[data-need="guiones"]{display:flex; flex-direction:column}
+.bigcheck{display:none; width:76px; height:76px; border-radius:50%; background:#1F9D55; margin:18px auto 4px; place-items:center; box-shadow:0 10px 24px rgba(31,157,85,.3)}
+.bigcheck svg{width:44px; height:44px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
+.need[data-need="guiones"].done .bigcheck{display:grid}
+.need[data-need="guiones"].done .nd-sum{color:#1F9D55}
 
 @media (max-width: 900px){
   .codes{grid-template-columns:repeat(2, minmax(0,1fr))}
@@ -236,16 +241,7 @@ footer b{color:var(--ink)}
     <div class="brandrow"><img class="sym-light" src="/vestadium/img/symbol_k.png" alt="" width="40" height="39"><img class="sym-dark" src="/vestadium/img/symbol_y.png" alt="" width="40" height="39"><span class="eyebrow">Propuesta para Vestadium · 3 nov 2026</span></div>
     <span class="eyebrow">Pol Morera · polmorera.es</span>
   </div>
-  <h1>Saltamos <span class="mark">al campo.</span><span class="serif">Tres reels para el lanzamiento, grabados mañana.</span></h1>
-  <p class="lede">Os propongo grabar los tres guiones como <b>una serie</b>: mismo presentador, los mismos códigos visuales y un plano distinto en cada frase, con la cámara en movimiento. Hablan a quien ya ahorra o invierte cada mes y busca dónde diversificar: el deporte engancha y la inversión es lo que se explica. Mantengo toda la información de vuestros guiones; los ganchos y los cierres son nuevos, contados a cámara, de forma cercana y directa. Todo en interior y en un solo día de rodaje.</p>
-  <div class="meta">
-    <span class="pill on">Rodaje · mar 4 nov</span>
-    <span class="pill">Lanzamiento · mié 5 nov</span>
-    <span class="pill">3 reels 9:16</span>
-    <span class="pill">Interior: plató + despacho</span>
-    <span class="pill">Para quien invierte cada mes</span>
-    <span class="pill">Instagram orgánico</span>
-  </div>
+  <h1>Saltamos <span class="mark">al campo.</span><span class="serif">Tres reels para el lanzamiento.</span></h1>
   <div class="revpanel" id="revpanel">
     <div class="rp-top"><span class="eyebrow">Revisión</span><span class="rp-status" id="rp-status">0 de 3 vídeos aprobados</span></div>
     <div class="rp-chips">
@@ -282,7 +278,6 @@ footer b{color:var(--ink)}
     <span class="pill on">Que os conozcan</span>
     <span class="pill">Reel 9:16</span>
     <span class="pill">Plató</span>
-    <span class="pill">Día del lanzamiento · 5 nov</span>
     <span class="pill">Subtítulos quemados</span>
   </div>
   <p class="idea">Directo desde el primer fotograma: el presentador dice a cámara qué es Vestadium y a quién le interesa, a quien invierte una parte de sus ahorros cada mes. Todo es interior, pero la cámara no se queda quieta: acercamientos, entradas caminando, travelling, cenital y planos detalle de una lámina que se corta en tokens.</p>
@@ -325,7 +320,6 @@ footer b{color:var(--ink)}
     <span class="pill on">Que lo entiendan y confíen</span>
     <span class="pill">Reel 9:16</span>
     <span class="pill">Plató</span>
-    <span class="pill">Propuesta · 7 nov</span>
     <span class="pill">Subtítulos quemados</span>
   </div>
   <p class="idea">El presentador explica la tokenización con una pizarra táctica, como un entrenador en el vestuario. La pizarra no es física: es una animación en gráficos que se monta en edición, a su lado o a pantalla completa. Un imán grande es «lo normal» (un préstamo o un gran inversor) y muchas fichas amarillas son los tokens. El presentador se graba en plató con planos distintos y cámara en movimiento.</p>
@@ -368,7 +362,6 @@ footer b{color:var(--ink)}
     <span class="pill on">Que entren a ver los proyectos</span>
     <span class="pill">Reel 9:16</span>
     <span class="pill">Despacho + croma</span>
-    <span class="pill">Propuesta · 10 nov</span>
     <span class="pill">Subtítulos quemados</span>
   </div>
   <p class="idea">El presentador está en un despacho con el móvil y cuenta los pasos con la mano, como en el índice de vuestro brand book: un dedo, dos, tres, cuatro. En los pasos con pantalla, el presentador sigue en cámara delante de un croma, con la web real detrás señalando lo que se ve. Al final baja dos dedos y queda la V. El aviso de riesgo va fijo en pantalla durante todo el vídeo.</p>
@@ -402,23 +395,10 @@ footer b{color:var(--ink)}
   </div>
 </section>
 
-<section id="rodaje">
-  <div class="sec-head"><p class="eyebrow">Convocatoria</p><h2>Rodaje · martes 4 de noviembre</h2>
-  <p>Todo en interior: plató con fondo blanco y un despacho. Dos cámaras 4K: una en trípode para cenitales y detalles, y otra en mano para los planos en movimiento. Micro inalámbrico y luz regulable. El vídeo 1 se cierra por la mañana para editarlo esa misma noche.</p></div>
-  <div class="call">
-    <div class="sched"><div class="slot"><span class="h">08:30</span><span class="w">Atrezo</span><p>Tarjeta amarilla, lámina impresa del proyecto, tijeras y pegatinas del sello vstd. Croma para el vídeo 3.</p></div><div class="slot"><span class="h">09:30</span><span class="w">Plató</span><p>Fondo blanco despejado, luz frontal suave y contraluz para separar del fondo.</p></div><div class="slot v"><span class="h">10:00</span><span class="w"><span>Vídeo 2</span></span><p>Presentador a cámara: plano medio en mano, primeros planos, travelling y tarjeta amarilla. Deja hueco a un lado para la pizarra animada.</p></div><div class="slot v"><span class="h">11:45</span><span class="w"><span>Vídeo 1</span></span><p>Todo en plató: entrada caminando, iconos, lámina en cenital, tarjeta amarilla, travelling y gesto V.</p></div><div class="slot"><span class="h">13:30</span><span class="w">Comida</span><p></p></div><div class="slot"><span class="h">14:15</span><span class="w">Pantallas</span><p>Grabación de la web (registro, ficha, importe y panel) para ponerla detrás del croma.</p></div><div class="slot v"><span class="h">15:00</span><span class="w"><span>Vídeo 3</span></span><p>Croma: escenas 2, 3 y 5 con el presentador señalando la web. Despacho: primer plano en mano, dedos en la mesa, levantarse y cierre.</p></div><div class="slot"><span class="h">16:30</span><span class="w">Cierre</span><p>Recursos (gesto V, tarjeta, fichas en detalle) y copia de seguridad. Empieza la edición del vídeo 1.</p></div></div>
-    <div class="props">
-      <div><h3 class="sub">Atrezo y vestuario</h3><div class="list"><div class="li"><b>Pizarra táctica animada (gráficos)</b><span>Vídeo 2. No hace falta pizarra física: la animación se prepara aparte y se monta en edición.</span></div><div class="li"><b>Lámina impresa «Proyecto · Ciudad deportiva» y tijeras</b><span>Vídeo 1, escena 6. A3 con cuadrícula de sellos vstd.</span></div><div class="li"><b>Tarjeta amarilla de árbitro (2 unidades)</b><span>Vídeos 1, 2 y 3.</span></div><div class="li"><b>Croma (fondo verde) con luz uniforme</b><span>Vídeo 3, escenas 2, 3 y 5: el presentador delante y la web detrás.</span></div><div class="li"><b>Móvil con la web de Vestadium abierta</b><span>Vídeo 3. Pantalla limpia, sin notificaciones.</span></div><div class="li"><b>Despacho con mesa y silla</b><span>Vídeo 3. Sin objetos amarillos ni logos de marcas a la vista: el amarillo se quedaría en color.</span></div><div class="li"><b>Camiseta negra lisa o camiseta Vestadium</b><span>Sin escudos ni colores de ningún club: el vídeo habla de «tu club», sea cual sea.</span></div></div></div>
-      <div class="box"><h3 class="sub" style="margin:0">Entregas</h3>
-        <ul><li>Vídeo 1: la noche del 4 de noviembre, listo para publicar el 5.</li><li>Vídeos 2 y 3: 6 de noviembre.</li><li>Cada vídeo en 9:16, con subtítulos y portada para la cuadrícula del perfil.</li><li>Música libre de derechos: las cuentas de empresa no pueden usar la música comercial de Instagram.</li></ul></div>
-    </div>
-  </div>
-</section>
-
 <section id="necesito">
-  <div class="sec-head"><p class="eyebrow">Para hoy</p><h2>Lo que necesito de vosotros</h2>
-  <p>Con los puntos 1 y 2 podemos grabar mañana. El resto lo cerramos durante la edición. Marca tu respuesta y me llega al momento.</p></div>
-  <div class="needs"><div class="need" data-need="guiones" data-comment-target><b>OK a los tres guiones</b><span>Con los botones «Aprobar» o «Pedir cambios» de cada vídeo.</span><p class="nd-sum" data-sum>0 de 3 aprobados</p></div><div class="need" data-need="web" data-comment-target><b>Acceso a la web para grabar pantallas</b><span>Registro, ficha de un proyecto, importe y panel. Si aún no está en producción, vale un entorno de pruebas o los diseños.</span><div class="opts"><button type="button" class="opt" data-val="Enviado" id="opt-web-0" aria-pressed="false" disabled>Enviado</button></div><p class="nd-who"></p></div><div class="need" data-need="movil" data-comment-target><b>La web en el móvil</b><span>El vídeo 3 enseña la web en un móvil. Si aún no está adaptada, grabamos la pantalla del ordenador.</span><div class="opts"><button type="button" class="opt" data-val="Funciona en móvil" id="opt-movil-0" aria-pressed="false" disabled>Funciona en móvil</button><button type="button" class="opt" data-val="Mejor ordenador" id="opt-movil-1" aria-pressed="false" disabled>Mejor ordenador</button></div><p class="nd-who"></p></div><div class="need" data-need="marca" data-comment-target><b>Logo, sello y tipografías en archivo</b><span>Logo en vector o PNG, sello vstd, Gotham y Acumin (o la licencia para usarlas en vídeo).</span><div class="opts"><button type="button" class="opt" data-val="Enviado" id="opt-marca-0" aria-pressed="false" disabled>Enviado</button></div><p class="nd-who"></p></div><div class="need" data-need="legal" data-comment-target><b>Revisión legal de los textos de riesgo</b><span>Son vídeos que hablan de invertir: conviene que vuestro equipo legal revise los rótulos con la normativa de publicidad de la CNMV (Circular 2/2020).</span><div class="opts"><button type="button" class="opt" data-val="Revisado" id="opt-legal-0" aria-pressed="false" disabled>Revisado</button><button type="button" class="opt" data-val="Lo revisamos después" id="opt-legal-1" aria-pressed="false" disabled>Lo revisamos después</button></div><p class="nd-who"></p></div><div class="need" data-need="claim" data-comment-target><b>Claim del cierre</b><span>El Talk Kit dice «Beyond Goals» como eslogan y en la portada aparece «Backing Goals». ¿Va alguno en el cierre?</span><div class="opts"><button type="button" class="opt" data-val="Beyond Goals" id="opt-claim-0" aria-pressed="false" disabled>Beyond Goals</button><button type="button" class="opt" data-val="Backing Goals" id="opt-claim-1" aria-pressed="false" disabled>Backing Goals</button><button type="button" class="opt" data-val="Ninguno" id="opt-claim-2" aria-pressed="false" disabled>Ninguno</button></div><p class="nd-who"></p></div><div class="need" data-need="test" data-comment-target><b>Paso 1 del vídeo 3</b><span>Vuestras preguntas frecuentes incluyen un test de conveniencia además de la verificación. ¿Lo nombramos?</span><div class="opts"><button type="button" class="opt" data-val="Sí, nombrarlo" id="opt-test-0" aria-pressed="false" disabled>Sí, nombrarlo</button><button type="button" class="opt" data-val="No" id="opt-test-1" aria-pressed="false" disabled>No</button></div><p class="nd-who"></p></div><div class="need" data-need="calendario" data-comment-target><b>Calendario de publicación</b><span>Propongo vídeo 1 el 5 nov, vídeo 2 el 7 nov y vídeo 3 el 10 nov.</span><div class="opts"><button type="button" class="opt" data-val="Nos vale" id="opt-calendario-0" aria-pressed="false" disabled>Nos vale</button><button type="button" class="opt" data-val="Otro (lo comentamos)" id="opt-calendario-1" aria-pressed="false" disabled>Otro (lo comentamos)</button></div><p class="nd-who"></p></div></div>
+  <div class="sec-head"><h2>Lo que necesito de vosotros</h2>
+  <p>Marca tu respuesta y me llega al momento.</p></div>
+  <div class="needs"><div class="need" data-need="guiones" data-comment-target><b>OK a los tres guiones</b><span>Con los botones «Aprobar» o «Pedir cambios» de cada vídeo.</span><p class="nd-sum" data-sum>0 de 3 aprobados</p><span class="bigcheck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="need" data-need="web" data-comment-target><b>Acceso a la web o a la aplicación</b><span>El vídeo 3 enseña cómo se invierte paso a paso, con la pantalla real. ¿Tendremos acceso a la web o a la aplicación (vale un entorno de pruebas) para mostrarla en los vídeos?</span><div class="opts"><button type="button" class="opt" data-val="Sí" id="opt-web-0" aria-pressed="false" disabled>Sí</button><button type="button" class="opt" data-val="No" id="opt-web-1" aria-pressed="false" disabled>No</button></div><p class="nd-who"></p></div><div class="need" data-need="legal" data-comment-target><b>Avisos de riesgo</b><span>Son vídeos que hablan de invertir, y en los guiones hay avisos de riesgo: la tarjeta amarilla y el rótulo fijo del vídeo 3. ¿Los ponemos?</span><div class="opts"><button type="button" class="opt" data-val="Sí" id="opt-legal-0" aria-pressed="false" disabled>Sí</button><button type="button" class="opt" data-val="No" id="opt-legal-1" aria-pressed="false" disabled>No</button></div><p class="nd-who"></p></div><div class="need" data-need="claim" data-comment-target><b>Claim del cierre</b><span>El Talk Kit dice «Beyond Goals» como eslogan y en la portada aparece «Backing Goals». ¿Va alguno en el cierre?</span><div class="opts"><button type="button" class="opt" data-val="Beyond Goals" id="opt-claim-0" aria-pressed="false" disabled>Beyond Goals</button><button type="button" class="opt" data-val="Backing Goals" id="opt-claim-1" aria-pressed="false" disabled>Backing Goals</button><button type="button" class="opt" data-val="Ninguno" id="opt-claim-2" aria-pressed="false" disabled>Ninguno</button></div><p class="nd-who"></p></div><div class="need" data-need="test" data-comment-target><b>Paso 1 del vídeo 3</b><span>Vuestras preguntas frecuentes incluyen un test de conveniencia además de la verificación. ¿Lo nombramos?</span><div class="opts"><button type="button" class="opt" data-val="Sí, nombrarlo" id="opt-test-0" aria-pressed="false" disabled>Sí, nombrarlo</button><button type="button" class="opt" data-val="No" id="opt-test-1" aria-pressed="false" disabled>No</button></div><p class="nd-who"></p></div></div>
 </section>
 
 <footer>
