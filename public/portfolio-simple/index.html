@@ -67,6 +67,7 @@ h1, h2, h3{text-wrap:balance}
   display:flex; align-items:flex-end; justify-content:flex-start; color:#fff; font:600 15px/1 Poppins, sans-serif}
 .play span{display:flex; align-items:center; gap:10px; margin:18px; background:rgba(13,27,42,.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
   padding:10px 16px 10px 10px; border-radius:999px; transition:background .2s}
+.play[hidden]{display:none}
 .play i{display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--blue)}
 .play i svg{width:14px; height:14px; margin-left:2px}
 .play:hover span{background:rgba(45,111,184,.92)}
@@ -203,7 +204,7 @@ h1, h2, h3{text-wrap:balance}
   document.querySelectorAll('.frame .play').forEach(function(btn){
     btn.addEventListener('click', function(){
       var v=btn.parentNode.querySelector('video');
-      btn.hidden=true; v.controls=true; v.focus();
+      btn.remove(); v.controls=true; v.focus();
       var p=v.play(); if(p&&p.catch) p.catch(function(){});
     });
   });
