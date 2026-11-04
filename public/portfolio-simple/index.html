@@ -87,6 +87,16 @@ h1, h2, h3{text-wrap:balance}
 .tags{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:4px 0 0; list-style:none}
 .tags li{font-size:13.5px; font-weight:500; color:var(--ink); background:#EEF3F8; border:1px solid var(--line); padding:6px 12px; border-radius:999px}
 
+/* Descarga del archivo */
+.dl{align-self:flex-start; display:inline-flex; align-items:center; gap:10px; margin-top:6px; padding:12px 18px; border-radius:999px; border:2px solid var(--ink);
+  color:var(--ink); background:#fff; text-decoration:none; font-weight:600; font-size:15px; line-height:1; transition:background .2s, color .2s}
+.dl svg{width:18px; height:18px; flex:none}
+.dl small{font-size:12.5px; font-weight:500; color:var(--muted); transition:color .2s}
+.dl:hover{background:var(--ink); color:#fff}
+.dl:hover small{color:var(--steel)}
+.dl:focus-visible{outline:3px solid var(--blue); outline-offset:3px}
+.dl.busy{opacity:.7; pointer-events:none}
+
 /* Cierre */
 .close{border-top:1px solid rgba(138,175,204,.2); padding-block:clamp(44px, 6vw, 72px); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px}
 .close h2{font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; font-weight:700; max-width:22ch}
@@ -142,6 +152,7 @@ h1, h2, h3{text-wrap:balance}
         <p class="reto"><b>El reto</b>Un vídeo puramente comercial, pensado para paid media, con tono orgánico pero cuidado y profesional.</p>
         <p class="body">Arranca con un gancho que llama la atención y un pequeño contador. Con muy poco tiempo, inventamos la situación de los 2 minutos y la llevamos al vídeo para meter la oferta. El color de la marca manda en todo el vídeo, más allá de los subtítulos.</p>
         <ul class="tags"><li>Gancho con contador</li><li>Colores de marca</li><li>Oferta en segundos</li></ul>
+        <a class="dl" href="https://media.polmorera.es/portfolio-simple/yoigo-2-minutos.mp4" download="Pol-Morera-Yoigo-2-minutos.mp4" data-name="Pol-Morera-Yoigo-2-minutos.mp4" aria-label="Descargar el vídeo de Yoigo (MP4, 7 MB)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Descargar vídeo</span><small>MP4 · 7 MB</small></a>
       </div>
     </article>
 
@@ -161,6 +172,7 @@ h1, h2, h3{text-wrap:balance}
         <p class="reto"><b>El reto</b>Entrar en un rodaje con un equipo de grabación ya montado y muchos otros actores, y hacer un acting en inglés.</p>
         <p class="body">Había que tener en cuenta en todo momento la posición de las cámaras y de las personas, y seguir las indicaciones de dirección. Más actores, varias cámaras y un espacio mucho menos controlado que el estudio donde grabo normalmente.</p>
         <ul class="tags"><li>Rodaje con equipo</li><li>Varias cámaras</li><li>En inglés</li></ul>
+        <a class="dl" href="https://media.polmorera.es/portfolio-simple/bonarea.mp4" download="Pol-Morera-bonArea.mp4" data-name="Pol-Morera-bonArea.mp4" aria-label="Descargar el vídeo de bonÀrea (MP4, 16 MB)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Descargar vídeo</span><small>MP4 · 16 MB</small></a>
       </div>
     </article>
 
@@ -180,6 +192,7 @@ h1, h2, h3{text-wrap:balance}
         <p class="reto"><b>El reto</b>Transmitir lo más rápido posible el punto de dolor del cliente objetivo y cómo lo soluciona el producto.</p>
         <p class="body">Se pedía una producción más corporativa, donde brillara la propia IA y se la viera en acción: la introducimos en el vídeo y se la escucha. Toda la explicación va acompañada de motion graphics, gráficos sencillos y efecto green screen para eliminar el fondo.</p>
         <ul class="tags"><li>Motion graphics</li><li>IA en acción</li><li>Green screen</li></ul>
+        <a class="dl" href="https://media.polmorera.es/portfolio-simple/emblematic.mp4" download="Pol-Morera-Emblematic.mp4" data-name="Pol-Morera-Emblematic.mp4" aria-label="Descargar el vídeo de Emblematic (MP4, 6 MB)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Descargar vídeo</span><small>MP4 · 6 MB</small></a>
       </div>
     </article>
 
@@ -210,6 +223,21 @@ h1, h2, h3{text-wrap:balance}
   });
   vids.forEach(function(v){
     v.addEventListener('play', function(){ vids.forEach(function(o){ if(o!==v && !o.paused) o.pause(); }); });
+  });
+
+  document.querySelectorAll(".dl").forEach(function(a){
+    a.addEventListener("click", function(ev){
+      if(!window.fetch || !window.URL || !URL.createObjectURL) return;
+      ev.preventDefault();
+      var label=a.querySelector("span"), txt=label.textContent;
+      a.classList.add("busy"); label.textContent="Descargando…";
+      fetch(a.href).then(function(r){ if(!r.ok) throw 0; return r.blob(); }).then(function(b){
+        var u=URL.createObjectURL(b), t=document.createElement("a");
+        t.href=u; t.download=a.getAttribute("data-name"); document.body.appendChild(t); t.click(); t.remove();
+        setTimeout(function(){ URL.revokeObjectURL(u); }, 60000);
+      }).catch(function(){ window.open(a.href, "_blank", "noopener"); })
+        .then(function(){ a.classList.remove("busy"); label.textContent=txt; });
+    });
   });
 })();
 </script>
