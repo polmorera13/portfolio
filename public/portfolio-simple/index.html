@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, follow">
+<title>Portfolio · Pol Morera</title>
+<meta name="description" content="Tres vídeos de Pol Morera, creador UGC, y el reto que había detrás de cada uno.">
+<link rel="canonical" href="https://polmorera.es/portfolio-simple/">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="https://media.polmorera.es/hero-bg-v3.webp">
+<style>
+:root{
+  --navy:#0D1B2A; --navy-2:#13263A; --blue:#4A90D9; --blue-deep:#2D6FB8; --steel:#8AAFCC;
+  --off:#F4F6F9; --ink:#0D1B2A; --muted:#4F6275; --line:#DCE4EC;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--navy); color:var(--off); font-family:Poppins, 'Helvetica Neue', Arial, sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+img, video{display:block; max-width:100%}
+a{color:inherit}
+h1, h2, h3, p{margin:0}
+h1, h2, h3{text-wrap:balance}
+.wrap{max-width:1180px; margin:0 auto; padding-inline:var(--gut)}
+.eyebrow{font-weight:500; font-size:13px; letter-spacing:.25em; text-transform:uppercase; color:var(--steel)}
+
+/* Botón principal, como los de la web */
+.cta{display:inline-flex; align-items:center; gap:12px; background:var(--blue-deep); color:#fff; text-decoration:none;
+  font-weight:600; font-size:17px; line-height:1; padding:18px 26px; border-radius:999px;
+  box-shadow:0 10px 30px rgba(45,111,184,.35); transition:background .2s, transform .2s}
+.cta svg{width:20px; height:20px; transition:transform .2s}
+.cta:hover{background:var(--blue)}
+.cta:hover svg{transform:translateX(4px)}
+.cta:focus-visible, .play:focus-visible, .foot a:focus-visible, .brand:focus-visible{outline:3px solid var(--blue); outline-offset:4px}
+
+/* Cabecera: el mosaico de vídeos de la portada detrás de "Pol Morera" */
+.site-head{position:relative; overflow:hidden; background:var(--navy)}
+.sh-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.sh-shade{position:absolute; inset:0; background:linear-gradient(90deg, rgba(13,27,42,.86) 0%, rgba(13,27,42,.55) 55%, rgba(13,27,42,.35) 100%), linear-gradient(0deg, var(--navy) 0%, rgba(13,27,42,0) 35%)}
+.sh-in{position:relative; z-index:1; min-height:clamp(420px, 52vw, 600px); display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:18px; padding-block:64px 72px}
+.brand{color:var(--off); font-weight:700; font-size:clamp(48px, 9vw, 112px); line-height:1; letter-spacing:-.02em; text-decoration:none; text-shadow:0 2px 16px rgba(0,0,0,.45)}
+.sh-sub{font-size:clamp(18px, 2.3vw, 26px); font-weight:500; color:#DCE6F0; max-width:30ch; line-height:1.35; text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.sh-sub b{color:#fff; font-weight:700}
+.sh-in .cta{margin-top:10px}
+
+/* Intro */
+.intro{padding-block:clamp(40px, 6vw, 72px) clamp(28px, 4vw, 44px); display:grid; gap:12px}
+.intro h2{font-size:clamp(30px, 4.4vw, 54px); line-height:1.08; font-weight:700; letter-spacing:-.01em}
+.hl{display:inline-block; background:var(--blue-deep); color:#fff; border-radius:10px; padding:.02em .22em; transform:rotate(-2deg); margin-top:.1em}
+
+/* Un vídeo y su explicación, en la misma tarjeta */
+.works{display:grid; gap:clamp(28px, 4vw, 48px); padding-bottom:clamp(48px, 7vw, 88px)}
+.work{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); border-radius:24px; overflow:hidden; background:#fff; color:var(--ink);
+  box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.work.flip{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)}
+.work.flip .media{order:2}
+.media{position:relative; background:radial-gradient(120% 90% at 50% 0%, var(--blue) 0%, var(--blue-deep) 55%, #24599A 100%);
+  display:flex; align-items:center; justify-content:center; padding:clamp(22px, 3.4vw, 40px)}
+.frame{position:relative; width:min(100%, 340px); aspect-ratio:9/16; border-radius:18px; overflow:hidden; background:#0b1622;
+  box-shadow:0 18px 40px rgba(6,20,40,.45); outline:2px solid rgba(255,255,255,.18); outline-offset:-2px}
+.frame video{width:100%; height:100%; object-fit:cover; background:#0b1622}
+.play{position:absolute; inset:0; border:0; padding:0; background:linear-gradient(0deg, rgba(13,27,42,.55) 0%, rgba(13,27,42,0) 45%); cursor:pointer;
+  display:flex; align-items:flex-end; justify-content:flex-start; color:#fff; font:600 15px/1 Poppins, sans-serif}
+.play span{display:flex; align-items:center; gap:10px; margin:18px; background:rgba(13,27,42,.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  padding:10px 16px 10px 10px; border-radius:999px; transition:background .2s}
+.play i{display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--blue)}
+.play i svg{width:14px; height:14px; margin-left:2px}
+.play:hover span{background:rgba(45,111,184,.92)}
+.badge{position:absolute; top:14px; left:14px; z-index:1; background:#fff; color:var(--ink); font-weight:700; font-size:14px; line-height:1;
+  padding:8px 10px; border-radius:10px; font-variant-numeric:tabular-nums; pointer-events:none}
+
+.text{padding:clamp(26px, 4vw, 56px); display:flex; flex-direction:column; justify-content:center; gap:18px; min-width:0}
+.meta{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px}
+.num{font-weight:700; font-size:clamp(40px, 5vw, 60px); line-height:.9; color:var(--blue-deep); font-variant-numeric:tabular-nums}
+.who{display:grid; gap:2px}
+.who b{font-size:18px; font-weight:700; color:var(--ink)}
+.who span{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:500}
+.text h3{font-size:clamp(24px, 2.6vw, 34px); line-height:1.18; font-weight:700; color:var(--ink)}
+.reto{border-left:4px solid var(--blue); padding:4px 0 4px 16px; font-size:17px; color:var(--ink)}
+.reto b{display:block; font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--blue-deep); margin-bottom:4px}
+.text p.body{font-size:16px; color:var(--muted); max-width:58ch}
+.tags{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:4px 0 0; list-style:none}
+.tags li{font-size:13.5px; font-weight:500; color:var(--ink); background:#EEF3F8; border:1px solid var(--line); padding:6px 12px; border-radius:999px}
+
+/* Cierre */
+.close{border-top:1px solid rgba(138,175,204,.2); padding-block:clamp(44px, 6vw, 72px); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px}
+.close h2{font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; font-weight:700; max-width:22ch}
+.foot{padding-block:0 40px; display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; font-size:14px; color:var(--steel)}
+.foot a{color:var(--off); text-decoration:none; font-weight:500}
+.foot a:hover{color:var(--blue)}
+
+@media (max-width: 860px){
+  .work, .work.flip{grid-template-columns:1fr}
+  .work.flip .media{order:0}
+  .frame{width:min(100%, 320px)}
+}
+@media (prefers-reduced-motion: reduce){
+  .cta, .cta svg, .play span{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <video class="sh-bg" autoplay muted loop playsinline preload="metadata" poster="https://media.polmorera.es/hero-bg-v3.webp" aria-hidden="true"><source src="https://media.polmorera.es/hero-bg-1080-v3.mp4" type="video/mp4"></video>
+  <div class="sh-shade" aria-hidden="true"></div>
+  <div class="wrap sh-in">
+    <span class="eyebrow">Creador UGC · Portfolio</span>
+    <a class="brand" href="https://polmorera.es/">Pol Morera</a>
+    <p class="sh-sub">Tres vídeos y <b>el reto que había detrás</b> de cada uno.</p>
+    <a class="cta" href="https://polmorera.es/">Mira todo el trabajo
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro" aria-labelledby="t-intro">
+    <span class="eyebrow">Selección</span>
+    <h2 id="t-intro">Tres vídeos, <span class="hl">tres retos</span> muy distintos.</h2>
+  </section>
+
+  <div class="works">
+
+    <!-- 01 · Yoigo: vídeo a la izquierda -->
+    <article class="work" aria-labelledby="t-yoigo">
+      <div class="media">
+        <div class="frame">
+          <span class="badge">01</span>
+          <video preload="none" playsinline poster="https://media.polmorera.es/portfolio-simple/yoigo-2-minutos-poster.webp" aria-label="Vídeo para Yoigo Luz y Gas">
+            <source src="https://media.polmorera.es/portfolio-simple/yoigo-2-minutos.mp4" type="video/mp4"></video>
+          <button class="play" type="button" aria-label="Reproducir el vídeo de Yoigo"><span><i><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M0 0l14 8-14 8z"/></svg></i>Ver vídeo</span></button>
+        </div>
+      </div>
+      <div class="text">
+        <div class="meta"><span class="num">01</span><span class="who"><b>Yoigo Luz y Gas</b><span>Paid media · 9:16</span></span></div>
+        <h3 id="t-yoigo">Comercial y directo, sin que parezca hecho en casa.</h3>
+        <p class="reto"><b>El reto</b>Un vídeo puramente comercial, pensado para paid media, con tono orgánico pero cuidado y profesional.</p>
+        <p class="body">Arranca con un gancho que llama la atención y un pequeño contador. Con muy poco tiempo, inventamos la situación de los 2 minutos y la llevamos al vídeo para meter la oferta. El color de la marca manda en todo el vídeo, más allá de los subtítulos.</p>
+        <ul class="tags"><li>Gancho con contador</li><li>Colores de marca</li><li>Oferta en segundos</li></ul>
+      </div>
+    </article>
+
+    <!-- 02 · bonÀrea: explicación a la izquierda, vídeo a la derecha -->
+    <article class="work flip" aria-labelledby="t-bonarea">
+      <div class="media">
+        <div class="frame">
+          <span class="badge">02</span>
+          <video preload="none" playsinline poster="https://media.polmorera.es/portfolio-simple/bonarea-poster.webp" aria-label="Vídeo de campaña para bonÀrea">
+            <source src="https://media.polmorera.es/portfolio-simple/bonarea.mp4" type="video/mp4"></video>
+          <button class="play" type="button" aria-label="Reproducir el vídeo de bonÀrea"><span><i><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M0 0l14 8-14 8z"/></svg></i>Ver vídeo</span></button>
+        </div>
+      </div>
+      <div class="text">
+        <div class="meta"><span class="num">02</span><span class="who"><b>bonÀrea</b><span>Campaña · Acting en inglés</span></span></div>
+        <h3 id="t-bonarea">Actuar dentro de un rodaje grande.</h3>
+        <p class="reto"><b>El reto</b>Entrar en un rodaje con un equipo de grabación ya montado y muchos otros actores, y hacer un acting en inglés.</p>
+        <p class="body">Había que tener en cuenta en todo momento la posición de las cámaras y de las personas, y seguir las indicaciones de dirección. Más actores, varias cámaras y un espacio mucho menos controlado que el estudio donde grabo normalmente.</p>
+        <ul class="tags"><li>Rodaje con equipo</li><li>Varias cámaras</li><li>En inglés</li></ul>
+      </div>
+    </article>
+
+    <!-- 03 · Emblematic: vídeo a la izquierda -->
+    <article class="work" aria-labelledby="t-emblematic">
+      <div class="media">
+        <div class="frame">
+          <span class="badge">03</span>
+          <video preload="none" playsinline poster="https://media.polmorera.es/portfolio-simple/emblematic-poster.webp" aria-label="Vídeo para Emblematic">
+            <source src="https://media.polmorera.es/portfolio-simple/emblematic.mp4" type="video/mp4"></video>
+          <button class="play" type="button" aria-label="Reproducir el vídeo de Emblematic"><span><i><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M0 0l14 8-14 8z"/></svg></i>Ver vídeo</span></button>
+        </div>
+      </div>
+      <div class="text">
+        <div class="meta"><span class="num">03</span><span class="who"><b>Emblematic</b><span>Corporativo · IA</span></span></div>
+        <h3 id="t-emblematic">El problema y la solución, en segundos.</h3>
+        <p class="reto"><b>El reto</b>Transmitir lo más rápido posible el punto de dolor del cliente objetivo y cómo lo soluciona el producto.</p>
+        <p class="body">Se pedía una producción más corporativa, donde brillara la propia IA y se la viera en acción: la introducimos en el vídeo y se la escucha. Toda la explicación va acompañada de motion graphics, gráficos sencillos y efecto green screen para eliminar el fondo.</p>
+        <ul class="tags"><li>Motion graphics</li><li>IA en acción</li><li>Green screen</li></ul>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="close" aria-labelledby="t-close">
+    <h2 id="t-close">Hay muchos más vídeos en la web.</h2>
+    <a class="cta" href="https://polmorera.es/">Mira todo el trabajo
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+
+  <footer class="foot">
+    <span>Pol Morera · Creador UGC</span>
+    <span><a href="https://polmorera.es/">polmorera.es</a> · <a href="mailto:hello@polmorera.es">hello@polmorera.es</a></span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  try{ if(matchMedia('(prefers-reduced-motion: reduce)').matches){ var bg=document.querySelector('.sh-bg'); bg.removeAttribute('autoplay'); bg.pause(); } }catch(e){}
+  var vids=[].slice.call(document.querySelectorAll('.frame video'));
+  document.querySelectorAll('.frame .play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var v=btn.parentNode.querySelector('video');
+      btn.hidden=true; v.controls=true; v.focus();
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    });
+  });
+  vids.forEach(function(v){
+    v.addEventListener('play', function(){ vids.forEach(function(o){ if(o!==v && !o.paused) o.pause(); }); });
+  });
+})();
+</script>
+</body>
+</html>
