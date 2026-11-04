@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "../lib/router";
-import { LogOut, Trash2, ArrowUp, ArrowDown, UploadCloud, Check } from "lucide-react";
+import { LogOut, Trash2, ArrowUp, ArrowDown, UploadCloud, Check, ExternalLink } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import {
   adminListVideos, adminUploadVideo, adminUpdateVideo, adminReorder, adminDeleteVideo,
-  fetchHero, adminSetHero, fetchServices, adminSetServices, clearToken,
-  type ServicesConfig,
+  fetchHero, adminSetHero, fetchServices, adminSetServices, clearToken, adminListLinks,
+  type ServicesConfig, type AdminLink,
 } from "../lib/api";
 import { services as SERVICES } from "../data/services";
 import CasesAdmin from "./admin/CasesAdmin";
@@ -18,6 +18,10 @@ const OFFWHITE = "oklch(96% 0.005 240)";
 const STEEL = "oklch(70% 0.07 230)";
 const CARD = "oklch(16% 0.02 240)";
 const BORDER = "oklch(58% 0.14 240 / 0.18)";
+
+// Accesos fijos; el servidor añade los que llevan clave (propuestas)
+const BASE_LINKS: AdminLink[] = [{ label: "Web", url: "https://polmorera.es/" }];
+const FALLBACK_LINKS: AdminLink[] = [{ label: "Portfolio simple", url: "https://polmorera.es/portfolio-simple/" }];
 
 const CATS: { key: Video["category"]; label: string }[] = [
   { key: "ads", label: "Ads" },
@@ -34,6 +38,7 @@ export default function Admin() {
   const [busy, setBusy] = useState(false);
   const [hero, setHero] = useState<HeroConfig>({});
   const [svc, setSvc] = useState<ServicesConfig>({});
+  const [links, setLinks] = useState<AdminLink[]>([...BASE_LINKS, ...FALLBACK_LINKS]);
 
   // Depends only on navigate (stable) so it doesn't re-run on every render.
   const load = useCallback(async () => {
@@ -46,6 +51,7 @@ export default function Admin() {
       setVideos(list);
       setHero(heroCfg);
       setSvc(svcCfg);
+      adminListLinks().then((l) => setLinks([...BASE_LINKS, ...l])).catch(() => {});
     } catch (e) {
       if ((e as Error).message === "unauthorized") {
         clearToken();
@@ -159,6 +165,23 @@ export default function Admin() {
           <LogOut size={15} /> Cerrar sesión
         </button>
       </header>
+
+      {/* Accesos a las páginas: web, portfolio simple, propuestas */}
+      <nav aria-label="Páginas" style={{
+        display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center",
+        padding: "0.75rem 1.5rem", borderBottom: `1px solid ${BORDER}`, background: "oklch(13% 0.02 240)",
+      }}>
+        <span style={{ color: STEEL, fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginRight: "0.25rem" }}>Páginas</span>
+        {links.map((l) => (
+          <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" style={{
+            display: "inline-flex", alignItems: "center", gap: "0.4rem", padding: "0.5rem 0.875rem",
+            borderRadius: 999, background: "#2D6FB8", color: "#fff", textDecoration: "none",
+            fontWeight: 600, fontSize: "0.85rem",
+          }}>
+            {l.label} <ExternalLink size={14} aria-hidden="true" />
+          </a>
+        ))}
+      </nav>
 
       <main style={{ maxWidth: 920, margin: "0 auto", padding: "2rem 1.25rem" }}>
         {/* Portada (hero): qué vídeo va en cada casilla */}

@@ -473,6 +473,14 @@ app.post("/api/vestadium/vestadium_responder", async (req, res) => {
   }
 });
 
+// Panel: accesos a las páginas privadas (las claves solo salen con sesión iniciada)
+app.get("/api/admin/enlaces", requireAuth, (_req, res) => {
+  res.json([
+    { label: "Portfolio simple", url: "https://polmorera.es/portfolio-simple/" },
+    { label: "Propuesta Vestadium", url: `https://polmorera.es/vestadium/?k=${encodeURIComponent(VESTADIUM_KEY)}` },
+  ]);
+});
+
 // Panel: ver o borrar las respuestas (p. ej. las de prueba)
 app.get("/api/admin/vestadium", requireAuth, async (_req, res) => {
   res.json(vestadiumRows(await readVestadium()));

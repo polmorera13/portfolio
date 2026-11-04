@@ -94,6 +94,14 @@ export async function login(password: string): Promise<boolean> {
 }
 
 // ── Admin ─────────────────────────────────────────────────────────────────────
+export type AdminLink = { label: string; url: string };
+/** Accesos del panel (portfolio simple, propuestas…). Las URL con clave solo llegan con sesión. */
+export async function adminListLinks(): Promise<AdminLink[]> {
+  const res = await fetch(`${API_BASE}/api/admin/enlaces`, { headers: authHeaders(), cache: "no-store" });
+  if (!res.ok) throw new Error("links_failed");
+  return res.json();
+}
+
 export async function adminListVideos(): Promise<Video[]> {
   const res = await fetch(`${API_BASE}/api/admin/videos`, { headers: authHeaders(), cache: "no-store" });
   if (res.status === 401) throw new Error("unauthorized");
