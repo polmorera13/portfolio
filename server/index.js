@@ -474,11 +474,19 @@ app.post("/api/vestadium/vestadium_responder", async (req, res) => {
 });
 
 // Panel: accesos a las páginas privadas (las claves solo salen con sesión iniciada)
-app.get("/api/admin/enlaces", requireAuth, (_req, res) => {
-  res.json([
+app.get("/api/admin/enlaces", requireAuth, async (_req, res) => {
+  const links = [
     { label: "Portfolio simple", url: "https://polmorera.es/portfolio-simple/" },
     { label: "Propuesta Vestadium", url: `https://polmorera.es/vestadium/?k=${encodeURIComponent(VESTADIUM_KEY)}` },
-  ]);
+  ];
+  // Las propuestas nuevas salen de /data/propuestas/claves.json ({ "<slug>": "<clave>" })
+  const keys = await propKeys();
+  for (const [slug, key] of Object.entries(keys)) {
+    if (!propSlugOk(slug) || typeof key !== "string") continue;
+    const name = slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+    links.push({ label: `Propuesta ${name}`, url: `https://polmorera.es/${slug}/?k=${encodeURIComponent(key)}` });
+  }
+  res.json(links);
 });
 
 // Panel: ver o borrar las respuestas (p. ej. las de prueba)
@@ -489,6 +497,120 @@ app.delete("/api/admin/vestadium", requireAuth, async (_req, res) => {
   const job = vestadiumQueue.then(() => fs.writeFile(VESTADIUM_PATH, "{}", "utf8"));
   vestadiumQueue = job.catch(() => {});
   await job;
+  res.json({ ok: true });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BLOQUE PARA server/index.js (repo polmorera13/portfolio) — se pega UNA sola vez,
+// justo después del bloque "Propuesta Vestadium" (que se deja tal cual: su enlace ya
+// está enviado al cliente). Usa las mismas utilidades que ya hay en ese archivo:
+// app, fs (node:fs/promises), path, HERO_PATH, str() y requireAuth.
+//
+// Cada propuesta vive en polmorera.es/<slug>/ y guarda sus respuestas en
+//   /data/propuestas/<slug>.json
+// Su clave de revisión (la ?k= del enlace) está en
+//   /data/propuestas/claves.json   →   { "<slug>": "<clave>", ... }
+// Añadir un cliente = añadir su línea en claves.json (no hace falta redesplegar).
+// ─────────────────────────────────────────────────────────────────────────────
+const PROPUESTAS_DIR = process.env.PROPUESTAS_DIR || path.join(path.dirname(HERO_PATH), "propuestas");
+const propSlugOk = (s) => typeof s === "string" && /^[a-z0-9-]{2,40}$/.test(s);
+const propQueues = new Map();
+
+async function propKeys() {
+  try {
+    const obj = JSON.parse(await fs.readFile(path.join(PROPUESTAS_DIR, "claves.json"), "utf8"));
+    return obj && typeof obj === "object" ? obj : {};
+  } catch {
+    return {};
+  }
+}
+async function readPropuesta(slug) {
+  try {
+    const obj = JSON.parse(await fs.readFile(path.join(PROPUESTAS_DIR, `${slug}.json`), "utf8"));
+    return obj && typeof obj === "object" && !Array.isArray(obj) ? obj : {};
+  } catch {
+    return {};
+  }
+}
+const propRows = (obj) => Object.values(obj).sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+function propEnqueue(slug, fn) {
+  const job = (propQueues.get(slug) || Promise.resolve()).then(fn);
+  propQueues.set(slug, job.catch(() => {}));
+  return job;
+}
+async function propKeyOk(req, res) {
+  const slug = req.params.slug;
+  if (!propSlugOk(slug)) {
+    res.status(404).json({ error: "propuesta no encontrada" });
+    return false;
+  }
+  const keys = await propKeys();
+  if (!keys[slug] || req.body?.p_key !== keys[slug]) {
+    res.status(401).json({ error: "clave no válida" });
+    return false;
+  }
+  return true;
+}
+
+app.post("/api/propuestas/:slug/leer", async (req, res) => {
+  if (!(await propKeyOk(req, res))) return;
+  res.set("Cache-Control", "no-store");
+  res.json(propRows(await readPropuesta(req.params.slug)));
+});
+
+app.post("/api/propuestas/:slug/responder", async (req, res) => {
+  if (!(await propKeyOk(req, res))) return;
+  const slug = req.params.slug;
+  const { p_tipo, p_clave, p_estado, p_nota, p_autor } = req.body || {};
+  const estado = p_estado === null || p_estado === undefined ? null : p_estado;
+  if (estado !== null && typeof estado !== "string") return res.status(400).json({ error: "estado no válido" });
+  if (p_tipo === "review") {
+    // v1 … v9 (un bloque .review[data-video] por vídeo en la página)
+    if (typeof p_clave !== "string" || !/^v[1-9]$/.test(p_clave)) return res.status(400).json({ error: "vídeo no válido" });
+    if (estado !== null && !["ok", "changes"].includes(estado)) return res.status(400).json({ error: "estado no válido" });
+  } else if (p_tipo === "need") {
+    // la clave es el data-need de la pregunta en la página (web, legal, claim…)
+    if (typeof p_clave !== "string" || !/^[a-z0-9-]{1,30}$/.test(p_clave)) return res.status(400).json({ error: "pregunta no válida" });
+    if (estado !== null && estado.length > 60) return res.status(400).json({ error: "respuesta no válida" });
+  } else {
+    return res.status(400).json({ error: "tipo no válido" });
+  }
+  const id = `${p_tipo}:${p_clave}`;
+  try {
+    await propEnqueue(slug, async () => {
+      await fs.mkdir(PROPUESTAS_DIR, { recursive: true });
+      const all = await readPropuesta(slug);
+      all[id] = { id, tipo: p_tipo, clave: p_clave, estado, nota: str(p_nota, 1000), autor: str(p_autor, 80), updated_at: new Date().toISOString() };
+      // Los comentarios de "Pedir cambios" se acumulan (no los pisa la siguiente respuesta)
+      const nota = str(p_nota, 1000).trim();
+      if (p_tipo === "review" && estado === "changes" && nota) {
+        const n = Object.keys(all).filter((k) => k.startsWith("comment:")).length;
+        if (n < 500) {
+          const cid = `comment:${p_clave}:${String(Date.now()).padStart(14, "0")}`;
+          all[cid] = { id: cid, tipo: "comment", clave: p_clave, estado: null, nota, autor: str(p_autor, 80), updated_at: new Date().toISOString() };
+        }
+      }
+      await fs.writeFile(path.join(PROPUESTAS_DIR, `${slug}.json`), JSON.stringify(all, null, 2), "utf8");
+    });
+    res.status(204).end();
+  } catch (e) {
+    console.error("propuesta write error", slug, e);
+    res.status(500).json({ error: "write_failed" });
+  }
+});
+
+// Panel: ver o borrar las respuestas de una propuesta (p. ej. las de prueba)
+app.get("/api/admin/propuestas/:slug", requireAuth, async (req, res) => {
+  if (!propSlugOk(req.params.slug)) return res.status(404).json({ error: "propuesta no encontrada" });
+  res.json(propRows(await readPropuesta(req.params.slug)));
+});
+app.delete("/api/admin/propuestas/:slug", requireAuth, async (req, res) => {
+  const slug = req.params.slug;
+  if (!propSlugOk(slug)) return res.status(404).json({ error: "propuesta no encontrada" });
+  await propEnqueue(slug, async () => {
+    await fs.mkdir(PROPUESTAS_DIR, { recursive: true });
+    await fs.writeFile(path.join(PROPUESTAS_DIR, `${slug}.json`), "{}", "utf8");
+  });
   res.json({ ok: true });
 });
 
