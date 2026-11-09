@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Propuesta para Reclamamos tu Indemnización · Pol Morera</title>
+<link rel="icon" href="/reclamamos/img/simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;0,700;1,500&family=Ubuntu+Condensed&family=Maven+Pro:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap">
+<style>
+:root{color-scheme:light}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+:root{
+  --bg:#EEF3F8; --paper:#FFFFFF; --ink:#14283C; --muted:#53657A; --line:#D2DDE8;
+  --hi:#FF9C00; --hi-ink:#14283C; --blue:#4181B7; --blue-ink:#FFFFFF; --chip:#14283C; --chip-ink:#FFFFFF; --soft:#F5F8FB;
+  --ok:#1F9D55; --ok-ink:#FFFFFF; --warn:#D64545; --warn-ink:#FFFFFF;
+  --f-display:'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+  --f-body:'Maven Pro', 'Helvetica Neue', Arial, sans-serif;
+  --f-serif:'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+  --f-cond:'Ubuntu Condensed', 'Arial Narrow', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E1B28; --paper:#152535; --ink:#EAF1F8; --muted:#9EB1C5; --line:#2A3E53;
+  --hi:#FF9C00; --hi-ink:#14283C; --blue:#4F8FC4; --blue-ink:#FFFFFF; --chip:#EAF1F8; --chip-ink:#0E1B28; --soft:#1A2C3F;
+  --ok:#27B263; --ok-ink:#0E1B28; --warn:#F06363; --warn-ink:#0E1B28; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0E1B28; --paper:#152535; --ink:#EAF1F8; --muted:#9EB1C5; --line:#2A3E53;
+  --hi:#FF9C00; --hi-ink:#14283C; --blue:#4F8FC4; --blue-ink:#FFFFFF; --chip:#EAF1F8; --chip-ink:#0E1B28; --soft:#1A2C3F;
+  --ok:#27B263; --ok-ink:#0E1B28; --warn:#F06363; --warn-ink:#0E1B28; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 64px}
+.wrap{max-width:1120px; margin:0 auto}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0}
+p{margin:0}
+a{color:inherit; text-decoration-thickness:1px; text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--hi); outline-offset:2px}
+.mark{background:var(--hi); color:var(--hi-ink); padding:0 .18em; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+.serif{font-family:var(--f-serif); font-style:italic; font-weight:500}
+.eyebrow{font-family:var(--f-cond); font-weight:400; letter-spacing:.12em; text-transform:uppercase; font-size:15px; color:var(--muted)}
+
+/* portada */
+.hero{padding-block:48px 40px; display:grid; gap:28px}
+.hero-top{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+.brandrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.brandrow img{width:190px; height:auto}
+.sym-dark{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sym-light{display:none} :root:not([data-theme="light"]) .sym-dark{display:block} }
+:root[data-theme="dark"] .sym-light{display:none} :root[data-theme="dark"] .sym-dark{display:block}
+.hero h1{font-weight:700; font-size:clamp(40px, 7.4vw, 92px); line-height:.98; letter-spacing:-.02em}
+.hero h1 .serif{display:block; font-size:.4em; letter-spacing:0; margin-top:.4em; line-height:1.2; color:var(--muted)}
+.pill{font-family:var(--f-cond); font-size:16px; letter-spacing:.06em; text-transform:uppercase;
+  border:1px solid var(--line); background:var(--paper); padding:6px 12px; border-radius:999px; white-space:nowrap}
+.pill.on{background:var(--hi); color:var(--hi-ink); border-color:var(--hi)}
+
+section{padding-block:40px; border-top:1px solid var(--line)}
+.sec-head{display:grid; gap:8px; margin-bottom:24px}
+.sec-head h2{font-weight:700; font-size:clamp(28px, 4.4vw, 44px); line-height:1.05}
+.sec-head p{color:var(--muted); max-width:66ch}
+
+/* códigos */
+.codes{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px}
+.code{background:var(--paper); border:1px solid var(--line); border-top:4px solid var(--blue); padding:16px 18px 20px; display:grid; gap:8px; align-content:start; border-radius:10px}
+.code .ic{width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:var(--hi); color:var(--hi-ink); font-family:var(--f-display); font-weight:700}
+.code h3{font-size:17px; font-weight:700}
+.code p{font-size:14.5px; color:var(--muted)}
+
+/* ficha de vídeo */
+.vid{padding-block:48px}
+.vid-head{display:grid; grid-template-columns:auto minmax(0,1fr); gap:6px 22px; align-items:end; margin-bottom:22px}
+.num{font-family:var(--f-display); font-weight:700; font-size:clamp(72px, 12vw, 140px); line-height:.8; border-radius:10px;
+  color:var(--blue-ink); background:var(--blue); padding:14px 18px 8px; grid-row:span 2; align-self:stretch; display:flex; align-items:flex-end}
+.num.sm{font-size:clamp(46px, 7vw, 84px)}
+.vid-head h2{font-weight:700; font-size:clamp(30px, 5vw, 54px); line-height:1}
+.vid-head .serif{font-size:clamp(19px, 2.4vw, 26px); color:var(--muted); margin-top:6px}
+.facts{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px}
+.idea{font-size:18px; max-width:70ch; margin-bottom:28px}
+
+h3.sub{font-size:15px; font-family:var(--f-cond); font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+
+/* referencias del VSL: 16:9 · 16:9 · 1:1, a la misma altura */
+.frames{display:grid; grid-template-columns:16fr 16fr 9fr; gap:14px; margin-bottom:34px}
+.frames figure{margin:0; display:grid; gap:8px; min-width:0; align-content:start}
+.frames img{display:block; width:100%; height:auto; border-radius:8px; border:1px solid var(--line); background:var(--soft)}
+.frames figcaption, .board figcaption{font-size:13.5px; line-height:1.35; color:var(--muted)}
+.frames figcaption b, .board figcaption b{font-family:var(--f-cond); font-weight:400; letter-spacing:.06em; color:var(--ink); margin-right:6px; font-size:15px; text-transform:uppercase}
+
+/* estructura con redonditas */
+.tl{list-style:none; margin:0 0 18px; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0}
+.tl li{position:relative; padding:0 14px 0 0; display:grid; gap:6px; align-content:start; min-width:0}
+.tl li::after{content:""; position:absolute; top:27px; left:58px; right:6px; height:3px; background:var(--line)}
+.tl li:last-child::after{display:none}
+.dot{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; font-family:var(--f-display); font-weight:700; font-size:24px;
+  background:var(--paper); border:3px solid var(--blue); color:var(--blue); position:relative; z-index:1; margin-bottom:6px}
+.tl li.warn .dot{background:var(--hi); border-color:var(--hi); color:var(--hi-ink)}
+.tl li.core .dot{background:var(--blue); color:var(--blue-ink)}
+.tl .tm{font-family:var(--f-cond); letter-spacing:.06em; font-size:15px; color:var(--muted)}
+.tl h4{margin:0; font-family:var(--f-display); font-size:19px; line-height:1.2}
+.tl p{font-size:14.5px; color:var(--muted)}
+.steps{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px; margin-bottom:34px; background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:16px}
+.steps-t{grid-column:1/-1; font-family:var(--f-cond); letter-spacing:.12em; text-transform:uppercase; font-size:15px; color:var(--muted)}
+.step{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 16px; display:grid; gap:6px; align-content:start; min-width:0}
+.step .sd{width:32px; height:32px; border-radius:50%; background:var(--blue); color:var(--blue-ink); display:grid; place-items:center; font-family:var(--f-display); font-weight:700}
+.step h4{margin:0; font-family:var(--f-display); font-size:17px}
+.step p, .step li{font-size:14.5px; color:var(--muted)}
+.step ul{margin:0; padding-left:18px; display:grid; gap:2px}
+
+/* anuncios verticales */
+.angles{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px}
+.angle{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:18px 20px; display:grid; gap:8px; align-content:start}
+.angle .lt{width:44px; height:44px; border-radius:10px; background:var(--hi); color:var(--hi-ink); display:grid; place-items:center; font-family:var(--f-display); font-weight:700; font-size:22px}
+.angle h3{font-size:19px}
+.angle p{font-size:15px; color:var(--muted)}
+.angle .vs{font-family:var(--f-cond); letter-spacing:.06em; text-transform:uppercase; font-size:15px; color:var(--ink)}
+.vrow{display:grid; grid-template-columns:240px minmax(0,1fr); gap:24px; align-items:start; margin-bottom:28px}
+.vrow figure{margin:0; display:grid; gap:8px}
+.vrow img{display:block; width:100%; height:auto; aspect-ratio:9/16; border-radius:8px; border:1px solid var(--line); background:var(--soft)}
+.vrow .idea{margin-bottom:20px}
+
+.hook1{background:var(--paper); border:2px solid var(--ink); border-radius:10px; padding:18px 20px; display:grid; gap:8px; margin-bottom:30px; max-width:860px}
+.vrow .hook1{margin-bottom:0}
+.hook1 .q{font-size:19px; font-weight:700; line-height:1.4}
+.hook1 .w{font-size:14.5px; color:var(--muted)}
+
+.tbl{overflow-x:auto; border:1px solid var(--line); background:var(--paper); margin-bottom:26px; border-radius:10px}
+table{border-collapse:collapse; width:100%; min-width:900px; font-size:14.5px}
+th,td{text-align:left; vertical-align:top; padding:11px 14px; border-bottom:1px solid var(--line)}
+th{font-family:var(--f-cond); font-weight:400; letter-spacing:.1em; text-transform:uppercase; font-size:14px; color:var(--muted); background:var(--soft)}
+tr:last-child td{border-bottom:0}
+tr.blk td{background:var(--soft); font-family:var(--f-cond); letter-spacing:.1em; text-transform:uppercase; font-size:14.5px; color:var(--ink); padding-block:8px}
+tr.blk td b{color:var(--blue); font-family:var(--f-display); margin-right:6px}
+td.t{font-family:var(--f-cond); font-size:15.5px; white-space:nowrap; font-variant-numeric:tabular-nums}
+td.say{font-weight:600}
+td.pl{font-family:var(--f-cond); font-size:15px; letter-spacing:.02em}
+td.osd{font-family:var(--f-cond); letter-spacing:.03em; font-size:15px}
+td.osd span{background:var(--hi); color:var(--hi-ink); padding:1px 5px; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+col.c1{width:76px} col.c1b{width:16%} col.c2{width:24%} col.c3{width:33%}
+
+.two{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px}
+.box{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:18px 20px; display:grid; gap:10px; align-content:start; min-width:0}
+.box ul{margin:0; padding-left:18px; display:grid; gap:6px; font-size:15px}
+.box p{font-size:15px}
+
+.needs{counter-reset:n; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px}
+.need{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:16px 18px 16px 60px; position:relative; min-width:0}
+.need::before{counter-increment:n; content:counter(n); position:absolute; left:16px; top:14px; width:30px; height:30px; border-radius:50%;
+  display:grid; place-items:center; font-family:var(--f-display); font-weight:700; background:var(--chip); color:var(--chip-ink); font-size:15px}
+.need b{display:block; font-weight:800; margin-bottom:4px}
+.need span{font-size:14.5px; color:var(--muted)}
+
+footer{border-top:1px solid var(--line); padding-block:28px 0; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted)}
+footer b{color:var(--ink)}
+
+/* cabecera polmorera.es */
+.site-head{position:relative; overflow:hidden; background:#0D1B2A; color:#F4F6F9; font-family:'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  margin-left:calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right:calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.sh-in{position:relative; z-index:1; max-width:1120px; margin:0 auto; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:10px; padding-block:40px; min-height:clamp(240px, 34vw, 380px)}
+.sh-brand{color:#F4F6F9; font-weight:700; font-size:clamp(40px, 7vw, 84px); line-height:1.1; text-decoration:none; letter-spacing:-.01em; text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.sh-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0}
+.sh-shade{position:absolute; inset:0; z-index:0; background:linear-gradient(90deg, rgba(13,27,42,.78) 0%, rgba(13,27,42,.45) 50%, rgba(13,27,42,.25) 100%)}
+.sh-brand:hover{color:#4A90D9}
+.sh-brand:focus-visible{outline:3px solid #4A90D9; outline-offset:3px}
+.sh-title{color:#DCE6F0; font-size:clamp(17px, 2.2vw, 24px); font-weight:500; text-shadow:0 1px 8px rgba(0,0,0,.5)}
+
+/* revisión */
+.rp-name{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+.rp-name label{font-weight:700; font-size:14.5px}
+.rp-name input{font:15px/1.4 var(--f-body); color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:9px 12px; min-width:0; flex:1 1 220px; max-width:360px}
+.rp-name input:focus-visible{outline:3px solid var(--hi); outline-offset:2px}
+.revpanel{border:2px solid var(--ink); border-radius:12px; background:var(--paper); padding:16px 18px; display:grid; gap:10px; max-width:860px}
+.rp-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px 16px}
+.rp-status{font-weight:800; font-size:18px}
+.rp-chips{display:flex; flex-wrap:wrap; gap:8px}
+.rp-chip{text-decoration:none; font-family:var(--f-cond); font-size:16px; letter-spacing:.05em; text-transform:uppercase; border-radius:6px;
+  padding:6px 12px; border:1px solid var(--line); background:var(--soft); color:var(--ink)}
+.rp-chip[data-state="ok"], .rv-chip[data-state="ok"]{background:var(--ok); color:var(--ok-ink); border-color:var(--ok)}
+.rp-chip[data-state="changes"], .rv-chip[data-state="changes"]{background:var(--warn); color:var(--warn-ink); border-color:var(--warn)}
+.rp-note, .rv-msg{font-size:13.5px; color:var(--muted)}
+.review{margin-top:22px; border:2px solid var(--ink); border-radius:12px; background:var(--paper); padding:18px 20px; display:grid; gap:12px}
+.rv-head{display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center}
+.rv-chip{font-family:var(--f-cond); text-transform:uppercase; letter-spacing:.08em; font-size:15px; padding:4px 10px; border:1px solid var(--line); border-radius:6px; background:var(--soft)}
+.rv-who{font-size:13.5px; color:var(--muted)}
+.rv-note{font-size:15px; font-style:italic}
+.rv-comments{background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:12px 14px; display:grid; gap:8px}
+.rv-c-title{font-family:var(--f-cond); letter-spacing:.12em; text-transform:uppercase; font-size:14px; color:var(--muted)}
+.rv-comments ul{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+.rv-comments li{font-size:15px; line-height:1.5; overflow-wrap:anywhere}
+.rv-comments li b{font-weight:800; margin-right:6px}
+.rv-actions{display:flex; flex-wrap:wrap; gap:10px}
+.btn{font:700 15px/1 var(--f-body); padding:12px 16px; border:2px solid var(--ink); border-radius:8px; background:var(--paper); color:var(--ink); cursor:pointer}
+.btn:hover:not(:disabled){background:var(--soft)}
+.btn.ok[aria-pressed="true"]{background:var(--ok); color:var(--ok-ink); border-color:var(--ok)}
+.btn.ch[aria-pressed="true"]{background:var(--warn); color:var(--warn-ink); border-color:var(--warn)}
+.btn.ghost{border-color:var(--line); font-weight:600}
+.btn:disabled, .opt:disabled{opacity:.45; cursor:not-allowed}
+.btn:focus-visible, .opt:focus-visible, textarea:focus-visible, .rp-chip:focus-visible{outline:3px solid var(--hi); outline-offset:2px}
+.rv-form{display:grid; gap:8px}
+.rv-form label{font-weight:700; font-size:14.5px}
+.rv-form textarea{font:15px/1.5 var(--f-body); color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:10px 12px; width:100%; resize:vertical}
+.rv-form div{display:flex; flex-wrap:wrap; gap:10px}
+.opts{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.opt{font:600 14px/1.2 var(--f-body); padding:9px 12px; border:1px solid var(--ink); border-radius:6px; background:var(--paper); color:var(--ink); cursor:pointer; text-align:left}
+.opt[aria-pressed="true"]{background:var(--hi); color:var(--hi-ink); border-color:var(--hi)}
+.nd-who{font-size:13px; color:var(--muted); margin-top:8px}
+.need.done::before{background:var(--hi); color:var(--hi-ink)}
+.nd-sum{font-weight:800; margin-top:10px}
+.need[data-need="guiones"]{display:flex; flex-direction:column}
+.bigcheck{display:none; width:76px; height:76px; border-radius:50%; background:#1F9D55; margin:18px auto 4px; place-items:center; box-shadow:0 10px 24px rgba(31,157,85,.3)}
+.bigcheck svg{width:44px; height:44px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
+.need[data-need="guiones"].done .bigcheck{display:grid}
+.need[data-need="guiones"].done .nd-sum{color:#1F9D55}
+
+@media (max-width: 900px){
+  .codes{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .frames{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .frames figure:last-child{grid-column:1/-1; max-width:360px}
+  .steps{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .angles, .needs{grid-template-columns:minmax(0,1fr)}
+  .vrow{grid-template-columns:200px minmax(0,1fr)}
+}
+@media (max-width: 640px){
+  .two, .needs, .codes, .frames, .steps{grid-template-columns:minmax(0,1fr)}
+  .tl{grid-template-columns:minmax(0,1fr); gap:18px}
+  .tl li{grid-template-columns:56px minmax(0,1fr); column-gap:14px; padding:0}
+  .tl li .dot{grid-row:span 3; margin:0}
+  .tl li::after{top:58px; left:27px; right:auto; width:3px; height:calc(100% - 40px)}
+  .vrow{grid-template-columns:minmax(0,1fr)}
+  .vrow figure{max-width:260px}
+}
+</style>
+</head>
+<body>
+<header class="site-head"><video class="sh-bg" autoplay muted loop playsinline preload="metadata" poster="https://media.polmorera.es/hero-bg-v3.webp" aria-hidden="true"><source src="https://media.polmorera.es/hero-bg-1080-v3.mp4" type="video/mp4"></video><div class="sh-shade" aria-hidden="true"></div><div class="sh-in"><a class="sh-brand" href="https://polmorera.es/">Pol Morera</a><span class="sh-title">Propuesta para Reclamamos tu Indemnización</span></div></header>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div class="brandrow"><img class="sym-light" src="/reclamamos/img/logo.png" alt="Reclamamos tu indemnización" width="190" height="33"><img class="sym-dark" src="/reclamamos/img/logo-invertido.png" alt="Reclamamos tu indemnización" width="190" height="33"><span class="eyebrow">Propuesta · 9 nov 2026</span></div>
+    <span class="eyebrow">Pol Morera · polmorera.es</span>
+  </div>
+  <h1>Una IA te responde. <span class="mark">Nosotros te acompañamos.</span><span class="serif">Un VSL para la landing y cinco anuncios verticales.</span></h1>
+  <div class="revpanel" id="revpanel">
+    <div class="rp-top"><span class="eyebrow">Revisión</span><span class="rp-status" id="rp-status">0 de 6 vídeos aprobados</span></div>
+    <div class="rp-chips">
+      <a href="#v1" class="rp-chip" data-video="v1">VSL · <span class="rp-st">Pendiente</span></a>
+      <a href="#v2" class="rp-chip" data-video="v2">1 · Ya he firmado · <span class="rp-st">Pendiente</span></a>
+      <a href="#v3" class="rp-chip" data-video="v3">2 · Antes de firmar · <span class="rp-st">Pendiente</span></a>
+      <a href="#v4" class="rp-chip" data-video="v4">3 · La IA negocia · <span class="rp-st">Pendiente</span></a>
+      <a href="#v5" class="rp-chip" data-video="v5">4 · Tú contra ellos · <span class="rp-st">Pendiente</span></a>
+      <a href="#v6" class="rp-chip" data-video="v6">5 · No para todo · <span class="rp-st">Pendiente</span></a>
+    </div>
+    <div class="rp-name"><label for="rv-name">Tu nombre</label><input id="rv-name" type="text" maxlength="80" autocomplete="name" placeholder="Para que Pol sepa quién responde"></div>
+    <p class="rp-note" id="rp-note">Cargando la revisión…</p>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><p class="eyebrow">El sistema</p><h2>Cuatro códigos que se repiten en todos los vídeos</h2>
+  <p>Así el VSL y los anuncios se reconocen como una sola campaña, aunque alguien vea solo uno.</p></div>
+  <div class="codes">
+    <article class="code"><span class="ic" aria-hidden="true">A</span><h3>Azul de fondo, naranja para lo importante</h3><p>El presentador sale recortado sobre el azul de vuestra marca. El naranja solo aparece en lo que hay que recordar: la palabra clave del subtítulo, el aviso y el paso en el que estamos.</p></article>
+    <article class="code"><span class="ic" aria-hidden="true">1</span><h3>Las redonditas del proceso</h3><p>Cuatro círculos unidos por una línea. Se iluminan a medida que avanza el VSL y vuelven en los anuncios cada vez que se habla de cómo trabajáis.</p></article>
+    <article class="code"><span class="ic" aria-hidden="true">!</span><h3>El aviso naranja</h3><p>Un triángulo naranja entra cada vez que hablamos de la IA o de firmar. Es la señal de «para un momento».</p></article>
+    <article class="code"><span class="ic" aria-hidden="true">€</span><h3>El mismo cierre</h3><p>Todos terminan igual: «Solo cobramos si tú cobras» y la llamada al formulario. Es vuestra frase y es lo que quita el miedo a dar el paso.</p></article>
+  </div>
+</section>
+
+<section class="vid" id="v1">
+  <div class="vid-head">
+    <div class="num sm" aria-hidden="true">VSL</div>
+    <p class="eyebrow">El vídeo principal · landing</p>
+    <div><h2>Así es reclamar con nosotros</h2><p class="serif">De «he tenido un accidente» a «he cobrado», en cuatro pasos</p></div>
+  </div>
+  <div class="facts">
+    <span class="pill on">Que rellenen el formulario</span>
+    <span class="pill">Horizontal 16:9</span>
+    <span class="pill">Versión 1:1 para LinkedIn</span>
+    <span class="pill">2:30 aprox.</span>
+    <span class="pill">Croma + grafismo</span>
+    <span class="pill">Subtítulos quemados</span>
+  </div>
+  <p class="idea">Es el vídeo que ve quien llega a la landing desde un anuncio. Ya tiene un accidente y una duda: «¿y ahora qué hago?». El VSL le acompaña: primero le avisa de lo que no debe hacer (negociar solo con una IA y firmar), y después le enseña lo fácil que es hacerlo con vosotros, paso a paso, hasta el formulario que tiene justo debajo.</p>
+
+  <h3 class="sub">Referencias visuales</h3>
+  <div class="frames">
+    <figure><img src="/reclamamos/img/vsl_entrada.jpg" alt="Referencia del VSL: el presentador sobre fondo azul con el título «¿Has tenido un accidente de tráfico?»" width="1280" height="720" loading="lazy"><figcaption><b>Entrada</b>Título grande a un lado y el presentador al otro</figcaption></figure>
+    <figure><img src="/reclamamos/img/vsl_pasos.jpg" alt="Referencia del VSL: las cuatro redonditas del proceso con el paso 2 iluminado y la lista de documentación" width="1280" height="720" loading="lazy"><figcaption><b>Paso 2</b>Las redonditas y la lista de documentación</figcaption></figure>
+    <figure><img src="/reclamamos/img/vsl_cuadrado.jpg" alt="Referencia de la versión cuadrada: aviso «Cuidado con la IA» con un mensaje de chat" width="720" height="720" loading="lazy"><figcaption><b>Versión 1:1</b>El aviso sobre la IA, en cuadrado</figcaption></figure>
+  </div>
+
+  <h3 class="sub">Estructura del vídeo</h3>
+  <ol class="tl">
+    <li><span class="dot">1</span><span class="tm">0:00 – 0:20</span><h4>Entrada</h4><p>¿Has tenido un accidente? Quiénes somos y que solo cobramos si tú cobras.</p></li>
+    <li class="warn"><span class="dot">2</span><span class="tm">0:20 – 0:55</span><h4>Cuidado con la IA</h4><p>Es tentador porque es fácil, pero al otro lado hay un equipo que negocia cada día. Y si firmas, no hay vuelta atrás.</p></li>
+    <li class="core"><span class="dot">3</span><span class="tm">0:55 – 2:15</span><h4>Cómo trabajamos</h4><p>Cuatro pasos sencillos, de la llamada al cobro.</p></li>
+    <li><span class="dot">4</span><span class="tm">2:15 – 2:35</span><h4>El formulario</h4><p>No firmes nada todavía: rellena el formulario y te llamamos.</p></li>
+  </ol>
+  <div class="steps">
+    <p class="steps-t">Dentro del punto 3 · cómo trabajamos</p>
+    <div class="step"><span class="sd">1</span><h4>Nos cuentas tu caso</h4><p>Rellenas el formulario y te llamamos. Vemos qué ha pasado y si se puede reclamar. Sin compromiso.</p></div>
+    <div class="step"><span class="sd">2</span><h4>Reúnes los papeles</h4><ul><li>Parte amistoso o atestado</li><li>Informe de urgencias</li><li>Bajas y altas médicas</li><li>Facturas de farmacia, fisio y desplazamientos</li></ul></div>
+    <div class="step"><span class="sd">3</span><h4>Lo llevamos nosotros</h4><p>Hoja de encargo sin letra pequeña, rehabilitación en clínicas asociadas, peritos y la negociación con la aseguradora. Todo online y con seguimiento.</p></div>
+    <div class="step"><span class="sd">4</span><h4>Cobras</h4><p>Recibes tu indemnización y solo entonces cobramos nosotros.</p></div>
+  </div>
+
+  <h3 class="sub">El gancho</h3>
+  <div class="hook1" data-comment-target><p class="q">[Croma, plano medio; el título entra a su lado] «¿Has tenido un accidente de tráfico y no sabes qué hacer ahora? En dos minutos te explico cómo reclamar tu indemnización. Y es más fácil de lo que crees.»</p><p class="w">Quien llega a la landing viene con esa pregunta en la cabeza. La primera frase la dice por él y la segunda le promete una respuesta corta y sencilla, que es lo que le hace quedarse.</p></div>
+
+  <h3 class="sub">Guion</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody>
+    <tr class="blk"><td colspan="5"><b>1</b>Entrada · 0:00 – 0:20</td></tr>
+    <tr data-comment-target><td class="t">1</td><td class="pl">Croma · plano medio</td><td>El presentador a cámara sobre el azul. El título entra a su lado.</td><td class="say">«¿Has tenido un accidente de tráfico y no sabes qué hacer ahora? En dos minutos te explico cómo reclamar tu indemnización. Y es más fácil de lo que crees.»</td><td class="osd"><span>¿HAS TENIDO UN ACCIDENTE?</span></td></tr>
+    <tr data-comment-target><td class="t">2</td><td class="pl">Croma · primer plano</td><td>Entran cuatro iconos: coche, moto, bici y peatón. Después, el logo.</td><td class="say">«Somos abogados especializados en accidentes de tráfico: coche, moto, bici o atropello. Y solo cobramos si tú cobras.»</td><td class="osd"><span>SOLO COBRAMOS SI TÚ COBRAS</span></td></tr>
+    <tr class="blk"><td colspan="5"><b>2</b>Cuidado con la IA · 0:20 – 0:55</td></tr>
+    <tr data-comment-target><td class="t">3</td><td class="pl">Croma · acercamiento a primer plano</td><td>Entra el aviso naranja. A su lado, un chat de IA que escribe una carta.</td><td class="say">«Pero antes, un aviso. Hoy es muy tentador abrir una IA, preguntarle cuánto te toca y pedirle que te escriba la carta para la aseguradora. Es rápido y es gratis. Lo entiendo.»</td><td class="osd"><span>⚠ CUIDADO CON LA IA</span></td></tr>
+    <tr data-comment-target><td class="t">4</td><td class="pl">Croma · plano medio, grafismo a un lado</td><td>Al otro lado del chat se iluminan tres iconos: perito, médico y abogado.</td><td class="say">«El problema es que, al otro lado, la aseguradora tiene peritos, médicos y abogados que se dedican a esto cada día. Y una IA no conoce tu caso, no revisa tus informes y no negocia por ti.»</td><td class="osd"><span>PERITOS · MÉDICOS · ABOGADOS</span></td></tr>
+    <tr data-comment-target><td class="t">5</td><td class="pl">Croma · primer plano, serio</td><td>Un documento «Finiquito» con la firma. Se tacha en naranja.</td><td class="say">«Nos llama mucha gente que ya ha aceptado la oferta y ha firmado. Y cuando firmas, ya no hay nada que reclamar. Así que la regla es una: no firmes nada sin que lo revise alguien que se dedica a esto.»</td><td class="osd"><span>NO FIRMES NADA SIN QUE LO REVISE UN ABOGADO</span></td></tr>
+    <tr class="blk"><td colspan="5"><b>3</b>Cómo trabajamos · 0:55 – 2:15</td></tr>
+    <tr data-comment-target><td class="t">6</td><td class="pl">Croma · plano medio, cambia de lado</td><td>Aparecen las cuatro redonditas unidas por la línea.</td><td class="say">«Así es reclamar con nosotros. Son cuatro pasos.»</td><td class="osd"><span>4 PASOS</span></td></tr>
+    <tr data-comment-target><td class="t">7</td><td class="pl">Croma · plano medio</td><td>Se ilumina el círculo 1. Un móvil con el formulario y una llamada entrante.</td><td class="say">«Uno: nos cuentas qué ha pasado. Rellenas el formulario de esta página y te llamamos. En esa llamada vemos tu caso y te decimos si se puede reclamar. Sin compromiso.»</td><td class="osd"><span>1 · NOS CUENTAS TU CASO</span></td></tr>
+    <tr data-comment-target><td class="t">8</td><td class="pl">Croma · plano medio, lista a la derecha</td><td>Se ilumina el círculo 2. La lista de documentos se marca uno a uno.</td><td class="say">«Dos: reúnes los papeles. El parte amistoso o el atestado, el informe de urgencias, las bajas y altas médicas y las facturas de farmacia, fisioterapia y desplazamientos. Si te falta algo, te ayudamos a conseguirlo.»</td><td class="osd"><span>2 · REÚNES LA DOCUMENTACIÓN</span></td></tr>
+    <tr data-comment-target><td class="t">9</td><td class="pl">Croma · primer plano con acercamiento</td><td>Se ilumina el círculo 3. Iconos de clínica, perito y apretón de manos. Una barra de seguimiento avanza.</td><td class="say">«Tres: nos encargamos de todo. Antes de empezar lees nuestra hoja de encargo, sin letra pequeña. Te ayudamos con la rehabilitación en clínicas asociadas, valoramos tus lesiones con nuestros peritos y negociamos con la aseguradora. Todo online, y siempre sabes en qué punto está tu caso.»</td><td class="osd"><span>3 · NOSOTROS NEGOCIAMOS</span></td></tr>
+    <tr data-comment-target><td class="t">10</td><td class="pl">Croma · plano medio, sonríe</td><td>Se ilumina el círculo 4. La cantidad de la indemnización sube con un contador.</td><td class="say">«Y cuatro: cobras tu indemnización. Solo entonces cobramos nosotros. Si no cobras, no nos pagas nada.»</td><td class="osd"><span>4 · COBRAS TÚ. DESPUÉS, NOSOTROS</span></td></tr>
+    <tr class="blk"><td colspan="5"><b>4</b>El formulario · 2:15 – 2:35</td></tr>
+    <tr data-comment-target><td class="t">11</td><td class="pl">Croma · primer plano, señala hacia abajo</td><td>Las cuatro redonditas en naranja. Una flecha baja hacia el formulario. Cierre con el logo.</td><td class="say">«Así que, si has tenido un accidente, no firmes nada todavía. Rellena el formulario que tienes debajo de este vídeo y te llamamos para ver tu caso. Es gratis y sin compromiso.»</td><td class="osd"><span>RELLENA EL FORMULARIO ↓</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="two">
+    <div class="box"><h3 class="sub" style="margin:0">La versión cuadrada</h3><p>El VSL se monta a la vez en 16:9 para la landing y en 1:1 para publicarlo en LinkedIn. En el cuadrado el presentador queda en el centro, los grafismos pasan arriba y abajo, y los subtítulos van más grandes, porque en LinkedIn casi todo el mundo lo ve sin sonido.</p></div>
+    <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Quien llega a la landing ya tiene el problema. No hay que convencerle de que reclame, sino quitarle el miedo a hacerlo. El aviso sobre la IA le frena antes de cometer el error que ya no tiene arreglo, y los cuatro pasos le enseñan que con vosotros no tiene que hacer casi nada.</p></div>
+  </div>
+  <div class="review" id="review-v1" data-video="v1">
+    <div class="rv-head"><span class="eyebrow">Revisión del VSL</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-comments" hidden><p class="rv-c-title">Comentarios</p><ul></ul></div>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v1" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v1" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v1" hidden>
+      <label for="note-v1">¿Qué cambiarías del VSL?</label>
+      <textarea id="note-v1" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v1">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v1">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="anuncios">
+  <div class="sec-head"><p class="eyebrow">Paid media · vertical 9:16</p><h2>Cinco anuncios, tres ángulos sobre la IA</h2>
+  <p>Todos hacen ruido alrededor de la misma idea: la IA puede ayudarte a informarte, pero llevar sola la negociación con la aseguradora te puede pasar factura. Cada ángulo lo cuenta desde un sitio distinto y todos llevan a la landing del VSL.</p></div>
+  <div class="angles">
+    <article class="angle"><span class="lt">A</span><h3>No firmes nada</h3><p>El error que ya no tiene arreglo: quien usa la IA, acepta la oferta, firma y luego descubre que le han pagado poco.</p><p class="vs">Anuncios 1 y 2</p></article>
+    <article class="angle"><span class="lt">B</span><h3>La IA no negocia por ti</h3><p>Tú con un chat en el móvil; la aseguradora con peritos, médicos y abogados. Una partida desigual.</p><p class="vs">Anuncios 3 y 4</p></article>
+    <article class="angle"><span class="lt">C</span><h3>La IA, sí. Pero no para todo</h3><p>No la demonizamos: le damos su sitio. Sirve para informarse; para negociar y decidir si firmas, una persona.</p><p class="vs">Anuncio 5</p></article>
+  </div>
+</section>
+
+<section class="vid" id="v2">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">1</div>
+    <p class="eyebrow">Anuncio 1 de 5 · Ángulo A</p>
+    <div><h2>«Ya he firmado»</h2><p class="serif">La frase que más escuchamos al teléfono</p></div>
+  </div>
+  <div class="facts"><span class="pill on">No firmes nada</span><span class="pill">Reel 9:16</span><span class="pill">30 – 35 s</span><span class="pill">Croma + grafismo</span><span class="pill">Subtítulos quemados</span></div>
+  <div class="vrow">
+    <figure><img src="/reclamamos/img/a1_firmado.jpg" alt="Referencia del anuncio 1: «Ya he firmado» con un finiquito firmado" width="540" height="960" loading="lazy"><figcaption><b>Escena 1</b>El gancho y el finiquito firmado</figcaption></figure>
+    <div>
+      <p class="idea">Se cuenta el caso que más se repite: alguien usa una IA, acepta la oferta de la aseguradora, firma y después ve que le han pagado mucho menos. El anuncio no asusta; avisa antes de que pase.</p>
+      <h3 class="sub">El gancho</h3>
+      <div class="hook1" data-comment-target><p class="q">[Croma, primer plano] «"Ya he firmado." Es la frase que más escuchamos al teléfono. Y la que más nos duele.»</p><p class="w">Empieza por el final de la historia. El espectador quiere saber qué ha firmado y por qué es un problema, y se queda.</p></div>
+    </div>
+  </div>
+  <h3 class="sub">Guion</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody>
+    <tr data-comment-target><td class="t">1</td><td class="pl">Croma · primer plano</td><td>El presentador a cámara. Entra un finiquito firmado, girado.</td><td class="say">«"Ya he firmado." Es la frase que más escuchamos al teléfono. Y la que más nos duele.»</td><td class="osd"><span>«YA HE FIRMADO»</span></td></tr>
+    <tr data-comment-target><td class="t">2</td><td class="pl">Croma · plano medio, grafismo arriba</td><td>Cuatro iconos en fila que se van encendiendo: chat, carta, oferta, firma.</td><td class="say">«Pasa así: tienes un accidente, le preguntas a una IA qué hacer, te escribe una carta para la aseguradora y aceptas su oferta.»</td><td class="osd"><span>IA → CARTA → OFERTA → FIRMA</span></td></tr>
+    <tr data-comment-target><td class="t">3</td><td class="pl">Croma · acercamiento a primer plano</td><td>La cifra del finiquito se queda pequeña al lado de una cifra más grande, en naranja.</td><td class="say">«Luego te das cuenta de que te han pagado mucho menos de lo que te correspondía. Pero con el finiquito firmado, ya no hay marcha atrás.»</td><td class="osd"><span>YA NO HAY MARCHA ATRÁS</span></td></tr>
+    <tr data-comment-target><td class="t">4</td><td class="pl">Croma · plano medio</td><td>Entra el aviso naranja.</td><td class="say">«Usa la IA para informarte, si quieres. Pero antes de firmar nada, que lo revise un abogado.»</td><td class="osd"><span>⚠ ANTES DE FIRMAR, UN ABOGADO</span></td></tr>
+    <tr data-comment-target><td class="t">5</td><td class="pl">Croma · primer plano, señala abajo</td><td>Logo y botón.</td><td class="say">«Te lo revisamos sin compromiso. Y solo cobramos si tú cobras. Pulsa abajo y cuéntanos tu caso.»</td><td class="osd"><span>SOLO COBRAMOS SI TÚ COBRAS</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Es una historia, no un consejo. Contar el caso real de quien llama tarde hace que el espectador se vea en él justo antes de cometer el mismo error. Y el cierre le da la salida: que se lo revisen antes de firmar.</p></div>
+  <div class="review" id="review-v2" data-video="v2">
+    <div class="rv-head"><span class="eyebrow">Revisión del anuncio 1</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-comments" hidden><p class="rv-c-title">Comentarios</p><ul></ul></div>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v2" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v2" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v2" hidden>
+      <label for="note-v2">¿Qué cambiarías del anuncio 1?</label>
+      <textarea id="note-v2" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v2">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v2">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="vid" id="v3">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">2</div>
+    <p class="eyebrow">Anuncio 2 de 5 · Ángulo A</p>
+    <div><h2>Antes de firmar nada, mira esto</h2><p class="serif">Tres preguntas antes de aceptar la oferta</p></div>
+  </div>
+  <div class="facts"><span class="pill on">No firmes nada</span><span class="pill">Reel 9:16</span><span class="pill">30 – 40 s</span><span class="pill">Croma + grafismo</span><span class="pill">Subtítulos quemados</span></div>
+  <div class="vrow">
+    <figure><img src="/reclamamos/img/a2_antes.jpg" alt="Referencia del anuncio 2: «Antes de firmar nada, mira esto» con tres preguntas" width="540" height="960" loading="lazy"><figcaption><b>Escena 2</b>Las tres preguntas, una a una</figcaption></figure>
+    <div>
+      <p class="idea">Formato lista, útil y guardable: tres preguntas que cualquiera puede hacerse antes de firmar la oferta de la aseguradora. Las redonditas del VSL cuentan las preguntas. Si alguna respuesta es «no», no se firma todavía.</p>
+      <h3 class="sub">El gancho</h3>
+      <div class="hook1" data-comment-target><p class="q">[Croma, plano medio; levanta la mano como diciendo «para»] «Si la aseguradora te ha hecho una oferta, no firmes hasta hacerte estas tres preguntas.»</p><p class="w">Habla directamente a quien tiene la oferta encima de la mesa, que es justo a quien queréis llegar, y promete algo concreto y rápido.</p></div>
+    </div>
+  </div>
+  <h3 class="sub">Guion</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody>
+    <tr data-comment-target><td class="t">1</td><td class="pl">Croma · plano medio</td><td>Levanta la mano. Entra el aviso naranja.</td><td class="say">«Si la aseguradora te ha hecho una oferta, no firmes hasta hacerte estas tres preguntas.»</td><td class="osd"><span>ANTES DE FIRMAR NADA</span></td></tr>
+    <tr data-comment-target><td class="t">2</td><td class="pl">Croma · primer plano, redondita 1</td><td>Se ilumina el círculo 1.</td><td class="say">«Una: ¿ya te han dado el alta? Si todavía estás en rehabilitación, aún no sabes todo lo que te corresponde.»</td><td class="osd"><span>1 · ¿ESTÁS DE ALTA?</span></td></tr>
+    <tr data-comment-target><td class="t">3</td><td class="pl">Croma · plano medio, redondita 2</td><td>Se ilumina el círculo 2. Iconos de farmacia, fisio y coche.</td><td class="say">«Dos: ¿te han pagado la rehabilitación, la farmacia y los desplazamientos? Todo eso también se reclama.»</td><td class="osd"><span>2 · ¿TE LO HAN PAGADO TODO?</span></td></tr>
+    <tr data-comment-target><td class="t">4</td><td class="pl">Croma · acercamiento, redondita 3</td><td>Se ilumina el círculo 3. Un chat de IA se apaga.</td><td class="say">«Tres: ¿lo ha revisado alguien que se dedica a esto? Una IA te puede orientar, pero no ve tus informes ni negocia por ti.»</td><td class="osd"><span>3 · ¿LO HA REVISADO UN ABOGADO?</span></td></tr>
+    <tr data-comment-target><td class="t">5</td><td class="pl">Croma · primer plano, señala abajo</td><td>Logo y botón.</td><td class="say">«Si alguna respuesta es no, no firmes todavía. Cuéntanos tu caso y lo revisamos sin compromiso.»</td><td class="osd"><span>SI ALGUNA ES NO, NO FIRMES</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Es contenido útil aunque no hagan clic: la gente lo guarda y lo comparte con quien acaba de tener un accidente. Y la tercera pregunta lleva de forma natural a vosotros.</p></div>
+  <div class="review" id="review-v3" data-video="v3">
+    <div class="rv-head"><span class="eyebrow">Revisión del anuncio 2</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-comments" hidden><p class="rv-c-title">Comentarios</p><ul></ul></div>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v3" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v3" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v3" hidden>
+      <label for="note-v3">¿Qué cambiarías del anuncio 2?</label>
+      <textarea id="note-v3" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v3">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v3">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="vid" id="v4">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">3</div>
+    <p class="eyebrow">Anuncio 3 de 5 · Ángulo B</p>
+    <div><h2>Le pedí a la IA que negociara por mí</h2><p class="serif">Una carta no es una negociación</p></div>
+  </div>
+  <div class="facts"><span class="pill on">La IA no negocia por ti</span><span class="pill">Reel 9:16</span><span class="pill">30 – 40 s</span><span class="pill">Croma + pantalla de chat</span><span class="pill">Subtítulos quemados</span></div>
+  <div class="vrow">
+    <figure><img src="/reclamamos/img/b1_chat.jpg" alt="Referencia del anuncio 3: la pantalla de un chat con IA que devuelve un modelo de carta" width="540" height="960" loading="lazy"><figcaption><b>Escena 1</b>La pregunta al chat y su respuesta</figcaption></figure>
+    <div>
+      <p class="idea">Hacemos la prueba delante de cámara: le pedimos a una IA que negocie una indemnización. La pantalla del chat sale detrás del presentador. Lo que devuelve está bien escrito, pero es una carta, y la aseguradora va a contestar con su equipo.</p>
+      <h3 class="sub">El gancho</h3>
+      <div class="hook1" data-comment-target><p class="q">[Croma, con el chat detrás] «Le he pedido a una IA que negocie mi indemnización con la aseguradora. Mira lo que me ha dado.»</p><p class="w">Es la prueba que mucha gente está pensando hacer. Verla hecha engancha por curiosidad, y el resultado se entiende sin sonido.</p></div>
+    </div>
+  </div>
+  <h3 class="sub">Guion</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody>
+    <tr data-comment-target><td class="t">1</td><td class="pl">Croma · plano medio, chat detrás</td><td>Se escribe el mensaje: «Negocia mi indemnización con la aseguradora».</td><td class="say">«Le he pedido a una IA que negocie mi indemnización con la aseguradora. Mira lo que me ha dado.»</td><td class="osd"><span>LE PEDÍ A LA IA QUE NEGOCIARA POR MÍ</span></td></tr>
+    <tr data-comment-target><td class="t">2</td><td class="pl">Pantalla del chat · scroll</td><td>Aparece la respuesta: un modelo de carta.</td><td class="say">«Un modelo de carta. Bien escrito, eso sí. Pero una carta no es una negociación.»</td><td class="osd"><span>UNA CARTA ≠ UNA NEGOCIACIÓN</span></td></tr>
+    <tr data-comment-target><td class="t">3</td><td class="pl">Croma · acercamiento a primer plano</td><td>Al otro lado entran tres iconos: perito, médico y abogado.</td><td class="say">«La aseguradora va a contestar con su perito, su médico y su abogado. ¿Y tú qué haces? ¿Le vuelves a preguntar al chat?»</td><td class="osd"><span>PERITO · MÉDICO · ABOGADO</span></td></tr>
+    <tr data-comment-target><td class="t">4</td><td class="pl">Croma · plano medio</td><td>Una lista se marca: informes, secuelas, facturas, «saber decir que no».</td><td class="say">«Una indemnización depende de tus informes, de tus secuelas, de tus facturas… y de saber cuándo decir que no a una oferta.»</td><td class="osd"><span>SABER CUÁNDO DECIR QUE NO</span></td></tr>
+    <tr data-comment-target><td class="t">5</td><td class="pl">Croma · primer plano, señala abajo</td><td>Logo y botón.</td><td class="say">«Para eso estamos nosotros. Llevamos tu caso de principio a fin y solo cobramos si tú cobras.»</td><td class="osd"><span>SOLO COBRAMOS SI TÚ COBRAS</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>No discute con la IA: la prueba. El espectador ve con sus propios ojos dónde se queda corta, sin que nadie le diga que lo que pensaba hacer está mal.</p></div>
+  <div class="review" id="review-v4" data-video="v4">
+    <div class="rv-head"><span class="eyebrow">Revisión del anuncio 3</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-comments" hidden><p class="rv-c-title">Comentarios</p><ul></ul></div>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v4" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v4" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v4" hidden>
+      <label for="note-v4">¿Qué cambiarías del anuncio 3?</label>
+      <textarea id="note-v4" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v4">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v4">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="vid" id="v5">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">4</div>
+    <p class="eyebrow">Anuncio 4 de 5 · Ángulo B</p>
+    <div><h2>Tú con un chat, ellos con un equipo</h2><p class="serif">Una partida desigual</p></div>
+  </div>
+  <div class="facts"><span class="pill on">La IA no negocia por ti</span><span class="pill">Reel 9:16</span><span class="pill">25 – 30 s</span><span class="pill">Croma + pantalla dividida</span><span class="pill">Subtítulos quemados</span></div>
+  <div class="vrow">
+    <figure><img src="/reclamamos/img/b2_equipo.jpg" alt="Referencia del anuncio 4: pantalla dividida, tú con un chat y ellos con peritos, médicos y abogados" width="540" height="960" loading="lazy"><figcaption><b>Escena 1</b>Pantalla dividida: tú y ellos</figcaption></figure>
+    <div>
+      <p class="idea">La pantalla se divide en dos: a un lado, tú con el móvil; al otro, la aseguradora con su equipo. Se ve la diferencia sin explicarla. Al final, la partida se iguala: vosotros también tenéis peritos, clínicas y abogados, y están de su lado.</p>
+      <h3 class="sub">El gancho</h3>
+      <div class="hook1" data-comment-target><p class="q">[Pantalla dividida] «Tú, con un chat en el móvil. La aseguradora, con un equipo que negocia indemnizaciones todos los días.»</p><p class="w">El contraste se ve en el primer segundo, también sin sonido. Es el formato más corto de los cinco, pensado para repetir mucho en anuncios.</p></div>
+    </div>
+  </div>
+  <h3 class="sub">Guion</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody>
+    <tr data-comment-target><td class="t">1</td><td class="pl">Pantalla dividida</td><td>Izquierda: un móvil con un chat. Derecha: tres siluetas con maletín.</td><td class="say">«Tú, con un chat en el móvil. La aseguradora, con un equipo que negocia indemnizaciones todos los días.»</td><td class="osd"><span>TÚ · ELLOS</span></td></tr>
+    <tr data-comment-target><td class="t">2</td><td class="pl">Croma · plano medio, la lista se marca</td><td>Se marcan uno a uno: perito, médico, abogado.</td><td class="say">«Su perito valora tus lesiones. Su médico revisa tus informes. Su abogado te hace la oferta.»</td><td class="osd"><span>PERITO · MÉDICO · ABOGADO</span></td></tr>
+    <tr data-comment-target><td class="t">3</td><td class="pl">Croma · primer plano, ceja levantada</td><td>El móvil del lado izquierdo tiembla.</td><td class="say">«¿Y la idea es que negocies tú solo, con lo que te diga una IA?»</td><td class="osd"><span>¿TÚ SOLO?</span></td></tr>
+    <tr data-comment-target><td class="t">4</td><td class="pl">Pantalla dividida que se iguala</td><td>En el lado izquierdo aparecen también perito, clínica y abogado, en naranja.</td><td class="say">«Iguala la partida. Nosotros también tenemos peritos, clínicas y abogados. Y están de tu lado.»</td><td class="osd"><span>AHORA, DE TU LADO</span></td></tr>
+    <tr data-comment-target><td class="t">5</td><td class="pl">Croma · primer plano, señala abajo</td><td>Logo y botón.</td><td class="say">«Cuéntanos tu caso. Si no cobras, no nos pagas nada.»</td><td class="osd"><span>SOLO COBRAMOS SI TÚ COBRAS</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Pone a la aseguradora como el rival, igual que hace vuestra web («no le regales tu dinero a tu aseguradora»), y convierte la IA en lo que es: una herramienta, no un equipo.</p></div>
+  <div class="review" id="review-v5" data-video="v5">
+    <div class="rv-head"><span class="eyebrow">Revisión del anuncio 4</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-comments" hidden><p class="rv-c-title">Comentarios</p><ul></ul></div>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v5" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v5" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v5" hidden>
+      <label for="note-v5">¿Qué cambiarías del anuncio 4?</label>
+      <textarea id="note-v5" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v5">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v5">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="vid" id="v6">
+  <div class="vid-head">
+    <div class="num" aria-hidden="true">5</div>
+    <p class="eyebrow">Anuncio 5 de 5 · Ángulo C</p>
+    <div><h2>La IA, sí. Pero no para todo</h2><p class="serif">Para esto, genial. Para esto, una persona.</p></div>
+  </div>
+  <div class="facts"><span class="pill on">Úsala bien</span><span class="pill">Reel 9:16</span><span class="pill">30 – 35 s</span><span class="pill">Croma + grafismo</span><span class="pill">Subtítulos quemados</span></div>
+  <div class="vrow">
+    <figure><img src="/reclamamos/img/c1_si_no.jpg" alt="Referencia del anuncio 5: lista de para qué sí y para qué no usar la IA" width="540" height="960" loading="lazy"><figcaption><b>Escena 2</b>Lo que sí y lo que no</figcaption></figure>
+    <div>
+      <p class="idea">El ángulo más amable: no le decimos a nadie que no use la IA. Le decimos para qué sirve y para qué no. Una lista con dos «sí» y dos «no» que se marca mientras habla el presentador.</p>
+      <h3 class="sub">El gancho</h3>
+      <div class="hook1" data-comment-target><p class="q">[Croma, plano medio] «No te voy a decir que no uses la IA. Úsala. Pero no para todo.»</p><p class="w">Rompe lo que el espectador espera de un despacho de abogados. Le da la razón primero, y por eso escucha lo que viene después.</p></div>
+    </div>
+  </div>
+  <h3 class="sub">Guion</h3>
+  <div class="tbl"><table>
+    <colgroup><col class="c1"><col class="c1b"><col class="c2"><col class="c3"><col></colgroup>
+    <thead><tr><th>Escena</th><th>Plano</th><th>Qué se ve</th><th>Qué se dice</th><th>Texto en pantalla</th></tr></thead>
+    <tbody>
+    <tr data-comment-target><td class="t">1</td><td class="pl">Croma · plano medio</td><td>El presentador a cámara, tranquilo.</td><td class="say">«No te voy a decir que no uses la IA. Úsala. Pero no para todo.»</td><td class="osd"><span>LA IA, SÍ. PERO NO PARA TODO</span></td></tr>
+    <tr data-comment-target><td class="t">2</td><td class="pl">Croma · plano medio, lista arriba</td><td>Se marcan dos «sí» en naranja.</td><td class="say">«Para entender qué es el baremo o qué te pueden pagar, genial. Para preparar tus preguntas, también.»</td><td class="osd"><span>✓ ENTENDER EL BAREMO · ✓ PREPARAR TUS PREGUNTAS</span></td></tr>
+    <tr data-comment-target><td class="t">3</td><td class="pl">Croma · acercamiento a primer plano</td><td>Se marcan dos «no».</td><td class="say">«Pero para negociar con la aseguradora y decidir si firmas, necesitas a alguien que conozca tu caso y se dedique a esto.»</td><td class="osd"><span>✗ NEGOCIAR · ✗ DECIDIR SI FIRMAS</span></td></tr>
+    <tr data-comment-target><td class="t">4</td><td class="pl">Croma · primer plano, serio</td><td>Entra el aviso naranja.</td><td class="say">«Porque si firmas una oferta baja, ya no hay vuelta atrás.»</td><td class="osd"><span>⚠ NO HAY VUELTA ATRÁS</span></td></tr>
+    <tr data-comment-target><td class="t">5</td><td class="pl">Croma · primer plano, señala abajo</td><td>Logo y botón.</td><td class="say">«Nosotros lo revisamos sin compromiso. Y solo cobramos si tú cobras.»</td><td class="osd"><span>SOLO COBRAMOS SI TÚ COBRAS</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box"><h3 class="sub" style="margin:0">Por qué funciona</h3><p>Es el que menos rechazo genera: no ataca la herramienta que la gente ya usa, le da su sitio. Funciona muy bien en remarketing, con quien ya ha visto los otros anuncios.</p></div>
+  <div class="review" id="review-v6" data-video="v6">
+    <div class="rv-head"><span class="eyebrow">Revisión del anuncio 5</span><span class="rv-chip" data-state="pending">Pendiente de revisar</span><span class="rv-who"></span></div>
+    <p class="rv-note" hidden></p>
+    <div class="rv-comments" hidden><p class="rv-c-title">Comentarios</p><ul></ul></div>
+    <div class="rv-actions">
+      <button type="button" class="btn ok" data-act="ok" id="btn-ok-v6" aria-pressed="false" disabled>Aprobar guion</button>
+      <button type="button" class="btn ch" data-act="changes" id="btn-ch-v6" aria-pressed="false" disabled>Pedir cambios</button>
+    </div>
+    <form class="rv-form" id="form-v6" hidden>
+      <label for="note-v6">¿Qué cambiarías del anuncio 5?</label>
+      <textarea id="note-v6" maxlength="1000" rows="3"></textarea>
+      <div><button type="submit" class="btn ch" id="send-v6">Enviar cambios</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v6">Cancelar</button></div>
+    </form>
+    <p class="rv-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="necesito">
+  <div class="sec-head"><h2>Lo que necesito de vosotros</h2>
+  <p>Marca tu respuesta y me llega al momento.</p></div>
+  <div class="needs">
+    <div class="need" data-need="guiones" data-comment-target><b>OK a los seis guiones</b><span>Con los botones «Aprobar» o «Pedir cambios» del VSL y de cada anuncio.</span><p class="nd-sum" data-sum>0 de 6 aprobados</p><span class="bigcheck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
+    <div class="need" data-need="abogado" data-comment-target><b>¿Sale alguien del despacho en el VSL?</b><span>Un abogado vuestro podría decir una frase en el paso 3 («nosotros negociamos»). Da mucha confianza.</span><div class="opts"><button type="button" class="opt" data-val="Sí, un abogado" id="opt-abogado-0" aria-pressed="false" disabled>Sí, un abogado</button><button type="button" class="opt" data-val="No, solo el presentador" id="opt-abogado-1" aria-pressed="false" disabled>No, solo el presentador</button></div><p class="nd-who"></p></div>
+    <div class="need" data-need="cierre" data-comment-target><b>Cierre del VSL</b><span>¿Llevamos solo al formulario o damos también vuestro teléfono gratuito?</span><div class="opts"><button type="button" class="opt" data-val="Solo formulario" id="opt-cierre-0" aria-pressed="false" disabled>Solo formulario</button><button type="button" class="opt" data-val="Formulario y teléfono" id="opt-cierre-1" aria-pressed="false" disabled>Formulario y teléfono</button></div><p class="nd-who"></p></div>
+    <div class="need" data-need="linkedin" data-comment-target><b>Versión para LinkedIn</b><span>¿El VSL completo en 1:1 o una versión corta de 60–90 segundos?</span><div class="opts"><button type="button" class="opt" data-val="VSL completo en 1:1" id="opt-linkedin-0" aria-pressed="false" disabled>VSL completo en 1:1</button><button type="button" class="opt" data-val="Versión corta" id="opt-linkedin-1" aria-pressed="false" disabled>Versión corta</button></div><p class="nd-who"></p></div>
+    <div class="need" data-need="defensa" data-comment-target><b>La defensa legal del seguro</b><span>Vuestra web dice que la aseguradora del cliente puede cubrir total o parcialmente su defensa legal externa. ¿Lo mencionamos en el VSL?</span><div class="opts"><button type="button" class="opt" data-val="Sí" id="opt-defensa-0" aria-pressed="false" disabled>Sí</button><button type="button" class="opt" data-val="No" id="opt-defensa-1" aria-pressed="false" disabled>No</button></div><p class="nd-who"></p></div>
+    <div class="need" data-need="atropello" data-comment-target><b>Tipos de accidente en la entrada</b><span>En el VSL nombramos coche, moto, bici y atropello. ¿Añadimos el autobús y el Consorcio (vehículo sin seguro o que se da a la fuga)?</span><div class="opts"><button type="button" class="opt" data-val="Sí, añadirlos" id="opt-atropello-0" aria-pressed="false" disabled>Sí, añadirlos</button><button type="button" class="opt" data-val="No, así está bien" id="opt-atropello-1" aria-pressed="false" disabled>No, así está bien</button></div><p class="nd-who"></p></div>
+  </div>
+</section>
+
+<footer>
+  <span><b>Pol Morera</b> · +1.000 vídeos para +300 marcas · polmorera.es</span>
+  <span>Referencias visuales: montajes con fotos de Pol sobre los colores de Reclamamos. Los gráficos y textos de pantalla son una guía.</span>
+</footer>
+</div>
+<script>try{if(matchMedia('(prefers-reduced-motion: reduce)').matches){var v=document.querySelector('.sh-bg');v.removeAttribute('autoplay');v.pause();}}catch(e){}</script>
+<script src="/reclamamos/config.js"></script>
+<script src="/reclamamos/respuestas.js"></script>
+</body>
+</html>
