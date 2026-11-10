@@ -132,6 +132,15 @@ a:focus-visible{outline:3px solid var(--forest); outline-offset:2px}
 .rv-form textarea{font:16px/1.5 var(--f-body); color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:10px 12px; width:100%; resize:vertical}
 .rv-form div{display:flex; flex-wrap:wrap; gap:10px}
 
+.prep{font-size:15.5px; color:var(--muted); max-width:60ch; border-left:3px solid var(--neon); padding-left:12px}
+.prep b{color:var(--ink)}
+.later{margin-top:clamp(36px, 5vw, 56px); display:grid; gap:14px}
+.later h2{font-weight:800; font-size:clamp(28px, 4vw, 40px); line-height:1; text-transform:uppercase}
+.later-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap:14px; max-width:880px}
+.later-col{background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:18px 20px}
+.later-col b{font-family:var(--f-display); font-weight:800; font-size:22px; text-transform:uppercase}
+.later-col ul{margin:8px 0 0; padding-left:20px}
+
 /* l'OK final */
 .final{margin-top:clamp(36px, 5vw, 56px); display:grid; gap:14px}
 .final h2{font-weight:800; font-size:clamp(30px, 4.4vw, 46px); line-height:1; text-transform:uppercase}
@@ -171,10 +180,10 @@ footer b{color:var(--ink)}
     <div class="rp-top"><span class="eyebrow">Revisió</span><span class="rp-status" id="rp-status">0 de 6 vídeos aprovats</span></div>
     <div class="rp-chips">
       <a href="#v1" class="rp-chip" data-video="v1">1 · Black Friday · <span class="rp-st">Pendent</span></a>
-      <a href="#v2" class="rp-chip" data-video="v2">2 · Regal per a un famós · <span class="rp-st">Pendent</span></a>
-      <a href="#v3" class="rp-chip" data-video="v3">3 · Dos parells de mitjons · <span class="rp-st">Pendent</span></a>
-      <a href="#v4" class="rp-chip" data-video="v4">4 · Lent fosca o groga · <span class="rp-st">Pendent</span></a>
-      <a href="#v5" class="rp-chip" data-video="v5">5 · Els 5 regals més venuts · <span class="rp-st">Pendent</span></a>
+      <a href="#v7" class="rp-chip" data-video="v7">2 · Comença el Black Friday · <span class="rp-st">Pendent</span></a>
+      <a href="#v2" class="rp-chip" data-video="v2">3 · Regal per a un famós · <span class="rp-st">Pendent</span></a>
+      <a href="#v8" class="rp-chip" data-video="v8">4 · Pixapins · <span class="rp-st">Pendent</span></a>
+      <a href="#v9" class="rp-chip" data-video="v9">5 · Curses de Nadal · <span class="rp-st">Pendent</span></a>
       <a href="#v6" class="rp-chip" data-video="v6">6 · Llargada d'esquí · <span class="rp-st">Pendent</span></a>
     </div>
     <div class="rp-name"><label for="rv-name">El teu nom</label><input id="rv-name" type="text" maxlength="80" autocomplete="name" placeholder="Perquè en Pol sàpiga qui respon"></div>
@@ -193,7 +202,8 @@ footer b{color:var(--ink)}
   <div class="c-body">
     <p class="eyebrow">Black Friday · Reel 9:16</p>
     <h2 id="t-v1">Les 3 gangues més potents del Black Friday</h2>
-    <p class="idea">La Laura recorre la botiga amb el micròfon i fa el compte enrere de les tres millors ofertes del Black Friday, de la tercera a la primera. Ella reacciona al preu sense dir cap xifra: el preu d'abans i el d'ara surten en pantalla, en edició.</p>
+    <p class="idea">La Laura fa el compte enrere de les tres gangues de la setmana, amb el mateix acting de sorpresa, però en lloc d'ensenyar un producte es planta davant de cada secció: el número 3 a la roba de muntanya, el 2 gairebé tocant les vambes de running i el número 1 a les sneakers. Tanca dient que els descomptes duren tota la setmana.</p>
+    <p class="prep"><b>Per preparar a botiga:</b> no cal producte.</p>
     <div class="review" id="review-v1" data-video="v1">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 1</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -212,18 +222,48 @@ footer b{color:var(--ink)}
   </div>
 </section>
 
-<section class="concept flip tone-neon" id="v2" aria-labelledby="t-v2">
+<section class="concept flip tone-neon" id="v7" aria-labelledby="t-v7">
   <div class="c-num">
     <span class="c-of">Vídeo 2 de 6</span>
     <span class="num" aria-hidden="true">2</span>
+    <span class="c-cat">Black Friday</span>
+  </div>
+  <div class="c-body">
+    <p class="eyebrow">Black Friday · Humor · Reel 9:16</p>
+    <h2 id="t-v7">Alerta: comença el Black Friday</h2>
+    <p class="idea">La Laura fa de presentadora del temps davant de la botiga: «Atenció, previsió per a aquesta setmana. Alerta vermella a tot Catalunya: cauran descomptes a totes les seccions de Wala». Mapa del temps en edició, amb núvols de descomptes sobre muntanya, running i sneakers, i un «es recomana no sortir de casa sense la llista de regals».</p>
+    <p class="prep"><b>Per preparar a botiga:</b> no cal producte.</p>
+    <div class="review" id="review-v7" data-video="v7">
+      <div class="rv-head"><span class="eyebrow">Revisió del vídeo 2</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
+      <p class="rv-note" hidden></p>
+      <div class="rv-comments" hidden><p class="rv-c-title">Comentaris</p><ul></ul></div>
+      <div class="rv-actions">
+        <button type="button" class="btn ok" data-act="ok" id="btn-ok-v7" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aprovar</button>
+        <button type="button" class="btn ch" data-act="changes" id="btn-ch-v7" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
+      </div>
+      <form class="rv-form" id="form-v7" hidden>
+        <label for="note-v7">Què canviaries del vídeo 2?</label>
+        <textarea id="note-v7" maxlength="1000" rows="3"></textarea>
+        <div><button type="submit" class="btn ch" id="send-v7">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v7">Cancel·lar</button></div>
+      </form>
+      <p class="rv-msg" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="concept tone-salmon" id="v2" aria-labelledby="t-v2">
+  <div class="c-num">
+    <span class="c-of">Vídeo 3 de 6</span>
+    <span class="num" aria-hidden="true">3</span>
     <span class="c-cat">Nadal</span>
   </div>
   <div class="c-body">
-    <p class="eyebrow">Nadal · Reel 9:16</p>
-    <h2 id="t-v2">Un regal per a un famós</h2>
-    <p class="idea">La Laura treu d'un pot un paper amb el nom d'algú conegut i recorre la botiga buscant-li el regal perfecte, amb el preu en pantalla. Acaba preguntant a qui li busquem el regal la propera vegada.</p>
+    <p class="eyebrow">Humor · Lifestyle · Reel 9:16</p>
+    <h2 id="t-v2">Un regal per a un famós: Miki Núñez</h2>
+    <p class="idea">La Laura treu d'un pot un paper amb el nom de Miki Núñez i recorre la botiga buscant-li el regal perfecte per a algú que no para de pujar a escenaris i d'anar amunt i avall: unes sneakers per saltar als concerts, una jaqueta per a les gires d'hivern i una motxilla per a tant de viatge. Preu en pantalla i, al final: «Miki, si ho veus, ja saps on trobar-ho». Acaba preguntant a qui li busquem el regal la propera vegada.</p>
+    <p class="prep"><b>Per preparar a botiga:</b> unes sneakers, una jaqueta d'abric (plomes o similar), una motxilla urbana i un complement petit (gorra o cinta). Si teniu alguna novetat que voleu moure per Nadal, la fem servir.</p>
     <div class="review" id="review-v2" data-video="v2">
-      <div class="rv-head"><span class="eyebrow">Revisió del vídeo 2</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
+      <div class="rv-head"><span class="eyebrow">Revisió del vídeo 3</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
       <div class="rv-comments" hidden><p class="rv-c-title">Comentaris</p><ul></ul></div>
       <div class="rv-actions">
@@ -231,7 +271,7 @@ footer b{color:var(--ink)}
         <button type="button" class="btn ch" data-act="changes" id="btn-ch-v2" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
       </div>
       <form class="rv-form" id="form-v2" hidden>
-        <label for="note-v2">Què canviaries del vídeo 2?</label>
+        <label for="note-v2">Què canviaries del vídeo 3?</label>
         <textarea id="note-v2" maxlength="1000" rows="3"></textarea>
         <div><button type="submit" class="btn ch" id="send-v2">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v2">Cancel·lar</button></div>
       </form>
@@ -240,84 +280,58 @@ footer b{color:var(--ink)}
   </div>
 </section>
 
-<section class="concept tone-salmon" id="v3" aria-labelledby="t-v3">
-  <div class="c-num">
-    <span class="c-of">Vídeo 3 de 6</span>
-    <span class="num" aria-hidden="true">3</span>
-    <span class="c-cat">Neu</span>
-  </div>
-  <div class="c-body">
-    <p class="eyebrow">Neu · Reel 9:16</p>
-    <h2 id="t-v3">Per què no posar-se dos parells de mitjons</h2>
-    <p class="idea">Molta gent es posa dos parells de mitjons per esquiar i passa més fred: estrenyen el peu i la sang circula pitjor. La Laura ho ensenya i explica el que sí que funciona: un sol parell de mitjons d'esquí, llargs i sense arrugues.</p>
-    <div class="review" id="review-v3" data-video="v3">
-      <div class="rv-head"><span class="eyebrow">Revisió del vídeo 3</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
-      <p class="rv-note" hidden></p>
-      <div class="rv-comments" hidden><p class="rv-c-title">Comentaris</p><ul></ul></div>
-      <div class="rv-actions">
-        <button type="button" class="btn ok" data-act="ok" id="btn-ok-v3" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aprovar</button>
-        <button type="button" class="btn ch" data-act="changes" id="btn-ch-v3" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
-      </div>
-      <form class="rv-form" id="form-v3" hidden>
-        <label for="note-v3">Què canviaries del vídeo 3?</label>
-        <textarea id="note-v3" maxlength="1000" rows="3"></textarea>
-        <div><button type="submit" class="btn ch" id="send-v3">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v3">Cancel·lar</button></div>
-      </form>
-      <p class="rv-msg" aria-live="polite"></p>
-    </div>
-  </div>
-</section>
-
-<section class="concept flip tone-forest" id="v4" aria-labelledby="t-v4">
+<section class="concept flip tone-forest" id="v8" aria-labelledby="t-v8">
   <div class="c-num">
     <span class="c-of">Vídeo 4 de 6</span>
     <span class="num" aria-hidden="true">4</span>
-    <span class="c-cat">Neu</span>
+    <span class="c-cat">Muntanya</span>
   </div>
   <div class="c-body">
-    <p class="eyebrow">Neu · Reel 9:16</p>
-    <h2 id="t-v4">Lent fosca o lent groga?</h2>
-    <p class="idea">Amb una màscara d'esquí a cada mà, la Laura explica per a què serveix cada lent: la fosca, per als dies de sol, i la groga o rosa, per als dies de boira.</p>
-    <div class="review" id="review-v4" data-video="v4">
+    <p class="eyebrow">Humor · Muntanya · Reel 9:16</p>
+    <h2 id="t-v8">Com reconèixer un pixapins a la muntanya</h2>
+    <p class="idea">Tots coneixem algú que puja a la muntanya com si anés a fer el vermut. La Laura fa de pixapins (texans, vambes de ciutat i res per a la pluja) i, al pla següent, de qui sap de què va, mentre enumera els senyals: «Si portes texans al Montseny…». Cada senyal té la seva solució de Wala. Tanca: «Si ets pixapins, no passa res. A Wala t'equipem».</p>
+    <p class="prep"><b>Per preparar a botiga:</b> unes botes de trekking, una jaqueta impermeable o softshell, una motxilla de dia, uns bastons i un gorro. El look de pixapins el porta ella de casa.</p>
+    <div class="review" id="review-v8" data-video="v8">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 4</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
       <div class="rv-comments" hidden><p class="rv-c-title">Comentaris</p><ul></ul></div>
       <div class="rv-actions">
-        <button type="button" class="btn ok" data-act="ok" id="btn-ok-v4" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aprovar</button>
-        <button type="button" class="btn ch" data-act="changes" id="btn-ch-v4" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
+        <button type="button" class="btn ok" data-act="ok" id="btn-ok-v8" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aprovar</button>
+        <button type="button" class="btn ch" data-act="changes" id="btn-ch-v8" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
       </div>
-      <form class="rv-form" id="form-v4" hidden>
-        <label for="note-v4">Què canviaries del vídeo 4?</label>
-        <textarea id="note-v4" maxlength="1000" rows="3"></textarea>
-        <div><button type="submit" class="btn ch" id="send-v4">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v4">Cancel·lar</button></div>
+      <form class="rv-form" id="form-v8" hidden>
+        <label for="note-v8">Què canviaries del vídeo 4?</label>
+        <textarea id="note-v8" maxlength="1000" rows="3"></textarea>
+        <div><button type="submit" class="btn ch" id="send-v8">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v8">Cancel·lar</button></div>
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
   </div>
 </section>
 
-<section class="concept tone-neon" id="v5" aria-labelledby="t-v5">
+<section class="concept tone-neon" id="v9" aria-labelledby="t-v9">
   <div class="c-num">
     <span class="c-of">Vídeo 5 de 6</span>
     <span class="num" aria-hidden="true">5</span>
-    <span class="c-cat">Nadal</span>
+    <span class="c-cat">Running</span>
   </div>
   <div class="c-body">
-    <p class="eyebrow">Nadal · Reel 9:16</p>
-    <h2 id="t-v5">Els 5 regals més venuts de Wala</h2>
-    <p class="idea">La Laura camina per la botiga amb el micròfon i ensenya, del cinquè al primer, els regals que més s'emporta la gent per Nadal, amb el preu en pantalla. Sense claim: el bon preu es veu als preus.</p>
-    <div class="review" id="review-v5" data-video="v5">
+    <p class="eyebrow">Running · Consells · Reel 9:16</p>
+    <h2 id="t-v9">Prepara't per a les curses de Nadal</h2>
+    <p class="idea">Quatre consells ràpids per a les curses de Nadal i la Sant Silvestre: no estrenis vambes el dia de la cursa, vesteix-te pensant en el quilòmetre 2 i no en la sortida, protegeix mans i orelles si fa fred, i porta el teu gel o barreta. Aquí surt 226ERS, la marca de nutrició d'aquí que trobaràs a totes les botigues Wala.</p>
+    <p class="prep"><b>Per preparar a botiga:</b> unes vambes de running, una samarreta tèrmica de màniga llarga, uns guants i una cinta lleugers, i uns quants gels i barretes de 226ERS.</p>
+    <div class="review" id="review-v9" data-video="v9">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 5</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
       <div class="rv-comments" hidden><p class="rv-c-title">Comentaris</p><ul></ul></div>
       <div class="rv-actions">
-        <button type="button" class="btn ok" data-act="ok" id="btn-ok-v5" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aprovar</button>
-        <button type="button" class="btn ch" data-act="changes" id="btn-ch-v5" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
+        <button type="button" class="btn ok" data-act="ok" id="btn-ok-v9" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aprovar</button>
+        <button type="button" class="btn ch" data-act="changes" id="btn-ch-v9" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Comentaris o canvis</button>
       </div>
-      <form class="rv-form" id="form-v5" hidden>
-        <label for="note-v5">Què canviaries del vídeo 5?</label>
-        <textarea id="note-v5" maxlength="1000" rows="3"></textarea>
-        <div><button type="submit" class="btn ch" id="send-v5">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v5">Cancel·lar</button></div>
+      <form class="rv-form" id="form-v9" hidden>
+        <label for="note-v9">Què canviaries del vídeo 5?</label>
+        <textarea id="note-v9" maxlength="1000" rows="3"></textarea>
+        <div><button type="submit" class="btn ch" id="send-v9">Enviar el comentari</button><button type="button" class="btn ghost" data-act="cancel" id="cancel-v9">Cancel·lar</button></div>
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
@@ -333,7 +347,8 @@ footer b{color:var(--ink)}
   <div class="c-body">
     <p class="eyebrow">Neu · Reel 9:16</p>
     <h2 id="t-v6">Quina llargada d'esquí necessites?</h2>
-    <p class="idea">La Laura posa un esquí dret al seu costat i ensenya la prova per triar-ne la llargada: a la barbeta si comences, al nas si ja baixes per vermelles i al front si vas ràpid.</p>
+    <p class="idea">La Laura posa un esquí dret al seu costat i ensenya la prova per triar-ne la llargada: a la barbeta si comences, al nas si ja baixes per vermelles i al front si vas ràpid. En algun moment del vídeo diu que ara tens descomptes a la secció de neu de Wala.</p>
+    <p class="prep"><b>Per preparar a botiga:</b> tres esquís de llargades diferents (curt, mitjà i llarg). No cal res més.</p>
     <div class="review" id="review-v6" data-video="v6">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 6</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -352,6 +367,15 @@ footer b{color:var(--ink)}
   </div>
 </section>
 </main>
+
+<section class="later" aria-labelledby="t-later">
+  <p class="eyebrow">Per a més endavant</p>
+  <h2 id="t-later">Els guardem per als propers shootings</h2>
+  <div class="later-grid">
+    <div class="later-col"><b>Desembre</b><ul><li>Lent fosca o lent groga?</li><li>Els 5 regals més venuts de Wala</li></ul></div>
+    <div class="later-col"><b>Gener</b><ul><li>Per què no posar-se dos parells de mitjons</li></ul></div>
+  </div>
+</section>
 
 <section class="final" id="necessito" aria-labelledby="t-final">
   <p class="eyebrow">El que necessito de vosaltres</p>
