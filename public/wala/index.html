@@ -75,36 +75,32 @@ a:focus-visible{outline:3px solid var(--forest); outline-offset:2px}
 .rp-name input:focus-visible{outline:3px solid var(--forest); outline-offset:2px}
 .rp-note, .rv-msg{font-size:14px; color:var(--muted)}
 
-/* els 6 conceptes: número gran a un costat, títol, concepte i revisió a l'altre */
-.concepts{display:grid; gap:clamp(22px, 3vw, 34px); padding-top:12px}
-.concept{display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 7fr); border-radius:26px; overflow:hidden; background:var(--paper);
-  box-shadow:0 1px 0 var(--line), 0 18px 40px rgba(4,75,67,.10); scroll-margin-top:16px}
-.concept.flip{grid-template-columns:minmax(0, 7fr) minmax(0, 4fr)}
-.concept.flip .c-num{order:2}
-.c-num{position:relative; display:flex; flex-direction:column; justify-content:space-between; gap:12px; padding:clamp(20px, 3vw, 32px); min-height:300px; overflow:hidden}
-.c-num .num{font-family:var(--f-display); font-weight:800; font-size:clamp(150px, 20vw, 260px); line-height:.78; letter-spacing:-.03em; margin-block:auto}
-.c-of, .c-cat{font-family:var(--f-cond); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:15px}
-.c-cat{align-self:flex-start; padding:5px 12px; border-radius:999px}
-.tone-forest .c-num{background:var(--forest); color:var(--neon)}
-.tone-forest .c-of{color:var(--cream)}
-.tone-forest .c-cat{background:var(--neon); color:var(--hi-ink)}
-.tone-neon .c-num{background:var(--neon); color:var(--forest)}
-.tone-neon .c-of{color:var(--forest)}
-.tone-neon .c-cat{background:var(--forest); color:var(--neon)}
-.tone-salmon .c-num{background:var(--salmon); color:var(--forest)}
-.tone-salmon .c-of{color:#5B2A1E}
-.tone-salmon .c-cat{background:var(--forest); color:var(--salmon)}
-/* la muntanya de Wala, de fons */
-.c-num::after{content:""; position:absolute; right:-8%; bottom:-6%; width:70%; aspect-ratio:1; opacity:.16; pointer-events:none;
-  background:currentColor; -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 100 L34 18 L52 58 L68 30 L100 100Z'/%3E%3C/svg%3E") center/contain no-repeat;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 100 L34 18 L52 58 L68 30 L100 100Z'/%3E%3C/svg%3E") center/contain no-repeat}
-.concept.flip .c-num::after{right:auto; left:-8%}
-.c-num > *{position:relative; z-index:1}
-
-.c-body{padding:clamp(22px, 3.4vw, 44px); display:flex; flex-direction:column; gap:14px; justify-content:center; min-width:0}
-.c-body h2{font-weight:800; font-size:clamp(32px, 4vw, 50px); line-height:.98; text-transform:uppercase; letter-spacing:-.005em}
-.idea{font-size:18px; max-width:60ch}
-
+/* els 6 vídeos */
+.vids{display:grid; gap:clamp(26px, 3.6vw, 44px); padding-top:12px}
+.vid{background:var(--paper); border-radius:26px; padding:clamp(20px, 3.4vw, 40px); display:grid; gap:clamp(18px, 2.4vw, 26px);
+  box-shadow:0 1px 0 var(--line), 0 18px 40px rgba(4,75,67,.10); scroll-margin-top:16px; min-width:0}
+.vhead{display:flex; align-items:center; gap:clamp(14px, 2vw, 22px)}
+.vnum{flex:none; display:grid; place-items:center; width:clamp(64px, 8vw, 92px); aspect-ratio:1; border-radius:20px; background:var(--forest); color:var(--neon);
+  font-family:var(--f-display); font-weight:800; font-size:clamp(44px, 6vw, 66px); line-height:1}
+.vhead h2{font-weight:800; font-size:clamp(30px, 4.2vw, 50px); line-height:.98; text-transform:uppercase; letter-spacing:-.005em}
+.refs{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:clamp(10px, 1.6vw, 18px); max-width:760px}
+.refs img{display:block; width:100%; height:auto; aspect-ratio:9/16; object-fit:cover; border-radius:16px; background:var(--soft); box-shadow:0 8px 22px rgba(4,51,45,.18)}
+.sub-h{font-family:var(--f-cond); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:14px; color:var(--muted); margin-bottom:10px}
+.script{width:100%; border-collapse:separate; border-spacing:0; font-size:16.5px; line-height:1.5}
+.script th{font-family:var(--f-cond); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:14px; text-align:left; padding:10px 14px; background:var(--forest); color:var(--cream)}
+.script th:first-child{border-radius:12px 0 0 12px; width:88px; text-align:center}
+.script th:last-child{border-radius:0 12px 12px 0}
+.script td{padding:14px; vertical-align:top; border-bottom:1px solid var(--line)}
+.script td.sc{text-align:center}
+.script td.sc span{display:inline-grid; place-items:center; width:38px; height:38px; border-radius:50%; background:var(--neon); color:var(--hi-ink); font-family:var(--f-display); font-weight:800; font-size:22px}
+.script td.pla{color:var(--muted); width:40%}
+.script td.diu{font-weight:600; font-size:17.5px}
+.script td.diu i{font-weight:500; color:var(--muted)}
+.prods{background:var(--soft); border:1px solid var(--line); border-radius:18px; padding:16px 20px}
+.prods ul{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+.prods li{display:flex; gap:10px; align-items:flex-start; font-weight:600}
+.prods li::before{content:""; flex:none; width:12px; height:12px; margin-top:.45em; border-radius:50%; background:var(--neon); box-shadow:0 0 0 3px var(--forest)}
+.prods p{color:var(--muted)}
 .review{margin-top:8px; border-top:2px solid var(--line); padding-top:16px; display:grid; gap:12px}
 .rv-head{display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center}
 .rv-chip{font-family:var(--f-cond); font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:14px; padding:4px 10px; border:1px solid var(--line); background:var(--soft); border-radius:999px}
@@ -132,36 +128,17 @@ a:focus-visible{outline:3px solid var(--forest); outline-offset:2px}
 .rv-form textarea{font:16px/1.5 var(--f-body); color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:10px 12px; width:100%; resize:vertical}
 .rv-form div{display:flex; flex-wrap:wrap; gap:10px}
 
-.prep{font-size:15.5px; color:var(--muted); max-width:60ch; border-left:3px solid var(--neon); padding-left:12px}
-.prep b{color:var(--ink)}
-.later{margin-top:clamp(36px, 5vw, 56px); display:grid; gap:14px}
-.later h2{font-weight:800; font-size:clamp(28px, 4vw, 40px); line-height:1; text-transform:uppercase}
-.later-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap:14px; max-width:880px}
-.later-col{background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:18px 20px}
-.later-col b{font-family:var(--f-display); font-weight:800; font-size:22px; text-transform:uppercase}
-.later-col ul{margin:8px 0 0; padding-left:20px}
-
-/* l'OK final */
-.final{margin-top:clamp(36px, 5vw, 56px); display:grid; gap:14px}
-.final h2{font-weight:800; font-size:clamp(30px, 4.4vw, 46px); line-height:1; text-transform:uppercase}
-.need[data-need="guiones"]{background:var(--forest); color:var(--cream); border-radius:26px; padding:clamp(22px, 3.4vw, 36px); display:flex; flex-direction:column; gap:6px; max-width:720px}
-.need b{font-family:var(--f-display); font-weight:800; font-size:26px; text-transform:uppercase; letter-spacing:.01em}
-.need span{color:#CFE3DD}
-.nd-sum{font-family:var(--f-display); font-weight:800; font-size:clamp(40px, 6vw, 64px); line-height:1; color:var(--neon); margin-top:8px}
-.bigcheck{display:none; width:80px; height:80px; border-radius:50%; background:#1F9D55; margin:14px 0 2px; place-items:center; box-shadow:0 10px 24px rgba(31,157,85,.35)}
-.bigcheck svg{width:46px; height:46px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
-.need[data-need="guiones"].done .bigcheck{display:grid}
-
 footer{border-top:1px solid var(--line); margin-top:48px; padding-block:26px 0; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14.5px; color:var(--muted)}
 footer b{color:var(--ink)}
 
 @media (max-width: 760px){
-  .concept, .concept.flip{grid-template-columns:minmax(0,1fr)}
-  .concept.flip .c-num{order:0}
-  .c-num{min-height:0; flex-direction:row; align-items:flex-end; flex-wrap:wrap}
-  .c-num .num{font-size:120px; margin:0; order:-1; margin-right:auto}
-  .c-num .c-of{align-self:flex-start}
-  .c-cat{align-self:flex-end}
+  .refs{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .script thead{display:none}
+  .script, .script tbody, .script tr, .script td{display:block; width:auto}
+  .script tr{display:grid; grid-template-columns:44px minmax(0, 1fr); gap:4px 12px; padding:14px 0; border-bottom:1px solid var(--line)}
+  .script td{padding:0; border:0}
+  .script td.sc{grid-row:span 2; text-align:left}
+  .script td.pla{width:auto; font-size:15px}
   .btn{flex:1 1 auto}
 }
 @media (prefers-reduced-motion: reduce){ .btn{transition:none} }
@@ -175,35 +152,53 @@ footer b{color:var(--ink)}
     <div class="brandrow"><img src="/wala/img/wala-w.png" alt="Wala" width="40" height="40"><span class="eyebrow">Proposta per a Wala</span></div>
     <span class="eyebrow">Pol Morera · polmorera.es</span>
   </div>
-  <h1>Del Black Friday <span class="mark">a la neu.</span><span class="sub">Sis reels amb la Laura, a botiga i en català.</span></h1>
+  <h1>Del Black Friday <span class="mark">a la neu.</span><span class="sub">Els sis guions, amb la Laura a botiga i en català.</span></h1>
   <div class="revpanel" id="revpanel">
     <div class="rp-top"><span class="eyebrow">Revisió</span><span class="rp-status" id="rp-status">0 de 6 vídeos aprovats</span></div>
     <div class="rp-chips">
       <a href="#v1" class="rp-chip" data-video="v1">1 · Black Friday · <span class="rp-st">Pendent</span></a>
-      <a href="#v7" class="rp-chip" data-video="v7">2 · Comença el Black Friday · <span class="rp-st">Pendent</span></a>
-      <a href="#v2" class="rp-chip" data-video="v2">3 · Regal per a un famós · <span class="rp-st">Pendent</span></a>
-      <a href="#v8" class="rp-chip" data-video="v8">4 · Pixapins · <span class="rp-st">Pendent</span></a>
-      <a href="#v9" class="rp-chip" data-video="v9">5 · Gel o no gel · <span class="rp-st">Pendent</span></a>
-      <a href="#v6" class="rp-chip" data-video="v6">6 · Llargada d'esquí · <span class="rp-st">Pendent</span></a>
+      <a href="#v7" class="rp-chip" data-video="v7">2 · Black Friday · <span class="rp-st">Pendent</span></a>
+      <a href="#v2" class="rp-chip" data-video="v2">3 · Nadal · <span class="rp-st">Pendent</span></a>
+      <a href="#v8" class="rp-chip" data-video="v8">4 · Muntanya · <span class="rp-st">Pendent</span></a>
+      <a href="#v9" class="rp-chip" data-video="v9">5 · Running · <span class="rp-st">Pendent</span></a>
+      <a href="#v6" class="rp-chip" data-video="v6">6 · Neu · <span class="rp-st">Pendent</span></a>
     </div>
     <div class="rp-name"><label for="rv-name">El teu nom</label><input id="rv-name" type="text" maxlength="80" autocomplete="name" placeholder="Perquè en Pol sàpiga qui respon"></div>
     <p class="rp-note" id="rp-note">Carregant la revisió…</p>
   </div>
 </header>
 
-<main class="concepts">
-
-<section class="concept tone-forest" id="v1" aria-labelledby="t-v1">
-  <div class="c-num">
-    <span class="c-of">Vídeo 1 de 6</span>
-    <span class="num" aria-hidden="true">1</span>
-    <span class="c-cat">Black Friday</span>
+<main class="vids">
+<section class="vid" id="v1" aria-labelledby="t-v1">
+  <div class="vhead"><span class="vnum" aria-hidden="true">1</span><h2 id="t-v1">Les 3 gangues més potents del Black Friday</h2></div>
+  <div>
+    <p class="sub-h">Imatges de referència</p>
+    <div class="refs">
+      <img src="/wala/img/nov-v1-1-ganxo.jpg" alt="La Laura retallada, amb les mans al cap, sobre el verd de Wala i el rètol Black Friday" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v1-2-caminant.jpg" alt="La Laura caminant per la botiga amb els subtítols de Wala" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v1-3-ganga.jpg" alt="La Laura retallada saltant i assenyalant el producte, amb vora de paper" width="540" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div class="c-body">
-    <p class="eyebrow">Black Friday · Reel 9:16</p>
-    <h2 id="t-v1">Les 3 gangues més potents del Black Friday</h2>
-    <p class="idea">La Laura fa el compte enrere de les tres gangues de la setmana, amb el mateix acting de sorpresa, però en lloc d'ensenyar un producte es planta davant de cada secció: el número 3 a la roba de muntanya, el 2 gairebé tocant les vambes de running i el número 1 a les sneakers. Tanca dient que els descomptes duren tota la setmana.</p>
-    <p class="prep"><b>Per preparar a botiga:</b> no cal producte.</p>
+  <div>
+    <p class="sub-h">Guió</p>
+    <table class="script">
+      <thead><tr><th scope="col">Escena</th><th scope="col">Pla</th><th scope="col">Què diu la Laura</th></tr></thead>
+      <tbody>
+        <tr><td class="sc"><span>1</span></td><td class="pla">Ganxo. La Laura entra a pla, es posa les mans al cap i obre la boca com si tornés boja. A l&#x27;edició la retallem i hi posem el fons verd de Wala amb l&#x27;animació de Black Friday.</td><td class="diu"><i>Sense text: només l'acting.</i></td></tr>
+        <tr><td class="sc"><span>2</span></td><td class="pla">La Laura camina per la botiga cap a càmera.</td><td class="diu">«Ara que per fi a Wala han començat les ofertes de Black Friday, t'ensenyo les tres gangues que no et pots perdre.»</td></tr>
+        <tr><td class="sc"><span>3</span></td><td class="pla">La Laura arriba a la secció de muntanya.</td><td class="diu">«La primera que t'ensenyo és a la secció de muntanya. Mira!»</td></tr>
+        <tr><td class="sc"><span>4</span></td><td class="pla">La Laura salta i assenyala amunt. A l&#x27;edició: retallada amb vora de paper, fons verd de Wala i hi apareix el producte de muntanya.</td><td class="diu">«Això tan barat… segur que és de veritat?»</td></tr>
+        <tr><td class="sc"><span>5</span></td><td class="pla">La Laura a la secció de running, molt exagerada.</td><td class="diu">«A la secció de running tenim aquesta!»</td></tr>
+        <tr><td class="sc"><span>6</span></td><td class="pla">A l&#x27;edició: fons verd, apareix el producte de running i la Laura entra per l&#x27;altre costat de la pantalla.</td><td class="diu">«Si me n'emporto tres, la gent em mirarà estrany.»</td></tr>
+        <tr><td class="sc"><span>7</span></td><td class="pla">La Laura davant de la secció de sneakers.</td><td class="diu">«I per últim… aquesta és increïble.»</td></tr>
+        <tr><td class="sc"><span>8</span></td><td class="pla">La Laura salta i entra el producte de sneakers. Després apareix amb la cartera oberta cap per avall: ja no hi queda res.</td><td class="diu">«Els descomptes duren tota la setmana. La meva cartera, no.»</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prods">
+    <p class="sub-h">Productes que necessitem</p>
+    <p>Per al rodatge no cal cap producte. Els de les tres gangues els afegim a l&#x27;edició quan ens els passeu.</p>
+  </div>
     <div class="review" id="review-v1" data-video="v1">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 1</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -219,20 +214,37 @@ footer b{color:var(--ink)}
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
-  </div>
 </section>
 
-<section class="concept flip tone-neon" id="v7" aria-labelledby="t-v7">
-  <div class="c-num">
-    <span class="c-of">Vídeo 2 de 6</span>
-    <span class="num" aria-hidden="true">2</span>
-    <span class="c-cat">Black Friday</span>
+<section class="vid" id="v7" aria-labelledby="t-v7">
+  <div class="vhead"><span class="vnum" aria-hidden="true">2</span><h2 id="t-v7">Alerta: comença el Black Friday</h2></div>
+  <div>
+    <p class="sub-h">Imatges de referència</p>
+    <div class="refs">
+      <img src="/wala/img/nov-v2-1-plato.jpg" alt="La Laura retallada sobre un plató de televisió amb cartells d&#x27;alerta en vermell i verd" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v2-2-botiga.jpg" alt="Es trenca el plató: la Laura és a la botiga, asseguda en una cadira" width="540" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div class="c-body">
-    <p class="eyebrow">Black Friday · Humor · Reel 9:16</p>
-    <h2 id="t-v7">Alerta: comença el Black Friday</h2>
-    <p class="idea">La Laura fa de presentadora del temps davant de la botiga: «Atenció, previsió per a aquesta setmana. Alerta vermella a tot Catalunya: cauran descomptes a totes les seccions de Wala». Mapa del temps en edició, amb núvols de descomptes sobre muntanya, running i sneakers, i un «es recomana no sortir de casa sense la llista de regals».</p>
-    <p class="prep"><b>Per preparar a botiga:</b> no cal producte.</p>
+  <div>
+    <p class="sub-h">Guió</p>
+    <table class="script">
+      <thead><tr><th scope="col">Escena</th><th scope="col">Pla</th><th scope="col">Què diu la Laura</th></tr></thead>
+      <tbody>
+        <tr><td class="sc"><span>1</span></td><td class="pla">La Laura, amb americana, fa de presentadora del temps. A l&#x27;edició la retallem i li posem darrere un plató de televisió ple de cartells d&#x27;alerta, en vermell i en el verd de Wala.</td><td class="diu">«Alerta, alerta! Atenció a la previsió per a aquesta setmana.»</td></tr>
+        <tr><td class="sc"><span>2</span></td><td class="pla">Mateix pla, to molt greu.</td><td class="diu">«Alerta vermella a tot Catalunya: cauran descomptes a totes les seccions de Wala.»</td></tr>
+        <tr><td class="sc"><span>3</span></td><td class="pla">So de disc ratllat: desapareix el plató i es veu que la Laura és a la botiga, asseguda en una cadira de la secció de muntanya.</td><td class="diu"><i>Mira a càmera, en silenci.</i></td></tr>
+        <tr><td class="sc"><span>4</span></td><td class="pla">La Laura a la secció de muntanya.</td><td class="diu">«Molt de compte, sobretot amb la secció de muntanya: diuen que els descomptes seran massa grans.»</td></tr>
+        <tr><td class="sc"><span>5</span></td><td class="pla">La Laura a la secció de running.</td><td class="diu">«A running hi haurà una tempesta espectacular de descomptes.»</td></tr>
+        <tr><td class="sc"><span>6</span></td><td class="pla">La Laura a la secció de sneakers.</td><td class="diu">«I a sneakers diuen que fins i tot caurà una calamarsada de descomptes.»</td></tr>
+        <tr><td class="sc"><span>7</span></td><td class="pla">La Laura entra a pla i es queda quieta.</td><td class="diu">«Es recomana no sortir de casa sense la llista de regals.»</td></tr>
+        <tr><td class="sc"><span>8</span></td><td class="pla">La Laura surt de la botiga amb una bossa de Wala.</td><td class="diu">«Fins aquí la previsió. Ens veiem a Wala aquest Black Friday.»</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prods">
+    <p class="sub-h">Productes que necessitem</p>
+    <p>No cal producte.</p>
+  </div>
     <div class="review" id="review-v7" data-video="v7">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 2</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -248,20 +260,34 @@ footer b{color:var(--ink)}
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
-  </div>
 </section>
 
-<section class="concept tone-salmon" id="v2" aria-labelledby="t-v2">
-  <div class="c-num">
-    <span class="c-of">Vídeo 3 de 6</span>
-    <span class="num" aria-hidden="true">3</span>
-    <span class="c-cat">Nadal</span>
+<section class="vid" id="v2" aria-labelledby="t-v2">
+  <div class="vhead"><span class="vnum" aria-hidden="true">3</span><h2 id="t-v2">Un regal per a un famós: Miki Núñez</h2></div>
+  <div>
+    <p class="sub-h">Imatges de referència</p>
+    <div class="refs">
+      <img src="/wala/img/nov-v3-1-vambes.jpg" alt="La Laura ensenya unes vambes amb els subtítols de Wala" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v3-2-tancament.jpg" alt="La Laura tanca el vídeo fent l&#x27;OK a càmera" width="540" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div class="c-body">
-    <p class="eyebrow">Humor · Lifestyle · Reel 9:16</p>
-    <h2 id="t-v2">Un regal per a un famós: Miki Núñez</h2>
-    <p class="idea">La Laura treu d'un pot un paper amb el nom de Miki Núñez i recorre la botiga buscant-li el regal perfecte per a algú que no para de pujar a escenaris i d'anar amunt i avall: unes sneakers per saltar als concerts, una jaqueta per a les gires d'hivern i una motxilla per a tant de viatge. Preu en pantalla i, al final: «Miki, si ho veus, ja saps on trobar-ho». Acaba preguntant a qui li busquem el regal la propera vegada.</p>
-    <p class="prep"><b>Per preparar a botiga:</b> unes sneakers, una jaqueta d'abric (plomes o similar), una motxilla urbana i un complement petit (gorra o cinta). Si teniu alguna novetat que voleu moure per Nadal, la fem servir.</p>
+  <div>
+    <p class="sub-h">Guió</p>
+    <table class="script">
+      <thead><tr><th scope="col">Escena</th><th scope="col">Pla</th><th scope="col">Què diu la Laura</th></tr></thead>
+      <tbody>
+        <tr><td class="sc"><span>1</span></td><td class="pla">La Laura treu un paper d&#x27;un pot, el llegeix i obre els ulls.</td><td class="diu">«Avui busco el regal de Nadal per a un famós. I li ha tocat a… Miki Núñez!»</td></tr>
+        <tr><td class="sc"><span>2</span></td><td class="pla">La Laura caminant per la botiga.</td><td class="diu">«Algú que no para quiet, de concert en concert i sempre saltant. Comencem pels peus.»</td></tr>
+        <tr><td class="sc"><span>3</span></td><td class="pla">La Laura ensenya les vambes a càmera. Preu en pantalla.</td><td class="diu">«Unes vambes per saltar als concerts sense patir.»</td></tr>
+        <tr><td class="sc"><span>4</span></td><td class="pla">Es posa la gorra i se l&#x27;abaixa fins als ulls, mirant a banda i banda. Preu en pantalla.</td><td class="diu">«I una gorra, per quan no vulgui que el reconeguin.»</td></tr>
+        <tr><td class="sc"><span>5</span></td><td class="pla">Frontal, amb les vambes a la mà i la gorra posada.</td><td class="diu">«Miki, si ho veus, ja saps on trobar-ho. I tu, a qui li busquem el regal la propera vegada?»</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prods">
+    <p class="sub-h">Productes que necessitem</p>
+    <ul><li>Unes vambes de córrer</li><li>Unes vambes de dia a dia</li><li>Una gorra</li></ul>
+  </div>
     <div class="review" id="review-v2" data-video="v2">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 3</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -277,20 +303,35 @@ footer b{color:var(--ink)}
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
-  </div>
 </section>
 
-<section class="concept flip tone-forest" id="v8" aria-labelledby="t-v8">
-  <div class="c-num">
-    <span class="c-of">Vídeo 4 de 6</span>
-    <span class="num" aria-hidden="true">4</span>
-    <span class="c-cat">Muntanya</span>
+<section class="vid" id="v8" aria-labelledby="t-v8">
+  <div class="vhead"><span class="vnum" aria-hidden="true">4</span><h2 id="t-v8">Com reconèixer un pixapins a la muntanya</h2></div>
+  <div>
+    <p class="sub-h">Imatges de referència</p>
+    <div class="refs">
+      <img src="/wala/img/nov-v4-1-croma.jpg" alt="La Laura en primer pla davant d&#x27;un croma fals i en Pol al darrere" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v4-2-tancament.jpg" alt="La Laura tanca el vídeo a l&#x27;entrada de la botiga" width="540" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div class="c-body">
-    <p class="eyebrow">Humor · Muntanya · Reel 9:16</p>
-    <h2 id="t-v8">Com reconèixer un pixapins a la muntanya</h2>
-    <p class="idea">Tots coneixem algú que puja a la muntanya com si baixés a comprar el pa. La Laura és el pixapins: vambetes de carrer, texans i una samarreta, i prou. Mentre puja, anem enumerant els senyals que el delaten («Si vas al Montseny amb texans…»), i la gràcia és veure-la patir amb aquest look. Tanca: «Si ets pixapins, no passa res. A Wala t'equipem».</p>
-    <p class="prep"><b>Per preparar a botiga:</b> res de la botiga per al look de pixapins: les vambes de carrer, els texans i la samarreta els porta ella de casa.</p>
+  <div>
+    <p class="sub-h">Guió</p>
+    <table class="script">
+      <thead><tr><th scope="col">Escena</th><th scope="col">Pla</th><th scope="col">Què diu la Laura</th></tr></thead>
+      <tbody>
+        <tr><td class="sc"><span>1</span></td><td class="pla">La Laura en primer pla, parlant a càmera. Darrere seu, un croma verd que es nota que és fals, i en Pol amb roba genèrica. La Laura l&#x27;assenyala com si fos la pantalla del temps.</td><td class="diu">«Com reconèixer un pixapins a la muntanya.»</td></tr>
+        <tr><td class="sc"><span>2</span></td><td class="pla">En Pol fa un saltet i li apareixen unes vambes de sortir.</td><td class="diu">«U: puja al Montseny amb les vambes de sortir el dissabte.»</td></tr>
+        <tr><td class="sc"><span>3</span></td><td class="pla">Un altre saltet i li apareixen uns texans.</td><td class="diu">«Dos: texans. Perquè «només és una passejada».»</td></tr>
+        <tr><td class="sc"><span>4</span></td><td class="pla">Un altre saltet i apareix amb el mòbil a la mà.</td><td class="diu">«Tres: el GPS és el mòbil.»</td></tr>
+        <tr><td class="sc"><span>5</span></td><td class="pla">En Pol, esgotat, mira a càmera.</td><td class="diu">«I a mitja pujada, la frase mítica…»<br><b>En Pol:</b> «Encara falta molt?»</td></tr>
+        <tr><td class="sc"><span>6</span></td><td class="pla">La Laura, en primer pla, per tancar.</td><td class="diu">«Si ets pixapins, no passa res: a Wala t'estimem igual. I tot l'equip que et falta per pujar bé, el trobes aquí.»</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prods">
+    <p class="sub-h">Productes que necessitem</p>
+    <p>No cal producte.</p>
+  </div>
     <div class="review" id="review-v8" data-video="v8">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 4</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -306,20 +347,36 @@ footer b{color:var(--ink)}
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
-  </div>
 </section>
 
-<section class="concept tone-neon" id="v9" aria-labelledby="t-v9">
-  <div class="c-num">
-    <span class="c-of">Vídeo 5 de 6</span>
-    <span class="num" aria-hidden="true">5</span>
-    <span class="c-cat">Running</span>
+<section class="vid" id="v9" aria-labelledby="t-v9">
+  <div class="vhead"><span class="vnum" aria-hidden="true">5</span><h2 id="t-v9">Fas una cursa aquest Nadal? Gel o no gel?</h2></div>
+  <div>
+    <p class="sub-h">Imatges de referència</p>
+    <div class="refs">
+      <img src="/wala/img/nov-v5-1-cafeina.jpg" alt="La Laura amb un gel a la mà i els subtítols de Wala" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v5-2-consell.jpg" alt="La Laura a la secció de running donant el consell" width="540" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div class="c-body">
-    <p class="eyebrow">Running · Consells · Reel 9:16</p>
-    <h2 id="t-v9">Fas una cursa aquest Nadal? Gel o no gel?</h2>
-    <p class="idea">Per Nadal hi ha curses a tot arreu. Si en fas una, la pregunta és: necessito gel? La Laura ho explica amb els gels de 226ERS a la mà: els de carbohidrats, per tenir energia quan la cursa s'allarga, i els de cafeïna, per a l'empenta del final o quan comencen a pesar les cames. I cadascú sap com va: si vols anar a fer marca o et fa por quedar-te sense forces, val la pena portar-ne un. A Wala tens els gels de 226ERS, la marca de nutrició d'aquí.</p>
-    <p class="prep"><b>Per preparar a botiga:</b> gels de 226ERS amb carbohidrats i gels de 226ERS amb cafeïna (un parell de cada).</p>
+  <div>
+    <p class="sub-h">Guió</p>
+    <table class="script">
+      <thead><tr><th scope="col">Escena</th><th scope="col">Pla</th><th scope="col">Què diu la Laura</th></tr></thead>
+      <tbody>
+        <tr><td class="sc"><span>1</span></td><td class="pla">La Laura a la secció de running, amb un gel de 226ERS a cada mà, com una balança.</td><td class="diu">«Fas una cursa aquest Nadal? Gel o no gel?»</td></tr>
+        <tr><td class="sc"><span>2</span></td><td class="pla">La Laura caminant per la secció de running.</td><td class="diu">«Per Nadal hi ha curses a tot arreu, com la del riu Ripoll per Sant Esteve, aquí a Sabadell. Si en fas una, t'explico quin gel prendre i quan.»</td></tr>
+        <tr><td class="sc"><span>3</span></td><td class="pla">Pla detall del gel de carbohidrats.</td><td class="diu">«El de carbohidrats és energia ràpida: fa efecte de seguida. Guarda'l per quan et quedis sense forces, normalment cap al final.»</td></tr>
+        <tr><td class="sc"><span>4</span></td><td class="pla">Pla detall del gel amb cafeïna.</td><td class="diu">«El de cafeïna també porta carbohidrats, però la cafeïna triga una estona a fer efecte i dura més. Per això es pren abans: a l'inici o a mitja cursa.»</td></tr>
+        <tr><td class="sc"><span>5</span></td><td class="pla">Frontal, amb el dit amunt.</td><td class="diu">«I el més important: no estrenis mai un gel el dia de la cursa. Prova'l abans en un entrenament.»</td></tr>
+        <tr><td class="sc"><span>6</span></td><td class="pla">Pla mig, amb els dos gels a la mà.</td><td class="diu">«Una de 5 o 10 quilòmetres la pots córrer sense gel. Però si vols anar més fort o et fa por quedar-te sense forces, aquí tens els de 226ERS.»</td></tr>
+        <tr><td class="sc"><span>7</span></td><td class="pla">Primer pla.</td><td class="diu">«I tu, ets de gel o de no gel?»</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prods">
+    <p class="sub-h">Productes que necessitem</p>
+    <ul><li>Gel de 226ERS amb cafeïna</li><li>Gel de 226ERS sense cafeïna (de carbohidrats)</li></ul>
+  </div>
     <div class="review" id="review-v9" data-video="v9">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 5</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -335,20 +392,35 @@ footer b{color:var(--ink)}
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
-  </div>
 </section>
 
-<section class="concept flip tone-salmon" id="v6" aria-labelledby="t-v6">
-  <div class="c-num">
-    <span class="c-of">Vídeo 6 de 6</span>
-    <span class="num" aria-hidden="true">6</span>
-    <span class="c-cat">Neu</span>
+<section class="vid" id="v6" aria-labelledby="t-v6">
+  <div class="vhead"><span class="vnum" aria-hidden="true">6</span><h2 id="t-v6">Quina llargada d&#x27;esquí necessites?</h2></div>
+  <div>
+    <p class="sub-h">Imatges de referència</p>
+    <div class="refs">
+      <img src="/wala/img/nov-v6-1-esqui.jpg" alt="La Laura fent la prova de l&#x27;esquí amb els subtítols de Wala" width="540" height="960" loading="lazy" decoding="async">
+      <img src="/wala/img/nov-v6-2-descomptes.jpg" alt="La Laura explicant els descomptes de la secció de neu" width="540" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div class="c-body">
-    <p class="eyebrow">Neu · Reel 9:16</p>
-    <h2 id="t-v6">Quina llargada d'esquí necessites?</h2>
-    <p class="idea">La Laura posa un esquí dret al seu costat i ensenya la prova per triar-ne la llargada: a la barbeta si comences, al nas si ja baixes per vermelles i al front si vas ràpid. En algun moment del vídeo diu que ara tens descomptes a la secció de neu de Wala.</p>
-    <p class="prep"><b>Per preparar a botiga:</b> tres esquís de llargades diferents (curt, mitjà i llarg). No cal res més.</p>
+  <div>
+    <p class="sub-h">Guió</p>
+    <table class="script">
+      <thead><tr><th scope="col">Escena</th><th scope="col">Pla</th><th scope="col">Què diu la Laura</th></tr></thead>
+      <tbody>
+        <tr><td class="sc"><span>1</span></td><td class="pla">Pla mig. La Laura dreta, amb tres esquís recolzats al costat.</td><td class="diu">«Quina llargada d'esquí necessites? Ho saps en tres segons.»</td></tr>
+        <tr><td class="sc"><span>2</span></td><td class="pla">Posa el curt dret al costat: li arriba a la barbeta.</td><td class="diu">«Si comences, que t'arribi a la barbeta. És més fàcil de girar.»</td></tr>
+        <tr><td class="sc"><span>3</span></td><td class="pla">El mitjà, al nas.</td><td class="diu">«Si ja baixes per vermelles, al nas.»</td></tr>
+        <tr><td class="sc"><span>4</span></td><td class="pla">El llarg, al front.</td><td class="diu">«I si vas ràpid, al front.»</td></tr>
+        <tr><td class="sc"><span>5</span></td><td class="pla">Primer pla.</td><td class="diu">«Ara, per Black Friday i Nadal, tens descomptes a la secció de neu de Wala.»</td></tr>
+        <tr><td class="sc"><span>6</span></td><td class="pla">Pla mig amb els tres esquís.</td><td class="diu">«Guarda't el vídeo per quan els vagis a triar.»</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prods">
+    <p class="sub-h">Productes que necessitem</p>
+    <ul><li>Tres esquís de tres llargades diferents (curt, mitjà i llarg)</li></ul>
+  </div>
     <div class="review" id="review-v6" data-video="v6">
       <div class="rv-head"><span class="eyebrow">Revisió del vídeo 6</span><span class="rv-chip" data-state="pending">Pendent de revisar</span><span class="rv-who"></span></div>
       <p class="rv-note" hidden></p>
@@ -364,31 +436,10 @@ footer b{color:var(--ink)}
       </form>
       <p class="rv-msg" aria-live="polite"></p>
     </div>
-  </div>
 </section>
 </main>
 
-<section class="later" aria-labelledby="t-later">
-  <p class="eyebrow">Per a més endavant</p>
-  <h2 id="t-later">Els guardem per als propers shootings</h2>
-  <div class="later-grid">
-    <div class="later-col"><b>Desembre</b><ul><li>Lent fosca o lent groga?</li><li>Els 5 regals més venuts de Wala</li></ul></div>
-    <div class="later-col"><b>Gener</b><ul><li>Per què no posar-se dos parells de mitjons</li></ul></div>
-  </div>
-</section>
-
-<section class="final" id="necessito" aria-labelledby="t-final">
-  <p class="eyebrow">El que necessito de vosaltres</p>
-  <h2 id="t-final">L'OK als sis guions</h2>
-  <div class="need" data-need="guiones">
-    <b>Aproveu o comenteu cada vídeo</b>
-    <span>Ho marqueu a cada concepte i m'arriba al moment.</span>
-    <span class="nd-sum" data-sum>0 de 6 aprovats</span>
-    <span class="bigcheck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-  </div>
-</section>
-
-<footer><span><b>Pol Morera</b> · +1.000 vídeos per a +300 marques · <a href="https://polmorera.es/">polmorera.es</a></span><span>Proposta preparada per a Wala</span></footer>
+<footer><span><b>Pol Morera</b> · +1.000 vídeos per a +300 marques · <a href="https://polmorera.es/">polmorera.es</a></span><span>Les imatges de referència són només una guia.</span></footer>
 </div>
 <script>try{if(matchMedia('(prefers-reduced-motion: reduce)').matches){var v=document.querySelector('.sh-bg');v.removeAttribute('autoplay');v.pause();}}catch(e){}</script>
 <script src="/wala/config.js"></script>
