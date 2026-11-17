@@ -342,6 +342,20 @@ export const videos: Video[] = [
     "media_type": "video"
   },
   {
+    "id": "ecoembes-halloween-10-26.mp4",
+    "category": "street",
+    "title": "Ecoembes",
+    "client": "Street content",
+    "storage_path": "ecoembes-halloween-10-26-web.mp4",
+    "thumbnail_path": "thumbs/ecoembes-halloween-10-26.jpg",
+    "aspect_ratio": "9:16",
+    "display_order": -1,
+    "is_active": true,
+    "created_at": "2026-11-17T00:00:00Z",
+    "slot": null,
+    "media_type": "video"
+  },
+  {
     "id": "ecoembes-12-05-26.mp4",
     "category": "street",
     "title": "Ecoembes",
