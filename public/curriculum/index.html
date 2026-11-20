@@ -188,14 +188,25 @@
 
 
   /* Cabecera de experiencia con foto */
-  .exp-head { display: grid; grid-template-columns: 1fr 380px; gap: 56px; align-items: center; margin-bottom: 44px; }
-  .exp-head .head { margin-bottom: 0; }
+  .exp-main { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: center; }
   .exp-photo { position: relative; }
   .exp-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 25%; border-radius: 22px; }
   .exp-photo .tag { position: absolute; left: -28px; bottom: 32px; background: #fff; color: var(--ink); border-radius: 14px; padding: 12px 16px; box-shadow: 0 18px 40px rgba(13,27,42,.22); font-size: 13px; line-height: 1.35; max-width: 220px; }
   .exp-photo .tag b { display: block; font-size: 22px; color: var(--blue); font-weight: 800; }
-  @media (max-width: 960px) { .exp-head { grid-template-columns: 1fr; gap: 28px; } .exp-photo { max-width: 380px; } .exp-photo .tag { left: auto; right: -8px; } }
+  @media (max-width: 960px) { .exp-main { grid-template-columns: 1fr; gap: 28px; } .exp-photo { max-width: 380px; } .exp-photo .tag { left: auto; right: -8px; } }
   @media (max-width: 640px) { .avatar { width: 92px; height: 92px; } .exp-photo .tag { right: 8px; bottom: 16px; } }
+
+
+  /* Día a día: izquierda limpia, derecha azul oscuro */
+  .match .m { transition: none; }
+  .match .m:hover { transform: none; }
+  .match .m:nth-child(odd) { background: transparent; border-color: transparent; padding-left: 0; }
+  .match .m:nth-child(even) { background: var(--navy); border-color: var(--navy); }
+  .match .m:nth-child(even) .ask { color: var(--sky); }
+  .match .m:nth-child(even) p { color: #dfe7f1; }
+  .match .m:nth-child(even) p strong { color: #fff; }
+  .match .m:nth-child(even) .ic { background: rgba(76,143,230,.18); color: var(--blue-l); }
+  @media (max-width: 640px) { .match .m:nth-child(odd) { padding: 8px 0; } }
 
   /* Competencias */
   .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -347,16 +358,6 @@
           <div class="ask">Remoto con equipo propio</div>
           <p>Trabajo en remoto desde 2023, con <strong>estudio, equipo y conexión propios</strong>, en horario español y con contacto diario.</p>
         </div>
-        <div class="m plus rv">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></div>
-          <div class="ask">Valorable · Productora y rodajes</div>
-          <p><strong>Producción audiovisual de principio a fin</strong>: convocatorias, desplazamientos, alquiler de espacios y material, e imprevistos del día de rodaje.</p>
-        </div>
-        <div class="m plus rv">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/></svg></div>
-          <div class="ask">Valorable · Captación e IA</div>
-          <p>Creatividades para <strong>Meta y TikTok Ads</strong> con seguimiento de leads y coste por conversión. Y <strong>automatizo mi trabajo con IA</strong>: flujos de edición, correos y control de entregas.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -364,33 +365,32 @@
   <!-- EXPERIENCIA -->
   <section class="s" id="experiencia">
     <div class="wrap">
-      <div class="exp-head">
-        <div class="head rv">
-          <div class="kicker">Experiencia</div>
-          <h2>Más de tres años coordinando producción, equipos y clientes</h2>
-          <p class="lead">Del briefing a la entrega: rodajes, equipo, edición y clientes, con fechas que no se mueven. Y muchas veces, también delante de la cámara.</p>
-        </div>
-        <figure class="exp-photo rv">
-          <img src="/pol-morera-640.webp" srcset="/pol-morera-640.webp 640w, /pol-morera.webp 1044w" sizes="(max-width: 960px) 90vw, 380px" alt="Pol Morera grabando un pódcast" loading="lazy" width="640" height="814">
-          <div class="tag"><b>3+ años</b>coordinando rodajes, equipos y entregas con plazos cerrados</div>
-        </figure>
+      <div class="head rv">
+        <div class="kicker">Experiencia</div>
+        <h2>Más de tres años coordinando producción y clientes</h2>
       </div>
       <div class="tl">
+        <div class="exp-main">
         <article class="job main rv">
           <div class="job-h">
             <h3>Creador y productor UGC <span>· Freelance</span></h3>
             <div class="date">Abr 2024 – actualidad · Remoto / Barcelona</div>
           </div>
           <ul>
-            <li><strong>Gestión integral de proyectos</strong> para más de 300 marcas (Just Eat, Revolut, Daikin, Yoigo, Verisure, Rastreator, AXA, Ecoembes…), directamente o a través de agencias: briefing, calendario, rodaje, edición, rondas de revisión y entrega.</li>
-            <li><strong>Coordinación de rodajes:</strong> fechas con el cliente, reserva de espacios y material, convocatoria de filmmaker, actrices y actores, desplazamientos e imprevistos del día, con varias piezas por jornada.</li>
-            <li><strong>Equipo y colaboradores externos:</strong> filmmakers, actrices, editores y proveedores; briefing claro, seguimiento y control de cada entrega.</li>
-            <li><strong>Fechas cerradas por el propio producto:</strong> lanzamientos, ofertas y campañas como Black Friday. El contenido tiene que estar listo antes de que salga lo que anuncia.</li>
-            <li><strong>Grabación de contenidos en cámara:</strong> en muchos proyectos también soy yo quien sale en cámara, así que conozco el rodaje desde dentro.</li>
-            <li><strong>Interlocución directa con clientes y agencias</strong> en español e inglés: qué se les pide, qué se les entrega y cuándo. Sé decir que no a tiempo sin romper la relación.</li>
-            <li><strong>Campañas de captación:</strong> testing de 3 anuncios × 3 hooks por brief en Meta y TikTok Ads, con seguimiento de leads y coste por conversión.</li>
+            <li><strong>Gestión integral de proyectos</strong> para más de 300 marcas (Just Eat, Revolut, Yoigo, AXA…), directas o vía agencia: del briefing a la entrega.</li>
+            <li><strong>Coordinación de rodajes:</strong> fechas, espacios, material, filmmaker y actores.</li>
+            <li><strong>Equipo externo:</strong> filmmakers, actrices, editores y proveedores.</li>
+            <li><strong>Fechas cerradas por el producto:</strong> lanzamientos, ofertas y Black Friday.</li>
+            <li><strong>Grabación en cámara:</strong> muchas veces soy yo quien sale en el vídeo.</li>
+            <li><strong>Trato directo</strong> con clientes y agencias, en español e inglés.</li>
+            <li><strong>Captación:</strong> creatividades para Meta y TikTok Ads con seguimiento de leads.</li>
           </ul>
         </article>
+        <figure class="exp-photo rv">
+          <img src="/pol-morera-640.webp" srcset="/pol-morera-640.webp 640w, /pol-morera.webp 1044w" sizes="(max-width: 960px) 90vw, 380px" alt="Pol Morera grabando un pódcast" loading="lazy" width="640" height="814">
+          <div class="tag"><b>3+ años</b>coordinando rodajes, equipos y entregas con plazos cerrados</div>
+        </figure>
+        </div>
         <div class="jobs-small">
           <article class="job rv">
             <div class="date">Mar 2022 – May 2024</div>
