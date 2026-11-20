@@ -55,8 +55,13 @@
 
   /* Hero */
   .hero { background: radial-gradient(1200px 500px at 85% -10%, #1d3a5c 0%, transparent 60%), var(--navy); color: #fff; padding: 72px 0 0; overflow: hidden; }
-  .hero-grid { display: block; }
-  .hero-grid > div { max-width: 760px; }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr .95fr; gap: 56px; align-items: center; padding-bottom: 56px; }
+  .hero-grid .cta { padding-bottom: 0; }
+  .hero-pic { position: relative; }
+  .hero-pic::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: 28px; background: var(--blue); opacity: .55; }
+  .hero-pic img { position: relative; width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: 50% 30%; border-radius: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero-pic { max-width: 440px; } }
+  @media (max-width: 640px) { .hero-pic::before { inset: 12px -10px -12px 12px; } .hero-grid { padding-bottom: 44px; } }
   .avatar { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 4px solid var(--blue-l); margin-bottom: 22px; box-shadow: 0 12px 30px rgba(0,0,0,.3); }
   .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--sky); font-weight: 500; display: flex; align-items: center; gap: 10px; }
   .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 0 4px rgba(61,220,132,.18); }
@@ -228,7 +233,7 @@
     .hero-photo .tag { left: auto; right: -8px; }
     .cta { padding-bottom: 0; }
     .hero { padding-bottom: 0; }
-    .hero-grid { padding-bottom: 0; }
+    .hero-grid { padding-bottom: 44px; }
     .reel { grid-template-columns: repeat(3, 1fr); }
     .v.wide { grid-column: span 3; }
     .jobs-small, .cases, .skills, .info { grid-template-columns: 1fr; }
@@ -280,7 +285,6 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <img class="avatar" src="/perfil-pol.webp" alt="Pol Morera de Frutos" width="270" height="262" fetchpriority="high">
         <div class="eyebrow"><i class="dot"></i>Disponible · Barcelona · Remoto</div>
         <h1>Pol Morera <span>de Frutos</span></h1>
         <div class="role">Project Manager · Producción audiovisual · Rodajes</div>
@@ -291,6 +295,9 @@
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/pol-morera-de-frutos-9b8b35124" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
+      <figure class="hero-pic">
+        <img src="/curriculum/pol-perfil-900.webp" srcset="/curriculum/pol-perfil-560.webp 560w, /curriculum/pol-perfil-900.webp 900w" sizes="(max-width: 960px) 90vw, 460px" alt="Pol Morera de Frutos" width="900" height="875" fetchpriority="high">
+      </figure>
     </div>
     <div class="stats">
       <div class="wrap">
