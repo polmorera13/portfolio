@@ -161,6 +161,24 @@
   .case p { font-size: 14.5px; flex: 1; }
   .case .more { margin-top: 14px; font-size: 13.5px; font-weight: 600; color: var(--blue); }
 
+
+  /* Casos con fecha */
+  .cslist { display: grid; gap: 20px; }
+  .cs { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 30px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 32px; align-items: center; }
+  .cs-n { font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: .12em; }
+  .cs h3 { font-size: 28px; color: var(--ink); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin-top: 4px; }
+  .cs-sub { font-size: 14.5px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+  .cs-intro { font-size: 15.5px; margin-top: 14px; }
+  .crows { margin-top: 16px; display: grid; gap: 10px; }
+  .crow { display: grid; grid-template-columns: 86px 1fr; gap: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .crow span { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--blue); padding-top: 3px; }
+  .crow p { font-size: 15px; }
+  .cs .more { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--blue); text-decoration: none; }
+  .cs-vids { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .cs:nth-child(even) .cs-txt { order: 2; }
+  @media (max-width: 960px) { .cs { grid-template-columns: 1fr; padding: 24px; } .cs:nth-child(even) .cs-txt { order: 0; } }
+  @media (max-width: 640px) { .cs { padding: 20px 16px; } .cs h3 { font-size: 24px; } .cs-vids { gap: 6px; } .crow { grid-template-columns: 1fr; gap: 2px; } .v .lbl { padding: 28px 8px 8px; } .v .lbl b { font-size: 12.5px; } .v .lbl small { font-size: 10.5px; } .v .play { width: 42px; height: 42px; margin: -21px 0 0 -21px; } }
+
   /* Competencias */
   .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .sk { background: #fff; border-radius: var(--r); padding: 26px; border: 1px solid var(--line); }
@@ -224,7 +242,7 @@
     .btn { padding: 12px 18px; }
   }
   @media print {
-    .bar, .reel, .links, .logos, .end .cta, .hero-photo .tag { display: none !important; }
+    .bar, .cs-vids, .links, .logos, .end .cta, .hero-photo .tag { display: none !important; }
     .rv { opacity: 1; transform: none; }
     section.s { padding: 28px 0; }
   }
@@ -236,7 +254,7 @@
   <div class="wrap">
     <a class="brand" href="#top">Pol Morera <span>· CV</span></a>
     <nav>
-      <a href="#encaje">Encaje</a>
+      <a href="#encaje">Día a día</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#competencias">Competencias</a>
@@ -261,7 +279,7 @@
       </div>
       <figure class="hero-photo">
         <img src="/pol-morera.webp" alt="Pol Morera de Frutos" width="1044" height="1328" fetchpriority="high">
-        <div class="tag"><b>6+ años</b>coordinando rodajes, equipos y entregas con plazos cerrados</div>
+        <div class="tag"><b>3+ años</b>coordinando rodajes, equipos y entregas con plazos cerrados</div>
       </figure>
     </div>
     <div class="stats">
@@ -278,8 +296,7 @@
   <section class="s" id="encaje">
     <div class="wrap">
       <div class="head rv">
-        <div class="kicker">Encaje con el puesto</div>
-        <h2>Lo que pedís es lo que hago cada semana</h2>
+        <h2>Mi día a día</h2>
         <p class="lead">Llevo años siendo el centro operativo de mis propios proyectos: nadie me pasa el recado y nadie me recuerda lo pendiente.</p>
       </div>
       <div class="match">
@@ -327,47 +344,26 @@
     </div>
   </section>
 
-  <!-- PLAN B -->
-  <section class="s alt" id="plan-b">
-    <div class="wrap planb">
-      <figure class="photo rv">
-        <img src="/pol-morera-evento-1-v2.webp" alt="Pol Morera presentando un evento corporativo" loading="lazy" width="1000" height="1370">
-        <figcaption>Presentando un evento corporativo en directo</figcaption>
-      </figure>
-      <div class="rv">
-        <div class="kicker">Criterio y temple</div>
-        <h2>El filmmaker cae la tarde antes. ¿Y ahora?</h2>
-        <p class="lead">El centro no tiene por qué enterarse del problema, solo de la solución. Este es el orden en el que lo resuelvo:</p>
-        <ol class="steps">
-          <li><span class="t">Primeros 15 minutos</span><b>Asegurar el sustituto</b><span>Tiro de mi red de filmmakers de la zona y del equipo de reserva que dejo localizado en cada rodaje.</span></li>
-          <li><span class="t">Esa misma tarde</span><b>Pasarle todo, sin huecos</b><span>Brief, escaleta, planos clave, dirección, contacto del centro y estándar de calidad de la marca.</span></li>
-          <li><span class="t">Antes de cerrar el día</span><b>Avisar al centro, con la solución ya cerrada</b><span>Mismo horario, misma calidad. Un mensaje claro y tranquilo, no un problema.</span></li>
-          <li><span class="t">Al día siguiente</span><b>Reajustar edición y entregas</b><span>Si hace falta, recoloco la cola de edición para que la fecha de lanzamiento no se mueva.</span></li>
-          <li><span class="t">Después</span><b>Que no vuelva a pasar igual</b><span>Lo apunto en el sistema: más reservas por zona y confirmación de equipo 48 h antes.</span></li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
   <!-- EXPERIENCIA -->
   <section class="s" id="experiencia">
     <div class="wrap">
       <div class="head rv">
         <div class="kicker">Experiencia</div>
-        <h2>Seis años coordinando producción, equipos y clientes</h2>
+        <h2>Más de tres años coordinando producción, equipos y clientes</h2>
       </div>
       <div class="tl">
         <article class="job main rv">
           <div class="job-h">
-            <h3>Producer &amp; Project Manager <span>· Freelance</span></h3>
+            <h3>Creador y productor UGC <span>· Freelance</span></h3>
             <div class="date">Abr 2024 – actualidad · Remoto / Barcelona</div>
           </div>
           <ul>
             <li><strong>Gestión integral de proyectos</strong> para más de 300 marcas (Just Eat, Revolut, Daikin, Yoigo, Verisure, Rastreator, AXA, Ecoembes…), directamente o a través de agencias: briefing, calendario, rodaje, edición, rondas de revisión y entrega.</li>
-            <li><strong>Coordinación de rodajes:</strong> fechas con el cliente, reserva de espacios y material, convocatoria de cámara, iluminación y actores, desplazamientos e imprevistos del día, con varias piezas por jornada.</li>
-            <li><strong>Equipo y colaboradores externos:</strong> briefing claro, seguimiento y control de entregas de freelance y proveedores.</li>
+            <li><strong>Coordinación de rodajes:</strong> fechas con el cliente, reserva de espacios y material, convocatoria de filmmaker, actrices y actores, desplazamientos e imprevistos del día, con varias piezas por jornada.</li>
+            <li><strong>Equipo y colaboradores externos:</strong> filmmakers, actrices, editores y proveedores; briefing claro, seguimiento y control de cada entrega.</li>
+            <li><strong>Fechas cerradas por el propio producto:</strong> lanzamientos, ofertas y campañas como Black Friday. El contenido tiene que estar listo antes de que salga lo que anuncia.</li>
+            <li><strong>Grabación de contenidos en cámara:</strong> en muchos proyectos también soy yo quien sale en cámara, así que conozco el rodaje desde dentro.</li>
             <li><strong>Interlocución directa con clientes y agencias</strong> en español e inglés: qué se les pide, qué se les entrega y cuándo. Sé decir que no a tiempo sin romper la relación.</li>
-            <li><strong>Flujo de edición y entregas:</strong> material entrante, piezas en cola, previews para validar y versión final.</li>
             <li><strong>Campañas de captación:</strong> testing de 3 anuncios × 3 hooks por brief en Meta y TikTok Ads, con seguimiento de leads y coste por conversión.</li>
           </ul>
         </article>
@@ -397,60 +393,92 @@
     <div class="wrap">
       <div class="head rv">
         <div class="kicker">Trabajos</div>
-        <h2>Algunos de los proyectos que he coordinado</h2>
-        <p class="lead">Desde rodajes en estudio con actriz y equipo técnico hasta campañas de captación con entregas cada semana. Pulsa para reproducir.</p>
+        <h2>Tres proyectos con fecha cerrada</h2>
+        <p class="lead">Contenidos en los que coordiné filmmaker, actriz y editor, con entregas que no se podían mover porque dependían del propio producto. Pulsa para reproducir.</p>
       </div>
-      <div class="reel">
-        <div role="button" tabindex="0" class="v wide rv" data-src="https://media.polmorera.es/v720/estoolweb-v6-web.mp4" aria-label="Reproducir vídeo de Estool">
-          <img src="https://media.polmorera.es/thumbs/estoolweb-v6-960.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Estool</b><small>Rodaje en estudio con actriz · vídeo corporativo</small></span>
+      <div class="cslist">
+      <article class="cs rv">
+        <div class="cs-txt">
+          <div class="cs-n">01</div>
+          <h3>Reactiva Online</h3>
+          <div class="cs-sub">190+ piezas en 15 meses</div>
+          <p class="cs-intro">Todo el embudo de captación en Meta y Google Ads: anuncios en frío, VSL, remarketing y onboarding.</p>
+          <div class="crows">
+            <div class="crow"><span>Plazo</span><p>Entregas continuas durante 15 meses, al ritmo de las campañas que estaban activas.</p></div>
+            <div class="crow"><span>Equipo</span><p>Filmmaker, editor y yo en cámara.</p></div>
+            <div class="crow"><span>Mi papel</span><p>Calendario de rodajes, guiones, rondas de revisión con el cliente y entrega de cada variante.</p></div>
+          </div>
+          <a class="more" href="/casos/reactiva-online/">Ver el caso completo →</a>
         </div>
-        <div role="button" tabindex="0" class="v wide rv" data-src="https://media.polmorera.es/v720/yoigo0126-1-169-web.mp4" aria-label="Reproducir vídeo de Yoigo">
-          <img src="https://media.polmorera.es/thumbs/yoigo0126-1-169-960.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Yoigo</b><small>Corporativo · vía agencia</small></span>
+        <div class="cs-vids">
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/v720/hogar-05-casoreal-f1-inviertepanel-9x16-compressed-web.mp4" aria-label="Reproducir vídeo de Reactiva">
+              <img src="https://media.polmorera.es/thumbs/hogar-05-casoreal-f1-inviertepanel-9x16-compressed-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>Reactiva</b><small>Caso real</small></span>
+            </div>
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/v720/reactiva-remarketing-diagnostico-web.mp4" aria-label="Reproducir vídeo de Reactiva">
+              <img src="https://media.polmorera.es/thumbs/reactiva-remarketing-diagnostico-web.jpg" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>Reactiva</b><small>Remarketing</small></span>
+            </div>
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/v720/reactiva-hogar-04-web.mp4" aria-label="Reproducir vídeo de Reactiva">
+              <img src="https://media.polmorera.es/thumbs/reactiva-hogar-04-web.jpg" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>Reactiva</b><small>Anuncio en frío</small></span>
+            </div>
         </div>
-        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/hogar-05-casoreal-f1-inviertepanel-9x16-compressed-web.mp4" aria-label="Reproducir vídeo de Reactiva Online">
-          <img src="https://media.polmorera.es/thumbs/hogar-05-casoreal-f1-inviertepanel-9x16-compressed-480.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Reactiva Online</b><small>Captación · Meta Ads</small></span>
+      </article>
+      <article class="cs rv">
+        <div class="cs-txt">
+          <div class="cs-n">02</div>
+          <h3>Turisport</h3>
+          <div class="cs-sub">Lanzamiento de la baliza V16 FlashLED y de MiniBatt</div>
+          <p class="cs-intro">Campaña de producto para el lanzamiento de la baliza V16 FlashLED y del arrancador MiniBatt.</p>
+          <div class="crows">
+            <div class="crow"><span>Plazo</span><p>Lo marcaba la salida de la baliza: el contenido tenía que estar listo en un momento muy concreto del lanzamiento.</p></div>
+            <div class="crow"><span>Equipo</span><p>Una actriz, filmmaker y editor; yo en cámara en las piezas corporativas.</p></div>
+            <div class="crow"><span>Mi papel</span><p>Coordinación del rodaje y de la edición, y entrega de cada pieza en vertical, cuadrado y horizontal.</p></div>
+          </div>
         </div>
-        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/estool-ad3pol-oct25-web.mp4" aria-label="Reproducir anuncio de Estool">
-          <img src="https://media.polmorera.es/thumbs/estool-ad3pol-oct25-480.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Estool</b><small>Anuncio de campaña</small></span>
+        <div class="cs-vids">
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/curriculum/turisport-flashled-carla-1.mp4" aria-label="Reproducir vídeo de FlashLED">
+              <img src="https://media.polmorera.es/curriculum/turisport-flashled-carla-1-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>FlashLED</b><small>Baliza V16</small></span>
+            </div>
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/curriculum/turisport-flashled-carla-app.mp4" aria-label="Reproducir vídeo de FlashLED">
+              <img src="https://media.polmorera.es/curriculum/turisport-flashled-carla-app-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>FlashLED</b><small>App de la baliza</small></span>
+            </div>
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/v720/minibatt-2-web.mp4" aria-label="Reproducir vídeo de MiniBatt">
+              <img src="https://media.polmorera.es/thumbs/minibatt-2-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>MiniBatt</b><small>Lanzamiento</small></span>
+            </div>
         </div>
-        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/dogfy-diet-26-08-26-2-web.mp4" aria-label="Reproducir vídeo de Dogfy Diet">
-          <img src="https://media.polmorera.es/thumbs/dogfy-diet-26-08-26-2-480.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Dogfy Diet</b><small>Captación de leads</small></span>
+      </article>
+      <article class="cs rv">
+        <div class="cs-txt">
+          <div class="cs-n">03</div>
+          <h3>Wala</h3>
+          <div class="cs-sub">Tiendas de deporte · cliente activo</div>
+          <p class="cs-intro">Contenido para las campañas de la marca. Seguimos trabajando juntos.</p>
+          <div class="crows">
+            <div class="crow"><span>Plazo</span><p>Cuando compras decide qué productos o secciones van de oferta, el contenido tiene que estar hecho antes de que la oferta salga, para lanzarse con ella: vuelta al cole, Black Friday…</p></div>
+            <div class="crow"><span>Equipo</span><p>Actrices, filmmaker y editor.</p></div>
+            <div class="crow"><span>Mi papel</span><p>Planificación por temporadas, coordinación del rodaje y entregas antes de cada fecha.</p></div>
+          </div>
         </div>
-        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/ecoembes-12-05-26-web.mp4" aria-label="Reproducir vídeo de Ecoembes">
-          <img src="https://media.polmorera.es/thumbs/ecoembes-12-05-26-480.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Ecoembes</b><small>Rodaje en calle</small></span>
+        <div class="cs-vids">
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/curriculum/wala-tornada-cole.mp4" aria-label="Reproducir vídeo de Wala">
+              <img src="https://media.polmorera.es/curriculum/wala-tornada-cole-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>Wala</b><small>Vuelta al cole</small></span>
+            </div>
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/curriculum/wala-producte-estrella.mp4" aria-label="Reproducir vídeo de Wala">
+              <img src="https://media.polmorera.es/curriculum/wala-producte-estrella-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>Wala</b><small>Producto estrella</small></span>
+            </div>
+            <div role="button" tabindex="0" class="v" data-src="https://media.polmorera.es/v720/wala-0726-motxilla-compressed-web.mp4" aria-label="Reproducir vídeo de Wala">
+              <img src="https://media.polmorera.es/thumbs/wala-0726-motxilla-compressed-480.webp" alt="" loading="lazy">
+              <span class="play"></span><span class="lbl"><b>Wala</b><small>Campaña de verano</small></span>
+            </div>
         </div>
-        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/axa-1-web.mp4" aria-label="Reproducir vídeo de AXA">
-          <img src="https://media.polmorera.es/thumbs/axa-1-480.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>AXA</b><small>Orgánico · vía agencia</small></span>
-        </div>
-        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/verisure-0726-crea9-compressed-web.mp4" aria-label="Reproducir vídeo de Verisure">
-          <img src="https://media.polmorera.es/thumbs/verisure-0726-crea9-compressed-480.webp" alt="" loading="lazy">
-          <span class="play"></span><span class="lbl"><b>Verisure</b><small>Paid media</small></span>
-        </div>
-      </div>
-
-      <div class="cases" style="margin-top:44px">
-        <a class="case rv" href="/casos/reactiva-online/">
-          <b>190+</b><h3>Reactiva Online</h3>
-          <p>Piezas en 15 meses con entregas continuas: todo el embudo de captación, del anuncio en frío al onboarding.</p>
-          <span class="more">Ver el caso →</span>
-        </a>
-        <a class="case rv" href="/casos/dogfy-diet/">
-          <b>15%</b><h3>Dogfy Diet</h3>
-          <p>Conversión de leads en Meta Ads, casi el doble de la media del sector (7,72 %).</p>
-          <span class="more">Ver el caso →</span>
-        </a>
-        <a class="case rv" href="/casos/masterd-tiktok-ads/">
-          <b>390</b><h3>MasterD</h3>
-          <p>Conversiones en 3 meses con una sola creatividad de TikTok Ads, a 4,09 € por conversión.</p>
-          <span class="more">Ver el caso →</span>
-        </a>
+      </article>
       </div>
 
       <div class="links rv">
