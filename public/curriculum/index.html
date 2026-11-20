@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Currículum · Pol Morera</title>
+<meta name="description" content="Pol Morera de Frutos · Project Manager de producción audiovisual: rodajes, equipo, edición, entregas y campañas de captación.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Currículum · Pol Morera">
+<meta property="og:description" content="Project Manager de producción audiovisual: rodajes, equipo, edición, entregas y campañas.">
+<meta property="og:image" content="https://polmorera.es/pol-morera.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-2: #13263b;
+    --blue: #2f6fc4;
+    --blue-l: #4c8fe6;
+    --sky: #9fb3cc;
+    --ink: #0d1b2a;
+    --text: #3a4452;
+    --muted: #6b7684;
+    --card: #f2f4f8;
+    --line: #dde2ea;
+    --bg: #ffffff;
+    --r: 18px;
+    --wrap: 1120px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', system-ui, sans-serif; color: var(--text); background: var(--bg); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img, video { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* Barra */
+  .bar { position: sticky; top: 0; z-index: 20; background: rgba(13,27,42,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.06); }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { color: #fff; font-weight: 700; text-decoration: none; font-size: 15px; white-space: nowrap; }
+  .brand span { color: var(--blue-l); }
+  .bar nav { display: flex; gap: 22px; }
+  .bar nav a { color: #c9d5e3; text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color .2s; }
+  .bar nav a:hover { color: #fff; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 22px; font-weight: 600; font-size: 14.5px; text-decoration: none; transition: transform .16s ease, background .2s, border-color .2s; border: 1.5px solid transparent; cursor: pointer; font-family: inherit; }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: #2861ad; }
+  .btn-ghost { border-color: rgba(255,255,255,.28); color: #fff; background: transparent; }
+  .btn-ghost:hover { border-color: #fff; }
+  .btn-sm { padding: 8px 16px; font-size: 13px; }
+
+  /* Hero */
+  .hero { background: radial-gradient(1200px 500px at 85% -10%, #1d3a5c 0%, transparent 60%), var(--navy); color: #fff; padding: 72px 0 0; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: 56px; align-items: end; }
+  .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--sky); font-weight: 500; display: flex; align-items: center; gap: 10px; }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 0 4px rgba(61,220,132,.18); }
+  .hero h1 { font-size: clamp(40px, 6.4vw, 76px); line-height: 1; letter-spacing: -.025em; font-weight: 800; margin: 18px 0 14px; }
+  .hero h1 span { color: var(--blue-l); }
+  .hero .role { font-size: clamp(17px, 2vw, 21px); font-weight: 500; color: #e6edf5; }
+  .hero .pitch { margin-top: 22px; font-size: 17px; color: #c9d5e3; max-width: 560px; }
+  .hero .pitch b { color: #fff; font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; padding-bottom: 56px; }
+  .hero-photo { position: relative; align-self: end; }
+  .hero-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 20%; border-radius: 24px 24px 0 0; }
+  .hero-photo .tag { position: absolute; left: -28px; bottom: 48px; background: #fff; color: var(--ink); border-radius: 14px; padding: 12px 16px; box-shadow: 0 18px 40px rgba(0,0,0,.28); font-size: 13px; line-height: 1.35; max-width: 220px; }
+  .hero-photo .tag b { display: block; font-size: 22px; color: var(--blue); font-weight: 800; }
+
+  .stats { background: var(--navy-2); color: #fff; border-top: 1px solid rgba(255,255,255,.06); }
+  .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 26px 20px 26px 0; }
+  .stat + .stat { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.08); }
+  .stat b { display: block; font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+  .stat small { color: var(--sky); font-size: 13px; line-height: 1.35; display: block; margin-top: 6px; }
+
+  /* Secciones */
+  section.s { padding: 96px 0; }
+  section.alt { background: var(--card); }
+  .kicker { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); font-weight: 600; }
+  h2 { font-size: clamp(28px, 3.8vw, 44px); line-height: 1.1; letter-spacing: -.02em; color: var(--ink); font-weight: 800; margin: 10px 0 14px; max-width: 760px; }
+  .lead { font-size: 17.5px; max-width: 680px; }
+  .head { margin-bottom: 44px; }
+
+  /* Encaje */
+  .match { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .m { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px 24px 22px; display: grid; grid-template-columns: 44px 1fr; gap: 4px 16px; transition: border-color .2s, transform .2s; }
+  .m:hover { border-color: #bcd0ea; transform: translateY(-2px); }
+  .m .ic { grid-row: span 2; width: 44px; height: 44px; border-radius: 12px; background: #e8f0fb; color: var(--blue); display: grid; place-items: center; }
+  .m .ic svg { width: 22px; height: 22px; }
+  .m .ask { font-size: 12.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+  .m p { font-size: 15.5px; color: var(--text); }
+  .m.plus { background: var(--navy); border-color: var(--navy); }
+  .m.plus .ask { color: var(--sky); }
+  .m.plus p { color: #dfe7f1; }
+  .m.plus p strong { color: #fff; }
+  .m.plus .ic { background: rgba(76,143,230,.18); color: var(--blue-l); }
+
+  /* Plan B */
+  .planb { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+  .planb .photo { border-radius: 22px; overflow: hidden; position: relative; }
+  .planb .photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .planb .photo figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; background: rgba(13,27,42,.82); backdrop-filter: blur(6px); color: #fff; border-radius: 12px; padding: 10px 14px; font-size: 13px; }
+  .steps { list-style: none; counter-reset: s; margin-top: 26px; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 22px 58px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 38px; height: 38px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 700; display: grid; place-items: center; font-size: 15px; }
+  .steps li::after { content: ""; position: absolute; left: 18px; top: 40px; bottom: 4px; width: 2px; background: var(--line); }
+  .steps li:last-child::after { display: none; }
+  .steps b { display: block; color: var(--ink); font-size: 16.5px; margin-bottom: 2px; }
+  .steps span { font-size: 15px; }
+  .steps .t { font-size: 12px; color: var(--blue); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+
+  /* Experiencia */
+  .tl { display: grid; gap: 18px; }
+  .job { background: #fff; border-radius: var(--r); padding: 28px 30px; border: 1px solid var(--line); }
+  .job.main { border-top: 4px solid var(--blue); }
+  .job-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+  .job h3 { font-size: 19px; color: var(--ink); font-weight: 700; line-height: 1.3; }
+  .job h3 span { color: var(--blue); font-weight: 500; }
+  .date { font-size: 13.5px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+  .job ul { padding-left: 20px; display: grid; gap: 7px; }
+  .job li { font-size: 15.5px; }
+  .job li::marker { color: var(--blue); }
+  .jobs-small { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .jobs-small .job { padding: 22px 24px; }
+  .jobs-small h3 { font-size: 16.5px; }
+  .jobs-small p { font-size: 14.5px; margin-top: 8px; }
+
+  /* Trabajos */
+  .reel { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .v { position: relative; border-radius: 16px; overflow: hidden; background: #0d1b2a; cursor: pointer; aspect-ratio: 9/16; border: 0; padding: 0; font: inherit; text-align: left; }
+  .v.wide { grid-column: span 3; aspect-ratio: 16/9; }
+  .v img, .v video { width: 100%; height: 100% !important; object-fit: cover; transition: transform .5s ease; }
+  .v:hover img { transform: scale(1.04); }
+  .v .lbl { position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 14px 12px; background: linear-gradient(transparent, rgba(5,12,20,.85)); color: #fff; pointer-events: none; transition: opacity .3s; }
+  .v .lbl b { display: block; font-size: 14.5px; font-weight: 700; }
+  .v .lbl small { font-size: 12px; color: #c9d5e3; }
+  .v .play { position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(255,255,255,.92); display: grid; place-items: center; transition: transform .2s; pointer-events: none; }
+  .v .play::after { content: ""; border-left: 15px solid var(--navy); border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
+  .v:hover .play { transform: scale(1.08); }
+  .v.on .play, .v.on .lbl { opacity: 0; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .link { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 14px; background: #fff; border: 1px solid var(--line); text-decoration: none; color: var(--ink); font-weight: 600; font-size: 14.5px; transition: border-color .2s, transform .2s; }
+  .link:hover { border-color: var(--blue); transform: translateY(-2px); }
+  .link small { color: var(--muted); font-weight: 500; }
+  .link svg { width: 16px; height: 16px; color: var(--blue); }
+
+  .logos { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-top: 44px; }
+  .logos div { background: #fff; border: 1px solid var(--line); border-radius: 12px; height: 64px; display: grid; place-items: center; padding: 12px; }
+  .logos img[alt="AXA"] { filter: none; opacity: 1; }
+  .logos img { max-height: 30px; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: .8; }
+
+  /* Casos */
+  .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .case { background: #fff; border-radius: var(--r); padding: 26px; border: 1px solid var(--line); text-decoration: none; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+  .case:hover { border-color: var(--blue); transform: translateY(-3px); }
+  .case b { font-size: 40px; font-weight: 800; color: var(--blue); letter-spacing: -.02em; line-height: 1.05; }
+  .case h3 { font-size: 17px; color: var(--ink); margin: 6px 0 6px; }
+  .case p { font-size: 14.5px; flex: 1; }
+  .case .more { margin-top: 14px; font-size: 13.5px; font-weight: 600; color: var(--blue); }
+
+  /* Competencias */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .sk { background: #fff; border-radius: var(--r); padding: 26px; border: 1px solid var(--line); }
+  .sk h3 { font-size: 17px; color: var(--ink); margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { font-size: 13.5px; background: var(--card); border-radius: 999px; padding: 6px 13px; color: var(--ink); font-weight: 500; }
+  .info { display: grid; grid-template-columns: 1.2fr .8fr 1.2fr; gap: 16px; margin-top: 16px; }
+  .info .sk p { font-size: 15px; }
+  .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .row:last-child { border: 0; }
+  .row b { color: var(--ink); font-weight: 600; }
+  .quote { background: var(--navy); color: #fff; border-radius: var(--r); padding: 26px; font-size: 16px; line-height: 1.6; }
+  .quote small { display: block; margin-top: 14px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--sky); }
+
+  /* Contacto */
+  .end { background: var(--navy); color: #fff; padding: 88px 0; text-align: center; }
+  .end h2 { color: #fff; margin: 10px auto 14px; }
+  .end p { color: #c9d5e3; max-width: 560px; margin: 0 auto; font-size: 17px; }
+  .end .cta { justify-content: center; padding-bottom: 0; }
+  .end .kicker { color: var(--blue-l); }
+  footer { background: #08131f; color: #7d8ea3; font-size: 13px; padding: 22px 0; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { color: #c9d5e3; text-decoration: none; }
+
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+  .shot .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .hero-grid, .planb { grid-template-columns: 1fr; gap: 36px; }
+    .hero-photo { max-width: 420px; }
+    .hero-photo .tag { left: auto; right: -8px; }
+    .cta { padding-bottom: 0; }
+    .hero { padding-bottom: 0; }
+    .hero-grid { padding-bottom: 0; }
+    .reel { grid-template-columns: repeat(3, 1fr); }
+    .v.wide { grid-column: span 3; }
+    .jobs-small, .cases, .skills, .info { grid-template-columns: 1fr; }
+    .logos { grid-template-columns: repeat(4, 1fr); }
+    .bar nav { display: none; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding-top: 44px; }
+    section.s { padding: 64px 0; }
+    .stats .wrap { grid-template-columns: repeat(2, 1fr); }
+    .stat { padding: 20px 12px 20px 0; }
+    .stat + .stat { padding-left: 0; border-left: 0; }
+    .stat:nth-child(even) { padding-left: 16px; border-left: 1px solid rgba(255,255,255,.08); }
+    .stat:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.08); }
+    .match { grid-template-columns: 1fr; }
+    .m { padding: 20px; grid-template-columns: 38px 1fr; gap: 4px 14px; }
+    .m .ic { width: 38px; height: 38px; }
+    .reel { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .v.wide { grid-column: span 2; }
+    .job { padding: 22px 20px; }
+    .logos { grid-template-columns: repeat(3, 1fr); }
+    .hero-photo .tag { right: 8px; bottom: 24px; }
+    .btn { padding: 12px 18px; }
+  }
+  @media print {
+    .bar, .reel, .links, .logos, .end .cta, .hero-photo .tag { display: none !important; }
+    .rv { opacity: 1; transform: none; }
+    section.s { padding: 28px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">Pol Morera <span>· CV</span></a>
+    <nav>
+      <a href="#encaje">Encaje</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#competencias">Competencias</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="mailto:hello@polmorera.es?subject=Project%20Manager%20%C2%B7%20Pol%20Morera">Contactar</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><i class="dot"></i>Disponible · Barcelona · Remoto</div>
+        <h1>Pol Morera <span>de Frutos</span></h1>
+        <div class="role">Project Manager · Producción audiovisual · Rodajes</div>
+        <p class="pitch">Coordino proyectos de vídeo de principio a fin: <b>calendario de rodajes, filmmakers y equipo técnico, flujo de edición, entregas y campañas de captación</b>. Soy quien da la cara con el cliente y quien persigue lo pendiente antes de que nadie pregunte.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:hello@polmorera.es?subject=Project%20Manager%20%C2%B7%20Pol%20Morera">hello@polmorera.es</a>
+          <a class="btn btn-ghost" href="#trabajos">Ver trabajos</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/pol-morera-de-frutos-9b8b35124" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img src="/pol-morera.webp" alt="Pol Morera de Frutos" width="1044" height="1328" fetchpriority="high">
+        <div class="tag"><b>6+ años</b>coordinando rodajes, equipos y entregas con plazos cerrados</div>
+      </figure>
+    </div>
+    <div class="stats">
+      <div class="wrap">
+        <div class="stat"><b data-n="300" data-s="+">300+</b><small>marcas y agencias, con trato directo</small></div>
+        <div class="stat"><b data-n="1000" data-s="+">1.000+</b><small>piezas entregadas en plazo</small></div>
+        <div class="stat"><b data-n="50" data-s="+">50+</b><small>directos y eventos presentados</small></div>
+        <div class="stat"><b data-n="15" data-s="%">15%</b><small>conversión de leads en Meta, casi 2× la media</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCAJE -->
+  <section class="s" id="encaje">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">Encaje con el puesto</div>
+        <h2>Lo que pedís es lo que hago cada semana</h2>
+        <p class="lead">Llevo años siendo el centro operativo de mis propios proyectos: nadie me pasa el recado y nadie me recuerda lo pendiente.</p>
+      </div>
+      <div class="match">
+        <div class="m rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div class="ask">Plazos ajustados y cambios de última hora</div>
+          <p>Varios proyectos en paralelo con fechas cerradas, <strong>1.000+ piezas entregadas</strong> y campañas de más de un año con entregas continuas.</p>
+        </div>
+        <div class="m rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="ask">Trato directo con clientes</div>
+          <p>Más de <strong>300 marcas y agencias</strong> en español e inglés: briefing, avances, rondas de cambios e incidencias. Doy la cara yo.</p>
+        </div>
+        <div class="m rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <div class="ask">Equipo y colaboradores externos</div>
+          <p>Convoco y coordino <strong>operadores de cámara, iluminación, actores, editores y creadores</strong> freelance, y proveedores de espacios y material.</p>
+        </div>
+        <div class="m rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h3"/></svg></div>
+          <div class="ask">Herramientas de gestión</div>
+          <p>Mi sistema en <strong>Notion</strong> (colaboraciones, deadlines, calendario y facturación) lo diseñé yo. Google Workspace y Excel a diario.</p>
+        </div>
+        <div class="m rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="ask">Comunicación escrita clara y rápida</div>
+          <p>Briefs, guiones y correos sin dudas sobre <strong>qué hay que hacer, quién lo hace y cuándo</strong>. Graduado en Comunicación (UOC).</p>
+        </div>
+        <div class="m rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div class="ask">Remoto con equipo propio</div>
+          <p>Trabajo en remoto desde 2020, con <strong>estudio, equipo y conexión propios</strong>, en horario español y con contacto diario.</p>
+        </div>
+        <div class="m plus rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></div>
+          <div class="ask">Valorable · Productora y rodajes</div>
+          <p><strong>Producción audiovisual de principio a fin</strong>: convocatorias, desplazamientos, alquiler de espacios y material, e imprevistos del día de rodaje.</p>
+        </div>
+        <div class="m plus rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/></svg></div>
+          <div class="ask">Valorable · Captación e IA</div>
+          <p>Creatividades para <strong>Meta y TikTok Ads</strong> con seguimiento de leads y coste por conversión. Y <strong>automatizo mi trabajo con IA</strong>: flujos de edición, correos y control de entregas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN B -->
+  <section class="s alt" id="plan-b">
+    <div class="wrap planb">
+      <figure class="photo rv">
+        <img src="/pol-morera-evento-1-v2.webp" alt="Pol Morera presentando un evento corporativo" loading="lazy" width="1000" height="1370">
+        <figcaption>Presentando un evento corporativo en directo</figcaption>
+      </figure>
+      <div class="rv">
+        <div class="kicker">Criterio y temple</div>
+        <h2>El filmmaker cae la tarde antes. ¿Y ahora?</h2>
+        <p class="lead">El centro no tiene por qué enterarse del problema, solo de la solución. Este es el orden en el que lo resuelvo:</p>
+        <ol class="steps">
+          <li><span class="t">Primeros 15 minutos</span><b>Asegurar el sustituto</b><span>Tiro de mi red de filmmakers de la zona y del equipo de reserva que dejo localizado en cada rodaje.</span></li>
+          <li><span class="t">Esa misma tarde</span><b>Pasarle todo, sin huecos</b><span>Brief, escaleta, planos clave, dirección, contacto del centro y estándar de calidad de la marca.</span></li>
+          <li><span class="t">Antes de cerrar el día</span><b>Avisar al centro, con la solución ya cerrada</b><span>Mismo horario, misma calidad. Un mensaje claro y tranquilo, no un problema.</span></li>
+          <li><span class="t">Al día siguiente</span><b>Reajustar edición y entregas</b><span>Si hace falta, recoloco la cola de edición para que la fecha de lanzamiento no se mueva.</span></li>
+          <li><span class="t">Después</span><b>Que no vuelva a pasar igual</b><span>Lo apunto en el sistema: más reservas por zona y confirmación de equipo 48 h antes.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section class="s" id="experiencia">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">Experiencia</div>
+        <h2>Seis años coordinando producción, equipos y clientes</h2>
+      </div>
+      <div class="tl">
+        <article class="job main rv">
+          <div class="job-h">
+            <h3>Producer &amp; Project Manager <span>· Freelance</span></h3>
+            <div class="date">Abr 2024 – actualidad · Remoto / Barcelona</div>
+          </div>
+          <ul>
+            <li><strong>Gestión integral de proyectos</strong> para más de 300 marcas (Just Eat, Revolut, Daikin, Yoigo, Verisure, Rastreator, AXA, Ecoembes…), directamente o a través de agencias: briefing, calendario, rodaje, edición, rondas de revisión y entrega.</li>
+            <li><strong>Coordinación de rodajes:</strong> fechas con el cliente, reserva de espacios y material, convocatoria de cámara, iluminación y actores, desplazamientos e imprevistos del día, con varias piezas por jornada.</li>
+            <li><strong>Equipo y colaboradores externos:</strong> briefing claro, seguimiento y control de entregas de freelance y proveedores.</li>
+            <li><strong>Interlocución directa con clientes y agencias</strong> en español e inglés: qué se les pide, qué se les entrega y cuándo. Sé decir que no a tiempo sin romper la relación.</li>
+            <li><strong>Flujo de edición y entregas:</strong> material entrante, piezas en cola, previews para validar y versión final.</li>
+            <li><strong>Campañas de captación:</strong> testing de 3 anuncios × 3 hooks por brief en Meta y TikTok Ads, con seguimiento de leads y coste por conversión.</li>
+          </ul>
+        </article>
+        <div class="jobs-small">
+          <article class="job rv">
+            <div class="date">Mar 2022 – May 2024</div>
+            <h3>Content Creator &amp; Running Specialist <span>· Decathlon España</span></h3>
+            <p>Vídeo para las redes de la tienda, formación del equipo de ventas, comunicación interna y atención directa al cliente en salud y bienestar.</p>
+          </article>
+          <article class="job rv">
+            <div class="date">Jul 2023 – Oct 2023 · Remoto</div>
+            <h3>Host &amp; Video Creator <span>· GoIT</span></h3>
+            <p>Webinars semanales en directo y nuevos formatos de vídeo para redes, coordinado con un equipo en remoto.</p>
+          </article>
+          <article class="job rv">
+            <div class="date">Sep 2020 – Mar 2022 · Remoto</div>
+            <h3>Social Media Manager &amp; Host <span>· La Lanza de Plata</span></h3>
+            <p>Producción y presentación de más de 50 directos de más de 2 horas, comunidad y colaboraciones con marcas.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABAJOS -->
+  <section class="s alt" id="trabajos">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">Trabajos</div>
+        <h2>Algunos de los proyectos que he coordinado</h2>
+        <p class="lead">Desde rodajes en estudio con actriz y equipo técnico hasta campañas de captación con entregas cada semana. Pulsa para reproducir.</p>
+      </div>
+      <div class="reel">
+        <div role="button" tabindex="0" class="v wide rv" data-src="https://media.polmorera.es/v720/estoolweb-v6-web.mp4" aria-label="Reproducir vídeo de Estool">
+          <img src="https://media.polmorera.es/thumbs/estoolweb-v6-960.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Estool</b><small>Rodaje en estudio con actriz · vídeo corporativo</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v wide rv" data-src="https://media.polmorera.es/v720/yoigo0126-1-169-web.mp4" aria-label="Reproducir vídeo de Yoigo">
+          <img src="https://media.polmorera.es/thumbs/yoigo0126-1-169-960.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Yoigo</b><small>Corporativo · vía agencia</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/hogar-05-casoreal-f1-inviertepanel-9x16-compressed-web.mp4" aria-label="Reproducir vídeo de Reactiva Online">
+          <img src="https://media.polmorera.es/thumbs/hogar-05-casoreal-f1-inviertepanel-9x16-compressed-480.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Reactiva Online</b><small>Captación · Meta Ads</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/estool-ad3pol-oct25-web.mp4" aria-label="Reproducir anuncio de Estool">
+          <img src="https://media.polmorera.es/thumbs/estool-ad3pol-oct25-480.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Estool</b><small>Anuncio de campaña</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/dogfy-diet-26-08-26-2-web.mp4" aria-label="Reproducir vídeo de Dogfy Diet">
+          <img src="https://media.polmorera.es/thumbs/dogfy-diet-26-08-26-2-480.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Dogfy Diet</b><small>Captación de leads</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/ecoembes-12-05-26-web.mp4" aria-label="Reproducir vídeo de Ecoembes">
+          <img src="https://media.polmorera.es/thumbs/ecoembes-12-05-26-480.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Ecoembes</b><small>Rodaje en calle</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/axa-1-web.mp4" aria-label="Reproducir vídeo de AXA">
+          <img src="https://media.polmorera.es/thumbs/axa-1-480.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>AXA</b><small>Orgánico · vía agencia</small></span>
+        </div>
+        <div role="button" tabindex="0" class="v rv" data-src="https://media.polmorera.es/v720/verisure-0726-crea9-compressed-web.mp4" aria-label="Reproducir vídeo de Verisure">
+          <img src="https://media.polmorera.es/thumbs/verisure-0726-crea9-compressed-480.webp" alt="" loading="lazy">
+          <span class="play"></span><span class="lbl"><b>Verisure</b><small>Paid media</small></span>
+        </div>
+      </div>
+
+      <div class="cases" style="margin-top:44px">
+        <a class="case rv" href="/casos/reactiva-online/">
+          <b>190+</b><h3>Reactiva Online</h3>
+          <p>Piezas en 15 meses con entregas continuas: todo el embudo de captación, del anuncio en frío al onboarding.</p>
+          <span class="more">Ver el caso →</span>
+        </a>
+        <a class="case rv" href="/casos/dogfy-diet/">
+          <b>15%</b><h3>Dogfy Diet</h3>
+          <p>Conversión de leads en Meta Ads, casi el doble de la media del sector (7,72 %).</p>
+          <span class="more">Ver el caso →</span>
+        </a>
+        <a class="case rv" href="/casos/masterd-tiktok-ads/">
+          <b>390</b><h3>MasterD</h3>
+          <p>Conversiones en 3 meses con una sola creatividad de TikTok Ads, a 4,09 € por conversión.</p>
+          <span class="more">Ver el caso →</span>
+        </a>
+      </div>
+
+      <div class="links rv">
+        <a class="link" href="/">Portfolio completo <small>polmorera.es</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="link" href="/video-corporativo/">Vídeo corporativo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="link" href="/videos-ugc-para-anuncios/">Vídeos para anuncios<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="link" href="/casos/">Todos los casos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      </div>
+
+      <div class="logos rv">
+        <div><img src="/logos/qonto.webp" alt="Qonto" loading="lazy"></div>
+        <div><img src="/logos/revolut.webp" alt="Revolut" loading="lazy"></div>
+        <div><img src="/logos/axa.webp" alt="AXA" loading="lazy"></div>
+        <div><img src="/logos/daikin.webp" alt="Daikin" loading="lazy"></div>
+        <div><img src="/logos/yoigo.webp" alt="Yoigo" loading="lazy"></div>
+        <div><img src="/logos/verisure.webp" alt="Verisure" loading="lazy"></div>
+        <div><img src="/logos/rastreator.webp" alt="Rastreator" loading="lazy"></div>
+        <div><img src="/logos/ecoembes.webp" alt="Ecoembes" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETENCIAS -->
+  <section class="s" id="competencias">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">Competencias</div>
+        <h2>Cómo me organizo</h2>
+      </div>
+      <div class="skills">
+        <div class="sk rv">
+          <h3>Gestión de proyectos</h3>
+          <div class="chips"><span>Calendario de rodajes</span><span>Proyectos en paralelo</span><span>Priorización</span><span>Flujo de edición</span><span>Revisiones y entregas</span><span>Imprevistos</span></div>
+        </div>
+        <div class="sk rv">
+          <h3>Personas</h3>
+          <div class="chips"><span>Trato con clientes</span><span>Freelance y proveedores</span><span>Presupuestos</span><span>Dirección en set</span><span>Feedback con criterio</span><span>Discreción con datos</span></div>
+        </div>
+        <div class="sk rv">
+          <h3>Herramientas</h3>
+          <div class="chips"><span>Notion</span><span>Google Workspace</span><span>Excel</span><span>IA y automatización</span><span>Meta Ads</span><span>Premiere Pro</span><span>After Effects</span></div>
+        </div>
+      </div>
+      <div class="info">
+        <div class="sk rv">
+          <h3>Formación</h3>
+          <div class="row"><b>Grado en Comunicación</b><span>UOC · 2025</span></div>
+          <div class="row"><b>Ingeniería Informática (cursada)</b><span>UPC</span></div>
+          <div class="row"><b>Inglés C1 Advanced</b><span>Cambridge</span></div>
+        </div>
+        <div class="sk rv">
+          <h3>Idiomas</h3>
+          <div class="row"><b>Español</b><span>Nativo</span></div>
+          <div class="row"><b>Catalán</b><span>Nativo</span></div>
+          <div class="row"><b>Inglés</b><span>C1</span></div>
+        </div>
+        <div class="quote rv">
+          «Llevamos más de un año trabajando con Pol y no podríamos estar más contentos. Cumple los plazos, la edición es impecable y su enfoque creativo se adapta a lo que necesitamos.»
+          <small>Elena · Apple Tree</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div class="wrap rv">
+      <div class="kicker">Hablamos</div>
+      <h2>Ordenar el estudio y que nada se quede parado</h2>
+      <p>Autónomo o por cuenta ajena, con dedicación continua dentro del equipo. Te respondo en el día.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:hello@polmorera.es?subject=Project%20Manager%20%C2%B7%20Pol%20Morera">Escribir a hello@polmorera.es</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/pol-morera-de-frutos-9b8b35124" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pol Morera de Frutos · Barcelona</span>
+    <span><a href="/">polmorera.es</a> · <a href="mailto:hello@polmorera.es">hello@polmorera.es</a></span>
+  </div>
+</footer>
+
+<script>
+  if (/[?&]shot/.test(location.search)) document.documentElement.classList.add("shot");
+  // Aparición al hacer scroll
+  (function () {
+    var els = document.querySelectorAll('.rv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // Contadores de las cifras
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.stat b[data-n]').forEach(function (b) {
+      var n = +b.dataset.n, s = b.dataset.s || '', t0 = null, dur = 1400;
+      function fmt(v) { return v.toLocaleString('es-ES').replace(/\s/g, '.'); }
+      function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3); b.textContent = fmt(Math.round(n * e)) + s; if (p < 1) requestAnimationFrame(step); }
+      b.textContent = '0' + s; requestAnimationFrame(step);
+    });
+  })();
+
+  // Vídeos: se cargan solo al pulsar; uno a la vez
+  (function () {
+    var current = null;
+    document.querySelectorAll('.v').forEach(function (card) {
+      card.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && !card.classList.contains("on")) { e.preventDefault(); card.click(); } });
+      card.addEventListener("click", function () {
+        if (card.classList.contains('on')) return;
+        if (current && current !== card) { var old = current.querySelector('video'); if (old) old.pause(); }
+        var v = document.createElement('video');
+        v.src = card.dataset.src; v.controls = true; v.playsInline = true; v.autoplay = true;
+        v.poster = card.querySelector('img').src;
+        card.querySelector('img').replaceWith(v);
+        card.classList.add('on');
+        v.play().catch(function () {});
+        v.addEventListener('play', function () { if (current && current !== card) { var o = current.querySelector('video'); if (o) o.pause(); } current = card; });
+        current = card;
+      });
+    });
+  })();
+</script>
+</body>
+</html>
