@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, follow">
+<title>Street content · Pol Morera</title>
+<meta name="description" content="Tres entrevistas en la calle de Pol Morera para Ecoembes: tono ligero, dinámico y con mensaje.">
+<link rel="canonical" href="https://polmorera.es/street-content/">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="https://media.polmorera.es/hero-bg-v3.webp">
+<style>
+:root{
+  --navy:#0D1B2A; --navy-2:#13263A; --blue:#4A90D9; --blue-deep:#2D6FB8; --steel:#8AAFCC;
+  --off:#F4F6F9; --ink:#0D1B2A; --muted:#4F6275; --line:#DCE4EC;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--navy); color:var(--off); font-family:Poppins, 'Helvetica Neue', Arial, sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+img, video{display:block; max-width:100%}
+a{color:inherit}
+h1, h2, h3, p{margin:0}
+h1, h2, h3{text-wrap:balance}
+.wrap{max-width:1180px; margin:0 auto; padding-inline:var(--gut)}
+.eyebrow{font-weight:500; font-size:13px; letter-spacing:.25em; text-transform:uppercase; color:var(--steel)}
+
+.cta{display:inline-flex; align-items:center; gap:12px; background:var(--blue-deep); color:#fff; text-decoration:none;
+  font-weight:600; font-size:17px; line-height:1; padding:18px 26px; border-radius:999px;
+  box-shadow:0 10px 30px rgba(45,111,184,.35); transition:background .2s, transform .2s}
+.cta svg{width:20px; height:20px; transition:transform .2s}
+.cta:hover{background:var(--blue)}
+.cta:hover svg{transform:translateX(4px)}
+.cta:focus-visible, .play:focus-visible, .foot a:focus-visible, .brand:focus-visible{outline:3px solid var(--blue); outline-offset:4px}
+
+/* Cabecera con el mosaico de la portada */
+.site-head{position:relative; overflow:hidden; background:var(--navy)}
+.sh-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.sh-shade{position:absolute; inset:0; background:linear-gradient(90deg, rgba(13,27,42,.88) 0%, rgba(13,27,42,.58) 55%, rgba(13,27,42,.35) 100%), linear-gradient(0deg, var(--navy) 0%, rgba(13,27,42,0) 35%)}
+.sh-in{position:relative; z-index:1; min-height:clamp(420px, 52vw, 600px); display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:18px; padding-block:64px 72px}
+.brand{color:var(--off); font-weight:700; font-size:clamp(48px, 9vw, 112px); line-height:1; letter-spacing:-.02em; text-decoration:none; text-shadow:0 2px 16px rgba(0,0,0,.45)}
+.sh-sub{font-size:clamp(18px, 2.3vw, 26px); font-weight:500; color:#DCE6F0; max-width:32ch; line-height:1.35; text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.sh-sub b{color:#fff; font-weight:700}
+.mic{display:inline-flex; align-items:center; gap:10px; background:rgba(13,27,42,.6); border:1px solid rgba(138,175,204,.35); border-radius:999px; padding:8px 16px 8px 10px; font-size:14px; font-weight:500; color:#DCE6F0; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)}
+.mic i{display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--blue-deep)}
+.mic svg{width:15px; height:15px}
+
+/* Intro */
+.intro{padding-block:clamp(40px, 6vw, 72px) clamp(28px, 4vw, 44px); display:grid; gap:16px}
+.intro h2{font-size:clamp(30px, 4.4vw, 54px); line-height:1.08; font-weight:700; letter-spacing:-.01em; max-width:20ch}
+.intro p{font-size:clamp(16px, 1.6vw, 19px); color:#C9D6E3; max-width:62ch}
+.hl{display:inline-block; background:var(--blue-deep); color:#fff; border-radius:10px; padding:.02em .22em; transform:rotate(-2deg); margin-top:.1em}
+.keys{display:flex; flex-wrap:wrap; gap:10px; padding:0; margin:6px 0 0; list-style:none}
+.keys li{font-size:14px; font-weight:600; color:var(--off); border:1px solid rgba(138,175,204,.35); padding:8px 14px; border-radius:999px}
+
+/* Tarjetas: vídeo + explicación */
+.works{display:grid; gap:clamp(28px, 4vw, 48px); padding-bottom:clamp(48px, 7vw, 88px)}
+.work{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); border-radius:24px; overflow:hidden; background:#fff; color:var(--ink);
+  box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.work.flip{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)}
+.work.flip .media{order:2}
+.media{position:relative; background:radial-gradient(120% 90% at 50% 0%, var(--blue) 0%, var(--blue-deep) 55%, #24599A 100%);
+  display:flex; align-items:center; justify-content:center; padding:clamp(22px, 3.4vw, 40px)}
+.frame{position:relative; width:min(100%, 340px); aspect-ratio:9/16; border-radius:18px; overflow:hidden; background:#0b1622;
+  box-shadow:0 18px 40px rgba(6,20,40,.45); outline:2px solid rgba(255,255,255,.18); outline-offset:-2px}
+.frame video{width:100%; height:100%; object-fit:cover; background:#0b1622}
+.play{position:absolute; inset:0; border:0; padding:0; background:linear-gradient(0deg, rgba(13,27,42,.55) 0%, rgba(13,27,42,0) 45%); cursor:pointer;
+  display:flex; align-items:flex-end; justify-content:flex-start; color:#fff; font:600 15px/1 Poppins, sans-serif}
+.play span{display:flex; align-items:center; gap:10px; margin:18px; background:rgba(13,27,42,.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  padding:10px 16px 10px 10px; border-radius:999px; transition:background .2s}
+.play i{display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--blue)}
+.play i svg{width:14px; height:14px; margin-left:2px}
+.play:hover span{background:rgba(45,111,184,.92)}
+.badge{position:absolute; top:14px; left:14px; z-index:1; background:#fff; color:var(--ink); font-weight:700; font-size:14px; line-height:1;
+  padding:8px 10px; border-radius:10px; font-variant-numeric:tabular-nums; pointer-events:none}
+.dur{position:absolute; top:14px; right:14px; z-index:1; background:rgba(13,27,42,.72); color:#fff; font-weight:600; font-size:13px; line-height:1;
+  padding:8px 10px; border-radius:10px; font-variant-numeric:tabular-nums; pointer-events:none}
+
+.text{padding:clamp(26px, 4vw, 56px); display:flex; flex-direction:column; justify-content:center; gap:18px; min-width:0}
+.meta{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px}
+.num{font-weight:700; font-size:clamp(40px, 5vw, 60px); line-height:.9; color:var(--blue-deep); font-variant-numeric:tabular-nums}
+.who{display:grid; gap:2px}
+.who b{font-size:18px; font-weight:700; color:var(--ink)}
+.who span{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:500}
+.text h3{font-size:clamp(24px, 2.6vw, 34px); line-height:1.18; font-weight:700; color:var(--ink)}
+.reto{border-left:4px solid var(--blue); padding:4px 0 4px 16px; font-size:17px; color:var(--ink)}
+.reto b{display:block; font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--blue-deep); margin-bottom:4px}
+.text p.body{font-size:16px; color:var(--muted); max-width:58ch}
+.tags{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:4px 0 0; list-style:none}
+.tags li{font-size:13.5px; font-weight:500; color:var(--ink); background:#EEF3F8; border:1px solid var(--line); padding:6px 12px; border-radius:999px}
+
+.dl{align-self:flex-start; display:inline-flex; align-items:center; gap:10px; margin-top:6px; padding:12px 18px; border-radius:999px; border:2px solid var(--ink);
+  color:var(--ink); background:#fff; text-decoration:none; font-weight:600; font-size:15px; line-height:1; transition:background .2s, color .2s}
+.dl svg{width:18px; height:18px; flex:none}
+.dl small{font-size:12.5px; font-weight:500; color:var(--muted); transition:color .2s}
+.dl:hover{background:var(--ink); color:#fff}
+.dl:hover small{color:var(--steel)}
+.dl:focus-visible{outline:3px solid var(--blue); outline-offset:3px}
+.dl.busy{opacity:.7; pointer-events:none}
+
+.close{border-top:1px solid rgba(138,175,204,.2); padding-block:clamp(44px, 6vw, 72px); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px}
+.close h2{font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; font-weight:700; max-width:24ch}
+.close p{color:#C9D6E3; margin-top:10px; max-width:52ch}
+.foot{padding-block:0 40px; display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; font-size:14px; color:var(--steel)}
+.foot a{color:var(--off); text-decoration:none; font-weight:500}
+.foot a:hover{color:var(--blue)}
+
+@media (max-width: 860px){
+  .work, .work.flip{grid-template-columns:1fr}
+  .work.flip .media{order:0}
+  .frame{width:min(100%, 320px)}
+}
+@media (prefers-reduced-motion: reduce){
+  .cta, .cta svg, .play span{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <video class="sh-bg" autoplay muted loop playsinline preload="metadata" poster="https://media.polmorera.es/hero-bg-v3.webp" aria-hidden="true"><source src="https://media.polmorera.es/hero-bg-1080-v3.mp4" type="video/mp4"></video>
+  <div class="sh-shade" aria-hidden="true"></div>
+  <div class="wrap sh-in">
+    <span class="eyebrow">Creador UGC · Street content</span>
+    <a class="brand" href="https://polmorera.es/">Pol Morera</a>
+    <p class="sh-sub">Tres entrevistas en la calle para <b>Ecoembes</b>. Ligeras, dinámicas y con mensaje.</p>
+    <span class="mic"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>Micro en mano, gente real</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro" aria-labelledby="t-intro">
+    <span class="eyebrow">Entrevistas en la calle</span>
+    <h2 id="t-intro">Preguntar en la calle <span class="hl">sin que suene a anuncio.</span></h2>
+    <p>Las tres van al mismo objetivo: acercar el reciclaje y el consumo responsable a la gente con un tono ligero. Preguntas rápidas, respuestas de verdad y el mensaje de la marca metido con humor, sin sermones.</p>
+    <ul class="keys"><li>Gancho en el primer segundo</li><li>Ritmo rápido</li><li>Gente de todas las edades</li><li>Mensaje claro al final</li></ul>
+  </section>
+
+  <div class="works">
+
+    <!-- 01 · Halloween -->
+    <article class="work" aria-labelledby="t-halloween">
+      <div class="media">
+        <div class="frame">
+          <span class="badge">01</span><span class="dur">1:11</span>
+          <video preload="none" playsinline poster="https://media.polmorera.es/street-content/ecoembes-halloween-poster.webp" aria-label="Entrevista en la calle para Ecoembes, especial Halloween">
+            <source src="https://media.polmorera.es/street-content/ecoembes-halloween.mp4" type="video/mp4"></video>
+          <button class="play" type="button" aria-label="Reproducir la entrevista de Halloween"><span><i><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M0 0l14 8-14 8z"/></svg></i>Ver vídeo</span></button>
+        </div>
+      </div>
+      <div class="text">
+        <div class="meta"><span class="num">01</span><span class="who"><b>Ecoembes</b><span>Especial Halloween</span></span></div>
+        <h3 id="t-halloween">«¿Qué te da más miedo?»</h3>
+        <p class="reto"><b>El reto</b>Explicar dónde van los envoltorios de caramelos y chocolatinas en plena semana de Halloween, sin que el mensaje pese.</p>
+        <p class="body">Arranco con una pregunta absurda: Freddy Krueger, que te hagan ghosting o pillar a tu vecino tirando los envoltorios al contenedor equivocado. De ahí paso a un quiz de tres opciones en pantalla y la respuesta correcta llega al final, cuando ya estás enganchado.</p>
+        <ul class="tags"><li>Pregunta gancho</li><li>Quiz en pantalla</li><li>Humor</li></ul>
+        <a class="dl" href="https://media.polmorera.es/street-content/ecoembes-halloween.mp4" download="Pol-Morera-Ecoembes-Halloween.mp4" data-name="Pol-Morera-Ecoembes-Halloween.mp4" aria-label="Descargar la entrevista de Halloween (MP4, 9 MB)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Descargar vídeo</span><small>MP4 · 9 MB</small></a>
+      </div>
+    </article>
+
+    <!-- 02 · Compra responsable -->
+    <article class="work flip" aria-labelledby="t-compra">
+      <div class="media">
+        <div class="frame">
+          <span class="badge">02</span><span class="dur">1:49</span>
+          <video preload="none" playsinline poster="https://media.polmorera.es/street-content/ecoembes-navidad-poster.webp" aria-label="Entrevista en la calle para Ecoembes sobre compra responsable">
+            <source src="https://media.polmorera.es/street-content/ecoembes-navidad.mp4" type="video/mp4"></video>
+          <button class="play" type="button" aria-label="Reproducir la entrevista sobre compra responsable"><span><i><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M0 0l14 8-14 8z"/></svg></i>Ver vídeo</span></button>
+        </div>
+      </div>
+      <div class="text">
+        <div class="meta"><span class="num">02</span><span class="who"><b>Ecoembes</b><span>Compra responsable</span></span></div>
+        <h3 id="t-compra">«¿Llevas tu bolsa o la compras siempre?»</h3>
+        <p class="reto"><b>El reto</b>Repasar en un solo vídeo cómo hacemos la compra y qué hacemos con los envases, con gente de todas las edades.</p>
+        <p class="body">Bolsa reutilizable, fruta a granel con tu táper, dónde va cada envase (con el producto en la mano para que respondan al momento) y batch cooking. Cierro pidiendo a cada uno que se ponga nota del 1 al 10.</p>
+        <ul class="tags"><li>Producto en mano</li><li>Varias preguntas</li><li>Cierre con gancho</li></ul>
+        <a class="dl" href="https://media.polmorera.es/street-content/ecoembes-navidad.mp4" download="Pol-Morera-Ecoembes-Compra-responsable.mp4" data-name="Pol-Morera-Ecoembes-Compra-responsable.mp4" aria-label="Descargar la entrevista sobre compra responsable (MP4, 22 MB)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Descargar vídeo</span><small>MP4 · 22 MB</small></a>
+      </div>
+    </article>
+
+    <!-- 03 · Mercado local -->
+    <article class="work" aria-labelledby="t-mercado">
+      <div class="media">
+        <div class="frame">
+          <span class="badge">03</span><span class="dur">1:32</span>
+          <video preload="none" playsinline poster="https://media.polmorera.es/street-content/ecoembes-marzo-poster.webp" aria-label="Entrevista en la calle para Ecoembes delante de un mercado">
+            <source src="https://media.polmorera.es/street-content/ecoembes-marzo.mp4" type="video/mp4"></video>
+          <button class="play" type="button" aria-label="Reproducir la entrevista del mercado"><span><i><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M0 0l14 8-14 8z"/></svg></i>Ver vídeo</span></button>
+        </div>
+      </div>
+      <div class="text">
+        <div class="meta"><span class="num">03</span><span class="who"><b>Ecoembes</b><span>Mercado y temporada</span></span></div>
+        <h3 id="t-mercado">«¿Carrito de la compra, sí o no?»</h3>
+        <p class="reto"><b>El reto</b>Hablar de producto de temporada y comercio de proximidad delante de un mercado, con la gente que compra allí cada semana.</p>
+        <p class="body">Empiezo con preguntas que cualquiera contesta sin pensar (el carrito, la fruta de temporada, qué nos recomendarías ahora) y acabo en el impacto de comprar en el mercado del barrio. El mensaje lo dan ellos con sus palabras.</p>
+        <ul class="tags"><li>Preguntas sencillas</li><li>Gente del barrio</li><li>Ritmo rápido</li></ul>
+        <a class="dl" href="https://media.polmorera.es/street-content/ecoembes-marzo.mp4" download="Pol-Morera-Ecoembes-Mercado.mp4" data-name="Pol-Morera-Ecoembes-Mercado.mp4" aria-label="Descargar la entrevista del mercado (MP4, 17 MB)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Descargar vídeo</span><small>MP4 · 17 MB</small></a>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="close" aria-labelledby="t-close">
+    <div>
+      <h2 id="t-close">El formato se adapta a cualquier tema.</h2>
+      <p>Seguros, finanzas personales, tecnología o lo que haga falta: misma energía, preguntas pensadas para cada marca.</p>
+    </div>
+    <a class="cta" href="https://polmorera.es/">Mira todo el trabajo
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+
+  <footer class="foot">
+    <span>Pol Morera · Creador UGC</span>
+    <span><a href="https://polmorera.es/">polmorera.es</a> · <a href="mailto:hello@polmorera.es">hello@polmorera.es</a></span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  try{ if(matchMedia('(prefers-reduced-motion: reduce)').matches){ var bg=document.querySelector('.sh-bg'); bg.removeAttribute('autoplay'); bg.pause(); } }catch(e){}
+  var vids=[].slice.call(document.querySelectorAll('.frame video'));
+  document.querySelectorAll('.frame .play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f=btn.parentNode, v=f.querySelector('video');
+      btn.remove(); var d=f.querySelector('.dur'); if(d) d.remove();
+      v.controls=true; v.focus();
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    });
+  });
+  vids.forEach(function(v){
+    v.addEventListener('play', function(){ vids.forEach(function(o){ if(o!==v && !o.paused) o.pause(); }); });
+  });
+  document.querySelectorAll(".dl").forEach(function(a){
+    a.addEventListener("click", function(ev){
+      if(!window.fetch || !window.URL || !URL.createObjectURL) return;
+      ev.preventDefault();
+      var label=a.querySelector("span"), txt=label.textContent;
+      a.classList.add("busy"); label.textContent="Descargando…";
+      fetch(a.href).then(function(r){ if(!r.ok) throw 0; return r.blob(); }).then(function(b){
+        var u=URL.createObjectURL(b), t=document.createElement("a");
+        t.href=u; t.download=a.getAttribute("data-name"); document.body.appendChild(t); t.click(); t.remove();
+        setTimeout(function(){ URL.revokeObjectURL(u); }, 60000);
+      }).catch(function(){ window.open(a.href, "_blank", "noopener"); })
+        .then(function(){ a.classList.remove("busy"); label.textContent=txt; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
